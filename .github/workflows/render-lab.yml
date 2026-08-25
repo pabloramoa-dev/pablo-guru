@@ -20,12 +20,12 @@ jobs:
       - name: System dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config espeak-ng fonts-poppins
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config
 
-      - name: Python dependencies
+      - name: Visual lab dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
+          python -m pip install manim==0.20.1 numpy scipy
 
       - name: Syntax check
         run: |
