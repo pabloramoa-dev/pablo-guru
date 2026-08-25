@@ -2,7 +2,6 @@ manim==0.20.1
 numpy>=1.26,<3
 scipy>=1.11
 soundfile>=0.12
-kokoro-onnx>=0.4
-misaki-fork[en]>=0.1.5
-# VoxCPM is optional because it requires a much heavier PyTorch/CUDA stack.
-# Install separately on a compatible GPU machine with: pip install voxcpm
+kokoro-onnx>=0.6.1
+misaki-fork>=0.9.6
+# VoxCPM remains optional and is not installed by the lightweight CI lab.
