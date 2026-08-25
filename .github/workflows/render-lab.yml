@@ -31,11 +31,17 @@ jobs:
         run: |
           python -m compileall personagens cenarios audio lab
 
-      - name: Render V3 lab
+      - name: Render V3 character lab
         env:
           PYTHONPATH: .
         run: |
           manim -ql --disable_caching lab/render_personagem.py PabloGuruV3Lab
+
+      - name: Render lip sync lab
+        env:
+          PYTHONPATH: .
+        run: |
+          manim -ql --disable_caching lab/render_lipsync.py PabloGuruLipSyncLab
 
       - name: Collect output
         run: |
