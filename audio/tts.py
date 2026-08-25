@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import urllib.request
 from pathlib import Path
 from typing import Literal
 
@@ -10,6 +11,7 @@ import numpy as np
 import soundfile as sf
 
 SR = 44100
+KOKORO_RELEASE = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0"
 
 
 def _normalize(samples: np.ndarray, peak: float = 0.96) -> np.ndarray:
@@ -18,13 +20,35 @@ def _normalize(samples: np.ndarray, peak: float = 0.96) -> np.ndarray:
     return samples if pk == 0 else samples / pk * peak
 
 
-def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0.94,
-                  model_dir: Path | None = None) -> Path:
-    """Lightweight/default local backend for a normal notebook.
+def ensure_kokoro_models(model_dir: Path | None = None, *, quantized: bool = True) -> tuple[Path, Path]:
+    """Ensure the official Kokoro ONNX v1.0 model files exist locally.
 
-    Uses Kokoro ONNX v1.0. Portuguese voices available upstream include
-    pm_alex, pm_santa and pf_dora.
+    CI uses the official int8 model by default to keep downloads and inference light.
+    Set PABLO_KOKORO_FULL=1 to use the full f32 model instead.
     """
+    if model_dir is None:
+        model_dir = Path(os.environ.get("PABLO_KOKORO_DIR", Path.home() / ".cache" / "pablo_kokoro"))
+    model_dir.mkdir(parents=True, exist_ok=True)
+
+    full = os.environ.get("PABLO_KOKORO_FULL") == "1"
+    use_int8 = quantized and not full
+    model_name = "kokoro-v1.0.int8.onnx" if use_int8 else "kokoro-v1.0.onnx"
+    onnx = model_dir / model_name
+    voices = model_dir / "voices-v1.0.bin"
+
+    for path, name in ((onnx, model_name), (voices, "voices-v1.0.bin")):
+        if path.exists() and path.stat().st_size > 1024:
+            continue
+        url = f"{KOKORO_RELEASE}/{name}"
+        tmp = path.with_suffix(path.suffix + ".part")
+        urllib.request.urlretrieve(url, tmp)
+        tmp.replace(path)
+    return onnx, voices
+
+
+def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0.94,
+                  model_dir: Path | None = None, *, auto_download: bool = True) -> Path:
+    """Default local Brazilian-Portuguese TTS backend using Kokoro ONNX v1.0."""
     try:
         from kokoro_onnx import Kokoro
         from misaki import espeak
@@ -34,14 +58,14 @@ def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0
 
     if model_dir is None:
         model_dir = Path(os.environ.get("PABLO_KOKORO_DIR", Path.home() / ".cache" / "pablo_kokoro"))
-    model_dir.mkdir(parents=True, exist_ok=True)
-    onnx = model_dir / "kokoro-v1.0.onnx"
-    voices = model_dir / "voices-v1.0.bin"
-    if not onnx.exists() or not voices.exists():
-        raise FileNotFoundError(
-            f"Modelos Kokoro ausentes em {model_dir}. Baixe kokoro-v1.0.onnx e voices-v1.0.bin "
-            "do release oficial do kokoro-onnx."
-        )
+    if auto_download:
+        onnx, voices = ensure_kokoro_models(model_dir)
+    else:
+        candidates = [model_dir / "kokoro-v1.0.int8.onnx", model_dir / "kokoro-v1.0.onnx"]
+        onnx = next((p for p in candidates if p.exists()), candidates[0])
+        voices = model_dir / "voices-v1.0.bin"
+        if not onnx.exists() or not voices.exists():
+            raise FileNotFoundError(f"Modelos Kokoro ausentes em {model_dir}")
 
     fallback = espeak.EspeakFallback(british=False)
     g2p = EspeakG2P(language="pt-br", fallback=fallback)
@@ -55,12 +79,6 @@ def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0
 
 def synth_voxcpm(text: str, out: Path, control: str | None = None,
                   model_name: str = "openbmb/VoxCPM2") -> Path:
-    """Optional high-end backend.
-
-    VoxCPM2 is intentionally optional: its current stack is much heavier than
-    Kokoro and is designed for a CUDA-capable machine. It is useful for final
-    voice design/cloning, not for every lightweight render iteration.
-    """
     try:
         from voxcpm import VoxCPM
     except ImportError as exc:
