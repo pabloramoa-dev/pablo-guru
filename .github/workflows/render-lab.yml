@@ -43,6 +43,12 @@ jobs:
         run: |
           manim -ql --disable_caching lab/render_lipsync.py PabloGuruLipSyncLab
 
+      - name: Render V4 gesture lab
+        env:
+          PYTHONPATH: .
+        run: |
+          manim -ql --disable_caching lab/render_gestures.py PabloGuruGesturesV4Lab
+
       - name: Collect output
         run: |
           mkdir -p output
