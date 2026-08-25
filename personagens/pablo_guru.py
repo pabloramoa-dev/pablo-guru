@@ -42,12 +42,12 @@ class PabloGuruRig(VGroup):
         self.head_art.move_to(UP * 1.73)
         h = self.head_art.get_center()
 
-        # Facial landmarks are deliberately separate.  This prevents lip-sync from
-        # accidentally using the nose/face center as the mouth position.
-        self.face_anchor = Point(h)
-        self.nose_anchor = Point(h + DOWN * 0.18)
-        self.mouth_anchor = Point(h + DOWN * 0.72)
-        self.chin_anchor = Point(h + DOWN * 1.10)
+        # VectorizedPoint is a VMobject: it can safely live inside this VGroup and
+        # therefore follows every scale/shift/rotation applied to the full rig.
+        self.face_anchor = VectorizedPoint(h)
+        self.nose_anchor = VectorizedPoint(h + DOWN * 0.18)
+        self.mouth_anchor = VectorizedPoint(h + DOWN * 0.72)
+        self.chin_anchor = VectorizedPoint(h + DOWN * 1.10)
 
         self.eye_white_l = Ellipse(width=0.48, height=0.30, fill_color=WHITE,
                                    fill_opacity=1, stroke_color=INK, stroke_width=5)
