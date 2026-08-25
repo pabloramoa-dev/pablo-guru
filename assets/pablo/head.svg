@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 470">
+  <g stroke="#17191d" stroke-linejoin="round" stroke-linecap="round">
+    <!-- ears -->
+    <ellipse cx="67" cy="225" rx="29" ry="43" fill="#d8a47d" stroke-width="14"/>
+    <ellipse cx="353" cy="225" rx="29" ry="43" fill="#d8a47d" stroke-width="14"/>
+    <!-- neck shadow behind head -->
+    <path d="M164 376 Q210 410 256 376 L250 447 L170 447 Z" fill="#c68f68" stroke-width="14"/>
+    <!-- face -->
+    <path d="M85 194 Q88 72 210 58 Q332 72 335 194 L326 292 Q316 370 210 408 Q104 370 94 292 Z" fill="#e0ad85" stroke-width="16"/>
+    <!-- face highlight -->
+    <path d="M118 172 Q135 104 206 88 Q170 170 174 320 Q138 305 120 266 Z" fill="#edc09d" opacity="0.42" stroke="none"/>
+    <!-- hair mass -->
+    <path d="M82 192 Q65 118 111 77 Q150 40 210 54 Q274 35 319 82 Q350 116 336 194 Q307 142 281 127 Q241 104 205 108 Q161 103 128 130 Q102 151 82 192 Z" fill="#262322" stroke-width="16"/>
+    <!-- hair layered locks -->
+    <path d="M102 145 Q118 83 165 72 Q139 119 149 151" fill="none" stroke="#514943" stroke-width="16"/>
+    <path d="M158 112 Q188 62 229 70 Q200 104 205 132" fill="none" stroke="#514943" stroke-width="16"/>
+    <path d="M222 91 Q268 63 303 105 Q267 100 252 142" fill="none" stroke="#514943" stroke-width="16"/>
+    <!-- beard side masses -->
+    <path d="M103 269 Q110 343 160 387 Q184 407 210 420 Q160 425 124 384 Q92 346 86 300 Z" fill="#302b29" stroke-width="14"/>
+    <path d="M317 269 Q310 343 260 387 Q236 407 210 420 Q260 425 296 384 Q328 346 334 300 Z" fill="#302b29" stroke-width="14"/>
+    <!-- chin beard -->
+    <path d="M145 334 Q160 411 210 446 Q260 411 275 334 Q247 372 210 381 Q173 372 145 334 Z" fill="#302b29" stroke-width="14"/>
+    <path d="M167 365 Q184 404 210 424 Q235 403 252 365" fill="none" stroke="#5b514b" stroke-width="10"/>
+    <!-- nose -->
+    <path d="M210 208 Q194 248 201 268 Q210 278 223 268" fill="none" stroke="#8f634d" stroke-width="10"/>
+    <!-- cheek accents -->
+    <path d="M119 272 Q143 285 162 278" fill="none" stroke="#bd7f67" stroke-width="6" opacity="0.65"/>
+    <path d="M301 272 Q277 285 258 278" fill="none" stroke="#bd7f67" stroke-width="6" opacity="0.65"/>
+  </g>
+</svg>
