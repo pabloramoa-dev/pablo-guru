@@ -20,7 +20,7 @@ class PabloGuruGesturesV4Lab(Scene):
         pablo.set_expression("warm")
         self.add(pablo)
 
-        title = Text("GESTOS V4", font=FONT, weight=BOLD, font_size=30, color="#17191d")
+        title = Text("GESTOS V5", font=FONT, weight=BOLD, font_size=30, color="#17191d")
         title.to_edge(UP, buff=0.75)
         label = Text("repouso", font=FONT, font_size=20, color="#665b52").next_to(title, DOWN, buff=0.18)
         self.add(title, label)
@@ -31,21 +31,22 @@ class PabloGuruGesturesV4Lab(Scene):
             ("explain", "explicando"),
             ("point", "apontando"),
             ("welcome", "acolhendo"),
+            ("heart", "ao coracao"),
             ("rest", "repouso"),
         ]:
             new_label = Text(caption, font=FONT, font_size=20, color="#665b52").move_to(label)
             self.play(
-                *gesture_animations(pablo, "right", name),
+                gesture_animations(pablo, "right", name, run_time=0.55),
                 Transform(label, new_label),
                 run_time=0.55,
                 rate_func=smooth,
             )
             self.wait(0.45)
 
-        # Bilateral welcome pose: useful for the bridge/revelation moments.
+        # Bilateral welcome pose: useful for bridge/revelation moments.
         self.play(
-            *gesture_animations(pablo, "right", "welcome"),
-            *gesture_animations(pablo, "left", "welcome"),
+            gesture_animations(pablo, "right", "welcome", run_time=0.65),
+            gesture_animations(pablo, "left", "welcome", run_time=0.65),
             run_time=0.65,
             rate_func=smooth,
         )
