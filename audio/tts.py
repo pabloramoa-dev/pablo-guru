@@ -46,15 +46,35 @@ def ensure_kokoro_models(model_dir: Path | None = None, *, quantized: bool = Tru
     return onnx, voices
 
 
+def _phonemize_ptbr(text: str) -> str:
+    """Convert Brazilian Portuguese text to phonemes using the current Misaki API.
+
+    misaki-fork 0.9.6 no longer accepts the old ``fallback=`` argument on
+    ``EspeakG2P``.  Keeping this isolated makes future API changes easy to adapt.
+    """
+    try:
+        from misaki.espeak import EspeakG2P
+    except ImportError as exc:
+        raise RuntimeError("misaki-fork nao instalado.") from exc
+
+    g2p = EspeakG2P(language="pt-br")
+    result = g2p(text)
+    if isinstance(result, tuple):
+        phonemes = result[0]
+    else:
+        phonemes = result
+    if not isinstance(phonemes, str) or not phonemes.strip():
+        raise RuntimeError("O G2P pt-br nao retornou fonemas validos.")
+    return phonemes
+
+
 def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0.94,
                   model_dir: Path | None = None, *, auto_download: bool = True) -> Path:
     """Default local Brazilian-Portuguese TTS backend using Kokoro ONNX v1.0."""
     try:
         from kokoro_onnx import Kokoro
-        from misaki import espeak
-        from misaki.espeak import EspeakG2P
     except ImportError as exc:
-        raise RuntimeError("Instale kokoro-onnx, soundfile e misaki-fork[en].") from exc
+        raise RuntimeError("Instale kokoro-onnx, soundfile e misaki-fork.") from exc
 
     if model_dir is None:
         model_dir = Path(os.environ.get("PABLO_KOKORO_DIR", Path.home() / ".cache" / "pablo_kokoro"))
@@ -67,9 +87,7 @@ def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0
         if not onnx.exists() or not voices.exists():
             raise FileNotFoundError(f"Modelos Kokoro ausentes em {model_dir}")
 
-    fallback = espeak.EspeakFallback(british=False)
-    g2p = EspeakG2P(language="pt-br", fallback=fallback)
-    phonemes, _ = g2p(text)
+    phonemes = _phonemize_ptbr(text)
     kokoro = Kokoro(str(onnx), str(voices))
     samples, sample_rate = kokoro.create(phonemes, voice, speed=speed, is_phonemes=True)
     samples = _normalize(np.asarray(samples))
