@@ -52,11 +52,24 @@ class PabloGuruVoiceLab(MovingCameraScene):
         self.add_sound(str(VOICE))
 
         duration = wav_duration(VOICE)
-        self.play(*gesture_animations(pablo, "right", "explain"), run_time=0.65, rate_func=smooth)
-        self.wait(max(0.15, min(1.2, duration * 0.20)))
-        self.play(*gesture_animations(pablo, "right", "open"), run_time=0.55, rate_func=smooth)
+
+        # V5 gesture_animations returns an AnimationGroup, so play it directly.
+        self.play(gesture_animations(pablo, "right", "explain", run_time=0.65))
+        pause_1 = max(0.15, min(1.2, duration * 0.20))
+        self.wait(pause_1)
+
+        self.play(gesture_animations(pablo, "right", "open", run_time=0.55))
         self.play(self.camera.frame.animate.scale(0.96).shift(UP * 0.04), run_time=0.7, rate_func=smooth)
-        elapsed = 0.65 + max(0.15, min(1.2, duration * 0.20)) + 0.55 + 0.7
-        self.wait(max(0.2, duration - elapsed))
+
+        elapsed = 0.65 + pause_1 + 0.55 + 0.7
+        remaining = max(0.2, duration - elapsed)
+
+        # End the line in a warmer, more reflective pose instead of freezing open.
+        if remaining > 0.9:
+            self.wait(max(0.2, remaining - 0.65))
+            self.play(gesture_animations(pablo, "right", "heart", run_time=0.65))
+        else:
+            self.wait(remaining)
+
         self.add(env["foreground"])
         self.wait(0.35)
