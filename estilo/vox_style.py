@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import math
 import random
+import numpy as np
 from manim import *
 
 PAPER = "#efe8d8"
@@ -116,17 +117,16 @@ def torn_card(text: str, *, width: float = 5.8, font_size: int = 30,
 
 def collage_in(mob: Mobject, direction=UP, distance: float = 0.22,
                run_time: float = 0.34) -> Animation:
-    return AnimationGroup(FadeIn(mob, shift=direction * distance),
-                          mob.animate.rotate(0.018), lag_ratio=0, run_time=run_time)
+    return FadeIn(mob, shift=direction * distance, run_time=run_time)
 
 
 def stepped_motion(mob: Mobject, vector=RIGHT * 0.20, steps: int = 4,
                    total_time: float = 0.42) -> Succession:
     step = vector / max(1, steps)
-    anims = []
-    for _ in range(max(1, steps)):
-        anims.append(mob.animate.shift(step).set_run_time(total_time / max(1, steps)))
-    return Succession(*anims)
+    return Succession(*[
+        ApplyMethod(mob.shift, step, run_time=total_time / max(1, steps), rate_func=linear)
+        for _ in range(max(1, steps))
+    ])
 
 
 def freeze_annotate(scene: Scene, target: Mobject, label: str,
