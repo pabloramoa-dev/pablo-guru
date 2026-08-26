@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 from manim import *
 
+from audio.lipsync import attach_lipsync
 from cenarios.estudio import estudio_principal, animate_ambience
 from personagens.gestures import gesture_animations
 from personagens.pablo_guru import PabloGuruRig
@@ -12,9 +16,14 @@ config.frame_width = 9
 config.frame_height = 16
 config.frame_rate = 30
 
+ROOT = Path(__file__).resolve().parents[1]
+AUDIO = ROOT / "audio" / "generated" / "piloto_01.wav"
+TIMINGS = ROOT / "audio" / "generated" / "piloto_01_timings.json"
+CUES = ROOT / "audio" / "generated" / "piloto_01_cues.json"
+
 
 class Perguntador(VGroup):
-    """Temporary second-character silhouette for blocking the first real pilot."""
+    """Temporary second-character rig for the first complete narrative test."""
     def __init__(self):
         super().__init__()
         ink = "#17191d"
@@ -34,8 +43,14 @@ class Perguntador(VGroup):
 
 
 class PabloGuruPilot01(MovingCameraScene):
-    """First narrative blocking test: question -> story -> bridge -> insight."""
+    """Complete test: dialogue -> story -> bridge -> insight, with generated voice."""
     def construct(self):
+        if not AUDIO.exists() or not TIMINGS.exists() or not CUES.exists():
+            raise FileNotFoundError("Run audio/generate_pilot_voice.py before rendering the pilot")
+
+        timings = json.loads(TIMINGS.read_text(encoding="utf-8"))
+        cues = json.loads(CUES.read_text(encoding="utf-8"))
+
         env = estudio_principal()
         self.add(env["background"], env["midground"])
         animate_ambience(self, env)
@@ -46,52 +61,76 @@ class PabloGuruPilot01(MovingCameraScene):
         asker = Perguntador().scale(0.82).move_to(LEFT * 2.15 + DOWN * 1.45)
         self.add(asker, pablo)
 
-        # 1. Pergunta: "Pablo Guru, por que eu sinto que nunca sou suficiente?"
-        question = Text("Por que eu sinto que\nnunca sou suficiente?", font_size=34,
-                        line_spacing=0.85).to_edge(UP, buff=1.05)
-        self.play(FadeIn(question, shift=UP * 0.12), run_time=0.45)
-        self.play(asker.animate.shift(RIGHT * 0.08), run_time=0.35, rate_func=there_and_back)
-        self.wait(0.65)
-        self.play(FadeOut(question), run_time=0.28)
+        # One global cue timeline lets the mouth stay closed during the question and
+        # automatically activate only in Pablo's generated speech segments.
+        pablo.mouth.set_opacity(0)
+        attach_lipsync(self, pablo.mouth_anchor, cues, scale=0.76, z_index=45)
+        self.add_sound(str(AUDIO))
 
-        # 2. Pablo does not answer directly. He opens a story.
-        self.play(*gesture_animations(pablo, "left", "explain"), run_time=0.48, rate_func=smooth)
-        story = Text("Havia um homem que atravessava\na mesma ponte todos os dias...",
-                     font_size=30, line_spacing=0.82).to_edge(UP, buff=0.95)
-        self.play(FadeIn(story), self.camera.frame.animate.scale(0.97), run_time=0.50)
-        self.wait(0.75)
+        def wait_until(t: float):
+            self.wait(max(0.0, float(t) - float(self.time)))
 
-        # 3. Enter the metaphor: studio recedes and a symbolic bridge appears.
+        # Segment 1 — the viewer hears the actual question.
+        q = timings[0]
+        question = Text("Pablo Guru, por que eu sinto que\nnunca sou suficiente?",
+                        font_size=33, line_spacing=0.82).to_edge(UP, buff=0.95)
+        self.play(FadeIn(question, shift=UP * 0.10), run_time=0.38)
+        self.play(asker.animate.shift(RIGHT * 0.09), run_time=0.32, rate_func=there_and_back)
+        wait_until(q["end"])
+        self.play(FadeOut(question), run_time=0.24)
+
+        # Segment 2 — Pablo refuses the direct answer and opens a story.
+        s1 = timings[1]
+        story1 = Text("Havia um homem que atravessava\na mesma ponte todos os dias.",
+                      font_size=30, line_spacing=0.82).to_edge(UP, buff=0.95)
+        self.play(gesture_animations(pablo, "left", "explain", run_time=0.46),
+                  FadeIn(story1), run_time=0.46, rate_func=smooth)
+        wait_until(s1["end"])
+
+        # Segment 3 — the studio becomes the metaphor while narration continues.
+        s2 = timings[2]
+        story2 = Text("Ele media os próprios passos\npelos passos de quem vinha antes.",
+                      font_size=29, line_spacing=0.80).to_edge(UP, buff=0.90)
         bridge = VGroup(
-            Line(LEFT * 3.4, RIGHT * 3.4, stroke_width=18, color="#8a6a49"),
-            Line(LEFT * 3.4 + DOWN * 0.20, RIGHT * 3.4 + DOWN * 0.20,
+            Line(LEFT * 3.45, RIGHT * 3.45, stroke_width=18, color="#8a6a49"),
+            Line(LEFT * 3.45 + DOWN * 0.20, RIGHT * 3.45 + DOWN * 0.20,
                  stroke_width=5, color="#2d2823"),
-        ).move_to(DOWN * 0.25)
-        fog = Rectangle(width=9, height=16, fill_color="#d9d2c5", fill_opacity=0.12,
+        ).move_to(DOWN * 0.15)
+        fog = Rectangle(width=9, height=16, fill_color="#d9d2c5", fill_opacity=0.14,
                         stroke_opacity=0)
-        self.play(FadeOut(story), FadeIn(fog), FadeIn(bridge, shift=UP * 0.18), run_time=0.65)
-        self.play(*gesture_animations(pablo, "left", "rest"), run_time=0.32)
+        self.play(ReplacementTransform(story1, story2), FadeIn(fog),
+                  FadeIn(bridge, shift=UP * 0.16),
+                  self.camera.frame.animate.scale(0.965), run_time=0.68, rate_func=smooth)
+        self.play(gesture_animations(pablo, "left", "rest", run_time=0.32), run_time=0.32)
+        self.play(asker.animate.shift(DOWN * 0.03), run_time=0.25, rate_func=there_and_back)
+        wait_until(s2["end"])
 
-        # 4. Put the person inside Pablo's story and cross together.
+        # Segment 4 — Pablo puts the person inside the story and crosses with them.
+        s3 = timings[3]
+        prompt = Text("De quem é essa medida?", font_size=34).to_edge(UP, buff=1.00)
+        self.play(ReplacementTransform(story2, prompt), run_time=0.35)
         self.play(
-            asker.animate.scale(0.72).move_to(LEFT * 2.6 + UP * 0.20),
+            asker.animate.scale(0.72).move_to(LEFT * 2.60 + UP * 0.20),
             pablo.animate.scale(0.78).move_to(LEFT * 1.25 + UP * 0.18),
-            run_time=0.65, rate_func=smooth,
+            run_time=0.62, rate_func=smooth,
         )
         self.play(
-            asker.animate.shift(RIGHT * 4.6),
-            pablo.animate.shift(RIGHT * 4.6),
-            run_time=1.35, rate_func=smooth,
+            asker.animate.shift(RIGHT * 4.65),
+            pablo.animate.shift(RIGHT * 4.65),
+            run_time=1.45, rate_func=smooth,
         )
+        wait_until(s3["end"])
 
-        # 5. Insight on the other side.
+        # Segment 5 — emotional landing on the other side of the bridge.
+        s4 = timings[4]
         insight = Text("Talvez você não precise provar\nque é suficiente.\nPrecisa parar de atravessar\na ponte dos outros.",
-                       font_size=31, line_spacing=0.78).to_edge(UP, buff=0.82)
-        self.play(FadeIn(insight, shift=UP * 0.10), run_time=0.50)
-        self.play(*gesture_animations(pablo, "right", "heart"), run_time=0.48, rate_func=smooth)
-        self.wait(1.05)
+                       font_size=30, line_spacing=0.76).to_edge(UP, buff=0.78)
+        self.play(ReplacementTransform(prompt, insight), run_time=0.40)
+        self.play(gesture_animations(pablo, "right", "heart", run_time=0.50),
+                  run_time=0.50, rate_func=smooth)
+        wait_until(s4["end"])
+        self.wait(0.55)
 
-        # 6. End on the two characters, leaving room for the real voice pass.
         self.play(FadeOut(insight), FadeOut(fog), FadeOut(bridge), run_time=0.55)
         self.add(env["foreground"])
         self.wait(0.40)
