@@ -1,4 +1,4 @@
-name: Render Pablo Guru V3 Lab
+name: Render Pablo Guru Pilot
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
 
-      - name: Lab dependencies
+      - name: Pilot dependencies
         run: |
           python -m pip install --upgrade pip
           python -m pip install manim==0.20.1 numpy scipy soundfile kokoro-onnx "misaki-fork[en]"
@@ -31,40 +31,28 @@ jobs:
         run: |
           python -m compileall personagens cenarios audio lab
 
-      - name: Render V3 character lab
+      - name: Generate complete pilot voice track
         env:
           PYTHONPATH: .
-        run: manim -ql --disable_caching lab/render_personagem.py PabloGuruV3Lab
+        run: python audio/generate_pilot_voice.py
 
-      - name: Render lip sync lab
+      - name: Render complete pilot
         env:
           PYTHONPATH: .
-        run: manim -ql --disable_caching lab/render_lipsync.py PabloGuruLipSyncLab
+        run: manim -ql --disable_caching lab/piloto_01.py PabloGuruPilot01
 
-      - name: Render V4 gesture lab
-        env:
-          PYTHONPATH: .
-        run: manim -ql --disable_caching lab/render_gestures.py PabloGuruGesturesV4Lab
-
-      - name: Generate Brazilian Portuguese voice
-        env:
-          PYTHONPATH: .
-        run: python audio/generate_ci_voice.py
-
-      - name: Render integrated voice lab
-        env:
-          PYTHONPATH: .
-        run: manim -ql --disable_caching lab/render_voice.py PabloGuruVoiceLab
-
-      - name: Collect output
+      - name: Collect pilot output
         run: |
           mkdir -p output
-          find media/videos -name "*.mp4" -print -exec cp {} output/ \;
-          cp audio/generated/pablo_teste.wav output/
+          find media/videos -name "PabloGuruPilot01.mp4" -print -exec cp {} output/pablo-guru-piloto-01.mp4 \;
+          cp audio/generated/piloto_01.wav output/
+          cp audio/generated/piloto_01_timings.json output/
+          cp audio/generated/piloto_01_cues.json output/
+          test -f output/pablo-guru-piloto-01.mp4
 
-      - name: Upload render artifact
+      - name: Upload pilot artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pablo-guru-v3-lab
+          name: pablo-guru-piloto-01
           path: output/*
           if-no-files-found: error
