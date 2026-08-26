@@ -96,7 +96,10 @@ class PabloGuruAEstacao(MovingCameraScene):
         def drift(m,dt):
             clock["t"]+=dt; target=base+RIGHT*(.035*math.sin(clock["t"]*.37))+UP*(.024*math.sin(clock["t"]*.29+.7)); m.shift(target-m.get_center())
         cam.add_updater(drift)
-        def until(index): self.wait(max(0,float(timings[index-1]["end"])-float(self.time)))
+        def until(index):
+            remaining=float(timings[index-1]["end"])-float(self.time)
+            if remaining > .01:
+                self.wait(remaining)
         def camera_cut(center=ORIGIN, scale=1.0, run_time=.42):
             nonlocal base
             cam.clear_updaters()
@@ -154,3 +157,4 @@ class PabloGuruAEstacao(MovingCameraScene):
         underline=Line(final.get_left()+DOWN*.25,final.get_right()+DOWN*.25,color=YELLOW,stroke_width=18,stroke_opacity=.75).set_z_index(29)
         self.play(FadeIn(final,shift=UP*.08),Create(underline),gesture_animations(pablo,"right","heart",run_time=.52),run_time=.52)
         until(15); self.wait(.55); self.play(FadeOut(final),FadeOut(underline),run_time=.24); self.wait(.32)
+
