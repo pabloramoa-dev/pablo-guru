@@ -111,9 +111,9 @@ class PabloGuruAEstacao(MovingCameraScene):
         panel=RoundedRectangle(width=SAFE_W,height=hook.height+.55,corner_radius=.18,fill_color=BLACK,fill_opacity=.76,stroke_color=WHITE,stroke_width=3).move_to(hook)
         self.play(FadeIn(slug,shift=LEFT*.1),FadeIn(panel),FadeIn(hook),
                   asker.animate.shift(RIGHT*.10).rotate(.035),run_time=.42); until(1)
-        camera_cut(RIGHT*.68+DOWN*.45,.82,.40)
-        self.play(FadeOut(slug),FadeOut(panel),FadeOut(hook),
-                  gesture_animations(pablo,"right","explain",run_time=.48),
+        self.play(FadeOut(slug),FadeOut(panel),FadeOut(hook),run_time=.24)
+        camera_cut(RIGHT*.68+DOWN*.45,.82,.36)
+        self.play(gesture_animations(pablo,"right","explain",run_time=.48),
                   asker.animate.shift(LEFT*.10),run_time=.48); until(2)
         bubble=Text("PELOS TRENS?",font_size=43,color=INK,weight=BOLD).move_to(UP*3.9)
         camera_cut(LEFT*.72+DOWN*.35,.84,.34)
@@ -153,7 +153,7 @@ class PabloGuruAEstacao(MovingCameraScene):
         self.play(FadeIn(question),asker.animate.shift(RIGHT*.08).rotate(.03),run_time=.34); until(13); self.play(FadeOut(question),run_time=.22)
         camera_cut(RIGHT*.50+DOWN*.42,.77,.42)
         pablo.set_expression("reveal"); self.play(FadeOut(asker,shift=LEFT*.24),FadeOut(alip),pablo.animate.scale(1.16).move_to(DOWN*1.65),gesture_animations(pablo,"right","rest",run_time=.44),run_time=.50); until(14)
-        final=fit(Text("NÃO CHAME DE ATRASO\nO TEMPO QUE VOCÊ PASSA\nCOM MEDO DE ESCOLHER UM TREM.",font_size=39,color=INK,weight=BOLD,line_spacing=.78)).move_to(UP*4.1).set_z_index(30)
+        final=fit(Text("NÃO CHAME DE ATRASO\nO TEMPO QUE VOCÊ PASSA\nCOM MEDO DE ESCOLHER UM TREM.",font_size=39,color=INK,weight=BOLD,line_spacing=.78),5.60).move_to(RIGHT*.50+UP*4.1).set_z_index(30)
         underline=Line(final.get_left()+DOWN*.25,final.get_right()+DOWN*.25,color=YELLOW,stroke_width=18,stroke_opacity=.75).set_z_index(29)
         self.play(FadeIn(final,shift=UP*.08),Create(underline),gesture_animations(pablo,"right","heart",run_time=.52),run_time=.52)
         until(15); self.wait(.55); self.play(FadeOut(final),FadeOut(underline),run_time=.24); self.wait(.32)
