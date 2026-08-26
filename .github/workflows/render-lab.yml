@@ -36,23 +36,23 @@ jobs:
           PYTHONPATH: .
         run: python audio/generate_pilot_voice.py
 
-      - name: Render V11 mobile-first reel
+      - name: Render corrected V11 mobile reel
         env:
           PYTHONPATH: .
-        run: manim -ql --disable_caching lab/piloto_v11.py PabloGuruPilotV11
+        run: manim -ql --disable_caching lab/piloto_v11_final.py PabloGuruPilotV11Final
 
       - name: Collect V11 output
         run: |
           mkdir -p output
-          find media/videos -name "PabloGuruPilotV11.mp4" -print -exec cp {} output/pablo-guru-v11-mobile.mp4 \;
+          find media/videos -name "PabloGuruPilotV11Final.mp4" -print -exec cp {} output/pablo-guru-v11-mobile-final.mp4 \;
           cp audio/generated/piloto_01.wav output/
           cp audio/generated/piloto_01_timings.json output/
           cp audio/generated/piloto_01_cues.json output/
-          test -f output/pablo-guru-v11-mobile.mp4
+          test -f output/pablo-guru-v11-mobile-final.mp4
 
       - name: Upload V11 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pablo-guru-v11-mobile
+          name: pablo-guru-v11-mobile-final
           path: output/*
           if-no-files-found: error
