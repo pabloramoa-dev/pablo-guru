@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 from pathlib import Path
 
 import numpy as np
@@ -14,14 +15,25 @@ OUT = ROOT / "audio" / "generated"
 MASTER = OUT / "piloto_01.wav"
 TIMINGS = OUT / "piloto_01_timings.json"
 CUES = OUT / "piloto_01_cues.json"
+ASKER_CUES = OUT / "piloto_01_asker_cues.json"
 SR = 44100
 
+# Voice identities copied from the production pipeline in previsao-sul-fluminense:
+#   Seu Ranzinza -> pm_alex, Kokoro speed 0.95, pitch 0.88
+#   Dona Maria   -> pf_dora, Kokoro speed 0.95, pitch 0.94
+# The post-chain is intentionally the same one used there so Pablo and the woman
+# inherit the proven timbre rather than merely choosing a vaguely similar voice.
+VOICE_PROFILES = {
+    "asker": {"voice": "pf_dora", "speed": 0.95, "pitch": 0.94},
+    "pablo": {"voice": "pm_alex", "speed": 0.95, "pitch": 0.88},
+}
+
 SEGMENTS = [
-    ("asker", "Pablo Guru, por que eu sinto que nunca sou suficiente?", 0.98),
-    ("pablo", "Havia um homem que atravessava a mesma ponte todos os dias.", 0.91),
-    ("pablo", "Em cada travessia, ele media os próprios passos pelo tamanho dos passos de quem vinha antes. Quando chegava ao outro lado, sempre se sentia menor.", 0.91),
-    ("pablo", "Um dia, alguém caminhou com ele até a ponte e perguntou: de quem é essa medida?", 0.89),
-    ("pablo", "Talvez você não precise provar que é suficiente. Precisa parar de atravessar a ponte dos outros.", 0.88),
+    ("asker", "Pablo Guru, por que eu sinto que nunca sou suficiente?"),
+    ("pablo", "Havia um homem que atravessava a mesma ponte todos os dias."),
+    ("pablo", "Em cada travessia, ele media os próprios passos pelo tamanho dos passos de quem vinha antes. Quando chegava ao outro lado, sempre se sentia menor."),
+    ("pablo", "Um dia, alguém caminhou com ele até a ponte e perguntou: de quem é essa medida?"),
+    ("pablo", "Talvez você não precise provar que é suficiente. Precisa parar de atravessar a ponte dos outros."),
 ]
 PAUSES = [0.45, 0.35, 0.40, 0.55, 0.65]
 
@@ -31,8 +43,6 @@ def _mono_44100(path: Path) -> np.ndarray:
     if samples.ndim > 1:
         samples = samples.mean(axis=1)
     if sr != SR:
-        # Kokoro v1 currently emits 24 kHz; simple linear resampling is sufficient
-        # for the CI pilot master and keeps this script dependency-light.
         x_old = np.linspace(0.0, 1.0, len(samples), endpoint=False)
         n = max(1, int(round(len(samples) * SR / sr)))
         x_new = np.linspace(0.0, 1.0, n, endpoint=False)
@@ -40,16 +50,44 @@ def _mono_44100(path: Path) -> np.ndarray:
     return samples
 
 
+def _apply_reference_timbre(src: Path, dst: Path, pitch: float) -> None:
+    """Apply the exact timbre chain used by Ranzinza/Dona Maria production."""
+    audio_filter = (
+        f"asetrate=44100*{pitch},aresample=44100,atempo={1 / pitch:.5f},"
+        "vibrato=f=5.5:d=0.09,highpass=f=90,"
+        "acompressor=threshold=-18dB:ratio=3:attack=8:release=180,volume=1.15"
+    )
+    subprocess.run(
+        [
+            "ffmpeg", "-y", "-v", "error", "-i", str(src),
+            "-af", audio_filter, "-ar", str(SR), "-ac", "1", str(dst),
+        ],
+        check=True,
+    )
+
+
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
     master_parts = []
     timings = []
-    global_cues = []
+    pablo_cues = []
+    asker_cues = []
     cursor = 0.0
 
-    for i, ((speaker, text, speed), pause) in enumerate(zip(SEGMENTS, PAUSES), start=1):
+    for i, ((speaker, text), pause) in enumerate(zip(SEGMENTS, PAUSES), start=1):
+        profile = VOICE_PROFILES[speaker]
+        raw = OUT / f"piloto_01_{i}_{speaker}_raw.wav"
         wav = OUT / f"piloto_01_{i}_{speaker}.wav"
-        synthesize(text, wav, backend="kokoro", voice="pm_santa", speed=speed)
+
+        synthesize(
+            text,
+            raw,
+            backend="kokoro",
+            voice=profile["voice"],
+            speed=profile["speed"],
+        )
+        _apply_reference_timbre(raw, wav, pitch=profile["pitch"])
+
         samples = _mono_44100(wav)
         seg_duration = len(samples) / SR
         start = cursor
@@ -60,16 +98,18 @@ def main():
             "text": text,
             "start": round(start, 4),
             "end": round(end, 4),
+            "voice": profile["voice"],
+            "pitch": profile["pitch"],
         })
         master_parts.append(samples)
 
-        if speaker == "pablo":
-            for cue in audio_driven_cues(wav):
-                global_cues.append({
-                    "start": round(start + float(cue["start"]), 4),
-                    "end": round(start + float(cue["end"]), 4),
-                    "value": cue["value"],
-                })
+        target = pablo_cues if speaker == "pablo" else asker_cues
+        for cue in audio_driven_cues(wav):
+            target.append({
+                "start": round(start + float(cue["start"]), 4),
+                "end": round(start + float(cue["end"]), 4),
+                "value": cue["value"],
+            })
 
         silence = np.zeros(int(SR * pause), dtype=np.float32)
         master_parts.append(silence)
@@ -81,8 +121,14 @@ def main():
         master = master / peak * 0.94
     sf.write(str(MASTER), master, SR)
     TIMINGS.write_text(json.dumps(timings, ensure_ascii=False, indent=2), encoding="utf-8")
-    CUES.write_text(json.dumps(global_cues, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(json.dumps({"master": str(MASTER), "duration": round(len(master) / SR, 3)}, ensure_ascii=False))
+    CUES.write_text(json.dumps(pablo_cues, ensure_ascii=False, indent=2), encoding="utf-8")
+    ASKER_CUES.write_text(json.dumps(asker_cues, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(json.dumps({
+        "master": str(MASTER),
+        "duration": round(len(master) / SR, 3),
+        "pablo_voice": VOICE_PROFILES["pablo"],
+        "asker_voice": VOICE_PROFILES["asker"],
+    }, ensure_ascii=False))
 
 
 if __name__ == "__main__":
