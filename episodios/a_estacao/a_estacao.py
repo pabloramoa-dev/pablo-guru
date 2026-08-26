@@ -90,7 +90,7 @@ class PabloGuruAEstacao(MovingCameraScene):
         cam.add_updater(drift)
         def until(index): self.wait(max(0,float(timings[index-1]["end"])-float(self.time)))
 
-        slug=editorial_label("PERGUNTA",24,RED).move_to(LEFT*2.3+UP*5.05)
+        slug=editorial_label("PERGUNTA",font_size=24,accent=RED).move_to(LEFT*2.3+UP*5.05)
         hook=fit(Text("TODO MUNDO ESTÁ\nNA MINHA FRENTE?",font_size=49,color=WHITE,weight=BOLD,line_spacing=.78)).move_to(UP*3.75)
         panel=RoundedRectangle(width=SAFE_W,height=hook.height+.55,corner_radius=.18,fill_color=BLACK,fill_opacity=.76,stroke_color=WHITE,stroke_width=3).move_to(hook)
         self.play(FadeIn(slug,shift=LEFT*.1),FadeIn(panel),FadeIn(hook),run_time=.38); until(1)
@@ -131,3 +131,4 @@ class PabloGuruAEstacao(MovingCameraScene):
         underline=Line(final.get_left()+DOWN*.25,final.get_right()+DOWN*.25,color=YELLOW,stroke_width=18,stroke_opacity=.75).set_z_index(29)
         self.play(FadeIn(final,shift=UP*.08),Create(underline),gesture_animations(pablo,"right","explain",run_time=.45),run_time=.45)
         until(15); self.wait(.55); self.play(FadeOut(final),FadeOut(underline),run_time=.24); self.wait(.32)
+
