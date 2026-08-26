@@ -1,4 +1,4 @@
-name: Render Pablo Guru V11 Mobile Reel
+name: Render Pablo Guru V12 Dual Voice Reel
 
 on:
   push:
@@ -31,28 +31,29 @@ jobs:
         run: |
           python -m compileall personagens cenarios audio estilo lab
 
-      - name: Generate complete pilot voice track
+      - name: Generate dual voice pilot track
         env:
           PYTHONPATH: .
         run: python audio/generate_pilot_voice.py
 
-      - name: Render corrected V11 mobile reel
+      - name: Render V12 female questioner reel
         env:
           PYTHONPATH: .
-        run: manim -ql --disable_caching lab/piloto_v11_final.py PabloGuruPilotV11Final
+        run: manim -ql --disable_caching lab/piloto_v12_final.py PabloGuruPilotV12Final
 
-      - name: Collect V11 output
+      - name: Collect V12 output
         run: |
           mkdir -p output
-          find media/videos -name "PabloGuruPilotV11Final.mp4" -print -exec cp {} output/pablo-guru-v11-mobile-final.mp4 \;
+          find media/videos -name "PabloGuruPilotV12Final.mp4" -print -exec cp {} output/pablo-guru-v12-dual-voice-final.mp4 \;
           cp audio/generated/piloto_01.wav output/
           cp audio/generated/piloto_01_timings.json output/
           cp audio/generated/piloto_01_cues.json output/
-          test -f output/pablo-guru-v11-mobile-final.mp4
+          cp audio/generated/piloto_01_asker_cues.json output/
+          test -f output/pablo-guru-v12-dual-voice-final.mp4
 
-      - name: Upload V11 artifact
+      - name: Upload V12 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pablo-guru-v11-mobile-final
+          name: pablo-guru-v12-dual-voice-final
           path: output/*
           if-no-files-found: error
