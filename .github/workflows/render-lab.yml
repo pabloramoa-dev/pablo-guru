@@ -1,8 +1,6 @@
 name: Render Pablo Guru Episodes
 
 on:
-  push:
-    branches: ["lab/pablo-guru-v3"]
   workflow_dispatch:
 
 jobs:

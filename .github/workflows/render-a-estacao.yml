@@ -1,0 +1,53 @@
+name: Render Pablo Guru A Estacao V2
+
+on:
+  push:
+    branches: ["lab/pablo-guru-v3"]
+    paths:
+      - "episodios/a_estacao/**"
+      - "personagens/**"
+      - "assets/pablo/**"
+      - "audio/**"
+      - "estilo/**"
+      - ".github/workflows/render-a-estacao.yml"
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: System dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+      - name: Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install manim==0.20.1 numpy scipy soundfile kokoro-onnx "misaki-fork[en]"
+      - name: Validate and generate audio
+        env:
+          PYTHONPATH: .
+        run: |
+          python -m compileall episodios personagens audio estilo
+          python episodios/a_estacao/generate_audio.py
+      - name: Render high quality episode
+        env:
+          PYTHONPATH: .
+        run: manim -qh --disable_caching episodios/a_estacao/a_estacao.py PabloGuruAEstacao
+      - name: Validate and collect
+        run: |
+          mkdir -p output
+          find media/videos -name "PabloGuruAEstacao.mp4" -print -exec cp {} output/pablo-guru-a-estacao-v2.mp4 \;
+          ffprobe -v error -show_entries format=duration:stream=codec_name,codec_type,width,height -of json output/pablo-guru-a-estacao-v2.mp4
+          test -s output/pablo-guru-a-estacao-v2.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pablo-guru-a-estacao-v2
+          path: output/pablo-guru-a-estacao-v2.mp4
+          if-no-files-found: error
