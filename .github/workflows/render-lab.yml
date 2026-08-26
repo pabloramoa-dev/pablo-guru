@@ -1,4 +1,4 @@
-name: Render Pablo Guru V10 Editorial Pilot
+name: Render Pablo Guru V11 Mobile Reel
 
 on:
   push:
@@ -36,23 +36,23 @@ jobs:
           PYTHONPATH: .
         run: python audio/generate_pilot_voice.py
 
-      - name: Render V10 editorial pilot
+      - name: Render V11 mobile-first reel
         env:
           PYTHONPATH: .
-        run: manim -ql --disable_caching lab/piloto_vox_v10.py PabloGuruPilotV10
+        run: manim -ql --disable_caching lab/piloto_v11.py PabloGuruPilotV11
 
-      - name: Collect V10 output
+      - name: Collect V11 output
         run: |
           mkdir -p output
-          find media/videos -name "PabloGuruPilotV10.mp4" -print -exec cp {} output/pablo-guru-v10-editorial.mp4 \;
+          find media/videos -name "PabloGuruPilotV11.mp4" -print -exec cp {} output/pablo-guru-v11-mobile.mp4 \;
           cp audio/generated/piloto_01.wav output/
           cp audio/generated/piloto_01_timings.json output/
           cp audio/generated/piloto_01_cues.json output/
-          test -f output/pablo-guru-v10-editorial.mp4
+          test -f output/pablo-guru-v11-mobile.mp4
 
-      - name: Upload V10 artifact
+      - name: Upload V11 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pablo-guru-v10-editorial
+          name: pablo-guru-v11-mobile
           path: output/*
           if-no-files-found: error
