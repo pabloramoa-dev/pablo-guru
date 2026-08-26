@@ -1,4 +1,4 @@
-name: Render Pablo Guru V12 Dual Voice Reel
+name: Render Pablo Guru Episodes
 
 on:
   push:
@@ -36,10 +36,20 @@ jobs:
           PYTHONPATH: .
         run: python audio/generate_pilot_voice.py
 
+      - name: Generate A Estacao audio
+        env:
+          PYTHONPATH: .
+        run: python episodios/a_estacao/generate_audio.py
+
       - name: Render V12 female questioner reel
         env:
           PYTHONPATH: .
         run: manim -ql --disable_caching lab/piloto_v12_final.py PabloGuruPilotV12Final
+
+      - name: Render A Estacao reel
+        env:
+          PYTHONPATH: .
+        run: manim -qh --disable_caching episodios/a_estacao/a_estacao.py PabloGuruAEstacao
 
       - name: Collect V12 output
         run: |
@@ -50,6 +60,15 @@ jobs:
           cp audio/generated/piloto_01_cues.json output/
           cp audio/generated/piloto_01_asker_cues.json output/
           test -f output/pablo-guru-v12-dual-voice-final.mp4
+
+      - name: Collect A Estacao output
+        run: |
+          find media/videos -name "PabloGuruAEstacao.mp4" -print -exec cp {} output/pablo-guru-a-estacao.mp4 \;
+          cp audio/generated/a_estacao/a_estacao.wav output/
+          cp audio/generated/a_estacao/timings.json output/a_estacao_timings.json
+          cp audio/generated/a_estacao/pablo_cues.json output/a_estacao_pablo_cues.json
+          cp audio/generated/a_estacao/asker_cues.json output/a_estacao_asker_cues.json
+          test -f output/pablo-guru-a-estacao.mp4
 
       - name: Upload V12 artifact
         uses: actions/upload-artifact@v4
