@@ -25,8 +25,9 @@ POSES = {
     "explain": GesturePose((0.94, 0.02, 0.0), (1.54, 0.86, 0.0), "open", -0.16),
     "point": GesturePose((0.90, 0.06, 0.0), (1.42, 1.18, 0.0), "point", 0.10),
     "welcome": GesturePose((1.12, 0.02, 0.0), (2.00, 0.68, 0.0), "open", -0.34),
-    # Heart crosses inward enough that the hand clearly lands on the chest.
-    "heart": GesturePose((0.48, 0.00, 0.0), (-0.38, 0.64, 0.0), "soft", 0.34),
+    # Heart crosses inward and down from the shoulder so the palm lands on the chest,
+    # not beside the face.
+    "heart": GesturePose((0.44, -0.10, 0.0), (-0.70, -0.35, 0.0), "soft", 0.20),
 }
 
 
