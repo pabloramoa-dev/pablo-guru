@@ -1,4 +1,4 @@
-name: Render Pablo Guru Pilot
+name: Render Pablo Guru V10 Editorial Pilot
 
 on:
   push:
@@ -29,30 +29,30 @@ jobs:
 
       - name: Syntax check
         run: |
-          python -m compileall personagens cenarios audio lab
+          python -m compileall personagens cenarios audio estilo lab
 
       - name: Generate complete pilot voice track
         env:
           PYTHONPATH: .
         run: python audio/generate_pilot_voice.py
 
-      - name: Render complete pilot
+      - name: Render V10 editorial pilot
         env:
           PYTHONPATH: .
-        run: manim -ql --disable_caching lab/piloto_01.py PabloGuruPilot01
+        run: manim -ql --disable_caching lab/piloto_vox_v10.py PabloGuruPilotV10
 
-      - name: Collect pilot output
+      - name: Collect V10 output
         run: |
           mkdir -p output
-          find media/videos -name "PabloGuruPilot01.mp4" -print -exec cp {} output/pablo-guru-piloto-01.mp4 \;
+          find media/videos -name "PabloGuruPilotV10.mp4" -print -exec cp {} output/pablo-guru-v10-editorial.mp4 \;
           cp audio/generated/piloto_01.wav output/
           cp audio/generated/piloto_01_timings.json output/
           cp audio/generated/piloto_01_cues.json output/
-          test -f output/pablo-guru-piloto-01.mp4
+          test -f output/pablo-guru-v10-editorial.mp4
 
-      - name: Upload pilot artifact
+      - name: Upload V10 artifact
         uses: actions/upload-artifact@v4
         with:
-          name: pablo-guru-piloto-01
+          name: pablo-guru-v10-editorial
           path: output/*
           if-no-files-found: error
