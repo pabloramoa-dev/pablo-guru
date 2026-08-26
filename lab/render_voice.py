@@ -57,79 +57,90 @@ class PabloGuruVoiceLab(MovingCameraScene):
         self.add_sound(str(VOICE))
 
         duration = wav_duration(VOICE)
-        beat1 = max(0.55, duration * 0.16)
-        beat2 = max(beat1 + 0.9, duration * 0.38)
-        beat3 = max(beat2 + 0.9, duration * 0.62)
-        beat4 = max(beat3 + 0.8, duration * 0.82)
+        beat1 = max(0.55, duration * 0.15)
+        beat2 = max(beat1 + 0.82, duration * 0.34)
+        beat3 = max(beat2 + 0.82, duration * 0.55)
+        beat4 = max(beat3 + 0.78, duration * 0.75)
+        beat5 = max(beat4 + 0.70, duration * 0.90)
 
-        # Start with a tiny anticipatory lean: the torso now participates in the
-        # thought instead of leaving the head/arms floating on a static body.
+        # V8 acting pass: the body, brows and arms trade emphasis instead of
+        # holding one pose for most of the line.
         self.play(
-            gesture_animations(pablo, "right", "explain", run_time=0.52),
-            body_lean(pablo, -0.018, LEFT * 0.025 + UP * 0.015),
-            pablo.brow_l.animate.shift(UP * 0.035),
-            pablo.brow_r.animate.shift(UP * 0.035),
-            run_time=0.52,
+            gesture_animations(pablo, "right", "explain", run_time=0.48),
+            body_lean(pablo, -0.018, LEFT * 0.022 + UP * 0.014),
+            pablo.brow_l.animate.shift(UP * 0.032),
+            pablo.brow_r.animate.shift(UP * 0.032),
+            run_time=0.48,
             rate_func=smooth,
         )
-        self.wait(max(0.12, beat1 - 0.52))
+        self.wait(max(0.10, beat1 - 0.48))
 
-        # Open the idea with a small counter-lean. The movement is intentionally
-        # subtle; large rotations would read as puppet motion in a vertical closeup.
         self.play(
-            gesture_animations(pablo, "right", "open", run_time=0.42),
-            body_lean(pablo, 0.030, RIGHT * 0.035),
-            pablo.brow_l.animate.shift(DOWN * 0.025),
-            pablo.brow_r.animate.shift(DOWN * 0.025),
+            gesture_animations(pablo, "right", "rest", run_time=0.34),
+            body_lean(pablo, 0.014, RIGHT * 0.018),
+            run_time=0.34,
+            rate_func=smooth,
+        )
+        self.play(
+            gesture_animations(pablo, "left", "open", run_time=0.42),
+            body_lean(pablo, 0.018, RIGHT * 0.020 + UP * 0.006),
+            pablo.brow_l.animate.shift(DOWN * 0.018),
             run_time=0.42,
             rate_func=smooth,
         )
-        self.wait(max(0.15, beat2 - beat1 - 0.42))
+        self.wait(max(0.10, beat2 - beat1 - 0.76))
 
-        # Return through neutral while the arm also rests. This makes the next
-        # emphasis feel motivated rather than a chain of disconnected poses.
         self.play(
-            gesture_animations(pablo, "right", "rest", run_time=0.46),
-            body_lean(pablo, -0.012, LEFT * 0.010 + DOWN * 0.008),
+            gesture_animations(pablo, "left", "rest", run_time=0.34),
+            body_lean(pablo, -0.010, LEFT * 0.010),
+            run_time=0.34,
+            rate_func=smooth,
+        )
+        self.play(
+            self.camera.frame.animate.scale(0.972).shift(UP * 0.028),
+            body_lean(pablo, -0.016, LEFT * 0.016 + UP * 0.010),
+            pablo.brow_r.animate.shift(UP * 0.035),
             run_time=0.46,
             rate_func=smooth,
         )
+        self.wait(max(0.10, beat3 - beat2 - 0.80))
 
         self.play(
-            self.camera.frame.animate.scale(0.965).shift(UP * 0.035),
-            body_lean(pablo, -0.020, LEFT * 0.020 + UP * 0.012),
-            pablo.brow_l.animate.rotate(-0.055, about_point=pablo.brow_l.get_center()),
-            pablo.brow_r.animate.shift(UP * 0.045),
-            run_time=0.55,
+            gesture_animations(pablo, "right", "point", run_time=0.40),
+            body_lean(pablo, 0.022, RIGHT * 0.024 + UP * 0.004),
+            pablo.brow_r.animate.shift(DOWN * 0.020),
+            run_time=0.40,
             rate_func=smooth,
         )
-        elapsed = beat2 + 0.46 + 0.55
-        self.wait(max(0.12, beat3 - elapsed))
+        self.wait(max(0.10, beat4 - beat3 - 0.40))
 
-        # Directional thought: point and lean slightly toward the indicated side.
         self.play(
-            gesture_animations(pablo, "right", "point", run_time=0.44),
-            body_lean(pablo, 0.026, RIGHT * 0.028 + UP * 0.006),
-            pablo.brow_r.animate.shift(DOWN * 0.025),
-            run_time=0.44,
+            gesture_animations(pablo, "right", "rest", run_time=0.30),
+            body_lean(pablo, -0.010, LEFT * 0.010),
+            run_time=0.30,
             rate_func=smooth,
         )
-        self.wait(max(0.12, beat4 - beat3 - 0.44))
-
-        # Resolve inward and settle the body back toward centre. The heart gesture,
-        # softened brows and body return now land as one final performance beat.
         self.play(
-            gesture_animations(pablo, "right", "heart", run_time=0.52),
-            body_lean(pablo, -0.006, LEFT * 0.008 + DOWN * 0.010),
-            pablo.brow_l.animate.shift(DOWN * 0.02),
-            pablo.brow_r.animate.shift(DOWN * 0.02),
-            run_time=0.52,
+            gesture_animations(pablo, "left", "explain", run_time=0.40),
+            body_lean(pablo, -0.016, LEFT * 0.020 + UP * 0.006),
+            run_time=0.40,
+            rate_func=smooth,
+        )
+        self.wait(max(0.10, beat5 - beat4 - 0.70))
+
+        self.play(
+            gesture_animations(pablo, "left", "rest", run_time=0.30),
+            gesture_animations(pablo, "right", "heart", run_time=0.48),
+            body_lean(pablo, 0.004, RIGHT * 0.004 + DOWN * 0.008),
+            pablo.brow_l.animate.shift(DOWN * 0.016),
+            pablo.brow_r.animate.shift(DOWN * 0.016),
+            run_time=0.48,
             rate_func=smooth,
         )
 
-        elapsed = beat4 + 0.52
+        elapsed = beat5 + 0.48
         if duration > elapsed:
-            self.wait(max(0.12, duration - elapsed))
+            self.wait(max(0.10, duration - elapsed))
 
         self.add(env["foreground"])
         self.wait(0.35)
