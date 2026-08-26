@@ -31,6 +31,15 @@ def load_cues(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def gaze(rig: PabloGuruRig, dx: float = 0.0, dy: float = 0.0):
+    delta = RIGHT * dx + UP * dy
+    return AnimationGroup(
+        rig.iris_l.animate.shift(delta), rig.pupil_l.animate.shift(delta), rig.eye_glint_l.animate.shift(delta),
+        rig.iris_r.animate.shift(delta), rig.pupil_r.animate.shift(delta), rig.eye_glint_r.animate.shift(delta),
+        lag_ratio=0,
+    )
+
+
 class PabloGuruVoiceLab(MovingCameraScene):
     def construct(self):
         if not VOICE.exists() or not CUES.exists():
@@ -42,7 +51,8 @@ class PabloGuruVoiceLab(MovingCameraScene):
 
         pablo = PabloGuruRig(scale_factor=0.94)
         pablo.move_to(DOWN * 1.15)
-        pablo.enable_idle_motion(amp=0.024, period=3.25)
+        # V9: slightly calmer breathing; facial acting carries more of the performance.
+        pablo.enable_idle_motion(amp=0.018, period=3.45)
         pablo.set_expression("warm")
         self.add(pablo)
 
@@ -57,71 +67,68 @@ class PabloGuruVoiceLab(MovingCameraScene):
         beat4 = max(beat3 + 0.78, duration * 0.75)
         beat5 = max(beat4 + 0.70, duration * 0.90)
 
-        # Important: never animate the full rig in the same play that transforms
-        # arm submobjects. Manim can let the parent transform overwrite the child
-        # transforms, making otherwise valid gestures disappear in the final video.
         self.play(
             gesture_animations(pablo, "right", "explain", run_time=0.48),
-            pablo.brow_l.animate.shift(UP * 0.032),
-            pablo.brow_r.animate.shift(UP * 0.032),
-            run_time=0.48,
-            rate_func=smooth,
+            pablo.brow_l.animate.shift(UP * 0.030),
+            pablo.brow_r.animate.shift(UP * 0.030),
+            gaze(pablo, -0.018, 0.008),
+            run_time=0.48, rate_func=smooth,
         )
         self.wait(max(0.10, beat1 - 0.48))
 
         self.play(
             gesture_animations(pablo, "right", "rest", run_time=0.34),
-            run_time=0.34,
-            rate_func=smooth,
+            gaze(pablo, 0.018, -0.008),
+            run_time=0.34, rate_func=smooth,
         )
         self.play(
             gesture_animations(pablo, "left", "open", run_time=0.42),
-            pablo.brow_l.animate.shift(DOWN * 0.018),
-            run_time=0.42,
-            rate_func=smooth,
+            pablo.brow_l.animate.shift(DOWN * 0.016),
+            pablo.brow_r.animate.rotate(-0.025, about_point=pablo.brow_r.get_center()),
+            gaze(pablo, 0.014, 0.006),
+            run_time=0.42, rate_func=smooth,
         )
         self.wait(max(0.10, beat2 - beat1 - 0.76))
 
         self.play(
             gesture_animations(pablo, "left", "rest", run_time=0.34),
-            run_time=0.34,
-            rate_func=smooth,
+            gaze(pablo, -0.014, -0.006),
+            run_time=0.34, rate_func=smooth,
         )
         self.play(
-            self.camera.frame.animate.scale(0.972).shift(UP * 0.028),
-            pablo.brow_r.animate.shift(UP * 0.035),
-            run_time=0.46,
-            rate_func=smooth,
+            self.camera.frame.animate.scale(0.975).shift(UP * 0.022),
+            pablo.brow_r.animate.shift(UP * 0.030),
+            pablo.brow_l.animate.rotate(0.020, about_point=pablo.brow_l.get_center()),
+            gaze(pablo, 0.0, 0.010),
+            run_time=0.46, rate_func=smooth,
         )
         self.wait(max(0.10, beat3 - beat2 - 0.80))
 
         self.play(
             gesture_animations(pablo, "right", "point", run_time=0.40),
-            pablo.brow_r.animate.shift(DOWN * 0.020),
-            run_time=0.40,
-            rate_func=smooth,
+            pablo.brow_r.animate.shift(DOWN * 0.018),
+            pablo.brow_l.animate.shift(DOWN * 0.008),
+            gaze(pablo, 0.010, -0.004),
+            run_time=0.40, rate_func=smooth,
         )
         self.wait(max(0.10, beat4 - beat3 - 0.40))
 
-        self.play(
-            gesture_animations(pablo, "right", "rest", run_time=0.30),
-            run_time=0.30,
-            rate_func=smooth,
-        )
+        self.play(gesture_animations(pablo, "right", "rest", run_time=0.30), run_time=0.30, rate_func=smooth)
         self.play(
             gesture_animations(pablo, "left", "explain", run_time=0.40),
-            run_time=0.40,
-            rate_func=smooth,
+            pablo.brow_l.animate.shift(UP * 0.018),
+            gaze(pablo, -0.010, 0.004),
+            run_time=0.40, rate_func=smooth,
         )
         self.wait(max(0.10, beat5 - beat4 - 0.70))
 
         self.play(
             gesture_animations(pablo, "left", "rest", run_time=0.30),
             gesture_animations(pablo, "right", "heart", run_time=0.48),
-            pablo.brow_l.animate.shift(DOWN * 0.016),
-            pablo.brow_r.animate.shift(DOWN * 0.016),
-            run_time=0.48,
-            rate_func=smooth,
+            pablo.brow_l.animate.shift(DOWN * 0.014),
+            pablo.brow_r.animate.shift(DOWN * 0.014),
+            gaze(pablo, 0.0, -0.006),
+            run_time=0.48, rate_func=smooth,
         )
 
         elapsed = beat5 + 0.48
