@@ -25,14 +25,29 @@ def _plant() -> VGroup:
     return VGroup(pot_shadow, pot, stem, leaves)
 
 
+def _dust_motes() -> VGroup:
+    # Deterministic soft particles: enough to add depth, sparse enough not to read
+    # as snow/noise on a phone screen.
+    specs = [
+        (-2.10, 3.20, 0.025, 0.16), (-1.35, 2.45, 0.018, 0.12),
+        (1.55, 3.55, 0.022, 0.14), (2.25, 2.65, 0.016, 0.10),
+        (-2.55, 0.65, 0.020, 0.10), (2.65, 0.95, 0.024, 0.12),
+        (-1.75, -1.10, 0.018, 0.08), (1.95, -0.75, 0.021, 0.09),
+    ]
+    motes = VGroup()
+    for x, y, r, opacity in specs:
+        motes.add(Circle(radius=r, fill_color=WHITE, fill_opacity=opacity,
+                         stroke_width=0).move_to([x, y, 0]))
+    return motes
+
+
 def estudio_principal() -> dict:
-    """Layered 9:16 studio. Returns independent layers for parallax/updaters."""
+    """Layered 9:16 studio with restrained cinematic depth."""
     W, H = config.frame_width, config.frame_height
 
     wall = Rectangle(width=W + 2, height=H + 2, fill_color="#e8dfd1",
                      fill_opacity=1, stroke_width=0)
 
-    # Large warm window with landscape beyond it.
     window = RoundedRectangle(width=5.8, height=5.15, corner_radius=0.14,
                               fill_color="#9bc6d6", fill_opacity=1,
                               stroke_color="#34383e", stroke_width=9).shift(UP * 3.2)
@@ -51,6 +66,13 @@ def estudio_principal() -> dict:
     divider_v = Line(window.get_top(), window.get_bottom(), stroke_color="#34383e", stroke_width=6)
     divider_h = Line(window.get_left(), window.get_right(), stroke_color="#34383e", stroke_width=6)
 
+    # Soft diagonal window light. It is deliberately broad/transparent so it reads
+    # as atmosphere rather than a literal graphic overlay.
+    light_beam = Polygon(
+        [-2.65, 4.55, 0], [0.20, 4.55, 0], [2.85, -2.20, 0], [-0.45, -2.20, 0],
+        fill_color="#fff3d6", fill_opacity=0.065, stroke_width=0,
+    )
+
     floor = Rectangle(width=W + 2, height=5.4, fill_color="#8d745d",
                       fill_opacity=1, stroke_width=0).to_edge(DOWN, buff=0)
     floor_light = Rectangle(width=W + 2, height=0.12, fill_color="#b79b80",
@@ -60,7 +82,6 @@ def estudio_principal() -> dict:
 
     plant = _plant().scale(1.15).to_edge(LEFT, buff=0.55).shift(DOWN * 3.65)
 
-    # Shelf and a few simple props. Small details are deliberately sparse.
     shelf = RoundedRectangle(width=2.3, height=0.14, corner_radius=0.05,
                              fill_color="#5b4739", fill_opacity=1,
                              stroke_color=INK, stroke_width=5).to_edge(RIGHT, buff=0.5).shift(UP * 0.35)
@@ -78,13 +99,14 @@ def estudio_principal() -> dict:
     ).move_to(shelf.get_center() + UP * 0.32 + RIGHT * 0.72)
     candle_glow.move_to(candle)
 
+    motes = _dust_motes()
     foreground = VGroup(
         ArcBetweenPoints([-5.0, -7.0, 0], [-3.0, -5.2, 0], angle=-0.8).set_stroke("#355e45", 20),
         ArcBetweenPoints([5.0, -7.0, 0], [3.2, -5.35, 0], angle=0.8).set_stroke("#355e45", 20),
-    ).set_opacity(0.23)
+    ).set_opacity(0.20)
 
     background = VGroup(wall, sky, glow, ridge_far, ridge_near, window, divider_v, divider_h)
-    midground = VGroup(floor, floor_light, rug, shelf, books, candle_glow, candle, plant)
+    midground = VGroup(floor, floor_light, rug, light_beam, shelf, books, candle_glow, candle, plant, motes)
 
     return {
         "background": background,
@@ -95,12 +117,15 @@ def estudio_principal() -> dict:
         "plant": plant,
         "ridge_far": ridge_far,
         "ridge_near": ridge_near,
+        "light_beam": light_beam,
+        "motes": motes,
     }
 
 
 def animate_ambience(scene: Scene, env: dict):
-    """Continuous environment motion: slow light pulse + minimal parallax drift."""
-    state = {"t": 0.0, "far": 0.0, "near": 0.0, "glow": 0.0}
+    """Continuous environment motion: light pulse, parallax and slow motes."""
+    state = {"t": 0.0, "far": 0.0, "near": 0.0, "beam": 0.0}
+    mote_base = [m.get_center().copy() for m in env["motes"]]
 
     def far_updater(mob, dt):
         state["t"] += dt
@@ -115,9 +140,22 @@ def animate_ambience(scene: Scene, env: dict):
         op = 0.34 + 0.07 * (1 + math.sin(state["t"] * 1.8)) / 2
         mob.set_fill(opacity=op)
 
+    def beam_updater(mob, dt):
+        op = 0.050 + 0.022 * (1 + math.sin(state["t"] * 0.42 + 0.4)) / 2
+        mob.set_fill(opacity=op)
+
+    def motes_updater(group, dt):
+        t = state["t"]
+        for i, (mote, base) in enumerate(zip(group, mote_base)):
+            dx = 0.035 * math.sin(t * (0.26 + i * 0.018) + i * 0.9)
+            dy = 0.045 * math.sin(t * (0.19 + i * 0.012) + i * 0.7)
+            mote.move_to(base + RIGHT * dx + UP * dy)
+
     env["ridge_far"].add_updater(far_updater)
     env["ridge_near"].add_updater(near_updater)
     env["candle_glow"].add_updater(glow_updater)
+    env["light_beam"].add_updater(beam_updater)
+    env["motes"].add_updater(motes_updater)
     return env
 
 
