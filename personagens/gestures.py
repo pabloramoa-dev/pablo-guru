@@ -17,13 +17,15 @@ class GesturePose:
     hand_rotation: float = 0.0
 
 
+# V6 prioritizes silhouette readability in a vertical frame. Expressive poses move
+# farther away from the torso, while rest remains compact so every change is visible.
 POSES = {
-    "rest": GesturePose((0.50, -0.72, 0.0), (-0.02, -1.48, 0.0), "relaxed", 0.0),
-    "open": GesturePose((0.74, -0.38, 0.0), (1.16, 0.00, 0.0), "open", -0.16),
-    "explain": GesturePose((0.64, -0.16, 0.0), (0.90, 0.44, 0.0), "open", -0.08),
-    "point": GesturePose((0.58, -0.12, 0.0), (0.72, 0.72, 0.0), "point", 0.02),
-    "welcome": GesturePose((0.88, -0.12, 0.0), (1.36, 0.38, 0.0), "open", -0.24),
-    "heart": GesturePose((0.42, -0.08, 0.0), (0.30, 0.40, 0.0), "soft", 0.18),
+    "rest": GesturePose((0.48, -0.74, 0.0), (-0.04, -1.50, 0.0), "relaxed", 0.0),
+    "open": GesturePose((0.92, -0.28, 0.0), (1.52, 0.16, 0.0), "open", -0.22),
+    "explain": GesturePose((0.82, -0.08, 0.0), (1.24, 0.66, 0.0), "open", -0.12),
+    "point": GesturePose((0.78, -0.02, 0.0), (1.10, 0.98, 0.0), "point", 0.04),
+    "welcome": GesturePose((1.00, -0.02, 0.0), (1.68, 0.56, 0.0), "open", -0.30),
+    "heart": GesturePose((0.34, -0.02, 0.0), (0.12, 0.58, 0.0), "soft", 0.26),
 }
 
 
@@ -35,32 +37,33 @@ def _finger_curve(x: float, height: float, lean: float = 0.0) -> VMobject:
 
 
 def _hand(pose: str) -> VGroup:
-    palm = RoundedRectangle(width=0.44, height=0.48, corner_radius=0.17,
+    # Slightly larger palm in expressive poses so the hand survives the 540x960
+    # render without reverting to a stick-like silhouette.
+    palm = RoundedRectangle(width=0.46, height=0.50, corner_radius=0.18,
                             fill_color=SKIN, fill_opacity=1,
                             stroke_color=INK, stroke_width=5)
     thumb = VMobject().set_points_smoothly([
-        LEFT * 0.13 + DOWN * 0.02,
-        LEFT * 0.25 + UP * 0.02,
-        LEFT * 0.22 + UP * 0.14,
+        LEFT * 0.14 + DOWN * 0.02,
+        LEFT * 0.27 + UP * 0.02,
+        LEFT * 0.23 + UP * 0.15,
     ]).set_stroke(INK, 5)
 
     if pose == "open":
-        # Compact fan: fingers remain readable without creating a fork-like silhouette.
         fingers = VGroup(
-            _finger_curve(-0.115, 0.20, -0.012),
-            _finger_curve(-0.038, 0.24, -0.006),
-            _finger_curve(0.040, 0.235, 0.006),
-            _finger_curve(0.115, 0.19, 0.012),
+            _finger_curve(-0.12, 0.22, -0.014),
+            _finger_curve(-0.04, 0.265, -0.006),
+            _finger_curve(0.04, 0.26, 0.006),
+            _finger_curve(0.12, 0.215, 0.014),
         )
-        return VGroup(palm, thumb, fingers).scale(1.04)
+        return VGroup(palm, thumb, fingers).scale(1.08)
 
     if pose == "point":
         index_outline = VMobject().set_points_smoothly([
             UP * 0.16,
-            UP * 0.48 + RIGHT * 0.01,
-            UP * 0.72,
-        ]).set_stroke(INK, 19)
-        index = index_outline.copy().set_stroke(SKIN, 12)
+            UP * 0.51 + RIGHT * 0.01,
+            UP * 0.78,
+        ]).set_stroke(INK, 20)
+        index = index_outline.copy().set_stroke(SKIN, 13)
         curled = VGroup(
             ArcBetweenPoints(LEFT * 0.10 + UP * 0.17, LEFT * 0.13 + DOWN * 0.02,
                              angle=-PI / 2).set_stroke(INK, 5),
@@ -69,7 +72,7 @@ def _hand(pose: str) -> VGroup:
             ArcBetweenPoints(RIGHT * 0.13 + UP * 0.15, RIGHT * 0.16 + DOWN * 0.01,
                              angle=-PI / 2).set_stroke(INK, 5),
         )
-        return VGroup(index_outline, index, palm, thumb, curled).scale(1.06)
+        return VGroup(index_outline, index, palm, thumb, curled).scale(1.09)
 
     if pose == "soft":
         fingers = VGroup(
@@ -78,7 +81,7 @@ def _hand(pose: str) -> VGroup:
             ArcBetweenPoints(LEFT * 0.12 + UP * 0.08, RIGHT * 0.11 + UP * 0.06,
                              angle=-PI / 3).set_stroke(INK, 4),
         )
-        return VGroup(palm, thumb, fingers).scale(1.06)
+        return VGroup(palm, thumb, fingers).scale(1.08)
 
     knuckles = VGroup(
         ArcBetweenPoints(LEFT * 0.14 + UP * 0.09, ORIGIN + UP * 0.12,
@@ -101,12 +104,14 @@ def gesture_targets(rig, side: str = "right", pose: str = "open"):
     elbow = shoulder + RIGHT * (cfg.elbow[0] * sign) + UP * cfg.elbow[1]
     hand_center = shoulder + RIGHT * (cfg.hand[0] * sign) + UP * cfg.hand[1]
 
-    upper_mid = interpolate(shoulder, elbow, 0.52) + DOWN * 0.035
-    lower_mid = interpolate(elbow, hand_center, 0.48) + RIGHT * (0.035 * sign)
+    # Bend the arm slightly away from the torso. This preserves an empty wedge of
+    # background between body and arm, which is what makes the gesture readable.
+    upper_mid = interpolate(shoulder, elbow, 0.52) + RIGHT * (0.055 * sign) + DOWN * 0.025
+    lower_mid = interpolate(elbow, hand_center, 0.48) + RIGHT * (0.075 * sign) + UP * 0.015
     points = [shoulder, upper_mid, elbow, lower_mid, hand_center]
-    outline = VMobject().set_points_smoothly(points).set_stroke(INK, 31)
+    outline = VMobject().set_points_smoothly(points).set_stroke(INK, 32)
     sleeve_color = SLEEVE_R if side == "right" else SLEEVE_L
-    sleeve = outline.copy().set_stroke(sleeve_color, 21)
+    sleeve = outline.copy().set_stroke(sleeve_color, 22)
     hand = _hand(cfg.hand_pose).move_to(hand_center)
     rotation = cfg.hand_rotation * sign
     if rotation:
@@ -128,7 +133,7 @@ def gesture_animations(rig, side: str = "right", pose: str = "open", run_time: f
             Transform(rig.arm_l, sleeve),
             Transform(rig.hand_l, hand),
         )
-    return AnimationGroup(*anims, lag_ratio=0.04, run_time=run_time, rate_func=smooth)
+    return AnimationGroup(*anims, lag_ratio=0.035, run_time=run_time, rate_func=smooth)
 
 
 __all__ = ["GesturePose", "POSES", "gesture_targets", "gesture_animations"]
