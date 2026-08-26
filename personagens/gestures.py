@@ -19,41 +19,40 @@ class GesturePose:
 
 POSES = {
     "rest": GesturePose((0.50, -0.72, 0.0), (-0.02, -1.48, 0.0), "relaxed", 0.0),
-    "open": GesturePose((0.74, -0.38, 0.0), (1.20, 0.02, 0.0), "open", -0.20),
-    "explain": GesturePose((0.64, -0.16, 0.0), (0.92, 0.48, 0.0), "open", -0.10),
+    "open": GesturePose((0.74, -0.38, 0.0), (1.16, 0.00, 0.0), "open", -0.16),
+    "explain": GesturePose((0.64, -0.16, 0.0), (0.90, 0.44, 0.0), "open", -0.08),
     "point": GesturePose((0.58, -0.12, 0.0), (0.72, 0.72, 0.0), "point", 0.02),
-    "welcome": GesturePose((0.88, -0.12, 0.0), (1.40, 0.42, 0.0), "open", -0.30),
+    "welcome": GesturePose((0.88, -0.12, 0.0), (1.36, 0.38, 0.0), "open", -0.24),
     "heart": GesturePose((0.42, -0.08, 0.0), (0.30, 0.40, 0.0), "soft", 0.18),
 }
 
 
 def _finger_curve(x: float, height: float, lean: float = 0.0) -> VMobject:
-    start = RIGHT * x + UP * 0.14
-    mid = RIGHT * (x + lean * 0.45) + UP * (0.14 + height * 0.55)
-    end = RIGHT * (x + lean) + UP * (0.14 + height)
+    start = RIGHT * x + UP * 0.12
+    mid = RIGHT * (x + lean * 0.45) + UP * (0.12 + height * 0.55)
+    end = RIGHT * (x + lean) + UP * (0.12 + height)
     return VMobject().set_points_smoothly([start, mid, end]).set_stroke(INK, 5)
 
 
 def _hand(pose: str) -> VGroup:
-    # Slightly larger, less geometric hand than V4. Fingers are curved rather than
-    # straight sticks, which reads much better in the vertical render.
-    palm = RoundedRectangle(width=0.42, height=0.46, corner_radius=0.16,
+    palm = RoundedRectangle(width=0.44, height=0.48, corner_radius=0.17,
                             fill_color=SKIN, fill_opacity=1,
                             stroke_color=INK, stroke_width=5)
     thumb = VMobject().set_points_smoothly([
         LEFT * 0.13 + DOWN * 0.02,
-        LEFT * 0.27 + UP * 0.03,
-        LEFT * 0.24 + UP * 0.16,
+        LEFT * 0.25 + UP * 0.02,
+        LEFT * 0.22 + UP * 0.14,
     ]).set_stroke(INK, 5)
 
     if pose == "open":
+        # Compact fan: fingers remain readable without creating a fork-like silhouette.
         fingers = VGroup(
-            _finger_curve(-0.14, 0.28, -0.025),
-            _finger_curve(-0.045, 0.34, -0.010),
-            _finger_curve(0.050, 0.33, 0.010),
-            _finger_curve(0.145, 0.27, 0.030),
+            _finger_curve(-0.115, 0.20, -0.012),
+            _finger_curve(-0.038, 0.24, -0.006),
+            _finger_curve(0.040, 0.235, 0.006),
+            _finger_curve(0.115, 0.19, 0.012),
         )
-        return VGroup(palm, thumb, fingers).scale(1.08)
+        return VGroup(palm, thumb, fingers).scale(1.04)
 
     if pose == "point":
         index_outline = VMobject().set_points_smoothly([
@@ -102,8 +101,6 @@ def gesture_targets(rig, side: str = "right", pose: str = "open"):
     elbow = shoulder + RIGHT * (cfg.elbow[0] * sign) + UP * cfg.elbow[1]
     hand_center = shoulder + RIGHT * (cfg.hand[0] * sign) + UP * cfg.hand[1]
 
-    # Two control points create a soft anatomical arc through the elbow instead of
-    # the rigid three-point arm used by V4.
     upper_mid = interpolate(shoulder, elbow, 0.52) + DOWN * 0.035
     lower_mid = interpolate(elbow, hand_center, 0.48) + RIGHT * (0.035 * sign)
     points = [shoulder, upper_mid, elbow, lower_mid, hand_center]
