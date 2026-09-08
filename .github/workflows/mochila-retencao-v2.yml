@@ -1,0 +1,39 @@
+name: Mochila Retencao V2
+on:
+  push:
+    branches: ["lab/pablo-guru-v3"]
+    paths: ["episodios/mochila_retencao_v2.py", ".github/workflows/mochila-retencao-v2.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Dependencies
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          pip install manim==0.20.1 numpy scipy soundfile kokoro-onnx "misaki-fork[en]"
+      - name: Audio and render
+        run: |
+          python episodios/mochila_retencao_v2.py
+          manim -qh --disable_caching episodios/mochila_retencao_v2.py MochilaV2
+      - name: Collect and validate
+        run: |
+          mkdir -p output
+          find media/videos -name MochilaV2.mp4 -exec cp {} output/Pablo_Guru_Mochila_V2.mp4 \;
+          ffprobe -v error -show_entries format=duration:stream=codec_name,codec_type,width,height -of json output/Pablo_Guru_Mochila_V2.mp4
+          ffmpeg -v error -i output/Pablo_Guru_Mochila_V2.mp4 -f null -
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pablo-guru-mochila-v2
+          path: output/Pablo_Guru_Mochila_V2.mp4
+          if-no-files-found: error
