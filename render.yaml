@@ -1,0 +1,39 @@
+# Serviço exclusivo de teste. Nenhum recurso do previsaosulflu é referenciado.
+services:
+  - type: web
+    name: pablo-guru-direct
+    runtime: python
+    branch: main
+    plan: starter
+    buildCommand: pip install -r direct_guru/requirements.txt
+    startCommand: python -m direct_guru.server
+    healthCheckPath: /health
+    disk:
+      name: direct-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: DB_PATH
+        value: /var/data/direct.sqlite
+      - key: DIRECT_ENABLED
+        value: 'false'
+      - key: AUDIO_INPUT_ENABLED
+        value: 'false'
+      - key: IG_ACCOUNT_ID
+        sync: false
+      - key: IG_ACCESS_TOKEN
+        sync: false
+      - key: IG_VERIFY_TOKEN
+        sync: false
+      - key: META_APP_SECRET
+        sync: false
+      - key: META_GRAPH_VERSION
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        sync: false
+      - key: DATA_ENCRYPTION_KEY
+        sync: false
+      - key: USER_HASH_SALT
+        sync: false

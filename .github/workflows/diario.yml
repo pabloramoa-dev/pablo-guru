@@ -49,7 +49,7 @@ jobs:
           python -m daily.prepare "${args[@]}"
       - name: Gerar voz e renderizar
         run: |
-          python -m daily.audio
+          python -m daily.generate_audio
           manim -qh --disable_caching daily/scene.py DailyEpisode
           find media/videos -name DailyEpisode.mp4 -exec cp {} output/Pablo_Guru_Diario.mp4 \;
           python -m daily.validate_video
