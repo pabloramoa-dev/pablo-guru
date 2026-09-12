@@ -1,0 +1,70 @@
+name: Pablo Guru Diario
+on:
+  push:
+    branches: [implementacao/episodios-diarios-direct]
+    paths: ['daily/**', '.github/workflows/diario.yml']
+  workflow_dispatch:
+    inputs:
+      episode_date:
+        description: 'Data editorial YYYY-MM-DD (vazio usa hoje em Brasília)'
+        required: false
+        type: string
+      test:
+        description: 'Gerar piloto sem consumir a data editorial'
+        default: true
+        type: boolean
+permissions:
+  contents: read
+concurrency:
+  group: pablo-diario-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependências
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          pip install manim==0.20.1 numpy scipy soundfile kokoro-onnx 'misaki-fork[en]'
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/pablo_kokoro
+          key: kokoro-v1-int8-pablo-v1
+      - name: Selecionar roteiro
+        env:
+          EPISODE_DATE: ${{ inputs.episode_date }}
+          IS_TEST: ${{ github.event_name == 'push' || inputs.test == true }}
+        run: |
+          args=()
+          if [ -n "$EPISODE_DATE" ]; then args+=(--date "$EPISODE_DATE"); fi
+          if [ "$IS_TEST" = true ]; then args+=(--test); fi
+          python -m daily.prepare "${args[@]}"
+      - name: Gerar voz e renderizar
+        run: |
+          python -m daily.audio
+          manim -qh --disable_caching daily/scene.py DailyEpisode
+          find media/videos -name DailyEpisode.mp4 -exec cp {} output/Pablo_Guru_Diario.mp4 \;
+          python -m daily.validate_video
+      - name: Arquivar episódio
+        uses: actions/upload-artifact@v4
+        with:
+          name: pablo-guru-diario-${{ github.run_id }}
+          path: |
+            output/Pablo_Guru_Diario.mp4
+            output/episode.json
+            output/caption.txt
+            output/validation.json
+            output/preview_*.jpg
+          if-no-files-found: error
+          retention-days: 90
+      - name: Resumo
+        run: |
+          python -c 'import json,os; e=json.load(open("output/episode.json")); v=json.load(open("output/validation.json")); open(os.environ["GITHUB_STEP_SUMMARY"],"a").write("Episódio: "+e["title"]+"\n\nDuração: "+str(v["duration_seconds"])+" segundos. MP4 e legenda no artefato desta execução.\n")'
