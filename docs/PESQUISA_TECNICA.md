@@ -98,3 +98,4 @@ O personagem só avança para pipeline completo quando cumprir simultaneamente:
 - nenhum congelamento durante `wait()`;
 - cenário com profundidade sem poluição visual;
 - render local reproduzível em Python 3.12 + Manim 0.20.1 + FFmpeg.
+

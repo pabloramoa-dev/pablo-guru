@@ -12,7 +12,7 @@ from direct_guru.webhook import app
 class QuietHandler(WSGIRequestHandler):
     def log_message(self,*args):pass  # query strings can contain verification tokens
 
-def main():
+def create_app():
     cfg=Config.env()
     if cfg.enabled and not all([cfg.ig_token,cfg.openai_key,cfg.model]):
         raise RuntimeError('Credenciais ou modelo ausentes; ativação recusada.')
@@ -28,8 +28,11 @@ def main():
                 print('worker_error',flush=True)
             stop.wait(1)
     threading.Thread(target=worker,daemon=True).start()
-    with make_server('0.0.0.0',int(os.getenv('PORT','10000')),app(cfg,store),handler_class=QuietHandler) as http:
-        try:http.serve_forever()
-        finally:stop.set()
+    return app(cfg,store)
+
+def main():
+    application=create_app()
+    with make_server('0.0.0.0',int(os.getenv('PORT','10000')),application,handler_class=QuietHandler) as http:
+        http.serve_forever()
 
 if __name__=='__main__':main()

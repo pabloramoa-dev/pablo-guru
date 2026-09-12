@@ -2,7 +2,7 @@ name: Pablo Guru Diario
 on:
   push:
     branches: [implementacao/episodios-diarios-direct]
-    paths: ['daily/**', '.github/workflows/diario.yml']
+    paths: ['daily/**', 'studio/**', '.github/workflows/diario.yml']
   workflow_dispatch:
     inputs:
       episode_date:
@@ -21,7 +21,7 @@ concurrency:
 jobs:
   render:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 60
     env:
       PYTHONPATH: .
     steps:
@@ -33,15 +33,31 @@ jobs:
         run: |
           sudo apt-get update -q
           sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
-          pip install manim==0.20.1 numpy scipy soundfile kokoro-onnx 'misaki-fork[en]'
+          pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
+      - name: Rhubarb oficial
+        run: |
+          curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/pablo-rhubarb
+          echo /tmp/pablo-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
       - uses: actions/cache@v4
         with:
-          path: ~/.cache/pablo_kokoro
-          key: kokoro-v1-int8-pablo-v1
+          path: ~/.cache/kokoro
+          key: kokoro-v1-fp32-studio-v1
+      - name: Verificar integrações sem expor valores
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_ACCOUNT_ID: ${{ secrets.IG_ACCOUNT_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: python -m daily.preflight
       - name: Selecionar roteiro
         env:
           EPISODE_DATE: ${{ inputs.episode_date }}
           IS_TEST: ${{ github.event_name == 'push' || inputs.test == true }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
         run: |
           args=()
           if [ -n "$EPISODE_DATE" ]; then args+=(--date "$EPISODE_DATE"); fi
@@ -49,9 +65,7 @@ jobs:
           python -m daily.prepare "${args[@]}"
       - name: Gerar voz e renderizar
         run: |
-          python -m daily.generate_audio
-          manim -qh --disable_caching daily/scene.py DailyEpisode
-          find media/videos -name DailyEpisode.mp4 -exec cp {} output/Pablo_Guru_Diario.mp4 \;
+          python -m daily.studio_adapter
           python -m daily.validate_video
       - name: Arquivar episódio
         uses: actions/upload-artifact@v4
@@ -63,6 +77,10 @@ jobs:
             output/caption.txt
             output/validation.json
             output/preview_*.jpg
+            output/capa.png
+            output/metadados.json
+            output/roteiro_studio.json
+            output/integration_status.json
           if-no-files-found: error
           retention-days: 90
       - name: Resumo

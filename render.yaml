@@ -6,7 +6,7 @@ services:
     branch: main
     plan: starter
     buildCommand: pip install -r direct_guru/requirements.txt
-    startCommand: python -m direct_guru.server
+    startCommand: gunicorn 'direct_guru.server:create_app()' --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 60 --access-logfile /dev/null
     healthCheckPath: /health
     disk:
       name: direct-data

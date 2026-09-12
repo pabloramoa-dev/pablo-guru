@@ -83,6 +83,20 @@ class DirectTests(unittest.TestCase):
     def test_audio_fallback(self):
         e=self.event(text='');e['audio_url']='https://example.invalid/a';self.store.enqueue(e);self.engine.once()
         self.assertIn('escrever',self.sender.sent[0][1]);self.assertEqual(self.ai.calls,0)
+    def test_privacy_command_works_after_quota(self):
+        for i in range(3):self.run_event(mid=str(i))
+        self.run_event(mid='delete',text='APAGAR')
+        self.assertIn('apagado',self.sender.sent[-1][1])
+        self.assertEqual(self.store.context(self.store.digest('alice'))['messages'],[])
+    def test_first_response_discloses_ai(self):
+        self.run_event();self.assertTrue(self.sender.sent[0][1].startswith('Reflexão gerada por IA.'))
+    def test_output_moderation_blocks(self):
+        count=[0]
+        def moderate(text):
+            count[0]+=1;return {'flagged':count[0]>1}
+        self.ai.moderate=moderate;self.run_event()
+        self.assertEqual(self.store.metrics()['events_by_status'],{'safety':1})
+        self.assertNotIn('Qual informação',self.sender.sent[0][1])
     def test_audio_url_boundary(self):
         self.assertTrue(allowed_url('https://video.cdninstagram.com/audio'))
         for url in ['http://video.cdninstagram.com/a','https://localhost/a','https://cdninstagram.com.evil.test/a','https://u:p@video.cdninstagram.com/a','https://127.0.0.1/a']:

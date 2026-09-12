@@ -4,6 +4,7 @@ import hmac
 import json
 import sqlite3
 import time
+from contextlib import contextmanager
 from pathlib import Path
 from cryptography.fernet import Fernet
 
@@ -22,9 +23,12 @@ class Store:
             CREATE TABLE IF NOT EXISTS conversations(uid TEXT PRIMARY KEY, payload BLOB NOT NULL, expires REAL NOT NULL);
             ''')
 
+    @contextmanager
     def db(self):
         c=sqlite3.connect(self.cfg.db_path,timeout=15);c.row_factory=sqlite3.Row
-        return c
+        try:
+            with c:yield c
+        finally:c.close()
 
     def digest(self,text):
         return hmac.new(self.cfg.hash_salt.encode(),text.encode(),hashlib.sha256).hexdigest()
@@ -42,6 +46,10 @@ class Store:
             day=c.execute('SELECT count(*) FROM events WHERE uid=? AND created>?',(uid,now-86400)).fetchone()[0]
             total=c.execute('SELECT count(*) FROM events WHERE created>?',(now-86400,)).fetchone()[0]
             limited=hour>=self.cfg.hourly_limit or day>=self.cfg.daily_limit or total>=self.cfg.global_daily_limit
+            if event.get('text','').strip().casefold()=='apagar':
+                # Privacy requests must remain available even after the AI quota.
+                self._forget_in_transaction(c,uid)
+                limited=False
             if limited:
                 previous=c.execute("SELECT 1 FROM events WHERE uid=? AND status='limited' AND created>?",(uid,now-86400)).fetchone()
                 if previous:return 'limited'
@@ -77,8 +85,11 @@ class Store:
 
     def forget(self,uid):
         with self.db() as c:
-            c.execute('DELETE FROM conversations WHERE uid=?',(uid,))
-            c.execute("UPDATE events SET payload=NULL,status='erased' WHERE uid=? AND status='queued'",(uid,))
+            self._forget_in_transaction(c,uid)
+
+    def _forget_in_transaction(self,c,uid):
+        c.execute('DELETE FROM conversations WHERE uid=?',(uid,))
+        c.execute("UPDATE events SET payload=NULL,status='erased' WHERE uid=? AND status='queued'",(uid,))
 
     def cleanup(self):
         with self.db() as c:

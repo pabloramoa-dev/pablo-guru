@@ -52,7 +52,10 @@ class Engine:
                             if not valid_answer(answer):raise ProviderError('format_invalid')
                             if self.ai.moderate(answer)['flagged']:
                                 answer=SAFETY;status='safety'
-                            else:keep=True
+                            else:
+                                keep=True
+                                if not context['messages']:
+                                    answer='Reflexão gerada por IA.\n\n'+answer
         except Exception:
             answer=UNAVAILABLE;status='provider_failed';keep=False
         try:
