@@ -1,0 +1,44 @@
+{
+  "id": "a-lanterna",
+  "title": "A lanterna e o caminho",
+  "prop": "lamp",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, como começar sem saber se vai dar certo?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma viajante esperava enxergar a estrada inteira antes de sair. Sua lanterna iluminava apenas alguns passos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ela ficou parada até perceber: a luz não aumentaria enquanto esperasse.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine essa lanterna nas suas mãos. Atravesse comigo esta ponte. Você precisa ver o destino inteiro ou onde vai apoiar o próximo pé?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso dar um passo pequeno e observar o caminho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Exatamente. Você pode testar, parar e mudar de direção. Começar não obriga você a continuar no caminho errado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual passo pequeno você consegue experimentar hoje?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-13",
+  "script_sha256": "e7df6233ca5b6930271338d33cf3239d6a880e624ff738cd663581148d0077ec"
+}
