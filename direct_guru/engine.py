@@ -1,4 +1,5 @@
 from __future__ import annotations
+import sys
 import time
 from direct_guru.providers import ProviderError,DeliveryUncertain
 
@@ -56,15 +57,17 @@ class Engine:
                                 keep=True
                                 if not context['messages']:
                                     answer='Reflexão gerada por IA.\n\n'+answer
-        except Exception:
+        except Exception as exc:
             answer=UNAVAILABLE;status='provider_failed';keep=False
+            print('DIAG engine falhou',type(exc).__name__,exc,file=sys.stderr,flush=True)
         try:
             self.store.sending(row['id'])
             if event.get('comment_id'):
                 self.sender.reply_comment(event['comment_id'],answer)
             else:
                 self.sender.send(event['sender'],answer)
-        except Exception:
+        except Exception as exc:
+            print('DIAG envio falhou',type(exc).__name__,exc,'comentario',bool(event.get('comment_id')),file=sys.stderr,flush=True)
             self.store.finish(row['id'],'uncertain',tokens,time.monotonic()-start)
             return True
         if keep:
