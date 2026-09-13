@@ -3,6 +3,7 @@ import hashlib
 import hmac
 import json
 import sqlite3
+import sys
 import time
 from contextlib import contextmanager
 from pathlib import Path
@@ -38,9 +39,15 @@ class Store:
 
     def enqueue(self,event,now=None):
         now=time.time() if now is None else now
+        print('DIAG enq inicio',file=sys.stderr,flush=True)
         uid=self.digest(event['sender']); mid=self.digest(event['mid'])
+        print('DIAG enq digest ok',file=sys.stderr,flush=True)
+        blob=self.pack(event)
+        print('DIAG enq pack ok',file=sys.stderr,flush=True)
         with self.db() as c:
+            print('DIAG enq conexao ok',file=sys.stderr,flush=True)
             c.execute('BEGIN IMMEDIATE')
+            print('DIAG enq begin ok',file=sys.stderr,flush=True)
             if c.execute('SELECT 1 FROM events WHERE id=?',(mid,)).fetchone():return 'duplicate'
             hour=c.execute('SELECT count(*) FROM events WHERE uid=? AND created>?',(uid,now-3600)).fetchone()[0]
             day=c.execute('SELECT count(*) FROM events WHERE uid=? AND created>?',(uid,now-86400)).fetchone()[0]
@@ -55,7 +62,7 @@ class Store:
                 if previous:return 'limited'
                 event=dict(event,limit_notice=True)
             c.execute('INSERT INTO events(id,uid,payload,created,status,source) VALUES(?,?,?,?,?,?)',
-                      (mid,uid,self.pack(event),now,'queued',event.get('source','direct')))
+                      (mid,uid,blob,now,'queued',event.get('source','direct')))
         return 'queued'
 
     def claim(self):
