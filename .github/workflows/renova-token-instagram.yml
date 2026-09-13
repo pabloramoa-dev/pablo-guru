@@ -1,0 +1,48 @@
+name: Renova token do Instagram
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'
+  workflow_dispatch:
+
+jobs:
+  renovar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Renovar token e atualizar no Render
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_SERVICE_ID: srv-daj08u7qj5pc73bpq7lg
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.parse, urllib.request
+
+          API = os.environ['RENDER_API_KEY']
+          SVC = os.environ['RENDER_SERVICE_ID']
+          BASE = 'https://api.render.com/v1'
+          H = {'Authorization': 'Bearer ' + API, 'Accept': 'application/json', 'Content-Type': 'application/json'}
+
+          def render(caminho, metodo='GET', corpo=None):
+              dados = json.dumps(corpo).encode() if corpo is not None else None
+              req = urllib.request.Request(BASE + caminho, data=dados, method=metodo, headers=H)
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  resposta = r.read()
+              return json.loads(resposta) if resposta else {}
+
+          atual = render('/services/' + SVC + '/env-vars/IG_ACCESS_TOKEN')
+          token = atual.get('value') or atual.get('envVar', {}).get('value')
+          if not token:
+              raise SystemExit('Nao consegui ler o token atual no Render')
+
+          url = 'https://graph.instagram.com/refresh_access_token?' + urllib.parse.urlencode({'grant_type': 'ig_refresh_token', 'access_token': token})
+          with urllib.request.urlopen(url, timeout=30) as r:
+              novo = json.loads(r.read())
+
+          if not novo.get('access_token'):
+              raise SystemExit('O Instagram nao devolveu token novo')
+
+          dias = int(novo.get('expires_in', 0)) // 86400
+          render('/services/' + SVC + '/env-vars/IG_ACCESS_TOKEN', 'PUT', {'value': novo['access_token']})
+          render('/services/' + SVC + '/deploys', 'POST', {'clearCache': 'do_not_clear'})
+          print('Token renovado com sucesso. Validade aproximada: ' + str(dias) + ' dias.')
+          PY
