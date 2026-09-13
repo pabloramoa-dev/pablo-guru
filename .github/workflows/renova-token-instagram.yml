@@ -17,9 +17,7 @@ jobs:
           python3 - <<'PY'
           import json, os, sys, urllib.error, urllib.parse, urllib.request
 
-          bruta = os.environ['RENDER_API_KEY']
-          API = bruta.strip()
-          print('Chave: ' + str(len(bruta)) + ' caracteres, ' + str(len(API)) + ' apos limpar, prefixo ' + API[:4])
+          API = os.environ['RENDER_API_KEY'].strip()
           SVC = os.environ['RENDER_SERVICE_ID']
           BASE = 'https://api.render.com/v1'
 
