@@ -61,7 +61,52 @@ class Store:
                       (mid,uid,blob,now,'queued',event.get('source','direct')))
         return 'queued'
 
-    def _janela(self,c,uid):\n        row=c.execute('SELECT iniciada,respondidas,reservadas,bloqueada_ate FROM janelas WHERE uid=?',(uid,)).fetchone()\n        if not row:return [0.0,0,0,0.0]\n        return [row['iniciada'],row['respondidas'],row['reservadas'],row['bloqueada_ate']]\n\n    def _gravar_janela(self,c,uid,dados):\n        c.execute('INSERT OR REPLACE INTO janelas VALUES(?,?,?,?,?)',(uid,dados[0],dados[1],dados[2],dados[3]))\n\n    def reservar(self,uid,now=None):\n        # Reserva atomica de uma vaga antes de chamar a IA, para que chamadas simultaneas nao ultrapassem o limite.\n        now=time.time() if now is None else now\n        with self.db() as c:\n            c.execute('BEGIN IMMEDIATE')\n            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)\n            if bloqueada>now:\n                return {'estado':'pausa','liberacao':bloqueada}\n            if bloqueada:\n                iniciada,respondidas,reservadas,bloqueada=0.0,0,0,0.0\n            if not iniciada or now-iniciada>=self.cfg.window_seconds:\n                iniciada,respondidas,reservadas=now,0,0\n            if respondidas+reservadas>=self.cfg.window_limit:\n                return {'estado':'aguarde','liberacao':iniciada+self.cfg.window_seconds}\n            self._gravar_janela(c,uid,[iniciada,respondidas,reservadas+1,bloqueada])\n            return {'estado':'ok','liberacao':0.0}\n\n    def confirmar(self,uid,now=None):\n        # Conta a resposta entregue e inicia a pausa quando a ultima vaga da janela e usada.\n        now=time.time() if now is None else now\n        with self.db() as c:\n            c.execute('BEGIN IMMEDIATE')\n            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)\n            respondidas+=1\n            reservadas=max(0,reservadas-1)\n            if respondidas>=self.cfg.window_limit:\n                bloqueada=now+self.cfg.cooldown_seconds\n            self._gravar_janela(c,uid,[iniciada or now,respondidas,reservadas,bloqueada])\n            return bloqueada\n\n    def liberar(self,uid):\n        # Falha antes do envio devolve a vaga reservada.\n        with self.db() as c:\n            c.execute('BEGIN IMMEDIATE')\n            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)\n            self._gravar_janela(c,uid,[iniciada,respondidas,max(0,reservadas-1),bloqueada])\n\n    def claim(self):
+    def _janela(self,c,uid):
+        row=c.execute('SELECT iniciada,respondidas,reservadas,bloqueada_ate FROM janelas WHERE uid=?',(uid,)).fetchone()
+        if not row:return [0.0,0,0,0.0]
+        return [row['iniciada'],row['respondidas'],row['reservadas'],row['bloqueada_ate']]
+
+    def _gravar_janela(self,c,uid,dados):
+        c.execute('INSERT OR REPLACE INTO janelas VALUES(?,?,?,?,?)',(uid,dados[0],dados[1],dados[2],dados[3]))
+
+    def reservar(self,uid,now=None):
+        # Reserva atomica de uma vaga antes de chamar a IA, para que chamadas simultaneas nao ultrapassem o limite.
+        now=time.time() if now is None else now
+        with self.db() as c:
+            c.execute('BEGIN IMMEDIATE')
+            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)
+            if bloqueada>now:
+                return {'estado':'pausa','liberacao':bloqueada}
+            if bloqueada:
+                iniciada,respondidas,reservadas,bloqueada=0.0,0,0,0.0
+            if not iniciada or now-iniciada>=self.cfg.window_seconds:
+                iniciada,respondidas,reservadas=now,0,0
+            if respondidas+reservadas>=self.cfg.window_limit:
+                return {'estado':'aguarde','liberacao':iniciada+self.cfg.window_seconds}
+            self._gravar_janela(c,uid,[iniciada,respondidas,reservadas+1,bloqueada])
+            return {'estado':'ok','liberacao':0.0}
+
+    def confirmar(self,uid,now=None):
+        # Conta a resposta entregue e inicia a pausa quando a ultima vaga da janela e usada.
+        now=time.time() if now is None else now
+        with self.db() as c:
+            c.execute('BEGIN IMMEDIATE')
+            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)
+            respondidas+=1
+            reservadas=max(0,reservadas-1)
+            if respondidas>=self.cfg.window_limit:
+                bloqueada=now+self.cfg.cooldown_seconds
+            self._gravar_janela(c,uid,[iniciada or now,respondidas,reservadas,bloqueada])
+            return bloqueada
+
+    def liberar(self,uid):
+        # Falha antes do envio devolve a vaga reservada.
+        with self.db() as c:
+            c.execute('BEGIN IMMEDIATE')
+            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)
+            self._gravar_janela(c,uid,[iniciada,respondidas,max(0,reservadas-1),bloqueada])
+
+    def claim(self):
         with self.db() as c:
             c.execute('BEGIN IMMEDIATE')
             row=c.execute("SELECT * FROM events WHERE status='queued' ORDER BY created,id LIMIT 1").fetchone()
