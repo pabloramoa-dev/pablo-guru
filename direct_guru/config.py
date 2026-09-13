@@ -18,6 +18,9 @@ class Config:
     hourly_limit: int = 3
     daily_limit: int = 10
     global_daily_limit: int = 100
+    window_limit: int = 10
+    window_seconds: int = 3600
+    cooldown_seconds: int = 7200
     context_ttl: int = 86400
     max_chars: int = 1800
 
@@ -32,7 +35,7 @@ class Config:
                    ig_token=os.getenv('IG_ACCESS_TOKEN',''),openai_key=os.getenv('OPENAI_API_KEY',''),
                    model=os.getenv('OPENAI_MODEL',''),graph_version=os.getenv('META_GRAPH_VERSION','v22.0'),
                    enabled=os.getenv('DIRECT_ENABLED')=='true',audio_input=os.getenv('AUDIO_INPUT_ENABLED')=='true')
-        for field,key in [('hourly_limit','USER_HOURLY_LIMIT'),('daily_limit','USER_DAILY_LIMIT'),('global_daily_limit','GLOBAL_DAILY_LIMIT'),('context_ttl','CONTEXT_TTL_SECONDS')]:
+        for field,key in [('hourly_limit','USER_HOURLY_LIMIT'),('daily_limit','USER_DAILY_LIMIT'),('global_daily_limit','GLOBAL_DAILY_LIMIT'),('context_ttl','CONTEXT_TTL_SECONDS'),('window_limit','USER_WINDOW_LIMIT'),('window_seconds','USER_WINDOW_SECONDS'),('cooldown_seconds','USER_COOLDOWN_SECONDS')]:
             if os.getenv(key):setattr(cfg,field,int(os.environ[key]))
             if getattr(cfg,field)<=0:raise RuntimeError('Limite inválido na configuração.')
         if cfg.context_ttl>86400:raise RuntimeError('Memória limitada a 24 horas nesta versão.')
