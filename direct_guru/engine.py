@@ -2,6 +2,10 @@ from __future__ import annotations
 import sys
 import time
 from direct_guru.providers import ProviderError,DeliveryUncertain
+from datetime import datetime,timedelta,timezone
+
+def horario_brasilia(instante):
+    return datetime.fromtimestamp(instante,timezone(timedelta(hours=-3))).strftime('%Hh%M')
 
 WELCOME='Sou Pablo Guru, um personagem com respostas geradas por IA. Envie sua pergunta em poucas palavras. Para apagar o contexto, escreva APAGAR.'
 UNAVAILABLE='Não consegui preparar sua resposta agora. Por favor, tente novamente mais tarde.'
@@ -20,7 +24,7 @@ class Engine:
         if not row:return False
         start=time.monotonic();tokens=0;status='sent'
         event=self.store.unpack(row['payload']);context=self.store.context(row['uid'])
-        keep=False;text='';answer=''
+        keep=False;text='';answer='';reservado=False
         try:
             if time.time()-event['timestamp']>23*3600:
                 self.store.finish(row['id'],'expired');return True
@@ -45,20 +49,29 @@ class Engine:
                     elif not text or len(text)>self.cfg.max_chars:
                         answer='Pode resumir sua pergunta em até 1.800 caracteres?'
                     else:
-                        moderation=self.ai.moderate(text)
-                        if moderation['flagged']:
-                            answer=SAFETY;status='safety'
+                        reserva=self.store.reservar(row['uid'])
+                        if reserva['estado']=='pausa':
+                            answer='Você usou as respostas desta janela. Volto a responder às '+horario_brasilia(reserva['liberacao'])+', horário de Brasília.';status='limited'
+                        elif reserva['estado']=='aguarde':
+                            answer='Ainda estou preparando outra resposta sua. Aguarde um instante e envie de novo.';status='limited'
                         else:
-                            answer,tokens=self.ai.generate(text,context['messages'])
-                            if not valid_answer(answer):raise ProviderError('format_invalid')
-                            if self.ai.moderate(answer)['flagged']:
+                            reservado=True
+                            moderation=self.ai.moderate(text)
+                            if moderation['flagged']:
                                 answer=SAFETY;status='safety'
                             else:
-                                keep=True
-                                if not context['messages']:
-                                    answer='Reflexão gerada por IA.\n\n'+answer
+                                answer,tokens=self.ai.generate(text,context['messages'])
+                                if not valid_answer(answer):raise ProviderError('format_invalid')
+                                if self.ai.moderate(answer)['flagged']:
+                                    answer=SAFETY;status='safety'
+                                else:
+                                    keep=True
+                                    if not context['messages']:
+                                        answer='Reflexão gerada por IA.\n\n'+answer
         except Exception as exc:
             answer=UNAVAILABLE;status='provider_failed';keep=False
+            if reservado:
+                self.store.liberar(row['uid']);reservado=False
             print('erro_processamento',type(exc).__name__,exc,file=sys.stderr,flush=True)
         try:
             self.store.sending(row['id'])
@@ -70,6 +83,8 @@ class Engine:
             print('erro_envio',type(exc).__name__,exc,'comentario',bool(event.get('comment_id')),file=sys.stderr,flush=True)
             self.store.finish(row['id'],'uncertain',tokens,time.monotonic()-start)
             return True
+        if reservado:
+            self.store.confirmar(row['uid'])
         if keep:
             context['messages'] += [{'role':'user','content':text},{'role':'assistant','content':answer}]
             self.store.remember(row['uid'],context)
