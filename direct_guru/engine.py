@@ -59,7 +59,7 @@ class Engine:
                                     answer='Reflexão gerada por IA.\n\n'+answer
         except Exception as exc:
             answer=UNAVAILABLE;status='provider_failed';keep=False
-            print('DIAG engine falhou',type(exc).__name__,exc,file=sys.stderr,flush=True)
+            print('erro_processamento',type(exc).__name__,exc,file=sys.stderr,flush=True)
         try:
             self.store.sending(row['id'])
             if event.get('comment_id'):
@@ -67,7 +67,7 @@ class Engine:
             else:
                 self.sender.send(event['sender'],answer)
         except Exception as exc:
-            print('DIAG envio falhou',type(exc).__name__,exc,'comentario',bool(event.get('comment_id')),file=sys.stderr,flush=True)
+            print('erro_envio',type(exc).__name__,exc,'comentario',bool(event.get('comment_id')),file=sys.stderr,flush=True)
             self.store.finish(row['id'],'uncertain',tokens,time.monotonic()-start)
             return True
         if keep:
