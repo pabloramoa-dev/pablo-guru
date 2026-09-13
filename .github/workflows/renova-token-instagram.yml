@@ -15,34 +15,48 @@ jobs:
           RENDER_SERVICE_ID: srv-daj08u7qj5pc73bpq7lg
         run: |
           python3 - <<'PY'
-          import json, os, urllib.parse, urllib.request
+          import json, os, sys, urllib.error, urllib.parse, urllib.request
 
           API = os.environ['RENDER_API_KEY']
           SVC = os.environ['RENDER_SERVICE_ID']
           BASE = 'https://api.render.com/v1'
           H = {'Authorization': 'Bearer ' + API, 'Accept': 'application/json', 'Content-Type': 'application/json'}
 
+          def abrir(req, onde):
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as r:
+                      return r.read()
+              except urllib.error.HTTPError as e:
+                  detalhe = e.read().decode('utf-8', 'replace')[:400]
+                  print('Falha em ' + onde + ': HTTP ' + str(e.code) + ' - ' + detalhe)
+                  raise
+
           def render(caminho, metodo='GET', corpo=None):
               dados = json.dumps(corpo).encode() if corpo is not None else None
               req = urllib.request.Request(BASE + caminho, data=dados, method=metodo, headers=H)
-              with urllib.request.urlopen(req, timeout=30) as r:
-                  resposta = r.read()
+              resposta = abrir(req, 'Render ' + metodo + ' ' + caminho)
               return json.loads(resposta) if resposta else {}
 
           atual = render('/services/' + SVC + '/env-vars/IG_ACCESS_TOKEN')
           token = atual.get('value') or atual.get('envVar', {}).get('value')
           if not token:
-              raise SystemExit('Nao consegui ler o token atual no Render')
+              sys.exit('Nao consegui ler o token atual no Render')
+          print('Token atual lido do Render (' + str(len(token)) + ' caracteres).')
 
           url = 'https://graph.instagram.com/refresh_access_token?' + urllib.parse.urlencode({'grant_type': 'ig_refresh_token', 'access_token': token})
-          with urllib.request.urlopen(url, timeout=30) as r:
-              novo = json.loads(r.read())
+          try:
+              novo = json.loads(abrir(urllib.request.Request(url), 'Instagram refresh'))
+          except urllib.error.HTTPError as e:
+              if e.code == 400:
+                  print('O Instagram recusou a renovacao agora. O caso mais comum e o token ter menos de 24 horas de vida; nesse caso a proxima execucao mensal resolve.')
+                  sys.exit(0)
+              raise
 
           if not novo.get('access_token'):
-              raise SystemExit('O Instagram nao devolveu token novo')
+              sys.exit('O Instagram nao devolveu token novo')
 
           dias = int(novo.get('expires_in', 0)) // 86400
           render('/services/' + SVC + '/env-vars/IG_ACCESS_TOKEN', 'PUT', {'value': novo['access_token']})
           render('/services/' + SVC + '/deploys', 'POST', {'clearCache': 'do_not_clear'})
-          print('Token renovado com sucesso. Validade aproximada: ' + str(dias) + ' dias.')
+          print('Token renovado e servico atualizado. Validade aproximada: ' + str(dias) + ' dias.')
           PY
