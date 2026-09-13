@@ -7,13 +7,13 @@ from datetime import datetime,timedelta,timezone
 def horario_brasilia(instante):
     return datetime.fromtimestamp(instante,timezone(timedelta(hours=-3))).strftime('%Hh%M')
 
-WELCOME='Sou Pablo Guru, um personagem com respostas geradas por IA. Envie sua pergunta em poucas palavras. Para apagar o contexto, escreva APAGAR.'
+WELCOME='Sou Pablo Guru, um personagem com respostas geradas por IA. Posso explicar um assunto, ajudar a escrever uma mensagem ou dar o primeiro passo de uma tarefa. Escreva sua pergunta em poucas palavras. Para apagar o contexto, escreva APAGAR.'
 UNAVAILABLE='Não consegui preparar sua resposta agora. Por favor, tente novamente mais tarde.'
 SAFETY='Posso ajudar com uma reflexão segura, mas não com instruções que possam causar danos. Se houver risco imediato, procure alguém de confiança e um serviço de emergência da sua região.'
 
 def valid_answer(text):
     lines=[x.strip() for x in text.strip().splitlines() if x.strip()]
-    return len(lines)==5 and len(text)<=800 and all(2<=len(x)<=160 for x in lines)
+    return 1<=len(lines)<=10 and len(text)<=950 and all(2<=len(x)<=400 for x in lines)
 
 class Engine:
     def __init__(self,cfg,store,ai,sender,transcribe=None):
@@ -67,7 +67,7 @@ class Engine:
                                 else:
                                     keep=True
                                     if not context['messages']:
-                                        answer='Reflexão gerada por IA.\n\n'+answer
+                                        answer='Resposta gerada por IA.\n\n'+answer
         except Exception as exc:
             answer=UNAVAILABLE;status='provider_failed';keep=False
             if reservado:
