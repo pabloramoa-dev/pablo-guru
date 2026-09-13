@@ -87,3 +87,10 @@ O template educacional, painel de edição, múltiplos personagens e internacion
 - https://developers.openai.com/api/docs/guides/moderation
 - https://developers.openai.com/api/docs/guides/speech-to-text
 - https://render.com/docs/blueprint-spec
+
+
+## Validação do motor original — 13/09/2026
+
+O piloto da execução 34719400622 foi concluído com o motor enviado pelo usuário: vídeo vertical 1080×1920, H.264/AAC, 47,93 segundos. Os 20 testes passaram na execução 34719400632. O renderizador ativo é daily.studio_adapter, usando as vozes e velocidades do studio original; as referências anteriores ao renderizador experimental não se aplicam ao fluxo ativo. O identificador do selo final foi corrigido para @opabloguru após esse piloto.
+
+A agenda na branch principal gera diariamente às 08h de Brasília (11h UTC), sujeita à fila do GitHub. Os roteiros ficam registrados em history antes da renderização e o MP4 fica nos artefatos por 90 dias. Existem 14 roteiros iniciais a partir de 13/09/2026. Para continuar após esse banco, configure o secret OPENAI_API_KEY e a variável PABLO_SCRIPT_MODEL; ambos estavam ausentes no piloto. Credenciais Instagram também estavam ausentes. Publicação e Direct ainda não estão ativos.

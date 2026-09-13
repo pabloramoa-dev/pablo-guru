@@ -269,7 +269,7 @@ def _construir_scene():
             cta_m = cine._texto(cta_txt, int(W * 3.4), PALETA["branco"])
             if cta_m.width > W * 0.82:
                 cta_m.scale(W * 0.82 / cta_m.width)
-            selo = cine._texto("@pabloguru", int(W * 2.4), PALETA["dourado_claro"])
+            selo = cine._texto("@opabloguru", int(W * 2.4), PALETA["dourado_claro"])
             selo.next_to(cta_m, DOWN, buff=H * 0.045)
             grupo_cta = VGroup(cta_m, selo).move_to(ORIGIN).set_z_index(70)
             self.play(FadeIn(grupo_cta, run_time=0.5))

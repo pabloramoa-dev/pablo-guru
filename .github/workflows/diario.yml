@@ -1,5 +1,7 @@
 name: Pablo Guru Diario
 on:
+  schedule:
+    - cron: "0 11 * * *"
   push:
     branches: [implementacao/episodios-diarios-direct]
     paths: ['daily/**', 'studio/**', '.github/workflows/diario.yml']
@@ -14,7 +16,7 @@ on:
         default: true
         type: boolean
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: pablo-diario-${{ github.ref }}
   cancel-in-progress: false
@@ -63,6 +65,16 @@ jobs:
           if [ -n "$EPISODE_DATE" ]; then args+=(--date "$EPISODE_DATE"); fi
           if [ "$IS_TEST" = true ]; then args+=(--test); fi
           python -m daily.prepare "${args[@]}"
+      - name: Preservar roteiro da data
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.test == false)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add history/
+          if ! git diff --cached --quiet; then
+            git commit -m "Registra roteiro diário [skip ci]"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
       - name: Gerar voz e renderizar
         run: |
           python -m daily.studio_adapter

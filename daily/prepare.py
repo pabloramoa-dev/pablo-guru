@@ -52,6 +52,7 @@ def main():
                 raise ValueError('Roteiro repetido; revisão editorial necessária.')
     validate(ep)
     ep['date']=args.date
+    ep.pop('script_sha256', None)
     ep['script_sha256']=hashlib.sha256(json.dumps(ep,ensure_ascii=False,sort_keys=True).encode()).hexdigest()
     out=ROOT/'output'; out.mkdir(exist_ok=True)
     (out/'episode.json').write_text(json.dumps(ep,ensure_ascii=False,indent=2),encoding='utf-8')
@@ -60,6 +61,6 @@ def main():
         archive.write_text(json.dumps(ep,ensure_ascii=False,indent=2),encoding='utf-8')
     caption=f"{ep['title']}\n\n{ep['segments'][-1]['text']}\n\nCompartilhe com alguém que pode gostar desta reflexão.\n\n#PabloGuru #Reflexão #Autoconhecimento"
     (out/'caption.txt').write_text(caption,encoding='utf-8')
-    print(json.dumps({'date':args.date,'episode':ep['id'],'remaining':len(list(episodes()))-1}))
+    print(json.dumps({'date':args.date,'episode':ep['id'],'remaining':max(0,len(list(episodes()))-1-(date.fromisoformat(args.date)-date.fromisoformat(args.start)).days)}))
 
 if __name__=='__main__': main()
