@@ -77,6 +77,8 @@ def app(cfg,store):
             for event in events:
                 resultado=store.enqueue(event)
                 print('DIAG enfileira',event.get('source'),resultado,file=sys.stderr,flush=True)
-        except Exception:return respond('503 Service Unavailable','retry later')
+        except Exception as exc:
+            print('DIAG enfileira falhou',type(exc).__name__,exc,file=sys.stderr,flush=True)
+            return respond('503 Service Unavailable','retry later')
         return respond('200 OK','ok')
     return application
