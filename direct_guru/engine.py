@@ -60,7 +60,10 @@ class Engine:
             answer=UNAVAILABLE;status='provider_failed';keep=False
         try:
             self.store.sending(row['id'])
-            self.sender.send(event['sender'],answer)
+            if event.get('comment_id'):
+                self.sender.reply_comment(event['comment_id'],answer)
+            else:
+                self.sender.send(event['sender'],answer)
         except Exception:
             self.store.finish(row['id'],'uncertain',tokens,time.monotonic()-start)
             return True
