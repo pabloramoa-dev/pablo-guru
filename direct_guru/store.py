@@ -21,6 +21,9 @@ class Store:
                 tokens INTEGER NOT NULL DEFAULT 0, latency REAL NOT NULL DEFAULT 0);
             CREATE INDEX IF NOT EXISTS events_user ON events(uid,created);
             CREATE TABLE IF NOT EXISTS conversations(uid TEXT PRIMARY KEY, payload BLOB NOT NULL, expires REAL NOT NULL);
+            CREATE TABLE IF NOT EXISTS janelas(uid TEXT PRIMARY KEY, iniciada REAL NOT NULL DEFAULT 0,
+                respondidas INTEGER NOT NULL DEFAULT 0, reservadas INTEGER NOT NULL DEFAULT 0,
+                bloqueada_ate REAL NOT NULL DEFAULT 0);
             ''')
 
     @contextmanager
@@ -43,10 +46,9 @@ class Store:
         with self.db() as c:
             c.execute('BEGIN IMMEDIATE')
             if c.execute('SELECT 1 FROM events WHERE id=?',(mid,)).fetchone():return 'duplicate'
-            hour=c.execute('SELECT count(*) FROM events WHERE uid=? AND created>?',(uid,now-3600)).fetchone()[0]
-            day=c.execute('SELECT count(*) FROM events WHERE uid=? AND created>?',(uid,now-86400)).fetchone()[0]
             total=c.execute('SELECT count(*) FROM events WHERE created>?',(now-86400,)).fetchone()[0]
-            limited=hour>=self.cfg.hourly_limit or day>=self.cfg.daily_limit or total>=self.cfg.global_daily_limit
+            # O limite por pessoa passou a ser a janela de respostas; aqui fica apenas o teto global diario.
+            limited=total>=self.cfg.global_daily_limit
             if event.get('text','').strip().casefold()=='apagar':
                 # Privacy requests must remain available even after the AI quota.
                 self._forget_in_transaction(c,uid)
@@ -59,7 +61,7 @@ class Store:
                       (mid,uid,blob,now,'queued',event.get('source','direct')))
         return 'queued'
 
-    def claim(self):
+    def _janela(self,c,uid):\n        row=c.execute('SELECT iniciada,respondidas,reservadas,bloqueada_ate FROM janelas WHERE uid=?',(uid,)).fetchone()\n        if not row:return [0.0,0,0,0.0]\n        return [row['iniciada'],row['respondidas'],row['reservadas'],row['bloqueada_ate']]\n\n    def _gravar_janela(self,c,uid,dados):\n        c.execute('INSERT OR REPLACE INTO janelas VALUES(?,?,?,?,?)',(uid,dados[0],dados[1],dados[2],dados[3]))\n\n    def reservar(self,uid,now=None):\n        # Reserva atomica de uma vaga antes de chamar a IA, para que chamadas simultaneas nao ultrapassem o limite.\n        now=time.time() if now is None else now\n        with self.db() as c:\n            c.execute('BEGIN IMMEDIATE')\n            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)\n            if bloqueada>now:\n                return {'estado':'pausa','liberacao':bloqueada}\n            if bloqueada:\n                iniciada,respondidas,reservadas,bloqueada=0.0,0,0,0.0\n            if not iniciada or now-iniciada>=self.cfg.window_seconds:\n                iniciada,respondidas,reservadas=now,0,0\n            if respondidas+reservadas>=self.cfg.window_limit:\n                return {'estado':'aguarde','liberacao':iniciada+self.cfg.window_seconds}\n            self._gravar_janela(c,uid,[iniciada,respondidas,reservadas+1,bloqueada])\n            return {'estado':'ok','liberacao':0.0}\n\n    def confirmar(self,uid,now=None):\n        # Conta a resposta entregue e inicia a pausa quando a ultima vaga da janela e usada.\n        now=time.time() if now is None else now\n        with self.db() as c:\n            c.execute('BEGIN IMMEDIATE')\n            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)\n            respondidas+=1\n            reservadas=max(0,reservadas-1)\n            if respondidas>=self.cfg.window_limit:\n                bloqueada=now+self.cfg.cooldown_seconds\n            self._gravar_janela(c,uid,[iniciada or now,respondidas,reservadas,bloqueada])\n            return bloqueada\n\n    def liberar(self,uid):\n        # Falha antes do envio devolve a vaga reservada.\n        with self.db() as c:\n            c.execute('BEGIN IMMEDIATE')\n            iniciada,respondidas,reservadas,bloqueada=self._janela(c,uid)\n            self._gravar_janela(c,uid,[iniciada,respondidas,max(0,reservadas-1),bloqueada])\n\n    def claim(self):
         with self.db() as c:
             c.execute('BEGIN IMMEDIATE')
             row=c.execute("SELECT * FROM events WHERE status='queued' ORDER BY created,id LIMIT 1").fetchone()
