@@ -2,6 +2,7 @@ from __future__ import annotations
 import hashlib
 import hmac
 import json
+import sys
 import time
 from urllib.parse import parse_qs
 
@@ -70,6 +71,7 @@ def app(cfg,store):
             body=json.loads(raw)
             if not isinstance(body,dict):raise ValueError()
             events=list(normalized(body,cfg.account_id))
+            print('DIAG webhook object',body.get('object'),'entries',len(body.get('entry',[])),'ids',[str(e.get('id')) for e in body.get('entry',[])],'fields',[c.get('field') for e in body.get('entry',[]) for c in e.get('changes',[])],'eventos',len(events),file=sys.stderr,flush=True)
         except (TypeError,ValueError,AttributeError):return respond('400 Bad Request','invalid event')
         try:
             for event in events:store.enqueue(event)
