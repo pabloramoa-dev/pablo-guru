@@ -13,6 +13,16 @@ class QuietHandler(WSGIRequestHandler):
     def log_message(self,*args):pass  # query strings can contain verification tokens
 
 def create_app():
+    if os.getenv('DIRECT_SETUP_ONLY') == 'true':
+        if os.getenv('DIRECT_ENABLED') == 'true':
+            raise RuntimeError('Desative o modo de preparação antes de ativar o Direct.')
+        def setup_app(environ, start_response):
+            if environ.get('PATH_INFO') == '/health':
+                start_response('200 OK', [('Content-Type', 'application/json')])
+                return [b'{"status":"setup","direct_enabled":false}']
+            start_response('503 Service Unavailable', [('Content-Type', 'application/json')])
+            return [b'{"status":"not_configured"}']
+        return setup_app
     cfg=Config.env()
     if cfg.enabled and not all([cfg.ig_token,cfg.openai_key,cfg.model]):
         raise RuntimeError('Credenciais ou modelo ausentes; ativação recusada.')
