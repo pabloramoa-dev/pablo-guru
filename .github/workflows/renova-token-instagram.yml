@@ -31,7 +31,7 @@ jobs:
                   raise
 
           def render(caminho, metodo='GET', corpo=None):
-              cabecalhos = {'Authorization': 'Bearer ' + API, 'Accept': 'application/json'}
+              cabecalhos = {'Authorization': 'Bearer ' + API, 'Accept': 'application/json', 'User-Agent': 'pablo-guru-token-refresh'}
               dados = None
               if corpo is not None:
                   dados = json.dumps(corpo).encode()
@@ -40,7 +40,7 @@ jobs:
               resposta = abrir(req, 'Render ' + metodo + ' ' + caminho)
               return json.loads(resposta) if resposta else {}
 
-          lista = render('/services/' + SVC + '/env-vars?limit=100')
+          lista = render('/services/' + SVC + '/env-vars')
           token = ''
           for item in lista:
               var = item.get('envVar', item)
@@ -52,7 +52,7 @@ jobs:
 
           url = 'https://graph.instagram.com/refresh_access_token?' + urllib.parse.urlencode({'grant_type': 'ig_refresh_token', 'access_token': token})
           try:
-              novo = json.loads(abrir(urllib.request.Request(url), 'Instagram refresh'))
+              novo = json.loads(abrir(urllib.request.Request(url, headers={'User-Agent': 'pablo-guru-token-refresh'}), 'Instagram refresh'))
           except urllib.error.HTTPError as e:
               if e.code == 400:
                   print('O Instagram recusou a renovacao agora. O caso mais comum e o token ter menos de 24 horas de vida; a proxima execucao mensal resolve.')
