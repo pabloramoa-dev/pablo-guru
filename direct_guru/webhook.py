@@ -30,6 +30,19 @@ def normalized(body,account_id,now=None):
             yield {'mid':str(mid),'sender':sender,'timestamp':timestamp,'text':text[:2000],
                    'audio_url':audio_url,'source':source}
 
+        for change in entry.get('changes',[]):
+            if change.get('field')!='comments':continue
+            value=change.get('value',{}) or {}
+            comment_id=str(value.get('id',''))
+            author=value.get('from',{}) or {}
+            sender=str(author.get('id',''))
+            if not comment_id or not sender or sender==account_id:continue
+            if value.get('parent_id'):continue
+            text=value.get('text','')
+            if not isinstance(text,str) or not text.strip():continue
+            yield {'mid':'comment:'+comment_id,'sender':sender,'timestamp':now,'text':text[:2000],
+                   'audio_url':None,'source':'comment','comment_id':comment_id}
+
 def app(cfg,store):
     def application(env,start_response):
         method=env.get('REQUEST_METHOD');path=env.get('PATH_INFO')
