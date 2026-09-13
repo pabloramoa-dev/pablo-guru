@@ -46,3 +46,9 @@ class Instagram:
             r=post_json(f'https://graph.instagram.com/{self.cfg.graph_version}/{self.cfg.account_id}/messages',{'recipient':{'id':recipient},'message':{'text':text}},self.cfg.ig_token,20)
             if not r.get('message_id'):raise ProviderError('missing_message_id')
         except ProviderError:raise DeliveryUncertain('delivery_needs_review') from None
+
+    def reply_comment(self,comment_id,text):
+        try:
+            r=post_json(f'https://graph.instagram.com/{self.cfg.graph_version}/{comment_id}/replies',{'message':text},self.cfg.ig_token,20)
+            if not r.get('id'):raise ProviderError('missing_reply_id')
+        except ProviderError:raise DeliveryUncertain('delivery_needs_review') from None
