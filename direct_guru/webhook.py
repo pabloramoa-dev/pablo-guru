@@ -74,7 +74,9 @@ def app(cfg,store):
             print('DIAG webhook object',body.get('object'),'entries',len(body.get('entry',[])),'ids',[str(e.get('id')) for e in body.get('entry',[])],'fields',[c.get('field') for e in body.get('entry',[]) for c in e.get('changes',[])],'eventos',len(events),file=sys.stderr,flush=True)
         except (TypeError,ValueError,AttributeError):return respond('400 Bad Request','invalid event')
         try:
-            for event in events:store.enqueue(event)
+            for event in events:
+                resultado=store.enqueue(event)
+                print('DIAG enfileira',event.get('source'),resultado,file=sys.stderr,flush=True)
         except Exception:return respond('503 Service Unavailable','retry later')
         return respond('200 OK','ok')
     return application
