@@ -20,7 +20,6 @@ jobs:
           API = os.environ['RENDER_API_KEY']
           SVC = os.environ['RENDER_SERVICE_ID']
           BASE = 'https://api.render.com/v1'
-          H = {'Authorization': 'Bearer ' + API, 'Accept': 'application/json', 'Content-Type': 'application/json'}
 
           def abrir(req, onde):
               try:
@@ -32,15 +31,23 @@ jobs:
                   raise
 
           def render(caminho, metodo='GET', corpo=None):
-              dados = json.dumps(corpo).encode() if corpo is not None else None
-              req = urllib.request.Request(BASE + caminho, data=dados, method=metodo, headers=H)
+              cabecalhos = {'Authorization': 'Bearer ' + API, 'Accept': 'application/json'}
+              dados = None
+              if corpo is not None:
+                  dados = json.dumps(corpo).encode()
+                  cabecalhos['Content-Type'] = 'application/json'
+              req = urllib.request.Request(BASE + caminho, data=dados, method=metodo, headers=cabecalhos)
               resposta = abrir(req, 'Render ' + metodo + ' ' + caminho)
               return json.loads(resposta) if resposta else {}
 
-          atual = render('/services/' + SVC + '/env-vars/IG_ACCESS_TOKEN')
-          token = atual.get('value') or atual.get('envVar', {}).get('value')
+          lista = render('/services/' + SVC + '/env-vars?limit=100')
+          token = ''
+          for item in lista:
+              var = item.get('envVar', item)
+              if var.get('key') == 'IG_ACCESS_TOKEN':
+                  token = var.get('value', '')
           if not token:
-              sys.exit('Nao consegui ler o token atual no Render')
+              sys.exit('Nao encontrei IG_ACCESS_TOKEN nas variaveis do servico')
           print('Token atual lido do Render (' + str(len(token)) + ' caracteres).')
 
           url = 'https://graph.instagram.com/refresh_access_token?' + urllib.parse.urlencode({'grant_type': 'ig_refresh_token', 'access_token': token})
@@ -48,7 +55,7 @@ jobs:
               novo = json.loads(abrir(urllib.request.Request(url), 'Instagram refresh'))
           except urllib.error.HTTPError as e:
               if e.code == 400:
-                  print('O Instagram recusou a renovacao agora. O caso mais comum e o token ter menos de 24 horas de vida; nesse caso a proxima execucao mensal resolve.')
+                  print('O Instagram recusou a renovacao agora. O caso mais comum e o token ter menos de 24 horas de vida; a proxima execucao mensal resolve.')
                   sys.exit(0)
               raise
 
