@@ -1,0 +1,44 @@
+{
+  "id": "o-vaso",
+  "title": "O vaso que não florescia",
+  "prop": "seed",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, por que meu esforço parece não dar resultado?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa plantou uma semente e desenterrava a terra todos os dias para conferir se ela crescia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Queria uma prova de progresso, mas interrompia o próprio processo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine esse vaso nas suas mãos. Atravesse comigo esta ponte. Você está cuidando do que plantou ou exigindo uma resposta a cada minuto?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Talvez eu precise observar sem mexer o tempo todo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cuidar também é ajustar água e luz. Esperar não significa ignorar o que precisa mudar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que sinal concreto de progresso você pode observar esta semana?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-14",
+  "script_sha256": "f9428514b3ac053c4f0b2d750bc4e88d123425d8de4cf263727fb4be0feb15d2"
+}
