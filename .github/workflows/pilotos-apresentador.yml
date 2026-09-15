@@ -1,0 +1,58 @@
+name: Pilotos do apresentador
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pablo-pilotos
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependências
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
+      - name: Rhubarb oficial
+        run: |
+          curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/pablo-rhubarb
+          echo /tmp/pablo-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/kokoro
+          key: kokoro-v1-fp32-studio-v1
+      - name: Renderizar os tres convites
+        run: python -m presenter.convite
+      - name: Conferir duração de cada convite
+        run: |
+          python - <<'PY'
+          import json,subprocess,pathlib
+          for video in sorted(pathlib.Path('output/presenter').rglob('*.mp4')):
+              saida=subprocess.run(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(video)],capture_output=True,text=True)
+              segundos=float(json.loads(saida.stdout)['format']['duration'])
+              print(video.name,round(segundos,1),'segundos')
+              if segundos>30:
+                  raise SystemExit('Convite longo demais: '+video.name)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pilotos-apresentador
+          path: |
+            output/presenter/**/*.mp4
+            output/presenter/**/roteiro_convite.json
+          if-no-files-found: error
+          retention-days: 90
