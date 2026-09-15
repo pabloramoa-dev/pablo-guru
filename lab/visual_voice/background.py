@@ -43,7 +43,7 @@ bpy.ops.object.light_add(type='AREA',location=(-5,-6,12));bpy.context.object.dat
 bpy.ops.object.light_add(type='AREA',location=(7,10,9));bpy.context.object.data.energy=1200;bpy.context.object.data.size=12;bpy.context.object.data.color=(.42,.64,1)
 world=bpy.context.scene.world;world.use_nodes=True;world.node_tree.nodes['Background'].inputs[0].default_value=(.09,.14,.19,1);world.node_tree.nodes['Background'].inputs[1].default_value=.5
 bpy.ops.object.camera_add();cam=bpy.context.object;bpy.context.scene.camera=cam;cam.data.lens=42
-scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=20;scene.cycles.use_denoising=True
+scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=48;scene.cycles.use_denoising=False
 scene.render.resolution_x=1920;scene.render.resolution_y=1080;scene.render.resolution_percentage=100
 scene.render.image_settings.file_format='PNG'
 for i,pos in enumerate([(11,-16,9),(5,-11,5.5),(-10,-13,7)]):
