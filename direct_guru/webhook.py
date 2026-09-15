@@ -63,7 +63,14 @@ def app(cfg,store):
         try:size=int(env.get('CONTENT_LENGTH') or 0)
         except ValueError:return respond('400 Bad Request','invalid length')
         if not 0<size<=65536:return respond('413 Payload Too Large','invalid size')
-        raw=env['wsgi.input'].read(size)
+        # Sem prazo, um corpo que nunca chega prende a thread para sempre e,
+        # com as 4 presas, nem o /health responde.
+        sock=env.get('gunicorn.socket')
+        if sock is not None:
+            try:sock.settimeout(10)
+            except OSError:pass
+        try:raw=env['wsgi.input'].read(size)
+        except OSError:return respond('408 Request Timeout','timeout')
         expected='sha256='+hmac.new(cfg.app_secret.encode(),raw,hashlib.sha256).hexdigest()
         if not cfg.app_secret or not hmac.compare_digest(expected,env.get('HTTP_X_HUB_SIGNATURE_256','')):
             return respond('403 Forbidden','forbidden')
