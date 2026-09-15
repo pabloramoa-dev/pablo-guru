@@ -55,10 +55,17 @@ def produzir(convite, numero, saida):
 
 def main():
     convites = json.loads(Path(__file__).with_name('pilotos.json').read_text(encoding='utf-8'))
+    alvo = sys.argv[1] if len(sys.argv) > 1 else ''
     base = RAIZ / 'output' / 'presenter'
+    feitos = 0
     for numero, convite in enumerate(convites, start=1):
+        if alvo and convite['id'] != alvo:
+            continue
         info = produzir(convite, numero, base / convite['id'])
+        feitos += 1
         print('convite pronto:', info['video'])
+    if alvo and not feitos:
+        raise SystemExit('convite nao encontrado: ' + alvo)
 
 
 if __name__ == '__main__':
