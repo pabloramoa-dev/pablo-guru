@@ -58,14 +58,17 @@ class DirectTests(unittest.TestCase):
         self.ai.flagged=True;self.run_event();self.assertEqual(self.ai.calls,0)
         self.assertEqual(self.store.metrics()['events_by_status'],{'safety':1})
     def test_invalid_output_not_sent(self):
-        self.ai.answer='Resposta longa sem o formato.';self.run_event()
+        self.ai.answer='Linha curta.\n'*11;self.run_event()  # mais de 10 linhas: fora do formato
         self.assertEqual(self.sender.sent[0][1],UNAVAILABLE)
     def test_uncertain_delivery_not_retried(self):
         self.sender.fail=True;self.run_event()
         self.assertFalse(self.engine.once());self.assertEqual(self.store.metrics()['events_by_status'],{'uncertain':1})
     def test_rate_limit_before_api(self):
+        # Esgotada a janela, o Direct avisa a pausa sem chamar a IA.
+        self.cfg.window_limit=3
         for i in range(6):self.run_event(mid=str(i))
-        self.assertEqual(self.ai.calls,3);self.assertEqual(len(self.sender.sent),4)
+        self.assertEqual(self.ai.calls,3);self.assertEqual(len(self.sender.sent),6)
+        for _,texto in self.sender.sent[3:]:self.assertIn('Volto a responder',texto)
     def test_expired_context(self):
         self.run_event()
         with self.store.db() as c:c.execute('UPDATE conversations SET expires=0')
@@ -89,7 +92,7 @@ class DirectTests(unittest.TestCase):
         self.assertIn('apagado',self.sender.sent[-1][1])
         self.assertEqual(self.store.context(self.store.digest('alice'))['messages'],[])
     def test_first_response_discloses_ai(self):
-        self.run_event();self.assertTrue(self.sender.sent[0][1].startswith('Reflexão gerada por IA.'))
+        self.run_event();self.assertTrue(self.sender.sent[0][1].startswith('Resposta gerada por IA.'))
     def test_output_moderation_blocks(self):
         count=[0]
         def moderate(text):
@@ -111,5 +114,17 @@ class DirectTests(unittest.TestCase):
         body['entry'][0]['id']='other';self.assertTrue(call(body).startswith('200'));self.assertFalse(self.engine.once())
         body['entry'][0]['id']='own';body['entry'][0]['messaging'][0]['message']['is_echo']=True;call(body);self.assertFalse(self.engine.once())
         body['entry'][0]['messaging'][0]['message']['is_echo']=False;call(body);self.assertTrue(self.engine.once())
+
+    def test_webhook_body_timeout(self):
+        class Sock:
+            timeout=None
+            def settimeout(self,value):self.timeout=value
+        class SlowBody:
+            def read(self,size):raise TimeoutError()
+        sock=Sock();status=[]
+        env={'REQUEST_METHOD':'POST','PATH_INFO':'/webhook','CONTENT_LENGTH':'10','wsgi.input':SlowBody(),'gunicorn.socket':sock}
+        list(app(self.cfg,self.store)(env,lambda s,h:status.append(s)))
+        self.assertTrue(status[0].startswith('408'));self.assertEqual(sock.timeout,10)
+        self.assertFalse(self.engine.once())
 
 if __name__=='__main__':unittest.main()
