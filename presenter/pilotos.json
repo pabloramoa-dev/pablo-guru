@@ -1,0 +1,26 @@
+[
+  {
+    "id": "piloto-explicar",
+    "titulo": "O que é boleto híbrido",
+    "tema": "Entender uma palavra difícil",
+    "gancho": "Você já recebeu um boleto e não entendeu metade das palavras escritas nele?",
+    "utilidade": "Eu explico qualquer termo confuso com um exemplo do dia a dia, em poucas linhas.",
+    "chamada": "Me manda no direto a palavra que te travou hoje."
+  },
+  {
+    "id": "piloto-responder",
+    "titulo": "Aquela mensagem difícil",
+    "tema": "Escrever o que você precisa dizer",
+    "gancho": "Tem uma mensagem que você adia mandar porque não sabe como começar?",
+    "utilidade": "Eu escrevo três versões dela para você: uma gentil, uma direta e uma formal.",
+    "chamada": "Me conta no direto o que você precisa dizer."
+  },
+  {
+    "id": "piloto-comecar",
+    "titulo": "A tarefa que não começa",
+    "tema": "Dar o primeiro passo",
+    "gancho": "Existe uma tarefa que você adia há semanas só porque ela parece grande demais?",
+    "utilidade": "Eu devolvo o primeiro passo dela, um que caiba nos próximos quinze minutos.",
+    "chamada": "Me diz no direto qual é a tarefa."
+  }
+]
