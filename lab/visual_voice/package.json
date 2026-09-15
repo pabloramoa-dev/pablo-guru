@@ -1,0 +1,1 @@
+{"name":"pablo-visual-voice-lab","private":true,"version":"1.0.0","scripts":{"render":"node render.mjs"},"dependencies":{"remotion":"4.0.340","@remotion/bundler":"4.0.340","@remotion/renderer":"4.0.340","@motion-canvas/core":"3.17.2","react":"19.0.0","react-dom":"19.0.0"}}

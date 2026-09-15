@@ -1,0 +1,59 @@
+name: Pablo visual and voice laboratory
+on:
+  push:
+    branches: ['lab/visual-voice-showcase']
+    paths: ['lab/visual_voice/**', '.github/workflows/visual-voice-lab.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: visual-voice-lab-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated lab dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg blender libcairo2-dev libpango1.0-dev pkg-config fonts-dejavu-core
+          python -m venv lab/visual_voice/.venv
+          lab/visual_voice/.venv/bin/pip install -r lab/visual_voice/requirements.txt
+          cd lab/visual_voice
+          npm install
+          curl -fL --retry 2 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/lab-rhubarb
+          echo /tmp/lab-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
+      - name: Audition alternative voices, lip sync, captions and soundtrack
+        run: lab/visual_voice/.venv/bin/python lab/visual_voice/prepare.py
+      - name: Render original Manim character layers
+        run: lab/visual_voice/.venv/bin/python lab/visual_voice/actors.py
+      - name: Render original Blender scenery
+        run: blender -b -t 2 --python lab/visual_voice/background.py
+      - name: Remotion and Motion Canvas composition
+        working-directory: lab/visual_voice
+        run: npm run render
+      - name: Validate MP4 streams
+        run: |
+          ffmpeg -v error -i lab/visual_voice/output/PabloLab.mp4 -f null -
+          ffprobe -v error -show_entries format=duration,size:stream=codec_name,width,height -of json lab/visual_voice/output/PabloLab.mp4 > lab/visual_voice/output/validation.json
+          lab/visual_voice/.venv/bin/pip freeze > lab/visual_voice/output/python-resolved.txt
+          cp lab/visual_voice/package-lock.json lab/visual_voice/output/npm-resolved.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pablo-visual-voice-preview
+          path: |
+            lab/visual_voice/output/
+            lab/visual_voice/public/timeline.json
+            lab/visual_voice/public/voice_*.wav
+          retention-days: 14
+          if-no-files-found: warn
