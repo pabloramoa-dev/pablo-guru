@@ -8,6 +8,7 @@ from direct_guru.engine import Engine
 from direct_guru.providers import OpenAIProvider,Instagram
 from direct_guru.transcription import transcribe
 from direct_guru.webhook import app
+from direct_guru.watchdog import Watchdog
 
 class QuietHandler(WSGIRequestHandler):
     def log_message(self,*args):pass  # query strings can contain verification tokens
@@ -29,16 +30,19 @@ def create_app():
     store=Store(cfg);store.recover()
     engine=Engine(cfg,store,OpenAIProvider(cfg),Instagram(cfg),lambda url:transcribe(url,cfg.openai_key))
     stop=threading.Event()
+    vigia=Watchdog()
     def worker():
         while not stop.is_set():
+            vigia.beat()
             try:
                 store.cleanup()
                 if cfg.enabled and engine.once():continue
-            except Exception:
-                print('worker_error',flush=True)
+            except Exception as exc:
+                print('worker_error',type(exc).__name__,flush=True)
             stop.wait(1)
     threading.Thread(target=worker,daemon=True).start()
-    return app(cfg,store)
+    if os.getenv('WATCHDOG_ENABLED','true')=='true':vigia.start()
+    return vigia.wrap(app(cfg,store))
 
 def main():
     application=create_app()
