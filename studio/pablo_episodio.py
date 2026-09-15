@@ -179,11 +179,11 @@ def _construir_scene():
                                      fill_color=PALETA["dourado"], fill_opacity=1,
                                      stroke_width=0).next_to(bloco, UP, buff=H * 0.04)
             cartela = VGroup(veu, linha, bloco, marca).set_z_index(60)
-            self.add(cartela)
-            self.wait(max(0.2, CARTELA - 0.45))
-            self.play(FadeOut(cartela, run_time=0.45))
-
-            self.play(fx.fade_entrada(pablo, marina, run_time=PRE_ROLL))
+            if not PLANO.get("hook_first", False):
+                self.add(cartela)
+                self.wait(max(0.2, CARTELA - 0.45))
+                self.play(FadeOut(cartela, run_time=0.45))
+                self.play(fx.fade_entrada(pablo, marina, run_time=PRE_ROLL))
 
             luz = None
             for cena in PLANO["cenas"]:
@@ -305,6 +305,8 @@ def produzir(roteiro_json: str, pasta: str = "saida", qualidade: str = "h"):
     tmp = out / "_tmp"
     tmp.mkdir(parents=True, exist_ok=True)
 
+    opening_delay = 0.0 if roteiro.get("hook_first", False) else PRE_ROLL + CARTELA
+
     # 1. narração + lip sync por cena -------------------------------------
     wavs, cenas_plano = [], []
     for i, cena in enumerate(roteiro["cenas"], 1):
@@ -322,12 +324,12 @@ def produzir(roteiro_json: str, pasta: str = "saida", qualidade: str = "h"):
     lista.write_text("".join(f"file '{Path(w).resolve()}'\n" for w in wavs), encoding="utf-8")
     subprocess.run(["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(lista),
                     "-ar", "48000", "-ac", "1", "-af",
-                    f"adelay={int((PRE_ROLL + CARTELA) * 1000)}:all=1,apad=pad_dur={TAIL}",
+                    f"adelay={int(opening_delay * 1000)}:all=1,apad=pad_dur={TAIL}",
                     str(narracao)],
                    check=True, capture_output=True)
 
     # linha do tempo absoluta de cada cena, já deslocada pela cartela + PRE_ROLL
-    t = PRE_ROLL + CARTELA
+    t = opening_delay
     for c in cenas_plano:
         c["ini"], c["fim"] = round(t, 3), round(t + c["duracao"], 3)
         t = c["fim"]

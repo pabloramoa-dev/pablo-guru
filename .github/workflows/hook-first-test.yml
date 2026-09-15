@@ -1,0 +1,61 @@
+name: Pablo Guru Hook First - Teste Isolado
+on:
+  push:
+    branches: [feat/hook-first-reels]
+    paths:
+      - '.github/workflows/hook-first-test.yml'
+      - 'daily/**'
+      - 'studio/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: pablo-hook-first-test
+  cancel-in-progress: false
+jobs:
+  render:
+    if: github.ref == 'refs/heads/feat/hook-first-reels'
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Dependencias
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
+      - name: Rhubarb oficial
+        run: |
+          curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/pablo-rhubarb
+          echo /tmp/pablo-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/kokoro
+          key: kokoro-v1-fp32-studio-v1
+      - name: Preparar piloto sem gravar historico
+        run: python -m daily.prepare --test
+      - name: Renderizar personagens originais
+        run: python -m daily.studio_adapter
+      - name: Validar MP4
+        run: python -m daily.validate_video
+      - name: Arquivar avaliacao
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pablo-guru-hook-first
+          path: |
+            output/Pablo_Guru_Diario.mp4
+            output/episode.json
+            output/roteiro_studio.json
+            output/validation.json
+            output/preview_*.jpg
+          if-no-files-found: error
+          retention-days: 90

@@ -59,7 +59,7 @@ def main():
                 raise ValueError('Roteiro repetido; revisão editorial necessária.')
     validate(ep)
     ep['date']=args.date
-    ep.setdefault('hook_type','legacy-hook')
+    ep.setdefault('hook_type','dor')
     ep.setdefault('hook_text',ep['segments'][0]['text'])
     ep.pop('script_sha256', None)
     ep['script_sha256']=hashlib.sha256(json.dumps(ep,ensure_ascii=False,sort_keys=True).encode()).hexdigest()

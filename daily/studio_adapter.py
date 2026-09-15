@@ -45,7 +45,7 @@ def roteiro(ep):
              'expressao':expressions[i],'gesto':gestures[i],'efeito':effects[i]} for i,(speaker,text) in enumerate(zip(speakers,text_scenes))]
     n=12+max(0,(date.fromisoformat(ep['date'])-date(2026,9,13)).days)
     return {'numero':n,'titulo':ep['title'],'titulo_b':lines[0].replace('Pablo Guru, ','').capitalize(),
-            'tema':ep['title'],'pergunta':lines[6],'formato':'vertical','cartela':ep['title'],
+            'hook_first': True, 'tema':ep['title'],'pergunta':lines[6],'formato':'vertical','cartela':ep['title'],
             'cartela_sub':lines[0].replace('Pablo Guru, ',''),'cta_final':'Compartilhe com alguém que você ama',
             'editorial':editorial,'cenas':scenes}
 
