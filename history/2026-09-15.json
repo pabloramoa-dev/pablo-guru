@@ -1,0 +1,44 @@
+{
+  "id": "o-mapa",
+  "title": "O mapa de outra pessoa",
+  "prop": "map",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, por que sempre parece que estou atrasada?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma viajante seguia o mapa de outra pessoa. A cada curva, ficava mais longe da cidade que queria conhecer.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O mapa não estava errado. Só levava a outro destino.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine esse mapa nas suas mãos. Atravesse comigo esta ponte. A direção que você segue foi escolhida por você ou apenas parecia boa para alguém?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava comparando caminhos que não levam ao mesmo lugar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Você pode aprender com outras pessoas sem transformar a vida delas no seu calendário.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que significa avançar no caminho que faz sentido para você?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-15",
+  "script_sha256": "158e9f7e74b457b71f5d187ded8a637e42be23b9723487bbde304f92df720483"
+}
