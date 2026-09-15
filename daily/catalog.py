@@ -1,7 +1,7 @@
 """Roteiros originais revisados; nunca repetir silenciosamente ao esgotar o banco."""
 SCRIPTS = [
     ('a-lanterna', 'A lanterna e o caminho', 'lamp', [
-        'O medo de errar me paralisa.',
+        'O medo de errar te paralisa? Escute isso.',
         'Uma viajante esperava enxergar a estrada inteira antes de sair. Sua lanterna iluminava apenas alguns passos.',
         'Ela ficou parada até perceber: a luz não aumentaria enquanto esperasse.',
         'Imagine essa lanterna nas suas mãos. Atravesse comigo esta ponte. Você precisa ver o destino inteiro ou onde vai apoiar o próximo pé?',
