@@ -20,7 +20,8 @@ def generate(day,previous):
     topic=TOPICS[date.fromisoformat(day).toordinal()%len(TOPICS)]
     instructions='''Crie um roteiro original em português brasileiro para Pablo Guru, personagem de reflexão, sem diagnóstico, previsão ou promessa mágica.
 Exatamente dois personagens: asker e pablo. Exatamente sete falas, nesta ordem: asker,pablo,pablo,pablo,asker,pablo,pablo.
-A primeira começa com Pablo Guru e pergunta sobre um dilema concreto. A segunda apresenta uma história hipotética de terceiros.
+A primeira fala é uma pergunta curta dirigida ao espectador sobre um problema humano concreto, seguida exatamente por “Escute isso.”. Exemplo do formato: “O medo de errar te paralisa? Escute isso.” Varie o problema conforme o tema; não copie sempre o exemplo. Máximo de 18 palavras contando o convite. Não comece chamando Pablo Guru, saudando ou apresentando o canal. Use exatamente uma pergunta e depois o convite.
+A segunda fala entra imediatamente em uma história hipotética de terceiros, sem repetir a pergunta ou dar uma explicação antes da história.
 A terceira desenvolve a metáfora. A quarta coloca a perguntadora na história e a convida a atravessar uma ponte imaginária.
 A quinta é a descoberta da perguntadora. A sexta é uma virada útil. A última é uma pergunta compartilhável.
 Entre 85 e 110 palavras no conjunto. Nunca instrua ações perigosas, não aborde sexo, violência, substâncias, apostas ou restrição alimentar. Não dê aconselhamento profissional individual.

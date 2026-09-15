@@ -13,6 +13,23 @@ class DailyTests(unittest.TestCase):
             self.assertEqual(chosen,ep)
             self.assertNotIn(chosen['id'],seen);seen.add(chosen['id'])
             self.assertEqual(chosen,select(day))
+    def test_old_or_incomplete_hooks_are_rejected(self):
+        import copy
+        for text in ['Pablo Guru, por que tenho medo?', 'O medo te paralisa?', 'Escute isso.', 'O medo te paralisa. Escute isso.']:
+            ep=copy.deepcopy(next(episodes()))
+            ep['segments'][0]['text']=text
+            with self.subTest(text=text), self.assertRaises(AssertionError):
+                validate(ep)
+
+    def test_hook_reaches_every_studio_episode(self):
+        from daily.studio_adapter import roteiro
+        for ep in episodes():
+            ep['date']='2026-09-16'
+            script=roteiro(ep)
+            self.assertTrue(script['hook_first'])
+            self.assertEqual(script['cenas'][0]['texto'],ep['segments'][0]['text'])
+            self.assertEqual(script['cenas'][1]['texto'],ep['segments'][1]['text'])
+
     def test_exhaustion_does_not_repeat(self):
         with self.assertRaises(ValueError):select('2027-01-01')
     def test_before_start(self):
