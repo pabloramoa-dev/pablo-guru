@@ -5,7 +5,8 @@
     "tema": "Entender uma palavra difícil",
     "gancho": "Você já recebeu um boleto e não entendeu metade das palavras escritas nele?",
     "utilidade": "Eu explico qualquer termo confuso com um exemplo do dia a dia, em poucas linhas.",
-    "chamada": "Me manda no direto a palavra que te travou hoje."
+    "chamada": "Me manda no direto a palavra que te travou hoje.",
+    "legenda": "Boleto híbrido é o boleto que o banco e a loja conseguem ler do mesmo jeito: dá para pagar no aplicativo, no caixa ou na lotérica, sem depender da via impressa.\n\nToda semana aparece uma palavra dessas: averbação, carência, portabilidade, anuência. Nenhuma delas é difícil quando alguém traduz com um exemplo do dia a dia.\n\nÉ isso que eu faço aqui. Me manda no direto a palavra que te travou hoje e eu te devolvo a explicação em poucas linhas.\n\n#pabloguru #linguagemclara #explicandosimples #entenderparadecidir"
   },
   {
     "id": "piloto-responder",
@@ -13,7 +14,8 @@
     "tema": "Escrever o que você precisa dizer",
     "gancho": "Tem uma mensagem que você adia mandar porque não sabe como começar?",
     "utilidade": "Eu escrevo três versões dela para você: uma gentil, uma direta e uma formal.",
-    "chamada": "Me conta no direto o que você precisa dizer."
+    "chamada": "Me conta no direto o que você precisa dizer.",
+    "legenda": "Tem mensagem que a gente adia por dias só porque não sabe como começar: avisar que vai atrasar, cobrar alguém, pedir uma folga, encerrar um combinado.\n\nMe conta no direto o que você precisa dizer e para quem. Eu te devolvo três versões: uma gentil, uma direta e uma formal. Você escolhe a que combina com você e envia.\n\n#pabloguru #comunicacao #escrevermelhor #mensagemdificil"
   },
   {
     "id": "piloto-comecar",
@@ -21,6 +23,7 @@
     "tema": "Dar o primeiro passo",
     "gancho": "Existe uma tarefa que você adia há semanas só porque ela parece grande demais?",
     "utilidade": "Eu devolvo o primeiro passo dela, um que caiba nos próximos quinze minutos.",
-    "chamada": "Me diz no direto qual é a tarefa."
+    "chamada": "Me diz no direto qual é a tarefa.",
+    "legenda": "A tarefa não é grande demais. Ela só está inteira demais na sua cabeça.\n\nMe diz no direto qual é ela e eu devolvo o primeiro passo: um que caiba nos próximos quinze minutos e que você consiga fazer hoje mesmo.\n\n#pabloguru #primeiropasso #comecarhoje #produtividadesemculpa"
   }
 ]
