@@ -1,0 +1,147 @@
+name: Publicar convite
+
+# Envia para o perfil um convite ja renderizado pelo fluxo dos pilotos.
+# So roda por acionamento manual e so publica com a palavra de confirmacao.
+
+on:
+  workflow_dispatch:
+    inputs:
+      convite:
+        description: "Identificador do convite, por exemplo piloto-explicar"
+        required: true
+        default: piloto-explicar
+      execucao:
+        description: Numero da execucao que gerou o artefato pilotos-apresentador
+        required: true
+        default: "34960842311"
+      confirmacao:
+        description: Escreva PUBLICAR para autorizar o envio ao perfil
+        required: true
+        default: nao
+
+permissions:
+  contents: read
+  actions: read
+
+env:
+  SERVICO_RENDER: srv-daj08u7qj5pc73bpq7lg
+  REPOSITORIO_MIDIA: pabloramoa-dev/pablo-guru-legal
+  BASE_PUBLICA: https://pabloramoa-dev.github.io/pablo-guru-legal/midia
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Conferir a autorizacao
+        env:
+          CONFIRMACAO: ${{ inputs.confirmacao }}
+        run: |
+          if [ "$CONFIRMACAO" != "PUBLICAR" ]; then
+            echo "Sem autorizacao explicita. Nada foi enviado."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+
+      - name: Baixar o convite renderizado
+        uses: actions/download-artifact@v4
+        with:
+          name: pilotos-apresentador
+          run-id: ${{ inputs.execucao }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: artefato
+
+      - name: Localizar o arquivo
+        id: arquivo
+        env:
+          CONVITE: ${{ inputs.convite }}
+        run: |
+          set -e
+          caminho=$(find artefato -name "$CONVITE.mp4" | head -1)
+          if [ -z "$caminho" ]; then
+            echo "Nao encontrei $CONVITE.mp4 no artefato."
+            find artefato -type f | head -50
+            exit 1
+          fi
+          duracao=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$caminho")
+          echo "arquivo: $caminho"
+          echo "duracao: $duracao"
+          echo "caminho=$caminho" >> "$GITHUB_OUTPUT"
+
+      - name: Guardar o MP4 no repositorio publico
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+          CONVITE: ${{ inputs.convite }}
+          CAMINHO: ${{ steps.arquivo.outputs.caminho }}
+        run: |
+          set -e
+          if [ -z "$MIDIA_TOKEN" ]; then
+            echo "Falta o segredo MIDIA_TOKEN."
+            exit 1
+          fi
+          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/$REPOSITORIO_MIDIA.git" publico
+          mkdir -p publico/midia
+          cp "$CAMINHO" "publico/midia/$CONVITE.mp4"
+          cd publico
+          git config user.name "pablo-guru"
+          git config user.email "pablo-guru@users.noreply.github.com"
+          git add midia
+          git commit -m "Midia do convite $CONVITE" || echo "arquivo ja estava igual"
+          git push
+
+      - name: Esperar o arquivo ficar publico
+        env:
+          CONVITE: ${{ inputs.convite }}
+        run: |
+          url="$BASE_PUBLICA/$CONVITE.mp4"
+          for tentativa in $(seq 1 40); do
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$url")
+            echo "tentativa $tentativa: $codigo"
+            if [ "$codigo" = "200" ]; then exit 0; fi
+            sleep 15
+          done
+          echo "O arquivo nao ficou publico a tempo."
+          exit 1
+
+      - name: Ler o token do Instagram no Render
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          set -e
+          resposta=$(curl -sS -H "Authorization: Bearer $RENDER_API_KEY" -H "Accept: application/json" -H "User-Agent: pablo-guru-publicacao" "https://api.render.com/v1/services/$SERVICO_RENDER/env-vars?limit=100")
+          token=$(printf '%s' "$resposta" | python3 -c "import json,sys;d=json.load(sys.stdin);v=[e['envVar']['value'] for e in d if e['envVar']['key']=='IG_ACCESS_TOKEN'];print(v[0] if v else '')")
+          if [ -z "$token" ]; then
+            echo "Nao encontrei IG_ACCESS_TOKEN no servico."
+            exit 1
+          fi
+          echo "::add-mask::$token"
+          echo "IG_ACCESS_TOKEN=$token" >> "$GITHUB_ENV"
+          echo "Token lido do Render."
+
+      - name: Preparar a legenda
+        env:
+          CONVITE: ${{ inputs.convite }}
+        run: |
+          python3 - <<'FIM'
+          import json, os, pathlib
+          convites = json.loads(pathlib.Path('presenter/pilotos.json').read_text(encoding='utf-8'))
+          escolhido = [c for c in convites if c['id'] == os.environ['CONVITE']]
+          if not escolhido:
+              raise SystemExit('convite nao encontrado em pilotos.json')
+          pathlib.Path('legenda.txt').write_text(escolhido[0]['legenda'], encoding='utf-8')
+          print(escolhido[0]['legenda'])
+          FIM
+
+      - name: Publicar no perfil
+        id: publicacao
+        env:
+          CONVITE: ${{ inputs.convite }}
+        run: python3 -m presenter.publicar "$BASE_PUBLICA/$CONVITE.mp4" legenda.txt
+
+      - name: Resumo
+        if: always()
+        run: |
+          echo "Convite: ${{ inputs.convite }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Midia: ${{ steps.publicacao.outputs.midia }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "Link: ${{ steps.publicacao.outputs.permalink }}" >> "$GITHUB_STEP_SUMMARY"
