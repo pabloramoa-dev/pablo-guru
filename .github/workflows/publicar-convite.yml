@@ -64,7 +64,7 @@ jobs:
             find artefato -type f | head -50
             exit 1
           fi
-          duracao=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$caminho")
+          duracao=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$caminho" 2>/dev/null || echo "nao medida")
           echo "arquivo: $caminho"
           echo "duracao: $duracao"
           echo "caminho=$caminho" >> "$GITHUB_OUTPUT"
