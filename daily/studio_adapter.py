@@ -1,5 +1,6 @@
 """Adapta a seleção diária ao motor original enviado pelo proprietário."""
 import json
+import os
 import shutil
 import sys
 from datetime import date
@@ -7,7 +8,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
 STUDIO=ROOT/'studio'
-CTA='Obrigada, Pablo Guru. Agora eu vou compartilhar isso com uma pessoa que eu amo.'
+CTA='Obrigada, Pablo Guru. Vou seguir o canal pra receber mais histórias assim.'
 DISCOVERIES={
  'a-lanterna':'Então posso testar, parar e mudar de direção. Começar não me obriga a continuar no caminho errado.',
  'o-vaso':'Então esperar não é abandonar o vaso. Posso observar a água e a luz sem arrancar a planta todos os dias.',
@@ -46,7 +47,8 @@ def roteiro(ep):
     n=12+max(0,(date.fromisoformat(ep['date'])-date(2026,9,13)).days)
     return {'numero':n,'titulo':ep['title'],'titulo_b':lines[0].replace('Pablo Guru, ','').capitalize(),
             'hook_first': True, 'tema':ep['title'],'pergunta':lines[6],'formato':'vertical','cartela':ep['title'],
-            'cartela_sub':lines[0].replace('Pablo Guru, ',''),'cta_final':'Compartilhe com alguém que você ama',
+            'cartela_sub':lines[0].replace('Pablo Guru, ',''),'cta_final':'Siga o canal para receber mais',
+            'estilo_vox':'guru','cta':['SIGA O CANAL','para receber mais','@pabloguru'],
             'editorial':editorial,'cenas':scenes}
 
 def main():
@@ -55,7 +57,12 @@ def main():
     path.write_text(json.dumps(script,ensure_ascii=False,indent=2),encoding='utf-8')
     sys.path.insert(0,str(STUDIO))
     import pablo_audio as pa
-    import pablo_episodio as pe
+    # Estilo Vox colagem é o padrão desde 16/09/2026.
+    # PABLO_ESTILO=classico volta para o pablo_episodio.py original.
+    if os.environ.get('PABLO_ESTILO','vox')=='classico':
+        import pablo_episodio as pe
+    else:
+        import pablo_episodio_vox as pe
     # Não permitir mudança silenciosa para voz robótica em produção.
     original=pa.narrar
     def neural_only(*args,**kwargs):
