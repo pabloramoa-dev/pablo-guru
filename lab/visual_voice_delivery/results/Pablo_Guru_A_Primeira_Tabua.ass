@@ -1,0 +1,139 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1920
+PlayResY: 1080
+WrapStyle: 2
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,DejaVu Sans,32,&H00E8F1F6,&H00E8F1F6,&H00101D22,&H00101D22,0,0,0,0,100,100,0,0,1,0,0,5,0,0,0,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:00.28,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}O{\c&H00E8F1F6&} medo de errar te paralisa? Escute
+Dialogue: 0,0:00:00.28,0:00:00.50,Default,,0,0,0,,{\an5\pos(1120,990)}O {\c&H007EC9ED&}medo{\c&H00E8F1F6&} de errar te paralisa? Escute
+Dialogue: 0,0:00:00.50,0:00:00.76,Default,,0,0,0,,{\an5\pos(1120,990)}O medo {\c&H007EC9ED&}de{\c&H00E8F1F6&} errar te paralisa? Escute
+Dialogue: 0,0:00:00.76,0:00:01.06,Default,,0,0,0,,{\an5\pos(1120,990)}O medo de {\c&H007EC9ED&}errar{\c&H00E8F1F6&} te paralisa? Escute
+Dialogue: 0,0:00:01.06,0:00:01.26,Default,,0,0,0,,{\an5\pos(1120,990)}O medo de errar {\c&H007EC9ED&}te{\c&H00E8F1F6&} paralisa? Escute
+Dialogue: 0,0:00:01.26,0:00:02.00,Default,,0,0,0,,{\an5\pos(1120,990)}O medo de errar te {\c&H007EC9ED&}paralisa?{\c&H00E8F1F6&} Escute
+Dialogue: 0,0:00:02.32,0:00:02.78,Default,,0,0,0,,{\an5\pos(1120,990)}O medo de errar te paralisa? {\c&H007EC9ED&}Escute{\c&H00E8F1F6&}
+Dialogue: 0,0:00:02.78,0:00:03.22,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}isso.{\c&H00E8F1F6&}
+Dialogue: 0,0:00:04.80,0:00:05.10,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Um{\c&H00E8F1F6&} homem queria construir uma ponte sobre
+Dialogue: 0,0:00:05.10,0:00:05.40,Default,,0,0,0,,{\an5\pos(1120,990)}Um {\c&H007EC9ED&}homem{\c&H00E8F1F6&} queria construir uma ponte sobre
+Dialogue: 0,0:00:05.40,0:00:05.76,Default,,0,0,0,,{\an5\pos(1120,990)}Um homem {\c&H007EC9ED&}queria{\c&H00E8F1F6&} construir uma ponte sobre
+Dialogue: 0,0:00:05.76,0:00:06.24,Default,,0,0,0,,{\an5\pos(1120,990)}Um homem queria {\c&H007EC9ED&}construir{\c&H00E8F1F6&} uma ponte sobre
+Dialogue: 0,0:00:06.24,0:00:06.60,Default,,0,0,0,,{\an5\pos(1120,990)}Um homem queria construir {\c&H007EC9ED&}uma{\c&H00E8F1F6&} ponte sobre
+Dialogue: 0,0:00:06.60,0:00:07.00,Default,,0,0,0,,{\an5\pos(1120,990)}Um homem queria construir uma {\c&H007EC9ED&}ponte{\c&H00E8F1F6&} sobre
+Dialogue: 0,0:00:07.00,0:00:07.36,Default,,0,0,0,,{\an5\pos(1120,990)}Um homem queria construir uma ponte {\c&H007EC9ED&}sobre{\c&H00E8F1F6&}
+Dialogue: 0,0:00:07.36,0:00:07.52,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}um{\c&H00E8F1F6&} riacho. Todos os dias, levava as
+Dialogue: 0,0:00:07.52,0:00:08.08,Default,,0,0,0,,{\an5\pos(1120,990)}um {\c&H007EC9ED&}riacho.{\c&H00E8F1F6&} Todos os dias, levava as
+Dialogue: 0,0:00:08.50,0:00:09.28,Default,,0,0,0,,{\an5\pos(1120,990)}um riacho. {\c&H007EC9ED&}Todos{\c&H00E8F1F6&} os dias, levava as
+Dialogue: 0,0:00:09.28,0:00:09.62,Default,,0,0,0,,{\an5\pos(1120,990)}um riacho. Todos {\c&H007EC9ED&}os{\c&H00E8F1F6&} dias, levava as
+Dialogue: 0,0:00:09.62,0:00:10.14,Default,,0,0,0,,{\an5\pos(1120,990)}um riacho. Todos os {\c&H007EC9ED&}dias,{\c&H00E8F1F6&} levava as
+Dialogue: 0,0:00:10.44,0:00:10.84,Default,,0,0,0,,{\an5\pos(1120,990)}um riacho. Todos os dias, {\c&H007EC9ED&}levava{\c&H00E8F1F6&} as
+Dialogue: 0,0:00:10.84,0:00:11.08,Default,,0,0,0,,{\an5\pos(1120,990)}um riacho. Todos os dias, levava {\c&H007EC9ED&}as{\c&H00E8F1F6&}
+Dialogue: 0,0:00:11.08,0:00:11.84,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}ferramentas{\c&H00E8F1F6&} até a margem.
+Dialogue: 0,0:00:11.84,0:00:12.12,Default,,0,0,0,,{\an5\pos(1120,990)}ferramentas {\c&H007EC9ED&}até{\c&H00E8F1F6&} a margem.
+Dialogue: 0,0:00:12.12,0:00:12.30,Default,,0,0,0,,{\an5\pos(1120,990)}ferramentas até {\c&H007EC9ED&}a{\c&H00E8F1F6&} margem.
+Dialogue: 0,0:00:12.30,0:00:12.70,Default,,0,0,0,,{\an5\pos(1120,990)}ferramentas até a {\c&H007EC9ED&}margem.{\c&H00E8F1F6&}
+Dialogue: 0,0:00:14.27,0:00:14.65,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Mas{\c&H00E8F1F6&} voltava para casa sem colocar uma
+Dialogue: 0,0:00:14.65,0:00:15.19,Default,,0,0,0,,{\an5\pos(1120,990)}Mas {\c&H007EC9ED&}voltava{\c&H00E8F1F6&} para casa sem colocar uma
+Dialogue: 0,0:00:15.19,0:00:15.53,Default,,0,0,0,,{\an5\pos(1120,990)}Mas voltava {\c&H007EC9ED&}para{\c&H00E8F1F6&} casa sem colocar uma
+Dialogue: 0,0:00:15.53,0:00:15.91,Default,,0,0,0,,{\an5\pos(1120,990)}Mas voltava para {\c&H007EC9ED&}casa{\c&H00E8F1F6&} sem colocar uma
+Dialogue: 0,0:00:15.91,0:00:16.23,Default,,0,0,0,,{\an5\pos(1120,990)}Mas voltava para casa {\c&H007EC9ED&}sem{\c&H00E8F1F6&} colocar uma
+Dialogue: 0,0:00:16.23,0:00:16.51,Default,,0,0,0,,{\an5\pos(1120,990)}Mas voltava para casa sem {\c&H007EC9ED&}colocar{\c&H00E8F1F6&} uma
+Dialogue: 0,0:00:16.51,0:00:16.89,Default,,0,0,0,,{\an5\pos(1120,990)}Mas voltava para casa sem colocar {\c&H007EC9ED&}uma{\c&H00E8F1F6&}
+Dialogue: 0,0:00:16.89,0:00:17.31,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}única{\c&H00E8F1F6&} tábua. Esperava ter certeza de que
+Dialogue: 0,0:00:17.31,0:00:17.95,Default,,0,0,0,,{\an5\pos(1120,990)}única {\c&H007EC9ED&}tábua.{\c&H00E8F1F6&} Esperava ter certeza de que
+Dialogue: 0,0:00:18.83,0:00:19.49,Default,,0,0,0,,{\an5\pos(1120,990)}única tábua. {\c&H007EC9ED&}Esperava{\c&H00E8F1F6&} ter certeza de que
+Dialogue: 0,0:00:19.49,0:00:19.69,Default,,0,0,0,,{\an5\pos(1120,990)}única tábua. Esperava {\c&H007EC9ED&}ter{\c&H00E8F1F6&} certeza de que
+Dialogue: 0,0:00:19.69,0:00:20.25,Default,,0,0,0,,{\an5\pos(1120,990)}única tábua. Esperava ter {\c&H007EC9ED&}certeza{\c&H00E8F1F6&} de que
+Dialogue: 0,0:00:20.25,0:00:20.55,Default,,0,0,0,,{\an5\pos(1120,990)}única tábua. Esperava ter certeza {\c&H007EC9ED&}de{\c&H00E8F1F6&} que
+Dialogue: 0,0:00:20.55,0:00:20.71,Default,,0,0,0,,{\an5\pos(1120,990)}única tábua. Esperava ter certeza de {\c&H007EC9ED&}que{\c&H00E8F1F6&}
+Dialogue: 0,0:00:20.71,0:00:20.99,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}tudo{\c&H00E8F1F6&} sairia perfeito.
+Dialogue: 0,0:00:20.99,0:00:21.57,Default,,0,0,0,,{\an5\pos(1120,990)}tudo {\c&H007EC9ED&}sairia{\c&H00E8F1F6&} perfeito.
+Dialogue: 0,0:00:21.57,0:00:22.21,Default,,0,0,0,,{\an5\pos(1120,990)}tudo sairia {\c&H007EC9ED&}perfeito.{\c&H00E8F1F6&}
+Dialogue: 0,0:00:23.80,0:00:24.06,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}E{\c&H00E8F1F6&} se a primeira tentativa desse errado?
+Dialogue: 0,0:00:24.06,0:00:24.20,Default,,0,0,0,,{\an5\pos(1120,990)}E {\c&H007EC9ED&}se{\c&H00E8F1F6&} a primeira tentativa desse errado?
+Dialogue: 0,0:00:24.20,0:00:24.28,Default,,0,0,0,,{\an5\pos(1120,990)}E se {\c&H007EC9ED&}a{\c&H00E8F1F6&} primeira tentativa desse errado?
+Dialogue: 0,0:00:24.28,0:00:24.58,Default,,0,0,0,,{\an5\pos(1120,990)}E se a {\c&H007EC9ED&}primeira{\c&H00E8F1F6&} tentativa desse errado?
+Dialogue: 0,0:00:24.58,0:00:25.28,Default,,0,0,0,,{\an5\pos(1120,990)}E se a primeira {\c&H007EC9ED&}tentativa{\c&H00E8F1F6&} desse errado?
+Dialogue: 0,0:00:25.28,0:00:25.67,Default,,0,0,0,,{\an5\pos(1120,990)}E se a primeira tentativa {\c&H007EC9ED&}desse{\c&H00E8F1F6&} errado?
+Dialogue: 0,0:00:25.67,0:00:26.14,Default,,0,0,0,,{\an5\pos(1120,990)}E se a primeira tentativa desse {\c&H007EC9ED&}errado?{\c&H00E8F1F6&}
+Dialogue: 0,0:00:27.70,0:00:28.10,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Era{\c&H00E8F1F6&} isso que ele pensava. Até perceber
+Dialogue: 0,0:00:28.10,0:00:28.50,Default,,0,0,0,,{\an5\pos(1120,990)}Era {\c&H007EC9ED&}isso{\c&H00E8F1F6&} que ele pensava. Até perceber
+Dialogue: 0,0:00:28.50,0:00:28.74,Default,,0,0,0,,{\an5\pos(1120,990)}Era isso {\c&H007EC9ED&}que{\c&H00E8F1F6&} ele pensava. Até perceber
+Dialogue: 0,0:00:28.74,0:00:28.88,Default,,0,0,0,,{\an5\pos(1120,990)}Era isso que {\c&H007EC9ED&}ele{\c&H00E8F1F6&} pensava. Até perceber
+Dialogue: 0,0:00:28.88,0:00:29.70,Default,,0,0,0,,{\an5\pos(1120,990)}Era isso que ele {\c&H007EC9ED&}pensava.{\c&H00E8F1F6&} Até perceber
+Dialogue: 0,0:00:30.44,0:00:30.90,Default,,0,0,0,,{\an5\pos(1120,990)}Era isso que ele pensava. {\c&H007EC9ED&}Até{\c&H00E8F1F6&} perceber
+Dialogue: 0,0:00:30.90,0:00:31.48,Default,,0,0,0,,{\an5\pos(1120,990)}Era isso que ele pensava. Até {\c&H007EC9ED&}perceber{\c&H00E8F1F6&}
+Dialogue: 0,0:00:31.48,0:00:31.78,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}que{\c&H00E8F1F6&} estava usando o planejamento para esconder
+Dialogue: 0,0:00:31.78,0:00:32.02,Default,,0,0,0,,{\an5\pos(1120,990)}que {\c&H007EC9ED&}estava{\c&H00E8F1F6&} usando o planejamento para esconder
+Dialogue: 0,0:00:32.02,0:00:32.42,Default,,0,0,0,,{\an5\pos(1120,990)}que estava {\c&H007EC9ED&}usando{\c&H00E8F1F6&} o planejamento para esconder
+Dialogue: 0,0:00:32.42,0:00:32.62,Default,,0,0,0,,{\an5\pos(1120,990)}que estava usando {\c&H007EC9ED&}o{\c&H00E8F1F6&} planejamento para esconder
+Dialogue: 0,0:00:32.62,0:00:33.26,Default,,0,0,0,,{\an5\pos(1120,990)}que estava usando o {\c&H007EC9ED&}planejamento{\c&H00E8F1F6&} para esconder
+Dialogue: 0,0:00:33.26,0:00:33.52,Default,,0,0,0,,{\an5\pos(1120,990)}que estava usando o planejamento {\c&H007EC9ED&}para{\c&H00E8F1F6&} esconder
+Dialogue: 0,0:00:33.52,0:00:33.94,Default,,0,0,0,,{\an5\pos(1120,990)}que estava usando o planejamento para {\c&H007EC9ED&}esconder{\c&H00E8F1F6&}
+Dialogue: 0,0:00:33.94,0:00:34.12,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}o{\c&H00E8F1F6&} medo.
+Dialogue: 0,0:00:34.12,0:00:34.42,Default,,0,0,0,,{\an5\pos(1120,990)}o {\c&H007EC9ED&}medo.{\c&H00E8F1F6&}
+Dialogue: 0,0:00:36.00,0:00:36.50,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Agora{\c&H00E8F1F6&} imagine você naquela margem. Do outro
+Dialogue: 0,0:00:36.50,0:00:37.10,Default,,0,0,0,,{\an5\pos(1120,990)}Agora {\c&H007EC9ED&}imagine{\c&H00E8F1F6&} você naquela margem. Do outro
+Dialogue: 0,0:00:37.10,0:00:37.42,Default,,0,0,0,,{\an5\pos(1120,990)}Agora imagine {\c&H007EC9ED&}você{\c&H00E8F1F6&} naquela margem. Do outro
+Dialogue: 0,0:00:37.42,0:00:37.82,Default,,0,0,0,,{\an5\pos(1120,990)}Agora imagine você {\c&H007EC9ED&}naquela{\c&H00E8F1F6&} margem. Do outro
+Dialogue: 0,0:00:37.82,0:00:38.48,Default,,0,0,0,,{\an5\pos(1120,990)}Agora imagine você naquela {\c&H007EC9ED&}margem.{\c&H00E8F1F6&} Do outro
+Dialogue: 0,0:00:39.38,0:00:39.62,Default,,0,0,0,,{\an5\pos(1120,990)}Agora imagine você naquela margem. {\c&H007EC9ED&}Do{\c&H00E8F1F6&} outro
+Dialogue: 0,0:00:39.62,0:00:39.94,Default,,0,0,0,,{\an5\pos(1120,990)}Agora imagine você naquela margem. Do {\c&H007EC9ED&}outro{\c&H00E8F1F6&}
+Dialogue: 0,0:00:39.94,0:00:40.48,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}lado,{\c&H00E8F1F6&} está um projeto que vive deixando
+Dialogue: 0,0:00:40.70,0:00:40.96,Default,,0,0,0,,{\an5\pos(1120,990)}lado, {\c&H007EC9ED&}está{\c&H00E8F1F6&} um projeto que vive deixando
+Dialogue: 0,0:00:40.96,0:00:41.08,Default,,0,0,0,,{\an5\pos(1120,990)}lado, está {\c&H007EC9ED&}um{\c&H00E8F1F6&} projeto que vive deixando
+Dialogue: 0,0:00:41.08,0:00:41.46,Default,,0,0,0,,{\an5\pos(1120,990)}lado, está um {\c&H007EC9ED&}projeto{\c&H00E8F1F6&} que vive deixando
+Dialogue: 0,0:00:41.46,0:00:41.84,Default,,0,0,0,,{\an5\pos(1120,990)}lado, está um projeto {\c&H007EC9ED&}que{\c&H00E8F1F6&} vive deixando
+Dialogue: 0,0:00:41.84,0:00:42.04,Default,,0,0,0,,{\an5\pos(1120,990)}lado, está um projeto que {\c&H007EC9ED&}vive{\c&H00E8F1F6&} deixando
+Dialogue: 0,0:00:42.04,0:00:42.58,Default,,0,0,0,,{\an5\pos(1120,990)}lado, está um projeto que vive {\c&H007EC9ED&}deixando{\c&H00E8F1F6&}
+Dialogue: 0,0:00:42.58,0:00:42.80,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}para{\c&H00E8F1F6&} depois.
+Dialogue: 0,0:00:42.80,0:00:43.22,Default,,0,0,0,,{\an5\pos(1120,990)}para {\c&H007EC9ED&}depois.{\c&H00E8F1F6&}
+Dialogue: 0,0:00:45.03,0:00:45.49,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Você{\c&H00E8F1F6&} não precisa atravessar hoje. Só precisa
+Dialogue: 0,0:00:45.49,0:00:45.67,Default,,0,0,0,,{\an5\pos(1120,990)}Você {\c&H007EC9ED&}não{\c&H00E8F1F6&} precisa atravessar hoje. Só precisa
+Dialogue: 0,0:00:45.67,0:00:46.13,Default,,0,0,0,,{\an5\pos(1120,990)}Você não {\c&H007EC9ED&}precisa{\c&H00E8F1F6&} atravessar hoje. Só precisa
+Dialogue: 0,0:00:46.13,0:00:46.81,Default,,0,0,0,,{\an5\pos(1120,990)}Você não precisa {\c&H007EC9ED&}atravessar{\c&H00E8F1F6&} hoje. Só precisa
+Dialogue: 0,0:00:46.81,0:00:47.25,Default,,0,0,0,,{\an5\pos(1120,990)}Você não precisa atravessar {\c&H007EC9ED&}hoje.{\c&H00E8F1F6&} Só precisa
+Dialogue: 0,0:00:48.17,0:00:48.47,Default,,0,0,0,,{\an5\pos(1120,990)}Você não precisa atravessar hoje. {\c&H007EC9ED&}Só{\c&H00E8F1F6&} precisa
+Dialogue: 0,0:00:48.47,0:00:48.83,Default,,0,0,0,,{\an5\pos(1120,990)}Você não precisa atravessar hoje. Só {\c&H007EC9ED&}precisa{\c&H00E8F1F6&}
+Dialogue: 0,0:00:48.83,0:00:49.29,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}escolher{\c&H00E8F1F6&} uma pequena ação que consiga fazer
+Dialogue: 0,0:00:49.29,0:00:49.49,Default,,0,0,0,,{\an5\pos(1120,990)}escolher {\c&H007EC9ED&}uma{\c&H00E8F1F6&} pequena ação que consiga fazer
+Dialogue: 0,0:00:49.49,0:00:49.89,Default,,0,0,0,,{\an5\pos(1120,990)}escolher uma {\c&H007EC9ED&}pequena{\c&H00E8F1F6&} ação que consiga fazer
+Dialogue: 0,0:00:49.89,0:00:50.25,Default,,0,0,0,,{\an5\pos(1120,990)}escolher uma pequena {\c&H007EC9ED&}ação{\c&H00E8F1F6&} que consiga fazer
+Dialogue: 0,0:00:50.25,0:00:50.43,Default,,0,0,0,,{\an5\pos(1120,990)}escolher uma pequena ação {\c&H007EC9ED&}que{\c&H00E8F1F6&} consiga fazer
+Dialogue: 0,0:00:50.43,0:00:50.93,Default,,0,0,0,,{\an5\pos(1120,990)}escolher uma pequena ação que {\c&H007EC9ED&}consiga{\c&H00E8F1F6&} fazer
+Dialogue: 0,0:00:50.93,0:00:51.31,Default,,0,0,0,,{\an5\pos(1120,990)}escolher uma pequena ação que consiga {\c&H007EC9ED&}fazer{\c&H00E8F1F6&}
+Dialogue: 0,0:00:51.31,0:00:51.55,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}com{\c&H00E8F1F6&} cuidado.
+Dialogue: 0,0:00:51.55,0:00:51.95,Default,,0,0,0,,{\an5\pos(1120,990)}com {\c&H007EC9ED&}cuidado.{\c&H00E8F1F6&}
+Dialogue: 0,0:00:53.70,0:00:54.24,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Então{\c&H00E8F1F6&} eu posso começar pequeno... e aprender
+Dialogue: 0,0:00:54.24,0:00:54.32,Default,,0,0,0,,{\an5\pos(1120,990)}Então {\c&H007EC9ED&}eu{\c&H00E8F1F6&} posso começar pequeno... e aprender
+Dialogue: 0,0:00:54.32,0:00:54.56,Default,,0,0,0,,{\an5\pos(1120,990)}Então eu {\c&H007EC9ED&}posso{\c&H00E8F1F6&} começar pequeno... e aprender
+Dialogue: 0,0:00:54.56,0:00:55.16,Default,,0,0,0,,{\an5\pos(1120,990)}Então eu posso {\c&H007EC9ED&}começar{\c&H00E8F1F6&} pequeno... e aprender
+Dialogue: 0,0:00:55.16,0:00:55.86,Default,,0,0,0,,{\an5\pos(1120,990)}Então eu posso começar {\c&H007EC9ED&}pequeno...{\c&H00E8F1F6&} e aprender
+Dialogue: 0,0:00:55.86,0:00:56.26,Default,,0,0,0,,{\an5\pos(1120,990)}Então eu posso começar pequeno... {\c&H007EC9ED&}e{\c&H00E8F1F6&} aprender
+Dialogue: 0,0:00:56.26,0:00:56.64,Default,,0,0,0,,{\an5\pos(1120,990)}Então eu posso começar pequeno... e {\c&H007EC9ED&}aprender{\c&H00E8F1F6&}
+Dialogue: 0,0:00:56.64,0:00:56.90,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}no{\c&H00E8F1F6&} caminho?
+Dialogue: 0,0:00:56.90,0:00:57.24,Default,,0,0,0,,{\an5\pos(1120,990)}no {\c&H007EC9ED&}caminho?{\c&H00E8F1F6&}
+Dialogue: 0,0:00:59.03,0:00:59.97,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}Exatamente.{\c&H00E8F1F6&} A confiança não chegou antes da
+Dialogue: 0,0:01:01.07,0:01:01.33,Default,,0,0,0,,{\an5\pos(1120,990)}Exatamente. {\c&H007EC9ED&}A{\c&H00E8F1F6&} confiança não chegou antes da
+Dialogue: 0,0:01:01.33,0:01:02.07,Default,,0,0,0,,{\an5\pos(1120,990)}Exatamente. A {\c&H007EC9ED&}confiança{\c&H00E8F1F6&} não chegou antes da
+Dialogue: 0,0:01:02.07,0:01:02.25,Default,,0,0,0,,{\an5\pos(1120,990)}Exatamente. A confiança {\c&H007EC9ED&}não{\c&H00E8F1F6&} chegou antes da
+Dialogue: 0,0:01:02.25,0:01:02.55,Default,,0,0,0,,{\an5\pos(1120,990)}Exatamente. A confiança não {\c&H007EC9ED&}chegou{\c&H00E8F1F6&} antes da
+Dialogue: 0,0:01:02.55,0:01:03.01,Default,,0,0,0,,{\an5\pos(1120,990)}Exatamente. A confiança não chegou {\c&H007EC9ED&}antes{\c&H00E8F1F6&} da
+Dialogue: 0,0:01:03.01,0:01:03.21,Default,,0,0,0,,{\an5\pos(1120,990)}Exatamente. A confiança não chegou antes {\c&H007EC9ED&}da{\c&H00E8F1F6&}
+Dialogue: 0,0:01:03.21,0:01:03.75,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}ponte.{\c&H00E8F1F6&} Ela cresceu a cada tábua que
+Dialogue: 0,0:01:04.75,0:01:04.91,Default,,0,0,0,,{\an5\pos(1120,990)}ponte. {\c&H007EC9ED&}Ela{\c&H00E8F1F6&} cresceu a cada tábua que
+Dialogue: 0,0:01:04.91,0:01:05.37,Default,,0,0,0,,{\an5\pos(1120,990)}ponte. Ela {\c&H007EC9ED&}cresceu{\c&H00E8F1F6&} a cada tábua que
+Dialogue: 0,0:01:05.37,0:01:05.55,Default,,0,0,0,,{\an5\pos(1120,990)}ponte. Ela cresceu {\c&H007EC9ED&}a{\c&H00E8F1F6&} cada tábua que
+Dialogue: 0,0:01:05.55,0:01:05.81,Default,,0,0,0,,{\an5\pos(1120,990)}ponte. Ela cresceu a {\c&H007EC9ED&}cada{\c&H00E8F1F6&} tábua que
+Dialogue: 0,0:01:05.81,0:01:06.31,Default,,0,0,0,,{\an5\pos(1120,990)}ponte. Ela cresceu a cada {\c&H007EC9ED&}tábua{\c&H00E8F1F6&} que
+Dialogue: 0,0:01:06.31,0:01:06.57,Default,,0,0,0,,{\an5\pos(1120,990)}ponte. Ela cresceu a cada tábua {\c&H007EC9ED&}que{\c&H00E8F1F6&}
+Dialogue: 0,0:01:06.57,0:01:06.79,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}ele{\c&H00E8F1F6&} colocou. Qual é a sua primeira
+Dialogue: 0,0:01:06.79,0:01:07.45,Default,,0,0,0,,{\an5\pos(1120,990)}ele {\c&H007EC9ED&}colocou.{\c&H00E8F1F6&} Qual é a sua primeira
+Dialogue: 0,0:01:08.23,0:01:08.57,Default,,0,0,0,,{\an5\pos(1120,990)}ele colocou. {\c&H007EC9ED&}Qual{\c&H00E8F1F6&} é a sua primeira
+Dialogue: 0,0:01:08.57,0:01:08.85,Default,,0,0,0,,{\an5\pos(1120,990)}ele colocou. Qual {\c&H007EC9ED&}é{\c&H00E8F1F6&} a sua primeira
+Dialogue: 0,0:01:08.85,0:01:09.01,Default,,0,0,0,,{\an5\pos(1120,990)}ele colocou. Qual é {\c&H007EC9ED&}a{\c&H00E8F1F6&} sua primeira
+Dialogue: 0,0:01:09.01,0:01:09.19,Default,,0,0,0,,{\an5\pos(1120,990)}ele colocou. Qual é a {\c&H007EC9ED&}sua{\c&H00E8F1F6&} primeira
+Dialogue: 0,0:01:09.19,0:01:09.55,Default,,0,0,0,,{\an5\pos(1120,990)}ele colocou. Qual é a sua {\c&H007EC9ED&}primeira{\c&H00E8F1F6&}
+Dialogue: 0,0:01:09.55,0:01:10.21,Default,,0,0,0,,{\an5\pos(1120,990)}{\c&H007EC9ED&}tábua?{\c&H00E8F1F6&}

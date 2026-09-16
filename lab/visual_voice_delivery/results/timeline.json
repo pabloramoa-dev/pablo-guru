@@ -158,17 +158,17 @@
           "end": 1.06
         },
         {
-          "text": "de",
+          "text": "te",
           "start": 1.06,
           "end": 1.26
         },
         {
-          "text": "paralisa,",
+          "text": "paralisa?",
           "start": 1.26,
           "end": 1.9
         },
         {
-          "text": "escute",
+          "text": "Escute",
           "start": 2.32,
           "end": 2.78
         },
@@ -462,7 +462,7 @@
       ],
       "words": [
         {
-          "text": "um",
+          "text": "Um",
           "start": 0.0,
           "end": 0.3
         },
@@ -881,7 +881,7 @@
           "end": 3.04
         },
         {
-          "text": "taba.",
+          "text": "tábua.",
           "start": 3.04,
           "end": 3.58
         },
@@ -1030,7 +1030,7 @@
       ],
       "words": [
         {
-          "text": "e",
+          "text": "E",
           "start": 0.0,
           "end": 0.26
         },
@@ -1055,8 +1055,13 @@
           "end": 1.48
         },
         {
-          "text": "descerrado.",
+          "text": "desse",
           "start": 1.48,
+          "end": 1.8709090909090909
+        },
+        {
+          "text": "errado?",
+          "start": 1.8709090909090909,
           "end": 2.34
         }
       ]
@@ -1987,12 +1992,12 @@
           "end": 1.78
         },
         {
-          "text": "hoje,",
+          "text": "hoje.",
           "start": 1.78,
           "end": 2.12
         },
         {
-          "text": "só",
+          "text": "Só",
           "start": 3.14,
           "end": 3.44
         },
@@ -2201,7 +2206,7 @@
       ],
       "words": [
         {
-          "text": "Então,",
+          "text": "Então",
           "start": 0.0,
           "end": 0.44
         },
@@ -2221,7 +2226,7 @@
           "end": 1.46
         },
         {
-          "text": "pequeno",
+          "text": "pequeno...",
           "start": 1.46,
           "end": 2.16
         },
@@ -2241,7 +2246,7 @@
           "end": 3.2
         },
         {
-          "text": "caminho.",
+          "text": "caminho?",
           "start": 3.2,
           "end": 3.54
         }
@@ -2650,7 +2655,7 @@
           "end": 6.78
         },
         {
-          "text": "taba",
+          "text": "tábua",
           "start": 6.78,
           "end": 7.28
         },
@@ -2695,7 +2700,7 @@
           "end": 10.52
         },
         {
-          "text": "taba?",
+          "text": "tábua?",
           "start": 10.52,
           "end": 11.18
         }
