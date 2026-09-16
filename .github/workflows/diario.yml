@@ -35,6 +35,12 @@ jobs:
         run: |
           sudo apt-get update -q
           sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          # Poppins: fonte da colagem e da legenda do estilo Vox
+          mkdir -p ~/.fonts
+          for f in Poppins-Bold Poppins-Regular; do
+            curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
+          done
+          fc-cache -f >/dev/null
           pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
       - name: Rhubarb oficial
         run: |
