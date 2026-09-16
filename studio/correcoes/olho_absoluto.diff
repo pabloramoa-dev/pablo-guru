@@ -1,0 +1,54 @@
+--- pablo_cine.py	2026-09-16 16:19:33.742358330 +0000
++++ pablo_cine.py	2026-09-16 11:23:53.314268808 +0000
+@@ -548,11 +548,18 @@
+             else:
+                 f = 1 - abs((st["fim_pisc"] - t) / 0.13 - 0.5) * 2
+                 alvo_p = max(0.06, 1 - f)
+-        if abs(alvo_p - st["pisc"]) > 1e-4:
+-            fator = alvo_p / st["pisc"]
+-            ator.olho_e.stretch(fator, dim=1)
+-            ator.olho_d.stretch(fator, dim=1)
+-            st["pisc"] = alvo_p
++        # ABSOLUTO: a altura do olho é MEDIDA a cada quadro e levada ao alvo
++        # (base x escala da expressão x piscada). Com razão relativa, uma
++        # animação que pegava o olho fechado fazia a piscada devolver 1/0.06
++        # = 16x — o "olho esbugalhado" / listras brancas no rosto.
++        if "h_base" not in st:
++            st["h_base"] = ator.olho_e[0].height / getattr(ator, "_olho_k", 1.0)
++        alvo_h = st["h_base"] * getattr(ator, "_olho_k", 1.0) * alvo_p
++        for olho in (ator.olho_e, ator.olho_d):
++            h = olho[0].height
++            if h > 1e-6 and abs(h - alvo_h) > 1e-5:
++                olho.stretch(alvo_h / h, dim=1)
++        st["pisc"] = alvo_p
+ 
+         # 4. micro-sacada: o olhar nunca fica cravado
+         if t >= st["prox_olhar"]:
+--- pablo_guru_v2.py	2026-09-16 16:19:33.742635515 +0000
++++ pablo_guru_v2.py	2026-09-16 11:23:53.313986951 +0000
+@@ -302,7 +302,10 @@
+             "compreensao": (-0.06, -0.05, 0.90),
+             "preocupado":  (-0.10, -0.10, 0.94),
+         }
+-        de, dd, k = mapa.get(nome, mapa["calmo"])
++        de, dd, k_alvo = mapa.get(nome, mapa["calmo"])
++        # escala ABSOLUTA do olho (a relativa empilhava: olho esbugalhado)
++        k = k_alvo / getattr(self, "_olho_k", 1.0)
++        self._olho_k = k_alvo
+         return AnimationGroup(
+             self.sobr_e.animate(run_time=run_time).shift(UP * de),
+             self.sobr_d.animate(run_time=run_time).shift(UP * dd),
+@@ -384,9 +387,11 @@
+         )]
+ 
+     def abrir_olhos(self, run_time=0.5):
++        k = 1.4 / getattr(self, "_olho_k", 1.0)
++        self._olho_k = 1.4
+         return [AnimationGroup(
+-            self.olho_e.animate(run_time=run_time).scale(1.4),
+-            self.olho_d.animate(run_time=run_time).scale(1.4),
++            self.olho_e.animate(run_time=run_time).scale(k),
++            self.olho_d.animate(run_time=run_time).scale(k),
+             self.sobr_e.animate(run_time=run_time).shift(UP * 0.11),
+             self.sobr_d.animate(run_time=run_time).shift(UP * 0.11),
+         )]
