@@ -31,7 +31,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import shutil, hashlib, json
+          import shutil, hashlib, json, base64
           src=Path('/tmp/pablo-delivery');dst=Path('lab/visual_voice_delivery/results');dst.mkdir(parents=True,exist_ok=True)
           names=['PabloLab.mp4','VoiceAudition.mp4','test-report.json','validation.json','timeline.json','python-resolved.txt','npm-resolved.json']
           names += ['preview_'+str(i)+'.png' for i in range(5)]
@@ -43,6 +43,11 @@ jobs:
             records.append({'name':name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
           assert (dst/'PabloLab.mp4').exists(), 'Missing rendered episode'
           (dst/'manifest.json').write_text(json.dumps(records,indent=2))
+          transport=dst/'encoded';transport.mkdir(exist_ok=True)
+          for name in ['PabloLab.mp4','VoiceAudition.mp4','preview_0.png']:
+            data=(dst/name).read_bytes()
+            for i,start in enumerate(range(0,len(data),700000)):
+              (transport/(name+'.'+str(i).zfill(3)+'.b64')).write_text(base64.b64encode(data[start:start+700000]).decode())
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
