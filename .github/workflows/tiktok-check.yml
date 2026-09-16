@@ -1,0 +1,49 @@
+name: TikTok configuration and editorial test
+on:
+  push:
+    branches: [main, feat/tiktok-five-daily]
+    paths: ['tiktok_pipeline/**', '.github/workflows/tiktok*.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s tiktok_pipeline/tests -v
+      - name: Configuration and original script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
+          TIKTOK_COOKIES_JSON: ${{ secrets.TIKTOK_COOKIES_JSON }}
+          TIKTOK_PUBLISH_ENABLED: ${{ vars.TIKTOK_PUBLISH_ENABLED }}
+        run: |
+          python - <<'PY'
+          import os
+          from datetime import datetime
+          from zoneinfo import ZoneInfo
+          from pathlib import Path
+          from tiktok_pipeline.pipeline import prepare, identity
+          from tiktok_pipeline.publish import credentials
+          names = ['OPENAI_API_KEY','PABLO_SCRIPT_MODEL','TIKTOK_COOKIES_JSON']
+          status = {name: bool(os.getenv(name)) for name in names}
+          print(status)
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as f:
+              for name, present in status.items():
+                  f.write(f'{name}: {"configurado" if present else "ausente"}\n\n')
+          if not status['OPENAI_API_KEY'] or not status['PABLO_SCRIPT_MODEL']:
+              raise RuntimeError('Geração original aguarda configuração editorial')
+          key = identity(datetime.now(ZoneInfo('America/Sao_Paulo')).date().isoformat(), 1)
+          item = prepare(key)
+          print('Roteiro original validado:', item['episode']['title'])
+          if status['TIKTOK_COOKIES_JSON']:
+              credentials()
+          else:
+              print('Publicação pendente: sessão TikTok ausente.')
+          PY
+

@@ -1,0 +1,121 @@
+name: Pablo Guru TikTok
+on:
+  push:
+    branches: [feat/tiktok-five-daily]
+    paths: ['tiktok_pipeline/**', '.github/workflows/tiktok.yml']
+  schedule:
+    - cron: '0 11 * * *'
+    - cron: '0 14 * * *'
+    - cron: '0 17 * * *'
+    - cron: '0 21 * * *'
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: 'Horário editorial (1 a 5)'
+        type: choice
+        options: ['1', '2', '3', '4', '5']
+        default: '1'
+      episode_date:
+        description: 'Data YYYY-MM-DD; vazio = hoje em Brasília'
+        type: string
+      publish:
+        description: 'Enviar ao TikTok (exige credencial e liberação)'
+        type: boolean
+        default: false
+permissions:
+  contents: write
+concurrency:
+  group: pablo-tiktok
+  cancel-in-progress: false
+jobs:
+  pipeline:
+    if: github.event_name != 'schedule' || vars.PABLO_SCRIPT_MODEL != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      PYTHONPATH: .
+      TT_SCHEDULE: ${{ github.event.schedule }}
+      TT_DATE: ${{ inputs.episode_date }}
+      TT_SLOT: ${{ inputs.slot || '1' }}
+      TIKTOK_PILOT: ${{ github.event_name == 'push' }}
+      TT_PUBLISH: ${{ github.event_name != 'push' && (github.event_name == 'schedule' || inputs.publish) && vars.TIKTOK_PUBLISH_ENABLED == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Testes isolados
+        run: python -m unittest discover -s tiktok_pipeline/tests -v
+      - name: Identificar episódio e verificar configuração
+        id: config
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
+          TIKTOK_COOKIES_JSON: ${{ secrets.TIKTOK_COOKIES_JSON }}
+        run: |
+          python -c 'import os; print({name: bool(os.getenv(name)) for name in ["OPENAI_API_KEY", "PABLO_SCRIPT_MODEL", "TIKTOK_COOKIES_JSON"]})'
+          if [ "$TIKTOK_PILOT" != true ]; then
+            test -n "$OPENAI_API_KEY" || { echo "::error::OPENAI_API_KEY ausente"; exit 1; }
+            test -n "$PABLO_SCRIPT_MODEL" || { echo "::error::PABLO_SCRIPT_MODEL ausente"; exit 1; }
+          fi
+          if [ "$TT_PUBLISH" = true ]; then python -m tiktok_pipeline.pipeline preflight; fi
+          key=$(python -m tiktok_pipeline.pipeline resolve --date "$TT_DATE" --slot "$TT_SLOT")
+          echo "key=$key" >> "$GITHUB_OUTPUT"
+          echo "TT_KEY=$key" >> "$GITHUB_ENV"
+          state=$(python -m tiktok_pipeline.pipeline prepare --key "$key")
+          echo "state=$state" >> "$GITHUB_OUTPUT"
+      - name: Preservar roteiro
+        if: github.event_name != 'push'
+        run: bash tiktok_pipeline/checkpoint.sh
+      - name: Dependências de produção
+        if: steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated'
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
+          pip install -r tiktok_pipeline/requirements.txt
+          python -m playwright install --with-deps chromium
+          curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/pablo-rhubarb
+          echo /tmp/pablo-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/kokoro
+          key: kokoro-v1-fp32-studio-v1
+      - name: Renderizar e validar MP4
+        if: steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated'
+        run: python -m tiktok_pipeline.pipeline render --key "$TT_KEY"
+      - name: Arquivar vídeo
+        if: steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated'
+        uses: actions/upload-artifact@v4
+        with:
+          name: tiktok-${{ steps.config.outputs.key }}
+          path: |
+            output_tiktok/*/episodio.mp4
+            output_tiktok/*/roteiro.json
+            output_tiktok/*/legenda.txt
+          if-no-files-found: error
+          retention-days: 14
+      - name: Registrar intenção de envio antes de publicar
+        if: env.TT_PUBLISH == 'true' && (steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated')
+        run: |
+          python -m tiktok_pipeline.pipeline arm --key "$TT_KEY"
+          bash tiktok_pipeline/checkpoint.sh
+      - name: Publicar uma única vez
+        if: env.TT_PUBLISH == 'true' && (steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated')
+        env:
+          TIKTOK_COOKIES_JSON: ${{ secrets.TIKTOK_COOKIES_JSON }}
+        run: python -m tiktok_pipeline.pipeline publish --key "$TT_KEY"
+      - name: Preservar resultado
+        if: always() && github.event_name != 'push'
+        run: |
+          if [ -d tiktok_history ]; then bash tiktok_pipeline/checkpoint.sh; fi
+      - name: Resumo
+        if: always()
+        run: |
+          python -m tiktok_pipeline.report
+
