@@ -23,3 +23,6 @@ Software gratuito não significa renderização ilimitada: este teste consome os
 
 ## Arquivos
 `PabloLab.mp4`: episódio completo. `VoiceAudition.mp4`: vozes com o mesmo texto, volume normalizado, sem trilha. `test-report.json`: testes e limitações. `validation.json`: streams e duração. `bridge.blend`: cenário editável.
+
+## Revisão concluída
+As legendas mantêm o texto autoral e usam apenas os tempos do Whisper. O piloto arquivado recebeu a correção na finalização, sem repetir o cenário 3D. Os MP4 revisados estão em `lab/visual_voice_delivery/results/`.

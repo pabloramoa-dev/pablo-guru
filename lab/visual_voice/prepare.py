@@ -3,6 +3,7 @@ import asyncio, json, math, subprocess, sys, wave
 from pathlib import Path
 import numpy as np
 import soundfile as sf
+from caption_alignment import align_words
 ROOT=Path(__file__).resolve().parent
 PUB=ROOT/'public'; OUT=ROOT/'output'
 PUB.mkdir(exist_ok=True); OUT.mkdir(exist_ok=True)
@@ -73,6 +74,7 @@ for i,(actor,text,title,mode) in enumerate(SCENES):
   segs,_=model.transcribe(str(path),language='pt',word_timestamps=True,beam_size=3,vad_filter=True)
   for seg in segs:
    for w in seg.words or []: words.append({'text':w.word.strip(),'start':w.start,'end':w.end})
+ words=align_words(text,words,duration)
  frames=math.ceil((duration+.55)*30)
  timeline.append({'actor':actor,'text':text,'title':title,'mode':mode,'file':path.name,'seconds':duration,'frames':frames,'from':cursor,'cues':cues,'words':words})
  cursor+=frames
