@@ -1,0 +1,46 @@
+{
+  "id": "a-xicara",
+  "title": "A xícara cheia",
+  "prop": "cup",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Dizer sim para todo mundo te esgota? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa carregava uma xícara cheia. Cada vez que alguém pedia espaço, ela colocava mais uma colher de água.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Tentava agradar a todos enquanto molhava as próprias mãos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine essa xícara nas suas mãos. Atravesse comigo esta ponte. Reconhecer que não cabe mais seria falta de carinho ou cuidado com o que já existe?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso explicar meu limite sem atacar ninguém.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um limite claro permite combinar o que é possível. Nem todo pedido precisa virar uma promessa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual compromisso você precisa renegociar com honestidade?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-16",
+  "hook_type": "dor",
+  "hook_text": "Dizer sim para todo mundo te esgota? Escute isso.",
+  "script_sha256": "77a3d47e771e27689701fe7d9194d378078cfc63c58063e3c0c41854af6c6db5"
+}
