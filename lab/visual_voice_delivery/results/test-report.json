@@ -1,0 +1,59 @@
+{
+  "tools": {
+    "faster-whisper": {
+      "status": "success"
+    },
+    "rhubarb": {
+      "status": "success",
+      "scenes": 9
+    },
+    "moviepy": {
+      "status": "success",
+      "usage": "Original ambient soundtrack + scene voice assembly"
+    },
+    "remotion": {
+      "status": "success",
+      "usage": "Full HD composition, articulated character layers, subtitles and export"
+    },
+    "motion-canvas": {
+      "status": "success",
+      "usage": "Core easing functions control typography, bridge progression and camera drift; full Motion Canvas scene renderer not used"
+    },
+    "blender": {
+      "status": "success",
+      "usage": "Three original 3D rendered backgrounds"
+    },
+    "manim": {
+      "status": "success",
+      "usage": "Original repository characters rendered to articulated transparent layers"
+    }
+  },
+  "voices": {
+    "edge:pt-BR-AntonioNeural": {
+      "status": "success",
+      "seconds": 13.368,
+      "file": "voice_0.wav"
+    },
+    "edge:pt-BR-FranciscaNeural": {
+      "status": "success",
+      "seconds": 11.304,
+      "file": "voice_1.wav"
+    },
+    "piper:pt_BR-faber-medium": {
+      "status": "success",
+      "seconds": 8.127,
+      "file": "voice_2.wav"
+    },
+    "piper:pt_BR-cadu-medium": {
+      "status": "success",
+      "seconds": 11.79575,
+      "file": "voice_3.wav"
+    }
+  },
+  "selected": {
+    "pablo": "edge:pt-BR-AntonioNeural",
+    "marina": "edge:pt-BR-FranciscaNeural",
+    "basis": "Audition availability and Brazilian Portuguese; subjective quality awaits user review."
+  },
+  "note": "Experimental preview only; no publication."
+}

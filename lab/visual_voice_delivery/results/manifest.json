@@ -1,0 +1,62 @@
+[
+  {
+    "name": "PabloLab.mp4",
+    "bytes": 18903676,
+    "sha256": "ae2ca709688af353792a172fccebce63b28f1c0b2809a1e68f8efa0880ee70de"
+  },
+  {
+    "name": "VoiceAudition.mp4",
+    "bytes": 2811802,
+    "sha256": "8007ad751659f346ad496f317e9acc0dca19fab74a3a66d8449301d1046f843b"
+  },
+  {
+    "name": "test-report.json",
+    "bytes": 1616,
+    "sha256": "1c6018e03f7ee950a75ed1b875aaef97dec1c206f8255bbce90ba8f5e997c23c"
+  },
+  {
+    "name": "validation.json",
+    "bytes": 381,
+    "sha256": "2c47c6e941fdb60bb7331cbeb6ac9ae9a2125817dd84f85d6a94c659613e9390"
+  },
+  {
+    "name": "timeline.json",
+    "bytes": 51528,
+    "sha256": "108a56f80e85dcd34a0dbf92a0cf316f6e4c0f2e1e160766160e48e248eacc7a"
+  },
+  {
+    "name": "python-resolved.txt",
+    "bytes": 1175,
+    "sha256": "c564430a5d7ecbb8fef657ffeaa477662e83b533700c333fd5a33953dfaf8ea1"
+  },
+  {
+    "name": "npm-resolved.json",
+    "bytes": 87837,
+    "sha256": "e0b13558f11d37cb84e7ea17d367a198f3c83e1297249ffe0243d5689295707f"
+  },
+  {
+    "name": "preview_0.png",
+    "bytes": 1782218,
+    "sha256": "a35793909e071190fe1075e10587f19f8ff9990c431fc564c529f668e3819744"
+  },
+  {
+    "name": "preview_1.png",
+    "bytes": 1875051,
+    "sha256": "963b2099c674ad8e637550bb00c365bac306da69a63f3f5aff5ab919837f264e"
+  },
+  {
+    "name": "preview_2.png",
+    "bytes": 1899012,
+    "sha256": "26780ef56c6a15f3616124c634439d42b93a14aa19e4606cd9432d66f9af367d"
+  },
+  {
+    "name": "preview_3.png",
+    "bytes": 1881886,
+    "sha256": "e5d5e72cafd01ee369259398a9f3b2f6409738fb23650c8baa7f424759885c5c"
+  },
+  {
+    "name": "preview_4.png",
+    "bytes": 1824161,
+    "sha256": "3e728b34f2c4b31cdd612531d6b54c8f4616567857610be78ce0c315e4d79374"
+  }
+]
