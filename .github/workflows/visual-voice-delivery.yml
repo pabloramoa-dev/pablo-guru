@@ -27,6 +27,8 @@ jobs:
           run-id: ${{ steps.request.outputs.run_id }}
           github-token: ${{ github.token }}
           path: /tmp/pablo-delivery
+      - name: Install caption finishing tools
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg fonts-dejavu-core
       - name: Preserve requested review files only on lab branch
         run: |
           python3 - <<'PY'
