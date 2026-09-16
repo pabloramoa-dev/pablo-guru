@@ -22,6 +22,7 @@ Campos novos (opcionais) do roteiro:
     "cartela": "A XÍCARA CHEIA"          # assunto no 1º quadro
     "estilo_vox": "guru" | "guru_claro"
     "cta": ["SIGA O CANAL", "para receber mais", "@pabloguru"]
+    "hook_first": true    # sem cartela escura: fala no quadro 0, etiqueta no topo
     por cena: "destaque": "ESVAZIE"
 
 Uso:
@@ -38,6 +39,7 @@ from pathlib import Path
 
 FPS = 30
 PRE_ROLL = 1.2      # a cartela ocupa esse tempo; o áudio recebe o mesmo atraso
+                    # (com "hook_first" a abertura é 0 e não há cartela escura)
 TAIL = 4.4          # encerramento (cartão de CTA + partículas) depois da última fala
 AQUI = Path(__file__).parent.resolve()
 
@@ -119,20 +121,29 @@ def _construir_scene():
 
             # ---------------- CARTELA: assunto no 1º quadro ----------------
             txt_cartela = PLANO.get("cartela") or PLANO.get("tema", "").split("|")[0]
-            cartela = vp.manchete(txt_cartela.upper(), tam=vp._fs(9.5), semente=17,
-                                  largura_max=W * 0.86)
-            fundo_c = Rectangle(width=W * 2, height=H * 2).set_fill("#000000", 0.55) \
-                .set_stroke(width=0)
-            fundo_c.set_z_index(40); cartela.set_z_index(41)
-            self.add(fundo_c, cartela)          # já no quadro 0 (grade do Instagram)
-            self.wait(PRE_ROLL - 0.45)
+            # etiqueta SEMPRE numa linha só (em duas, a de cima corta no topo):
+            # sem quebra e, se passar de 80% da largura, encolhe.
             etiqueta = vp.manchete(txt_cartela.upper(), tam=vp._fs(3.6), semente=17,
-                                   largura_max=W * 0.95)
+                                   largura_max=W * 10)
+            if etiqueta.width > W * 0.80:
+                etiqueta.scale_to_fit_width(W * 0.80)
             etiqueta.move_to(UP * H * 0.438)
             etiqueta.align_to(LEFT * W * 0.40, LEFT).set_z_index(41)
-            self.play(FadeOut(fundo_c),
-                      Transform(cartela, etiqueta),
-                      run_time=0.45, rate_func=vp.degraus(smooth, dur=0.45))
+            if PLANO.get("hook_first"):
+                # HOOK FIRST: a Marina fala desde o quadro 0 e a etiqueta já está
+                # no topo no quadro 0 (é o que a grade do Instagram mostra).
+                self.add(etiqueta)
+            else:
+                cartela = vp.manchete(txt_cartela.upper(), tam=vp._fs(9.5), semente=17,
+                                      largura_max=W * 0.86)
+                fundo_c = Rectangle(width=W * 2, height=H * 2).set_fill("#000000", 0.55) \
+                    .set_stroke(width=0)
+                fundo_c.set_z_index(40); cartela.set_z_index(41)
+                self.add(fundo_c, cartela)      # já no quadro 0 (grade do Instagram)
+                self.wait(PRE_ROLL - 0.45)
+                self.play(FadeOut(fundo_c),
+                          Transform(cartela, etiqueta),
+                          run_time=0.45, rate_func=vp.degraus(smooth, dur=0.45))
 
             # ---------------- cenas ---------------------------------------
             luz = None
@@ -280,6 +291,8 @@ def produzir(roteiro_json: str, pasta: str = "saida_vox", qualidade: str = "h"):
     import pablo_montador as pm
 
     roteiro = json.loads(Path(roteiro_json).read_text(encoding="utf-8"))
+    # hook_first: sem cartela escura, a primeira fala começa no quadro 0
+    abertura = 0.0 if roteiro.get("hook_first") else PRE_ROLL
     out = Path(pasta) / f"ep{roteiro['numero']:02d}_vox"
     tmp = out / "_tmp"
     tmp.mkdir(parents=True, exist_ok=True)
@@ -298,9 +311,9 @@ def produzir(roteiro_json: str, pasta: str = "saida_vox", qualidade: str = "h"):
     lista = tmp / "concat.txt"
     lista.write_text("".join(f"file '{Path(w).resolve()}'\n" for w in wavs), encoding="utf-8")
     _ff("-f", "concat", "-safe", "0", "-i", lista, "-ar", "48000", "-ac", "1", "-af",
-        f"adelay={int(PRE_ROLL * 1000)}:all=1,apad=pad_dur={TAIL}", narr)
+        f"adelay={int(abertura * 1000)}:all=1,apad=pad_dur={TAIL}", narr)
 
-    t = PRE_ROLL
+    t = abertura
     for c in cenas:
         c["ini"], c["fim"] = round(t, 3), round(t + c["duracao"], 3)
         t = c["fim"]
