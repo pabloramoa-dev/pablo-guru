@@ -1,0 +1,51 @@
+name: Preserve visual laboratory preview
+on:
+  push:
+    branches: ['lab/visual-voice-showcase']
+    paths: ['lab/visual_voice_delivery/request.json']
+permissions:
+  contents: write
+  actions: read
+jobs:
+  preserve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: lab/visual-voice-showcase
+      - id: request
+        run: |
+          python3 - <<'PY'
+          import json, os
+          d=json.load(open('lab/visual_voice_delivery/request.json'))
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('run_id='+str(int(d['run_id']))+'\n')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: pablo-visual-voice-preview
+          run-id: ${{ steps.request.outputs.run_id }}
+          github-token: ${{ github.token }}
+          path: /tmp/pablo-delivery
+      - name: Preserve requested review files only on lab branch
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil, hashlib, json
+          src=Path('/tmp/pablo-delivery');dst=Path('lab/visual_voice_delivery/results');dst.mkdir(parents=True,exist_ok=True)
+          names=['PabloLab.mp4','VoiceAudition.mp4','test-report.json','validation.json','timeline.json','python-resolved.txt','npm-resolved.json']
+          names += ['preview_'+str(i)+'.png' for i in range(5)]
+          records=[]
+          for name in names:
+            matches=list(src.rglob(name))
+            if not matches: continue
+            p=matches[0];shutil.copyfile(p,dst/name)
+            records.append({'name':name,'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          assert (dst/'PabloLab.mp4').exists(), 'Missing rendered episode'
+          (dst/'manifest.json').write_text(json.dumps(records,indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lab/visual_voice_delivery/results/
+          git commit -m 'Preserve laboratory MP4 previews and validation [skip ci]'
+          git push origin HEAD:lab/visual-voice-showcase
