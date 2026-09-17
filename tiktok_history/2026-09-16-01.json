@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-16-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-lupa-e-o-rotulo",
+    "title": "A lupa e o rótulo",
+    "prop": "book",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando você se critica, consegue separar um fato de um rótulo? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma estudante revisava uma tarefa simples e apagava cada resposta até não entregar nada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A autocrítica virou um juiz com lupa: encontrava marcas e tratava cada uma como sentença.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa lupa nas suas mãos. Atravesse comigo esta ponte: você está examinando um erro ou condenando a pessoa inteira?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Percebo que descrevi uma atitude como se ela definisse quem sou.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Então troque o rótulo por uma observação verificável: o que aconteceu, qual foi sua parte e qual ajuste cabe agora.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que frase honesta e específica você pode usar para se orientar hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-16"
+  },
+  "script_hash": "4786a8e0e19a32d79c3e5d690c6fe5bfaa3546e9d062f0147831f56f39c70226"
+}
