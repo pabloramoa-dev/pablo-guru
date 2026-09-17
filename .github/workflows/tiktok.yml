@@ -1,36 +1,44 @@
 name: Pablo Guru TikTok
+
+# Produtor de vídeos do TikTok — SEPARADO do Instagram (não usa daily/ para escrever,
+# nem history/, nem instagram_history/). Três vídeos por dia: 08h, 14h e 20h (Brasília).
+# O minuto quebrado (:07) foge do pico do GitHub; atraso de até 6 h ainda vale para o horário.
+
 on:
   push:
     branches: [feat/tiktok-five-daily]
     paths: ['tiktok_pipeline/**', '.github/workflows/tiktok.yml']
   schedule:
-    - cron: '0 11 * * *'
-    - cron: '0 14 * * *'
-    - cron: '0 17 * * *'
-    - cron: '0 21 * * *'
-    - cron: '0 0 * * *'
+    - cron: '7 11 * * *'
+    - cron: '7 17 * * *'
+    - cron: '7 23 * * *'
   workflow_dispatch:
     inputs:
       slot:
-        description: 'Horário editorial (1 a 5)'
+        description: 'Horário editorial (1 = 08h, 2 = 14h, 3 = 20h)'
         type: choice
-        options: ['1', '2', '3', '4', '5']
+        options: ['1', '2', '3']
         default: '1'
       episode_date:
         description: 'Data YYYY-MM-DD; vazio = hoje em Brasília'
         type: string
       publish:
-        description: 'Enviar ao TikTok (exige credencial e liberação)'
+        description: 'Enviar ao TikTok (exige sessão cadastrada e liberação)'
         type: boolean
         default: false
+
 permissions:
   contents: write
+
 concurrency:
   group: pablo-tiktok
   cancel-in-progress: false
+
+env:
+  SERVICO_RENDER: srv-daj08u7qj5pc73bpq7lg
+
 jobs:
   pipeline:
-    if: github.event_name != 'schedule' || vars.PABLO_SCRIPT_MODEL != ''
     runs-on: ubuntu-latest
     timeout-minutes: 65
     env:
@@ -50,17 +58,43 @@ jobs:
           python-version: '3.12'
       - name: Testes isolados
         run: python -m unittest discover -s tiktok_pipeline/tests -v
+      - name: Credenciais editoriais (secret/variável do repositório ou serviço do Render)
+        if: github.event_name != 'push'
+        env:
+          SECRET_OPENAI: ${{ secrets.OPENAI_API_KEY }}
+          VAR_MODELO: ${{ vars.PABLO_SCRIPT_MODEL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          python3 - <<'FIM'
+          import json, os, urllib.request
+          chave = os.environ.get('SECRET_OPENAI', '')
+          modelo = os.environ.get('VAR_MODELO', '')
+          if not (chave and modelo) and os.environ.get('RENDER_API_KEY'):
+              pedido = urllib.request.Request(
+                  'https://api.render.com/v1/services/' + os.environ['SERVICO_RENDER'] + '/env-vars?limit=100',
+                  headers={'Authorization': 'Bearer ' + os.environ['RENDER_API_KEY'],
+                           'Accept': 'application/json', 'User-Agent': 'pablo-guru-tiktok'})
+              with urllib.request.urlopen(pedido, timeout=30) as resposta:
+                  dados = {e['envVar']['key']: e['envVar']['value'] for e in json.load(resposta)}
+              chave = chave or dados.get('OPENAI_API_KEY', '')
+              modelo = modelo or dados.get('OPENAI_MODEL', '')
+          with open(os.environ['GITHUB_ENV'], 'a') as arq:
+              if chave:
+                  print('::add-mask::' + chave)
+                  arq.write('OPENAI_API_KEY=' + chave + '\n')
+              if modelo:
+                  arq.write('PABLO_SCRIPT_MODEL=' + modelo + '\n')
+          print({'openai_key_present': bool(chave), 'script_model_configured': bool(modelo)})
+          FIM
       - name: Identificar episódio e verificar configuração
         id: config
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
           TIKTOK_COOKIES_JSON: ${{ secrets.TIKTOK_COOKIES_JSON }}
         run: |
           python -c 'import os; print({name: bool(os.getenv(name)) for name in ["OPENAI_API_KEY", "PABLO_SCRIPT_MODEL", "TIKTOK_COOKIES_JSON"]})'
           if [ "$TIKTOK_PILOT" != true ]; then
-            test -n "$OPENAI_API_KEY" || { echo "::error::OPENAI_API_KEY ausente"; exit 1; }
-            test -n "$PABLO_SCRIPT_MODEL" || { echo "::error::PABLO_SCRIPT_MODEL ausente"; exit 1; }
+            test -n "$OPENAI_API_KEY" || { echo "::error::OPENAI_API_KEY ausente (nem no repositório nem no Render)"; exit 1; }
+            test -n "$PABLO_SCRIPT_MODEL" || { echo "::error::Modelo editorial ausente (PABLO_SCRIPT_MODEL ou OPENAI_MODEL no Render)"; exit 1; }
           fi
           if [ "$TT_PUBLISH" = true ]; then python -m tiktok_pipeline.pipeline preflight; fi
           key=$(python -m tiktok_pipeline.pipeline resolve --date "$TT_DATE" --slot "$TT_SLOT")
@@ -76,9 +110,14 @@ jobs:
         run: |
           sudo apt-get update -q
           sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          mkdir -p ~/.fonts
+          for f in Poppins-Bold Poppins-Regular; do
+            curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
+          done
+          fc-cache -f >/dev/null
           pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
           pip install -r tiktok_pipeline/requirements.txt
-          python -m playwright install --with-deps chromium
+          if [ "$TT_PUBLISH" = true ]; then python -m playwright install --with-deps chromium; fi
           curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
           unzip -q /tmp/rhubarb.zip -d /tmp/pablo-rhubarb
           echo /tmp/pablo-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
@@ -118,4 +157,3 @@ jobs:
         if: always()
         run: |
           python -m tiktok_pipeline.report
-

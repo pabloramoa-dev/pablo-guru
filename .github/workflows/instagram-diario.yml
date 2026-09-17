@@ -1,0 +1,159 @@
+name: Pablo Guru Instagram
+
+# Publica no @opabloguru o episódio que o "Pablo Guru Diario" renderizou no dia.
+# Fluxo SEPARADO do TikTok: não usa tiktok_pipeline/, tiktok_history/ nem os horários dele.
+# Registro próprio em instagram_history/<data>.json (um Reel por data, nunca reenvia sozinho).
+# Pausa de emergência: variável do repositório IG_DIARIO_PAUSADO = true.
+
+on:
+  workflow_run:
+    workflows: ["Pablo Guru Diario"]
+    types: [completed]
+  schedule:
+    # Rede de segurança (19h23 em Brasília) caso o gatilho acima não dispare.
+    - cron: "23 22 * * *"
+  workflow_dispatch:
+    inputs:
+      data:
+        description: "Data editorial YYYY-MM-DD (vazio = hoje em Brasília)"
+        required: false
+        default: ""
+      execucao:
+        description: "Número da execução do Diario (vazio = procurar a do dia)"
+        required: false
+        default: ""
+      confirmacao:
+        description: "Escreva PUBLICAR para enviar ao perfil; qualquer outro valor só ensaia"
+        required: true
+        default: nao
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: pablo-instagram-diario
+  cancel-in-progress: false
+
+env:
+  SERVICO_RENDER: srv-daj08u7qj5pc73bpq7lg
+  REPOSITORIO_MIDIA: pabloramoa-dev/pablo-guru-legal
+  BASE_PUBLICA: https://pabloramoa-dev.github.io/pablo-guru-legal/midia
+  GH_REPO: ${{ github.repository }}
+
+jobs:
+  publicar:
+    if: >-
+      vars.IG_DIARIO_PAUSADO != 'true' &&
+      (github.event_name != 'workflow_run' ||
+       (github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.head_branch == 'main' &&
+        (github.event.workflow_run.event == 'schedule' || github.event.workflow_run.event == 'workflow_dispatch')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Escolher o episódio do dia
+        id: escolha
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENTO: ${{ github.event_name }}
+          DATA: ${{ inputs.data }}
+          EXECUCAO: ${{ github.event.workflow_run.id || inputs.execucao }}
+        run: python3 -m instagram_diario.publicar_diario escolher --data "$DATA" --execucao "$EXECUCAO"
+
+      - name: Decidir se envia
+        id: modo
+        if: steps.escolha.outputs.publicar == 'sim'
+        env:
+          EVENTO: ${{ github.event_name }}
+          CONFIRMACAO: ${{ inputs.confirmacao }}
+        run: |
+          if [ "$EVENTO" = "workflow_dispatch" ] && [ "$CONFIRMACAO" != "PUBLICAR" ]; then
+            echo "Ensaio: episódio encontrado e validado, nada foi enviado ao perfil." | tee -a "$GITHUB_STEP_SUMMARY"
+            echo "enviar=nao" >> "$GITHUB_OUTPUT"
+          else
+            echo "enviar=sim" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Guardar o MP4 no repositório público
+        if: steps.modo.outputs.enviar == 'sim'
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+          DIA: ${{ steps.escolha.outputs.dia }}
+          PASTA: ${{ steps.escolha.outputs.pasta }}
+        run: |
+          set -euo pipefail
+          if [ -z "$MIDIA_TOKEN" ]; then echo "::error::Falta o segredo MIDIA_TOKEN."; exit 1; fi
+          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/$REPOSITORIO_MIDIA.git" "$RUNNER_TEMP/publico"
+          cd "$RUNNER_TEMP/publico"
+          mkdir -p midia
+          cp "$PASTA/Pablo_Guru_Diario.mp4" "midia/diario-$DIA.mp4"
+          # Mantém só a última semana de vídeos diários no site (o Instagram já copiou os antigos).
+          limite=$(date -u -d "$DIA -7 days" +%F)
+          for arquivo in midia/diario-*.mp4; do
+            dia_arquivo=${arquivo#midia/diario-}; dia_arquivo=${dia_arquivo%.mp4}
+            if [[ "$dia_arquivo" < "$limite" ]]; then git rm -q "$arquivo"; fi
+          done
+          git config user.name "pablo-guru"
+          git config user.email "pablo-guru@users.noreply.github.com"
+          git add midia
+          git commit -q -m "Midia do episodio diario $DIA" || echo "arquivo ja estava igual"
+          git push -q
+
+      - name: Esperar o arquivo ficar público
+        if: steps.modo.outputs.enviar == 'sim'
+        env:
+          DIA: ${{ steps.escolha.outputs.dia }}
+        run: |
+          url="$BASE_PUBLICA/diario-$DIA.mp4"
+          for tentativa in $(seq 1 40); do
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$url")
+            echo "tentativa $tentativa: $codigo"
+            if [ "$codigo" = "200" ]; then exit 0; fi
+            sleep 15
+          done
+          echo "::error::O arquivo não ficou público a tempo."
+          exit 1
+
+      - name: Ler o token do Instagram no Render
+        if: steps.modo.outputs.enviar == 'sim'
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          set -euo pipefail
+          python3 - <<'FIM'
+          import json, os, urllib.request
+          pedido = urllib.request.Request(
+              'https://api.render.com/v1/services/' + os.environ['SERVICO_RENDER'] + '/env-vars?limit=100',
+              headers={'Authorization': 'Bearer ' + os.environ['RENDER_API_KEY'],
+                       'Accept': 'application/json', 'User-Agent': 'pablo-guru-instagram-diario'})
+          with urllib.request.urlopen(pedido, timeout=30) as resposta:
+              dados = {e['envVar']['key']: e['envVar']['value'] for e in json.load(resposta)}
+          token = dados.get('IG_ACCESS_TOKEN', '')
+          if not token:
+              raise SystemExit('::error::Não encontrei IG_ACCESS_TOKEN no serviço do Render.')
+          print('::add-mask::' + token)
+          with open(os.environ['GITHUB_ENV'], 'a') as arq:
+              arq.write('IG_ACCESS_TOKEN=' + token + '\n')
+          print('Token lido do Render.')
+          FIM
+
+      - name: Publicar no perfil
+        if: steps.modo.outputs.enviar == 'sim'
+        env:
+          DIA: ${{ steps.escolha.outputs.dia }}
+          PASTA: ${{ steps.escolha.outputs.pasta }}
+          EXECUCAO: ${{ steps.escolha.outputs.execucao }}
+          TITULO: ${{ steps.escolha.outputs.titulo }}
+        run: >-
+          python3 -m instagram_diario.publicar_diario publicar
+          --dia "$DIA"
+          --url "$BASE_PUBLICA/diario-$DIA.mp4"
+          --legenda "$PASTA/caption.txt"
+          --execucao "$EXECUCAO"
+          --titulo "$TITULO"

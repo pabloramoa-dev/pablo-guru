@@ -1,7 +1,7 @@
 name: Pablo Guru Diario
 on:
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "41 10 * * *"  # 07h41 em Brasília; minuto quebrado foge do pico do GitHub
   push:
     branches: [implementacao/episodios-diarios-direct]
     paths: ['daily/**', 'studio/**', '.github/workflows/diario.yml']
@@ -51,10 +51,37 @@ jobs:
         with:
           path: ~/.cache/kokoro
           key: kokoro-v1-fp32-studio-v1
+      - name: Credenciais editoriais (secret/variável do repositório ou serviço do Render)
+        # Depois que o banco inicial de roteiros acabar, o prepare precisa da OpenAI.
+        env:
+          SERVICO_RENDER: srv-daj08u7qj5pc73bpq7lg
+          SECRET_OPENAI: ${{ secrets.OPENAI_API_KEY }}
+          VAR_MODELO: ${{ vars.PABLO_SCRIPT_MODEL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          python3 - <<'FIM'
+          import json, os, urllib.request
+          chave = os.environ.get('SECRET_OPENAI', '')
+          modelo = os.environ.get('VAR_MODELO', '')
+          if not (chave and modelo) and os.environ.get('RENDER_API_KEY'):
+              pedido = urllib.request.Request(
+                  'https://api.render.com/v1/services/' + os.environ['SERVICO_RENDER'] + '/env-vars?limit=100',
+                  headers={'Authorization': 'Bearer ' + os.environ['RENDER_API_KEY'],
+                           'Accept': 'application/json', 'User-Agent': 'pablo-guru-diario'})
+              with urllib.request.urlopen(pedido, timeout=30) as resposta:
+                  dados = {e['envVar']['key']: e['envVar']['value'] for e in json.load(resposta)}
+              chave = chave or dados.get('OPENAI_API_KEY', '')
+              modelo = modelo or dados.get('OPENAI_MODEL', '')
+          with open(os.environ['GITHUB_ENV'], 'a') as arq:
+              if chave:
+                  print('::add-mask::' + chave)
+                  arq.write('OPENAI_API_KEY=' + chave + '\n')
+              if modelo:
+                  arq.write('PABLO_SCRIPT_MODEL=' + modelo + '\n')
+          print({'openai_key_present': bool(chave), 'script_model_configured': bool(modelo)})
+          FIM
       - name: Verificar integrações sem expor valores
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           IG_ACCOUNT_ID: ${{ secrets.IG_ACCOUNT_ID }}
@@ -64,8 +91,6 @@ jobs:
         env:
           EPISODE_DATE: ${{ inputs.episode_date }}
           IS_TEST: ${{ github.event_name == 'push' || inputs.test == true }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          PABLO_SCRIPT_MODEL: ${{ vars.PABLO_SCRIPT_MODEL }}
         run: |
           args=()
           if [ -n "$EPISODE_DATE" ]; then args+=(--date "$EPISODE_DATE"); fi
@@ -79,7 +104,11 @@ jobs:
           git add history/
           if ! git diff --cached --quiet; then
             git commit -m "Registra roteiro diário [skip ci]"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
+            for tentativa in 1 2 3 4 5; do
+              if git push origin "HEAD:${GITHUB_REF_NAME}"; then break; fi
+              if [ "$tentativa" = 5 ]; then exit 1; fi
+              git pull --rebase origin "${GITHUB_REF_NAME}"
+            done
           fi
       - name: Gerar voz e renderizar
         run: |
