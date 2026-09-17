@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-17-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-neblina-e-a-ponte",
+    "title": "A neblina e a ponte",
+    "prop": "key",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você consegue escolher o próximo passo mesmo sem garantia sobre o resultado? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma fotógrafa recebeu duas propostas e adiou ambas, esperando descobrir qual escolha jamais traria arrependimento.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A incerteza era uma neblina: não escondia o chão inteiro, apenas exigia diminuir o ritmo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine você nessa neblina, diante de uma ponte. Qual informação mínima ajudaria a alcançar o próximo trecho?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que não preciso de certeza completa; preciso distinguir risco conhecido de medo imaginado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Liste duas opções, escreva o que já sabe e marque quando revisará a escolha. Assim, a incerteza ganha limites.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual pequena decisão você pode testar antes de exigir uma resposta definitiva?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-17"
+  },
+  "script_hash": "14d3867aad0797db0a31b56439a1ba6d6507b9699a21b8683532bcb52646abae"
+}
