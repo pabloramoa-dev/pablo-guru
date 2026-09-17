@@ -1,7 +1,7 @@
 {
   "key": "2026-09-17-02",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-neblina-e-a-ponte",
     "title": "A neblina e a ponte",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-17"
   },
-  "script_hash": "14d3867aad0797db0a31b56439a1ba6d6507b9699a21b8683532bcb52646abae"
+  "script_hash": "14d3867aad0797db0a31b56439a1ba6d6507b9699a21b8683532bcb52646abae",
+  "video_hash": "1a56e787bb3a5ffa5cc7e19e1acd37e761e4d3c0994fbfff236d769a5f6708a1",
+  "duration": 53.4
 }
