@@ -1,7 +1,7 @@
 {
   "key": "2026-09-16-01",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-lupa-e-o-rotulo",
     "title": "A lupa e o rótulo",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-16"
   },
-  "script_hash": "4786a8e0e19a32d79c3e5d690c6fe5bfaa3546e9d062f0147831f56f39c70226"
+  "script_hash": "4786a8e0e19a32d79c3e5d690c6fe5bfaa3546e9d062f0147831f56f39c70226",
+  "video_hash": "6a666d0a7a743bf1f9e8ec85eafd5b770774ef19bb9a8ab8778e3c719469f67e",
+  "duration": 46.766667
 }
