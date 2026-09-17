@@ -6,34 +6,47 @@ import re
 import shutil
 import subprocess
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 HISTORY = ROOT / 'tiktok_history'
 OUT = ROOT / 'output_tiktok'
-HOURS = (8, 11, 14, 18, 21)
-SCHEDULES = {'0 11 * * *': 1, '0 14 * * *': 2, '0 17 * * *': 3, '0 21 * * *': 4, '0 0 * * *': 5}
+# Três vídeos por dia (08h, 14h e 20h em Brasília). Separado do Instagram.
+HOURS = (8, 14, 20)
+# Hora UTC do cron -> horário editorial. O minuto do cron é livre (usamos :07).
+SLOT_BY_UTC_HOUR = {11: 1, 17: 2, 23: 3}
+# O cron do GitHub costuma atrasar horas; até esse limite o horário previsto ainda vale.
+MAX_DELAY = timedelta(hours=6)
 TOPICS = ('medo de começar', 'comparação', 'limites', 'autocrítica', 'descanso')
 
 def identity(day, slot):
     datetime.strptime(day, '%Y-%m-%d')
-    if slot not in range(1, 6):
-        raise ValueError('Slot precisa estar entre 1 e 5')
+    if slot not in range(1, len(HOURS) + 1):
+        raise ValueError(f'Slot precisa estar entre 1 e {len(HOURS)}')
     return f'{day}-{slot:02d}'
 
 def resolve(now, schedule='', day='', slot=0):
     local = now.astimezone(ZoneInfo('America/Sao_Paulo'))
     if schedule:
-        slot = SCHEDULES[schedule]
-        # Inclusive UTC 00:00 corresponde a 21h do dia local anterior.
-        day = local.date().isoformat()
-        if not 0 <= local.hour - HOURS[slot-1] < 2:
+        slot = SLOT_BY_UTC_HOUR[int(schedule.split()[1])]
+        # A data editorial é a do horário previsto, mesmo se o atraso passar da meia-noite.
+        planned = local.replace(hour=HOURS[slot-1], minute=0, second=0, microsecond=0)
+        if planned > local:
+            planned -= timedelta(days=1)
+        if local - planned >= MAX_DELAY:
             raise ValueError('Execução atrasada fora da janela; não acumular postagens')
+        day = planned.date().isoformat()
     else:
         day = day or local.date().isoformat()
     return identity(day, slot)
+
+def topic_for(key):
+    # Gira pelos temas do banco editorial para os três vídeos do dia não repetirem assunto.
+    from daily.new_script import TOPICS as ALL_TOPICS
+    ordinal = datetime.strptime(key[:10], '%Y-%m-%d').toordinal()
+    return ALL_TOPICS[(ordinal * len(HOURS) + int(key[-2:]) - 1) % len(ALL_TOPICS)]
 
 def valid_key(key):
     if not isinstance(key, str) or not re.fullmatch(r'[0-9]{4}-[0-9]{2}-[0-9]{2}-0[1-5]', key):
@@ -86,7 +99,7 @@ def prepare(key):
             raise RuntimeError('PABLO_SCRIPT_MODEL ausente')
         for attempt in range(3):
             prompt = '''Crie roteiro original brasileiro: exatamente 7 segmentos speaker,text,pause=0.35; speakers asker,pablo,pablo,pablo,asker,pablo,pablo. Primeiro: pergunta concreta dirigida ao espectador + exatamente Escute isso., máximo 18 palavras. Segunda fala: história hipotética de terceiros, sem apresentação. Terceira: metáfora. Quarta: coloca o espectador na história e menciona ponte. Quinta: descoberta. Sexta: virada útil. Sétima: pergunta final. 85–105 palavras. Retorne JSON id (slug),title,prop (lamp,seed,map,cup,book,key,bag),segments. Não copie os anteriores; não invente dados. Sem diagnósticos, promessas mágicas, conteúdo sexual, violência, substâncias, apostas ou dietas.'''
-            response = api('responses', {'model': model, 'instructions': prompt, 'input': json.dumps({'slot': key, 'topic': TOPICS[int(key[-2:])-1], 'attempt': attempt, 'previous': [{'title': e['title'], 'segments': e['segments']} for e in prior[-50:]]}, ensure_ascii=False), 'store': False, 'max_output_tokens': 1600})
+            response = api('responses', {'model': model, 'instructions': prompt, 'input': json.dumps({'slot': key, 'topic': topic_for(key), 'attempt': attempt, 'previous': [{'title': e['title'], 'segments': e['segments']} for e in prior[-50:]]}, ensure_ascii=False), 'store': False, 'max_output_tokens': 1600})
             if response.get('status') != 'completed':
                 episode = None
                 continue

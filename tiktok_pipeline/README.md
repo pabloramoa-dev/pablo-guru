@@ -5,10 +5,10 @@ Reutiliza o motor original apenas como biblioteca. Todo episódio começa com pe
 direta sobre um problema e “Escute isso.”, sem cartela de abertura.
 
 ## Agenda
-Cinco execuções: 08h, 11h, 14h, 18h e 21h em America/Sao_Paulo.
+Três execuções: 08h, 14h e 20h em America/Sao_Paulo (cron no minuto 07, fora do pico do GitHub).
 O cron inicia a geração; a publicação acontece após renderização e validação.
-GitHub Actions pode atrasar. Execuções com atraso de duas horas são recusadas.
-Não há garantia de cinco posts quando provedor, plataforma, autenticação ou quotas falharem.
+GitHub Actions pode atrasar. O GitHub costuma atrasar o cron em algumas horas: atraso menor que seis horas mantém a data e o horário previstos; atraso de seis horas ou mais é recusado.
+Não há garantia de três posts quando provedor, plataforma, autenticação ou quotas falharem.
 
 ## Configuração
 Em Settings > Secrets and variables > Actions:
@@ -19,7 +19,7 @@ Em Settings > Secrets and variables > Actions:
   artefatos ou mensagens. Login do navegador do ChatGPT não autentica Actions.
 - Variable TIKTOK_PUBLISH_ENABLED=true: permite envio, depois de um teste controlado.
 
-Sem PABLO_SCRIPT_MODEL, a agenda aguarda configuração. Com chave e modelo configurados, gera e arquiva os MP4; sem liberação de publicação, não envia.
+Se o secret OPENAI_API_KEY ou a variável PABLO_SCRIPT_MODEL não existirem no repositório, o workflow lê OPENAI_API_KEY e OPENAI_MODEL do serviço do Direct no Render (secret RENDER_API_KEY), sem imprimir valores. O Instagram diário é outro fluxo (instagram_diario/), independente deste. Com chave e modelo configurados, gera e arquiva os MP4; sem liberação de publicação, não envia.
 Antes da liberação, execute manualmente o workflow com publish=false e revise o MP4.
 Depois configure a sessão e faça um teste manual com publish=true. Confirme o post
 no perfil. A publicação recorrente só deve ser considerada operacional após isso.
