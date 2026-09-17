@@ -11,10 +11,23 @@ from tiktok_pipeline.publish import credentials
 from daily.catalog import episodes
 
 class PipelineTests(unittest.TestCase):
-    def test_five_local_slots(self):
-        for hour, schedule, slot in [(11,'0 11 * * *',1),(14,'0 14 * * *',2),(17,'0 17 * * *',3),(21,'0 21 * * *',4),(0,'0 0 * * *',5)]:
-            expected = '2026-09-15' if hour == 0 else '2026-09-16'
-            self.assertEqual(p.resolve(datetime(2026,9,16,hour,tzinfo=timezone.utc),schedule), f'{expected}-{slot:02d}')
+    def test_three_local_slots(self):
+        for when, schedule, key in [((11,7),'7 11 * * *','2026-09-16-01'),((17,7),'7 17 * * *','2026-09-16-02'),((23,7),'7 23 * * *','2026-09-16-03')]:
+            self.assertEqual(p.resolve(datetime(2026,9,16,*when,tzinfo=timezone.utc),schedule), key)
+
+    def test_delayed_run_keeps_planned_slot(self):
+        # 08h atrasado quatro horas ainda vale para o horário 1 do mesmo dia
+        self.assertEqual(p.resolve(datetime(2026,9,16,15,tzinfo=timezone.utc),'7 11 * * *'), '2026-09-16-01')
+        # 20h do dia 16 que só começa 01h30 do dia 17 continua sendo do dia 16
+        self.assertEqual(p.resolve(datetime(2026,9,17,4,30,tzinfo=timezone.utc),'7 23 * * *'), '2026-09-16-03')
+
+    def test_topics_rotate_within_day(self):
+        topics = {p.topic_for(f'2026-09-16-0{slot}') for slot in (1, 2, 3)}
+        self.assertEqual(len(topics), 3)
+
+    def test_old_slots_rejected(self):
+        with self.assertRaises(ValueError):
+            p.identity('2026-09-16', 4)
 
     def test_late_run_stops(self):
         with self.assertRaises(ValueError):
