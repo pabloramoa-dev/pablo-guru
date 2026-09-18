@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-17-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-janela-sem-tarefa",
+    "title": "A janela sem tarefa",
+    "prop": "key",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você reserva um horário para descansar sem transformar a pausa em tarefa? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma pessoa marcava pausas, mas preenchia cada intervalo com mensagens, arrumação e pendências.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O descanso virou janela aberta para passar mais trabalho.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine-se diante dela, com uma chave na mão. Atravesse comigo esta ponte: você pausa ou troca o tipo de esforço?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que descansar é não transformar cada minuto em obrigação.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Defina uma pausa curta, desligue notificações e retome no horário combinado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual atividade você consegue deixar sem utilidade por alguns minutos hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-17"
+  },
+  "script_hash": "09f7726e610f4a77c493e7d305b6d63c267a6a7662a626c5d6c6a173c0b2f6f6"
+}
