@@ -1,7 +1,7 @@
 {
   "key": "2026-09-18-01",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "coragem-para-falar",
     "title": "A luz sobre a ponte",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-18"
   },
-  "script_hash": "0eb0fea6f679654f014e255b8f51662d896ac5f0e0d128014338525650d7ae49"
+  "script_hash": "0eb0fea6f679654f014e255b8f51662d896ac5f0e0d128014338525650d7ae49",
+  "video_hash": "a36adc6e6fb3f6442bbde674ea095e77e0aee9ba5435ddf413c6d6b2f767c65e",
+  "duration": 51.133333
 }
