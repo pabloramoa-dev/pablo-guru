@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-18-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "coragem-para-falar",
+    "title": "A luz sobre a ponte",
+    "prop": "lamp",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você adia aquela conversa simples por medo da reação? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma balconista percebeu um erro no pedido de uma cliente, mas preferiu ficar calada para evitar constrangimento.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O silêncio parecia um escudo, mas funcionava como uma parede entre a intenção e a solução.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine-se nessa cena, na ponte: você protege a tranquilidade do instante ou abre espaço para corrigir?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descobri que coragem não é garantir uma reação boa; é falar com respeito, mesmo aceitando algum desconforto.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Use uma frase objetiva: “Notei um erro e quero corrigi-lo.” Escute a resposta antes de explicar demais.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que conversa pequena você pode iniciar hoje, com clareza e cuidado?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-18"
+  },
+  "script_hash": "0eb0fea6f679654f014e255b8f51662d896ac5f0e0d128014338525650d7ae49"
+}
