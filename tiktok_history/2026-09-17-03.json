@@ -1,7 +1,7 @@
 {
   "key": "2026-09-17-03",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-janela-sem-tarefa",
     "title": "A janela sem tarefa",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-17"
   },
-  "script_hash": "09f7726e610f4a77c493e7d305b6d63c267a6a7662a626c5d6c6a173c0b2f6f6"
+  "script_hash": "09f7726e610f4a77c493e7d305b6d63c267a6a7662a626c5d6c6a173c0b2f6f6",
+  "video_hash": "dbd1f51cd4d35c342e223694b8e9729c1722549ce358385e2188bbb8d7cd8f2a",
+  "duration": 46.033333
 }
