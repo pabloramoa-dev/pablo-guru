@@ -1,0 +1,46 @@
+{
+  "id": "a-chave",
+  "title": "A chave e a porta",
+  "prop": "key",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Você insiste e nada muda? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa tentava abrir uma porta com a mesma chave. Quando não funcionava, apertava com mais força.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Confundia insistência com atenção. Não examinava a fechadura.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine essa chave nas suas mãos. Atravesse comigo esta ponte. O obstáculo pede mais força ou uma informação que você ainda não buscou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso parar e entender o problema antes de insistir.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Mudar de estratégia não apaga seu esforço. Pode ser justamente o que torna esse esforço útil.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que informação está faltando para sua próxima tentativa?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-18",
+  "hook_type": "dor",
+  "hook_text": "Você insiste e nada muda? Escute isso.",
+  "script_sha256": "a90a3ffca49b004abee781c367951d5e936a0acad35fe134045708c6e4a89584"
+}
