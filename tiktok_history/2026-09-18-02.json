@@ -1,7 +1,7 @@
 {
   "key": "2026-09-18-02",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "responsabilidade-bagagem-fechada",
     "title": "A bagagem já fechada",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-18"
   },
-  "script_hash": "2d2f300b586ab39dac562fa26daa10021b8d41246afcb598e3c491fb0a31ef53"
+  "script_hash": "2d2f300b586ab39dac562fa26daa10021b8d41246afcb598e3c491fb0a31ef53",
+  "video_hash": "9ceb66ddb2ec04226719bfc9233f6fa98e37d573a5e740c64e923d8e445e82ed",
+  "duration": 49.6
 }
