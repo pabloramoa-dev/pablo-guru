@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-18-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "responsabilidade-bagagem-fechada",
+    "title": "A bagagem já fechada",
+    "prop": "bag",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você confere o que já assumiu antes de aceitar outra tarefa? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma pessoa dizia sim a todos os pedidos. Depois esquecia prazos e culpava a própria memória.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Cada compromisso extra era como colocar outra etiqueta numa bagagem já fechada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine essa bagagem nas suas mãos. Atravesse comigo esta ponte: o que é realmente seu, e o que você aceitou apenas para evitar desconforto?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que responsabilidade também inclui reconhecer meu limite antes de prometer.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Então faça uma pausa antes de responder: anote o pedido, verifique tempo e energia, e ofereça um prazo possível ou recuse com respeito.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual compromisso você precisa revisar antes de assumir mais um?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-18"
+  },
+  "script_hash": "2d2f300b586ab39dac562fa26daa10021b8d41246afcb598e3c491fb0a31ef53"
+}
