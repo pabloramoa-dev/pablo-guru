@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-19-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-frase-e-a-ponte",
+    "title": "A frase e a ponte",
+    "prop": "map",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você costuma explicar demais e ainda sair mal compreendido? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma pessoa enviava mensagens longas para combinar uma tarefa; o colega respondia “certo”, mas cada um entendia um prazo diferente.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A conversa virou um telefone sem fio: quanto mais voltas, mais distante ficava a intenção original.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine você diante dessa ponte. Antes de atravessar, diga o pedido, o prazo e confirme: “O que você entendeu?”",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descobri que clareza não é falar tudo; é verificar se a outra pessoa recebeu a mesma mensagem.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Troque explicações acumuladas por uma frase objetiva, um exemplo concreto e uma pergunta de confirmação. Se houver dúvida, ajuste sem culpar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual conversa de hoje pode ficar mais clara com esse formato?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-19"
+  },
+  "script_hash": "dbbe7ab0c026b6bc157d0f86dce2b0a99e5c817141924556247f254e9ee82c3a"
+}
