@@ -1,7 +1,7 @@
 {
   "key": "2026-09-19-01",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "gratidao-sem-saldo",
     "title": "Gratidão sem saldo",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-19"
   },
-  "script_hash": "7f7942c5f16a7c37a030df200181f198649b1427feb52f2ca093a1abec10a10f"
+  "script_hash": "7f7942c5f16a7c37a030df200181f198649b1427feb52f2ca093a1abec10a10f",
+  "video_hash": "095fb62a0a9fd8f89cb688e5fcc7ced073cc72e2a76923fcff14f00e52f8b3fa",
+  "duration": 54.1
 }
