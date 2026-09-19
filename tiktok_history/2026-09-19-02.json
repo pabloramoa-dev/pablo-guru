@@ -1,7 +1,7 @@
 {
   "key": "2026-09-19-02",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-frase-e-a-ponte",
     "title": "A frase e a ponte",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-19"
   },
-  "script_hash": "dbbe7ab0c026b6bc157d0f86dce2b0a99e5c817141924556247f254e9ee82c3a"
+  "script_hash": "dbbe7ab0c026b6bc157d0f86dce2b0a99e5c817141924556247f254e9ee82c3a",
+  "video_hash": "cd08e0411a5a2d92fcc8d5c7607e5cdd1e395eaa98a307aef6202e3247670e39",
+  "duration": 53.566667
 }
