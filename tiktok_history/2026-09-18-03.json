@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-18-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "expectativas-sem-final",
+    "title": "O capítulo fora do plano",
+    "prop": "book",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você espera tudo sair como imaginou antes de começar? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma fotógrafa planejava uma festa surpresa e desistia quando alguém mudava um detalhe. No fim, ninguém recebia convite.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Expectativas rígidas são como um livro com final obrigatório: qualquer capítulo diferente parece erro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine esse livro nas suas mãos. Atravesse comigo esta ponte: você conduz a história ou obedece a um final que não conhece?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que desejar cuidado é diferente de exigir controle sobre cada resultado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Escolha o que depende de você, combine um próximo passo e deixe espaço para ajustes; flexibilidade preserva o propósito.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual expectativa você pode transformar hoje em intenção, critério ou preferência?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-18"
+  },
+  "script_hash": "23b9b2fef5b319ecc75bbb54d72a30d8830f8872c4b4480071a92848cb522708"
+}
