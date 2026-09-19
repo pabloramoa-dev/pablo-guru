@@ -2,14 +2,19 @@
 banco_imagens.py — busca e baixa imagens de bancos gratuitos para os motores de vídeo.
 
 Provedores:
-  openverse  — sem chave (padrão). Agrega acervos Creative Commons.
-  wikimedia  — sem chave. Domínio público / CC. Bom para histórico e institucional.
-  pexels     — precisa de PEXELS_API_KEY
-  pixabay    — precisa de PIXABAY_API_KEY
-  unsplash   — precisa de UNSPLASH_ACCESS_KEY
+    openverse — sem chave (padrão). Agrega acervos Creative Commons.
+    wikimedia — sem chave. Domínio público / CC. Bom para histórico e institucional.
+    pexels    — precisa de PEXELS_API_KEY
+    pixabay   — precisa de PIXABAY_API_KEY
+    unsplash  — precisa de UNSPLASH_ACCESS_KEY
 
 Tudo que é baixado fica em cache (dedup por hash) e gera registro de crédito/licença
 em CREDITOS.json — a licença da Unsplash e várias CC exigem ou recomendam atribuição.
+
+Regras da API da Unsplash implementadas aqui (obrigatórias pelos termos aceitos):
+    - o endpoint download_location é chamado toda vez que a foto é de fato usada;
+    - os links de volta levam os parâmetros UTM da aplicação;
+    - o crédito aponta para o perfil do fotógrafo E para o Unsplash.
 
 Uso por linha de comando:
     python banco_imagens.py "monge meditando" -n 5 --vertical
@@ -27,15 +32,34 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import sys
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from pathlib import Path
 
 CACHE = Path(os.environ.get("BANCO_IMAGENS_CACHE", "assets/banco_imagens"))
 TIMEOUT = 30
 UA = "banco-imagens/1.0 (pipeline de video; contato via github)"
+
+# Identificacao da aplicacao nos links de volta — exigida pela Unsplash.
+APP_UTM = "utm_source=pablo_guru_video_pipeline&utm_medium=referral"
+
+_RE_SEGREDO = re.compile(r"(key|api_key|client_id|access_key)=[^&\s]+", re.IGNORECASE)
+
+
+def _sem_segredo(texto: str) -> str:
+    """Troca o valor de qualquer chave por *** antes de imprimir ou logar."""
+    return _RE_SEGREDO.sub(lambda m: m.group(0).split("=")[0] + "=***", str(texto))
+
+
+def _com_utm(url: str) -> str:
+    """Acrescenta os parametros UTM da aplicacao a um link do Unsplash."""
+    if not url:
+        return ""
+    sep = "&" if "?" in url else "?"
+    return f"{url}{sep}{APP_UTM}"
 
 
 @dataclass
@@ -49,6 +73,21 @@ class Foto:
     largura: int = 0
     altura: int = 0
     descricao: str = ""
+    autor_url: str = ""           # perfil do fotografo (Unsplash exige o link)
+    download_location: str = ""   # endpoint que o Unsplash obriga a chamar
+
+    def credito(self) -> str:
+        nome = {
+            "pexels": "Pexels", "pixabay": "Pixabay", "unsplash": "Unsplash",
+            "openverse": "Openverse", "wikimedia": "Wikimedia Commons",
+        }.get(self.provedor, self.provedor)
+        autor = self.autor or "autor desconhecido"
+        base = f"Foto de {autor} no {nome}"
+        if self.autor_url:
+            base += f" ({self.autor_url})"
+        if self.licenca:
+            base += f" — {self.licenca}"
+        return base
 
 
 def _get(url: str, headers: dict | None = None) -> dict:
@@ -64,7 +103,11 @@ def _chave(nome: str) -> str:
             f"Falta a variável de ambiente {nome}. "
             "Crie a chave no site do provedor e exporte antes de rodar."
         )
-    return v
+    return v.strip()
+
+
+def _limpa(html: str) -> str:
+    return re.sub(r"<[^>]+>", "", html or "").strip() or "desconhecido"
 
 
 # ---------------------------------------------------------------- provedores
@@ -85,6 +128,7 @@ def _openverse(q: str, n: int, orientacao: str | None) -> list[Foto]:
             largura=it.get("width") or 0,
             altura=it.get("height") or 0,
             descricao=it.get("title") or "",
+            autor_url=it.get("creator_url") or "",
         )
         for it in _get(url).get("results", [])
     ]
@@ -125,7 +169,8 @@ def _pexels(q: str, n: int, orientacao: str | None) -> list[Foto]:
     return [
         Foto("pexels", str(f["id"]), f["src"]["large2x"], f["url"],
              f.get("photographer", ""), "Pexels License",
-             f.get("width", 0), f.get("height", 0), f.get("alt", ""))
+             f.get("width", 0), f.get("height", 0), f.get("alt", ""),
+             autor_url=f.get("photographer_url", ""))
         for f in dados.get("photos", [])
     ]
 
@@ -141,7 +186,8 @@ def _pixabay(q: str, n: int, orientacao: str | None) -> list[Foto]:
     return [
         Foto("pixabay", str(h["id"]), h.get("largeImageURL", ""), h.get("pageURL", ""),
              h.get("user", ""), "Pixabay Content License",
-             h.get("imageWidth", 0), h.get("imageHeight", 0), h.get("tags", ""))
+             h.get("imageWidth", 0), h.get("imageHeight", 0), h.get("tags", ""),
+             autor_url=f"https://pixabay.com/users/{h.get('user','')}-{h.get('user_id','')}/")
         for h in _get(url).get("hits", [])[:n]
     ]
 
@@ -151,13 +197,28 @@ def _unsplash(q: str, n: int, orientacao: str | None) -> list[Foto]:
     if orientacao:
         params["orientation"] = "portrait" if orientacao == "vertical" else "landscape"
     url = "https://api.unsplash.com/search/photos?" + urllib.parse.urlencode(params)
-    dados = _get(url, {"Authorization": f"Client-ID {_chave('UNSPLASH_ACCESS_KEY')}"})
-    return [
-        Foto("unsplash", f["id"], f["urls"]["regular"], f["links"]["html"],
-             (f.get("user") or {}).get("name", ""), "Unsplash License",
-             f.get("width", 0), f.get("height", 0), f.get("alt_description") or "")
-        for f in dados.get("results", [])
-    ]
+    dados = _get(url, {"Authorization": f"Client-ID {_chave('UNSPLASH_ACCESS_KEY')}",
+                       "Accept-Version": "v1"})
+    saida = []
+    for f in dados.get("results", []):
+        usuario = f.get("user") or {}
+        perfil = (usuario.get("links") or {}).get("html", "")
+        saida.append(Foto(
+            provedor="unsplash",
+            id=f["id"],
+            # 'full' e nao 'regular': regular vem com 1080px de largura, pouco
+            # para um enquadramento vertical 1080x1920 com push-in.
+            url=(f.get("urls") or {}).get("full", ""),
+            pagina=_com_utm((f.get("links") or {}).get("html", "")),
+            autor=usuario.get("name", "") or usuario.get("username", ""),
+            licenca="Unsplash License",
+            largura=f.get("width", 0),
+            altura=f.get("height", 0),
+            descricao=f.get("alt_description") or "",
+            autor_url=_com_utm(perfil),
+            download_location=(f.get("links") or {}).get("download_location", ""),
+        ))
+    return saida
 
 
 PROVEDORES = {
@@ -171,9 +232,24 @@ PROVEDORES = {
 SEM_CHAVE = ("openverse", "wikimedia")
 
 
-def _limpa(html: str) -> str:
-    import re
-    return re.sub(r"<[^>]+>", "", html or "").strip() or "desconhecido"
+def registrar_uso(foto: Foto) -> bool:
+    """
+    Avisa o provedor que a foto foi de fato usada.
+
+    OBRIGATORIO pelas diretrizes da API da Unsplash: sem esta chamada o
+    fotografo nao recebe a estatistica de download e o app e' reprovado na
+    revisao para producao. Para os outros provedores nao faz nada.
+    """
+    if foto.provedor != "unsplash" or not foto.download_location:
+        return True
+    try:
+        _get(foto.download_location,
+             {"Authorization": f"Client-ID {_chave('UNSPLASH_ACCESS_KEY')}",
+              "Accept-Version": "v1"})
+        return True
+    except Exception as e:  # nao derruba o pipeline por causa disso
+        print(f"  [aviso] registrar_uso unsplash: {_sem_segredo(e)}", file=sys.stderr)
+        return False
 
 
 # ------------------------------------------------------------------- público
@@ -195,12 +271,17 @@ def buscar(q: str, n: int = 5, orientacao: str | None = None,
             if r:
                 return r
         except Exception as e:  # provedor fora do ar ou sem resultado: tenta o próximo
-            print(f"  [aviso] {p}: {e}", file=sys.stderr)
+            print(f"  [aviso] {p}: {_sem_segredo(e)}", file=sys.stderr)
     return []
 
 
 def baixar(foto: Foto, destino: str | Path | None = None) -> Path:
-    """Baixa com cache por hash da URL. Devolve o caminho do arquivo."""
+    """
+    Baixa com cache por hash da URL. Devolve o caminho do arquivo.
+
+    O credito e' registrado SEMPRE, mesmo quando o arquivo ja estava em cache —
+    senao o CREDITOS.json do episodio novo sai sem a atribuicao da foto reusada.
+    """
     pasta = Path(destino) if destino else CACHE
     pasta.mkdir(parents=True, exist_ok=True)
     h = hashlib.sha1(foto.url.encode()).hexdigest()[:12]
@@ -208,10 +289,15 @@ def baixar(foto: Foto, destino: str | Path | None = None) -> Path:
     if len(ext) > 5:
         ext = ".jpg"
     alvo = pasta / f"{foto.provedor}_{h}{ext}"
+
     if not alvo.exists():
         req = urllib.request.Request(foto.url, headers={"User-Agent": UA})
         with urllib.request.urlopen(req, timeout=TIMEOUT) as r, open(alvo, "wb") as f:
             f.write(r.read())
+
+    # A foto esta sendo usada agora: avisa o provedor e registra o credito,
+    # venha ela da rede ou do cache.
+    registrar_uso(foto)
     _registrar(foto, alvo, pasta)
     return alvo
 
@@ -229,14 +315,28 @@ def _registrar(foto: Foto, arquivo: Path, pasta: Path) -> None:
 
 
 def creditos_md(pasta: str | Path) -> str:
-    """Devolve os créditos em Markdown, para colar na descrição do vídeo."""
+    """
+    Devolve os créditos em Markdown, para colar na descrição do vídeo.
+
+    Formato que atende a Unsplash: nome do fotografo com link para o perfil,
+    mais o link para a foto no provedor.
+    """
     reg = Path(pasta) / "CREDITOS.json"
     if not reg.exists():
         return ""
     dados = json.loads(reg.read_text(encoding="utf-8"))
-    linhas = ["Imagens:"]
+    nomes = {"pexels": "Pexels", "pixabay": "Pixabay", "unsplash": "Unsplash",
+             "openverse": "Openverse", "wikimedia": "Wikimedia Commons"}
+    linhas, vistos = ["Imagens:"], set()
     for v in dados.values():
-        linhas.append(f"- {v['autor']} ({v['provedor']}, {v['licenca']}) — {v['pagina']}")
+        autor = v.get("autor") or "autor desconhecido"
+        if v.get("autor_url"):
+            autor = f"{autor} ({v['autor_url']})"
+        fonte = nomes.get(v.get("provedor", ""), v.get("provedor", ""))
+        linha = f"- Foto de {autor} no {fonte} — {v.get('licenca','')} — {v.get('pagina','')}"
+        if linha not in vistos:
+            vistos.add(linha)
+            linhas.append(linha)
     return "\n".join(linhas)
 
 
@@ -258,9 +358,9 @@ def main() -> None:
         return
     for f in fotos:
         print(f"[{f.provedor}] {f.autor} — {f.licenca} — {f.largura}x{f.altura}")
-        print(f"   {f.pagina}")
+        print(f"  {f.pagina}")
         if not a.so_listar:
-            print(f"   -> {baixar(f, a.destino)}")
+            print(f"  -> {baixar(f, a.destino)}")
 
 
 if __name__ == "__main__":
