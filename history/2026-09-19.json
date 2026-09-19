@@ -1,0 +1,46 @@
+{
+  "id": "a-mochila",
+  "title": "A lição e a pedra",
+  "prop": "bag",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A culpa pelos seus erros pesa demais? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma viajante guardava uma pedra para cada erro. A mochila ficava pesada, mas ela continuava tropeçando nos mesmos lugares.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Carregar a lembrança não era o mesmo que aprender com ela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine essa mochila nas suas costas. Atravesse comigo esta ponte. Qual atitude diferente mostraria que você entendeu a lição?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso reparar o que for possível e mudar minha atitude.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A responsabilidade está no que você faz agora. O peso, sozinho, não conserta o caminho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual aprendizado pode virar uma ação pequena hoje?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-19",
+  "hook_type": "dor",
+  "hook_text": "A culpa pelos seus erros pesa demais? Escute isso.",
+  "script_sha256": "8a04bc28450b661831cf91e549ea69c96ce9357288c62f5ff0547e40ebe4bbc6"
+}
