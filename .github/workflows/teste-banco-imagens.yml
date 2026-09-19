@@ -1,0 +1,166 @@
+name: Teste Banco de Imagens
+
+# Teste rapido e barato: consulta os cinco provedores, baixa algumas fotos
+# e monta uma folha de contato para avaliar o acervo antes de ligar o
+# banco_imagens ao motor da colagem. Nao publica nada.
+
+on:
+  workflow_dispatch:
+    inputs:
+      consultas:
+        description: "Temas separados por | (barra vertical)"
+        required: true
+        default: "monge meditando|ponte ao amanhecer|xicara de cafe na janela|caminho na floresta"
+      n:
+        description: "Fotos por tema, por provedor"
+        required: true
+        default: "3"
+
+jobs:
+  testar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Pillow (folha de contato)
+        run: pip install -q pillow
+
+      - name: Buscar e baixar
+        env:
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          CONSULTAS: ${{ inputs.consultas }}
+          N: ${{ inputs.n }}
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, sys, traceback
+          sys.path.insert(0, ".")
+          import banco_imagens as b
+          from PIL import Image, ImageDraw, ImageFont
+
+          consultas = [c.strip() for c in os.environ["CONSULTAS"].split("|") if c.strip()]
+          n = int(os.environ.get("N", "3"))
+          provedores = ["pexels", "pixabay", "unsplash", "openverse", "wikimedia"]
+
+          saida = pathlib.Path("saida_banco")
+          saida.mkdir(exist_ok=True)
+
+          relatorio = {}
+          baixadas = {p: [] for p in provedores}
+
+          for prov in provedores:
+              relatorio[prov] = {"status": "ok", "por_tema": {}, "erro": ""}
+              for q in consultas:
+                  try:
+                      fotos = b.buscar(q, n, orientacao="vertical", provedor=prov)
+                  except Exception as e:
+                      msg = b._sem_segredo(f"{type(e).__name__}: {e}")
+                      relatorio[prov]["status"] = "falhou"
+                      relatorio[prov]["erro"] = msg
+                      print(f"[{prov}] {q}: ERRO {msg}", flush=True)
+                      break
+
+                  relatorio[prov]["por_tema"][q] = len(fotos)
+                  print(f"[{prov}] {q}: {len(fotos)} foto(s)", flush=True)
+
+                  for f in fotos:
+                      try:
+                          caminho = b.baixar(f, destino=saida / prov)
+                          baixadas[prov].append((caminho, f, q))
+                      except Exception as e:
+                          print(f"  [aviso] download: {b._sem_segredo(e)}", flush=True)
+
+          # ---------------- folha de contato por provedor ----------------
+          LARG, ALT = 360, 640          # miniatura 9:16
+          COLS = 6
+          FAIXA = 54                    # rodape com credito
+
+          def fonte(tam):
+              for c in ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",):
+                  if os.path.exists(c):
+                      return ImageFont.truetype(c, tam)
+              return ImageFont.load_default()
+
+          f_peq, f_tit = fonte(15), fonte(30)
+
+          for prov, itens in baixadas.items():
+              if not itens:
+                  continue
+              linhas = (len(itens) + COLS - 1) // COLS
+              folha = Image.new("RGB", (COLS * LARG, 70 + linhas * (ALT + FAIXA)), "#14121a")
+              d = ImageDraw.Draw(folha)
+              d.text((18, 22), f"{prov} — {len(itens)} foto(s)", font=f_tit, fill="#f2eee6")
+
+              for i, (caminho, foto, tema) in enumerate(itens):
+                  cx, cy = (i % COLS) * LARG, 70 + (i // COLS) * (ALT + FAIXA)
+                  try:
+                      im = Image.open(caminho).convert("RGB")
+                  except Exception:
+                      continue
+                  # corte central 9:16, como o motor faria
+                  alvo = LARG / ALT
+                  w, h = im.size
+                  if w / h > alvo:
+                      nw = int(h * alvo)
+                      im = im.crop(((w - nw) // 2, 0, (w + nw) // 2, h))
+                  else:
+                      nh = int(w / alvo)
+                      im = im.crop((0, (h - nh) // 2, w, (h + nh) // 2))
+                  folha.paste(im.resize((LARG, ALT)), (cx, cy))
+
+                  d.rectangle([cx, cy + ALT, cx + LARG, cy + ALT + FAIXA], fill="#14121a")
+                  autor = (foto.autor or "?")[:34]
+                  d.text((cx + 8, cy + ALT + 6), f"{tema[:40]}", font=f_peq, fill="#8f8a9c")
+                  d.text((cx + 8, cy + ALT + 26), f"{autor} · {foto.largura}x{foto.altura}",
+                         font=f_peq, fill="#f2eee6")
+
+              folha.save(saida / f"folha_{prov}.jpg", quality=88)
+              print(f"folha_{prov}.jpg gerada", flush=True)
+
+          # ---------------- relatorio ----------------
+          linhas = ["# Teste do banco de imagens", ""]
+          linhas.append("| provedor | status | fotos baixadas | observacao |")
+          linhas.append("|---|---|---|---|")
+          for p in provedores:
+              r = relatorio[p]
+              linhas.append(f"| {p} | {r['status']} | {len(baixadas[p])} | {r['erro'] or '-'} |")
+
+          linhas += ["", "## Por tema", ""]
+          for p in provedores:
+              if relatorio[p]["por_tema"]:
+                  detalhe = ", ".join(f"{q}: {c}" for q, c in relatorio[p]["por_tema"].items())
+                  linhas.append(f"- **{p}** — {detalhe}")
+
+          linhas += ["", "## Creditos gerados", ""]
+          for p in provedores:
+              md = b.creditos_md(saida / p)
+              if md:
+                  linhas += [f"### {p}", "", md, ""]
+
+          (saida / "RELATORIO.md").write_text("\n".join(linhas), encoding="utf-8")
+          print("\n".join(linhas))
+
+          # falha o job se alguma chave nao funcionou
+          quebrados = [p for p in ("pexels", "pixabay", "unsplash")
+                       if relatorio[p]["status"] != "ok"]
+          if quebrados:
+              print(f"::warning::provedores com chave com problema: {', '.join(quebrados)}")
+          PY
+
+      - name: Guardar o resultado (3 dias)
+        uses: actions/upload-artifact@v4
+        with:
+          name: teste-banco-imagens
+          retention-days: 3
+          path: |
+            saida_banco/**/*.jpg
+            saida_banco/**/*.png
+            saida_banco/**/CREDITOS.json
+            saida_banco/RELATORIO.md
