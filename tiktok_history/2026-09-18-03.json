@@ -1,7 +1,7 @@
 {
   "key": "2026-09-18-03",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "expectativas-sem-final",
     "title": "O capítulo fora do plano",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-18"
   },
-  "script_hash": "23b9b2fef5b319ecc75bbb54d72a30d8830f8872c4b4480071a92848cb522708"
+  "script_hash": "23b9b2fef5b319ecc75bbb54d72a30d8830f8872c4b4480071a92848cb522708",
+  "video_hash": "7b8efbe68a84baf07438a3d703ba0bdfe93aed1925e9db17cf3e8e0083a80e92",
+  "duration": 52.166667
 }
