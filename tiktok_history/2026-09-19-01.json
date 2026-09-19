@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-19-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "gratidao-sem-saldo",
+    "title": "Gratidão sem saldo",
+    "prop": "key",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Hoje, você consegue agradecer alguém sem transformar gratidão em dívida? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma vizinha recebia ajuda de uma colega e, depois, aceitava qualquer pedido para compensar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A gratidão, para ela, virou uma balança: cada gesto parecia exigir pagamento.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine você nessa cena, diante de uma ponte. Agradecer precisa significar retribuir imediatamente, ou reconhecer o cuidado com liberdade?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que gratidão pode ser presença, palavra sincera ou ajuda possível, não uma obrigação automática.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na prática, agradeça nomeando o que recebeu e escolha, sem culpa, se e como pode retribuir.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que gesto de gratidão você quer oferecer livremente hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-19"
+  },
+  "script_hash": "7f7942c5f16a7c37a030df200181f198649b1427feb52f2ca093a1abec10a10f"
+}
