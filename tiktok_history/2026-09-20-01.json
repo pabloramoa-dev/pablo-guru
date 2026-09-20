@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-20-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-chave-do-aprendizado",
+    "title": "A chave do aprendizado",
+    "prop": "key",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você transforma cada erro em uma próxima tentativa concreta? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma aprendiz tentou abrir um armário com uma chave, percebeu que não girava e anotou quando começou a forçar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O erro era um mapa dobrado: não condenava a viajante, apenas marcava o trecho que pedia atenção.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora segure essa chave e atravesse comigo esta ponte: qual hipótese você pode revisar antes de insistir?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que errar não encerra meu aprendizado; revela uma etapa que precisa de verificação.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na virada, registre o que aconteceu, identifique a causa e faça um teste menor antes de repetir o plano.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual ajuste concreto o erro pode ensinar?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-20"
+  },
+  "script_hash": "c8607a1a5b04ce919517f955778495eaaa20f30883dd0dd41b4219ea414fb1b7"
+}
