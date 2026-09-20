@@ -1,7 +1,7 @@
 {
   "key": "2026-09-20-01",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-chave-do-aprendizado",
     "title": "A chave do aprendizado",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-20"
   },
-  "script_hash": "c8607a1a5b04ce919517f955778495eaaa20f30883dd0dd41b4219ea414fb1b7"
+  "script_hash": "c8607a1a5b04ce919517f955778495eaaa20f30883dd0dd41b4219ea414fb1b7",
+  "video_hash": "cfd7d5a29242ff1ee2cce7c122dbe02d768738db5ad4334ea18b92e766e374a7",
+  "duration": 48.7
 }
