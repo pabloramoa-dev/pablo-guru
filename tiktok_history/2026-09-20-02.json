@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-20-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-foco-e-a-ponte",
+    "title": "O foco e a ponte",
+    "prop": "map",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você percebe quando sua atenção escapa antes de terminar o que começou? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma atendente conferia pedidos enquanto respondia mensagens; relia linhas e deixava detalhes passarem.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A atenção é uma janela: aberta a todo ruído, deixa a tarefa perder contorno.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine-se diante de uma ponte, com um pedido nas mãos: você está presente nele ou dividido entre alertas?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que atenção é escolher, por alguns minutos, onde colocar os olhos e a mente.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Desative uma notificação, defina um intervalo curto e termine uma etapa antes de trocar de foco.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual tarefa merece sua atenção inteira nos próximos minutos?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-20"
+  },
+  "script_hash": "5a717e9142f7efeac097ebeac5b1ca40d3e455ca91c1001143d1fafd70d47e60"
+}
