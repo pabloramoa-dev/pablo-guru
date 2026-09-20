@@ -1,9 +1,13 @@
 """Execute no seu computador, com gh autenticado e Playwright instalado.
 
-Abre um Chromium, espera você entrar em @opabloguru e grava a sessão direto no
+Abre um navegador, espera você entrar em @opabloguru e grava a sessão direto no
 Secret TIKTOK_COOKIES_JSON do GitHub (via stdin). Não imprime cookies e não grava
-arquivo. Tem até 3 tentativas: se ainda não estiver logado, é só terminar o login
-e apertar Enter de novo.
+arquivo.
+
+Usa o Chrome instalado na máquina quando ele existe (o TikTok barra menos que o
+Chromium do Playwright) e volta para o Chromium quando não encontra o Chrome.
+São 5 tentativas: se ainda não estiver logado, termine o login e aperte Enter
+de novo. Login por QR Code é o caminho menos sujeito a bloqueio.
 """
 import json
 import re
@@ -14,7 +18,19 @@ from playwright.sync_api import sync_playwright
 
 REPO = 'pabloramoa-dev/pablo-guru'
 CONTA = 'opabloguru'
-TENTATIVAS = 3
+TENTATIVAS = 5
+
+
+def abrir(p):
+    """Chrome da máquina quando disponível; senão o Chromium do Playwright."""
+    for canal in ('chrome', 'msedge', None):
+        try:
+            navegador = p.chromium.launch(headless=False, channel=canal) if canal else p.chromium.launch(headless=False)
+            print(f'>> Navegador: {canal or "chromium do Playwright"}')
+            return navegador
+        except Exception:
+            continue
+    raise SystemExit('Não consegui abrir nenhum navegador.')
 
 
 def tem_sessao(context):
@@ -24,7 +40,7 @@ def tem_sessao(context):
 def conta_logada(page):
     """Nome da conta logada, lido do link 'Perfil' do menu lateral ('' se não achar)."""
     page.goto('https://www.tiktok.com/', wait_until='domcontentloaded')
-    page.wait_for_timeout(6000)
+    page.wait_for_timeout(8000)
     links = page.locator('[data-e2e="nav-profile"]').all()
     links += page.get_by_role('link', name=re.compile(r'^\s*(Perfil|Profile)\s*$', re.I)).all()
     for link in links:
@@ -37,13 +53,14 @@ def conta_logada(page):
 def main():
     subprocess.run(['gh', 'auth', 'status'], check=True)
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = abrir(p)
         context = browser.new_context(locale='pt-BR')
         page = context.new_page()
         page.goto('https://www.tiktok.com/login')
+        print('>> Na tela de login, prefira "Usar código QR" e escaneie com o app do celular.')
         for tentativa in range(1, TENTATIVAS + 1):
-            input(f'\n[{tentativa}/{TENTATIVAS}] Entre em @{CONTA} na janela do Chrome que abriu. '
-                  'Quando o feed aparecer, pressione Enter aqui: ')
+            input(f'\n[{tentativa}/{TENTATIVAS}] Entre em @{CONTA} na janela que abriu. '
+                  'Quando o feed de vídeos aparecer, pressione Enter aqui: ')
             if not tem_sessao(context):
                 print('>> O TikTok ainda não registrou o login nessa janela. Termine de entrar e aperte Enter de novo.')
                 continue
@@ -54,7 +71,7 @@ def main():
             if conta:
                 print(f'>> A janela está logada em @{conta}, não em @{CONTA}. Saia dessa conta, entre na certa e aperte Enter.')
             else:
-                print('>> Logado, mas não consegui ler o nome da conta. Aguarde o feed carregar por completo e aperte Enter.')
+                print('>> Logado, mas não consegui ler o nome da conta. Espere o feed carregar por completo e aperte Enter.')
             page.goto('https://www.tiktok.com/')
         else:
             browser.close()
