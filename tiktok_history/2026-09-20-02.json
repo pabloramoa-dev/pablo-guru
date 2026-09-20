@@ -1,7 +1,7 @@
 {
   "key": "2026-09-20-02",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "o-foco-e-a-ponte",
     "title": "O foco e a ponte",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-20"
   },
-  "script_hash": "5a717e9142f7efeac097ebeac5b1ca40d3e455ca91c1001143d1fafd70d47e60"
+  "script_hash": "5a717e9142f7efeac097ebeac5b1ca40d3e455ca91c1001143d1fafd70d47e60",
+  "video_hash": "18f02364f4d17d66de52cc6d78cfda4069d01dd8aec28f82cdbae4d46a5166f5",
+  "duration": 48.7
 }
