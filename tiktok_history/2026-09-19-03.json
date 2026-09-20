@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-19-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "pedir-ajuda-sem-peso",
+    "title": "A ponte compartilhada",
+    "prop": "map",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você consegue pedir ajuda antes de transformar uma dificuldade pequena em peso enorme? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma estudante atrasou um trabalho, mas escondeu a dúvida para não incomodar a colega.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A ajuda é uma ponte: não carrega você até o destino, mas cria apoio para atravessar um trecho difícil.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine você nessa história, diante da ponte. O que precisa ser explicado para alguém oferecer apoio sem adivinhar?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que pedir ajuda não diminui sua capacidade; torna visível a parte que precisa ser compartilhada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Diga o problema, peça uma ação específica e combine quando retomarão a tarefa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem poderia receber hoje um pedido claro seu?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-19"
+  },
+  "script_hash": "8b32ac7e88fa8036104b997d7e79f79f7cd904f1e5d25fb5f890a20ff36dc413"
+}
