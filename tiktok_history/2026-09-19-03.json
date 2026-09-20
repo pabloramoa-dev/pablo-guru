@@ -1,7 +1,7 @@
 {
   "key": "2026-09-19-03",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "pedir-ajuda-sem-peso",
     "title": "A ponte compartilhada",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-19"
   },
-  "script_hash": "8b32ac7e88fa8036104b997d7e79f79f7cd904f1e5d25fb5f890a20ff36dc413"
+  "script_hash": "8b32ac7e88fa8036104b997d7e79f79f7cd904f1e5d25fb5f890a20ff36dc413",
+  "video_hash": "119499a0f0d9653336f2db834e0e7d60062a3174011cf17dc84adf2896d23a88",
+  "duration": 52.5
 }
