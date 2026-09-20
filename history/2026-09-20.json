@@ -1,0 +1,46 @@
+{
+  "id": "a-luz-do-outro",
+  "title": "A janela acesa",
+  "prop": "lamp",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A vida dos outros parece mais fácil que a sua? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa observava janelas iluminadas e imaginava casas sem problemas. Só enxergava a luz que chegava à rua.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Não via as conversas difíceis, a bagunça ou os dias de cansaço.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine você diante dessas janelas. Atravesse comigo esta ponte. É justo comparar sua casa inteira com um pequeno pedaço da casa de alguém?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Estou completando com imaginação o que não consigo ver.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A alegria de outra pessoa pode ser real sem significar que tudo na vida dela é simples.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que na sua própria vida merece atenção agora?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-20",
+  "hook_type": "dor",
+  "hook_text": "A vida dos outros parece mais fácil que a sua? Escute isso.",
+  "script_sha256": "bc1544442daa42ffc04ecaba92c71279fc1706ee70c8f623449259b3821ba29d"
+}
