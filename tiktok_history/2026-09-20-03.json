@@ -1,7 +1,7 @@
 {
   "key": "2026-09-20-03",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "prioridade-que-chega-inteira",
     "title": "A ponte das prioridades",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-20"
   },
-  "script_hash": "4bbc79fd5d1b1a137db924219017d0fc669d22eead20c0cf5d2ba7c58e79d47d"
+  "script_hash": "4bbc79fd5d1b1a137db924219017d0fc669d22eead20c0cf5d2ba7c58e79d47d",
+  "video_hash": "c3dd9b326a9e02e71cc9626077a9e998334a2cbe600a780e163869b633337be6",
+  "duration": 49.833333
 }
