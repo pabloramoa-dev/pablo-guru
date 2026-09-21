@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-21-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "medo-de-comecar-e-a-catraca",
+    "title": "A catraca do primeiro passo",
+    "prop": "lamp",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Qual começo você está adiando por medo de não saber fazer direito? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma artesã recebeu uma encomenda simples, mas adiou o primeiro esboço, esperando dominar toda a técnica antes de tentar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O medo virou uma catraca: só liberava a passagem depois que alguém já estivesse andando.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Coloque-se nessa cena, com uma ponte à frente: você precisa atravessá-la inteira agora, ou apenas escolher onde apoiar o próximo passo?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que começar pode ser uma forma de investigar, não uma prova final.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Faça uma versão mínima, defina um limite de tempo e observe o que aprendeu antes de decidir se continua.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual começo pequeno você pode testar hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-21"
+  },
+  "script_hash": "c03ad321f04ecd32667e75fe6aa259a31d766389179ba120d1098b11056347c1"
+}
