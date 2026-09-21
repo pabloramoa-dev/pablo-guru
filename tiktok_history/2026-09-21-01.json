@@ -1,7 +1,7 @@
 {
   "key": "2026-09-21-01",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-regua-do-proprio-caminho",
     "title": "A régua do próprio caminho",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-21"
   },
-  "script_hash": "ea9b3882a3b01cada0400055252d14fb8ec451b256c487a7831468073cd46153"
+  "script_hash": "ea9b3882a3b01cada0400055252d14fb8ec451b256c487a7831468073cd46153",
+  "video_hash": "330ab7da0e9214756ab9316448e1d3fb830a2b2fc56f7c7da86f232ab15ac7fe",
+  "duration": 50.433333
 }
