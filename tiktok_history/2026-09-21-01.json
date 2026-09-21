@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-21-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-regua-do-proprio-caminho",
+    "title": "A régua do próprio caminho",
+    "prop": "map",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você mede seu avanço pela velocidade de quem começou antes? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma pessoa comparava seus primeiros meses de trabalho com alguém experiente. Achava que partiam do mesmo ponto.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A comparação era como usar uma régua desenhada para outro terreno: media distância, mas ignorava inclinações.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine esse mapa nas suas mãos e coloque-se nessa história, atravessando comigo a ponte: você está seguindo seu percurso ou tentando caber no trajeto de outra pessoa?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que contexto muda o significado da diferença.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Compare processos, não placares: registre uma habilidade praticada e o próximo passo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual medida do seu caminho você quer observar agora?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-21"
+  },
+  "script_hash": "ea9b3882a3b01cada0400055252d14fb8ec451b256c487a7831468073cd46153"
+}
