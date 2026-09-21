@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-20-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "prioridade-que-chega-inteira",
+    "title": "A ponte das prioridades",
+    "prop": "map",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Qual tarefa importante você vai proteger hoje antes de aceitar outra? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma pessoa respondia mensagens urgentes pela manhã e deixava o trabalho principal para o fim.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "As prioridades eram pratos girando: cada pedido roubava uma mão, até nenhum receber atenção suficiente.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine você diante de uma ponte. O que precisa chegar inteiro ao outro lado antes do restante?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que prioridade não é chamar tudo de importante; é escolher o que pode esperar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Liste três tarefas, note o custo de adiar cada uma e proteja um horário para a primeira.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual prioridade concreta merece seu primeiro bloco de atenção hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-20"
+  },
+  "script_hash": "4bbc79fd5d1b1a137db924219017d0fc669d22eead20c0cf5d2ba7c58e79d47d"
+}
