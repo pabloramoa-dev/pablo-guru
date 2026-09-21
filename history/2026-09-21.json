@@ -1,0 +1,46 @@
+{
+  "id": "as-raizes",
+  "title": "O jardim e as raízes",
+  "prop": "seed",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Você copia os outros e não consegue o mesmo resultado? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa viu um jardim bonito e repetiu a quantidade de água em todos os seus vasos. Algumas plantas começaram a sofrer.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ela copiou o cuidado, mas esqueceu de observar as necessidades.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine esse jardim diante de você. Atravesse comigo esta ponte. Aquilo que ajuda alguém também combina com suas condições de hoje?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso aprender com o exemplo e adaptar o que preciso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma referência oferece possibilidades. Ela não conhece seu tempo, seus recursos ou suas responsabilidades.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual parte desse exemplo realmente serve para você?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-21",
+  "hook_type": "dor",
+  "hook_text": "Você copia os outros e não consegue o mesmo resultado? Escute isso.",
+  "script_sha256": "c902d314fef5a94d9a4db0d90d6836a1d7a565d2d396ac4e0ecd3ad54d54e406"
+}
