@@ -1,7 +1,7 @@
 {
   "key": "2026-09-21-02",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "medo-de-comecar-e-a-catraca",
     "title": "A catraca do primeiro passo",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-21"
   },
-  "script_hash": "c03ad321f04ecd32667e75fe6aa259a31d766389179ba120d1098b11056347c1"
+  "script_hash": "c03ad321f04ecd32667e75fe6aa259a31d766389179ba120d1098b11056347c1",
+  "video_hash": "10d4d1cfbc0179387f5489964d87db00bcf133e24cc50ce56c7679325dad2101",
+  "duration": 48.9
 }
