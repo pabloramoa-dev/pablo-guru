@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-22-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-espaco-entre-as-palavras",
+    "title": "O espaço entre as palavras",
+    "prop": "book",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você interrompe alguém antes de entender o que ela realmente quis dizer? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma colega respondia enquanto a amiga explicava uma preocupação, oferecendo solução antes de entender o pedido.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Escutar é como virar páginas devagar: a pressa escolhe o final antes de conhecer a história.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Imagine esse livro nas suas mãos e atravesse comigo a ponte: você ouve para compreender ou apenas para responder?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que esperar também é uma forma de participar da conversa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na virada, confirme o que entendeu antes de aconselhar: uma pergunta simples pode revelar a necessidade real.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que conversa merece sua escuta inteira hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-22"
+  },
+  "script_hash": "530db6ad90071d73d63f1aa248307f77f8109da09d6c5fb3c13ca03494aa01ea"
+}
