@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-22-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-lanterna-do-intervalo",
+    "title": "A lanterna do intervalo",
+    "prop": "lamp",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você consegue esperar dez minutos antes de responder quando algo não sai como queria? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Dois vizinhos combinaram trocar uma informação importante, mas um deles enviou mensagens seguidas ao perceber o silêncio do outro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A impaciência era uma lanterna apontada para a porta: iluminava a espera, mas escondia o restante do caminho.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora coloque-se nessa situação e atravesse comigo esta ponte: você tem evidência de problema ou apenas vontade de eliminar a dúvida?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que esperar não é abandonar a situação; é evitar que minha ansiedade escolha a resposta por mim.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na prática, combine um horário para retomar, afaste o telefone por alguns minutos e anote o que realmente precisa ser resolvido.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que espera concreta você pode respeitar hoje sem transformar silêncio em conclusão?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-22"
+  },
+  "script_hash": "0ed0f8a15cee96de86a770096e67135eb538bd65745c3ed526759136a202ff5d"
+}
