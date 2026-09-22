@@ -1,7 +1,7 @@
 {
   "key": "2026-09-21-03",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "limites-mapa-de-fronteiras",
     "title": "O mapa das fronteiras",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-21"
   },
-  "script_hash": "b80068cf3f60793e05d5f1af81c3c0fd14aeee20f8941e7747cd7ca8c34e1bfc"
+  "script_hash": "b80068cf3f60793e05d5f1af81c3c0fd14aeee20f8941e7747cd7ca8c34e1bfc",
+  "video_hash": "48938d8a0c961459180c763538ce018a704f84cf435022c18a39b512e802e6b9",
+  "duration": 52.733333
 }
