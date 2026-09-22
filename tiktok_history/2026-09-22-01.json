@@ -1,7 +1,7 @@
 {
   "key": "2026-09-22-01",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "o-espaco-entre-as-palavras",
     "title": "O espaço entre as palavras",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-22"
   },
-  "script_hash": "530db6ad90071d73d63f1aa248307f77f8109da09d6c5fb3c13ca03494aa01ea"
+  "script_hash": "530db6ad90071d73d63f1aa248307f77f8109da09d6c5fb3c13ca03494aa01ea",
+  "video_hash": "048028bd8bd7e8bd9340d46a7c5d8d0a9009bea9f8f633ebc886e78a86419c29",
+  "duration": 46.933333
 }
