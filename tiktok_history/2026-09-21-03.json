@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-21-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "limites-mapa-de-fronteiras",
+    "title": "O mapa das fronteiras",
+    "prop": "map",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você consegue dizer até onde pode ajudar sem explicar sua vida inteira? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Duas colegas combinavam tarefas; uma aceitava horários impossíveis e depois cancelava planos pessoais para cumprir tudo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Um limite é como um mapa de fronteiras: orienta a passagem sem transformar cada pedido em obrigação.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora coloque-se nessa história e atravesse comigo esta ponte: que parte da ajuda você oferece, e que parte precisa permanecer do outro lado?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Você descobre que ser disponível não exige estar acessível em qualquer horário.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na virada, responda com um prazo real: “Posso fazer isso amanhã, não hoje.” Se necessário, repita sem acrescentar justificativas.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual limite específico você pode comunicar antes que seu tempo seja comprometido?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-21"
+  },
+  "script_hash": "b80068cf3f60793e05d5f1af81c3c0fd14aeee20f8941e7747cd7ca8c34e1bfc"
+}
