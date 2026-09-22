@@ -1,7 +1,7 @@
 {
   "key": "2026-09-22-02",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-lanterna-do-intervalo",
     "title": "A lanterna do intervalo",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-22"
   },
-  "script_hash": "0ed0f8a15cee96de86a770096e67135eb538bd65745c3ed526759136a202ff5d"
+  "script_hash": "0ed0f8a15cee96de86a770096e67135eb538bd65745c3ed526759136a202ff5d",
+  "video_hash": "03cf67339de800ec1efbe6e4544b193cb401d26eade6532b98e6e8b543e58361",
+  "duration": 57.066667
 }
