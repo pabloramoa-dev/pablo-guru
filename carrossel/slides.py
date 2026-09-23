@@ -73,7 +73,7 @@ def _construir():
                 return Group(papel, g)
 
             if S['tipo'] == 'capa':
-                serie = vp.manchete('A BOLHA DA ESPIRITUALIDADE', cor_papel='recorte', tam=vp._fs(2.8),
+                serie = vp.manchete('ESPIRITUALIDADE SEM CLICHÊ', cor_papel='recorte', tam=vp._fs(2.8),
                                     semente=5, juntar=True, desalinho=False)
                 serie.move_to(UP * H * 0.40 + LEFT * W * 0.10)
                 titulo = vp.manchete(S['titulo'].upper(), cor_papel='dourado', tam=vp._fs(6.2),
@@ -119,7 +119,7 @@ def _construir():
                 assin.next_to(frase, DOWN, buff=0.25 * u).align_to(frase, RIGHT)
                 cta = Group(*[vp.manchete(t, cor_papel='recorte', tam=vp._fs(3.4), semente=41 + k,
                                           juntar=True, desalinho=False)
-                              for k, t in enumerate(('SALVE E MANDE', 'PARA QUEM VIVE', 'NA BOLHA'))]) \
+                              for k, t in enumerate(('SALVE E MANDE', 'PARA QUEM ESTÁ', 'NESSA BUSCA'))]) \
                     .arrange(DOWN, buff=0.12 * u, aligned_edge=LEFT)
                 cta.move_to(DOWN * H * 0.17 + LEFT * W * 0.20)
                 pablo = PabloGuru(escala=H / 25.28 * 2.0).move_to(RIGHT * W * 0.25 + DOWN * H * 0.34)

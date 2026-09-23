@@ -1,7 +1,7 @@
-"""Carrossel diário das 18h — "A bolha da espiritualidade" (v1, 23/09/2026).
+"""Carrossel diário das 18h — "Espiritualidade sem clichê" (v1, 23/09/2026).
 
 Série de carrosséis que olham com carinho e honestidade para as ideias que
-circulam na bolha espiritual da internet: o que cada uma tem de verdade, o que
+circulam no meio espiritual da internet: o que cada uma tem de verdade, o que
 virou clichê e o que merece ser repensado. O Pablo Guru não debocha de quem
 busca — ele ajuda a buscar melhor.
 
@@ -12,7 +12,7 @@ from __future__ import annotations
 
 INICIO = '2026-09-23'
 
-HASHTAGS_BASE = ['#pabloguru', '#espiritualidade', '#bolhaespiritual', '#autoconhecimento', '#despertar']
+HASHTAGS_BASE = ['#pabloguru', '#espiritualidade', '#vidaespiritual', '#autoconhecimento', '#despertar']
 
 BANCO = [
     {
@@ -46,8 +46,8 @@ BANCO = [
         'hashtags': ['#bypassespiritual', '#vidainterior', '#consciencia'],
     },
     {
-        'id': 'frases-da-bolha',
-        'titulo': '5 frases da bolha espiritual para repensar',
+        'id': 'frases-espirituais',
+        'titulo': '5 frases espirituais para repensar',
         'subtitulo': 'Ditas com amor, mas nem sempre ajudam',
         'slides': [
             ('“Tudo acontece por um motivo”', 'Pode consolar. Mas, dita a quem acabou de perder algo, soa como se a dor fosse merecida. Às vezes, “sinto muito” basta.'),
@@ -62,12 +62,12 @@ BANCO = [
     },
     {
         'id': 'sombra-jung',
-        'titulo': 'Sombra: o que Jung disse e a bolha esqueceu',
+        'titulo': 'Sombra: o que Jung disse e a internet esqueceu',
         'subtitulo': 'Não é o seu lado mau. É o seu lado não visto.',
         'slides': [
             ('O conceito', 'Para Carl Jung, a sombra reúne partes de nós que não aceitamos e empurramos para fora da consciência. Não só defeitos: qualidades também.'),
             ('Como ela aparece', 'Na irritação exagerada com alguém. No “eu jamais faria isso”. Muitas vezes, o que mais incomoda no outro fala de nós.'),
-            ('O que a bolha simplificou', '“Trabalhar a sombra” virou sinônimo de eliminar o negativo. A proposta de Jung era integrar: reconhecer e conversar, não exterminar.'),
+            ('O que a internet simplificou', '“Trabalhar a sombra” virou sinônimo de eliminar o negativo. A proposta de Jung era integrar: reconhecer e conversar, não exterminar.'),
             ('A sombra dourada', 'Autores junguianos lembram que também escondemos qualidades: a coragem que admiramos nos outros e não nos permitimos.'),
             ('Exercício simples', 'Pense em alguém que te irrita muito. Que qualidade dessa pessoa você não se permite ter?'),
         ],
@@ -108,9 +108,9 @@ BANCO = [
     {
         'id': 'desapego-frieza',
         'titulo': 'Desapego não é frieza',
-        'subtitulo': 'A confusão mais comum da bolha espiritual',
+        'subtitulo': 'A confusão mais comum no meio espiritual',
         'slides': [
-            ('O mal-entendido', 'Na bolha, desapego às vezes vira não se importar, não sentir falta, não se envolver. Isso tem outro nome: armadura.'),
+            ('O mal-entendido', 'No meio espiritual, desapego às vezes vira não se importar, não sentir falta, não se envolver. Isso tem outro nome: armadura.'),
             ('O sentido antigo', 'No budismo, o apego que gera sofrimento é o agarrar: exigir que algo não mude. Amar continua permitido.'),
             ('A imagem', 'Segurar um pássaro com a mão aberta. Ele pode ficar ou voar. Você continua amando o pássaro.'),
             ('Sinais de armadura', 'Evitar vínculos para não sofrer. Dizer “tanto faz” para tudo. Chamar medo de evolução espiritual.'),
@@ -122,7 +122,7 @@ BANCO = [
     },
 ]
 
-# Temas para o gerador depois do banco (sempre sobre a bolha espiritual).
+# Temas para o gerador depois do banco (sempre sobre ideias do meio espiritual).
 TEMAS = [
     'Karma não é castigo: o que a palavra significa nas tradições de origem',
     'Lei da atração: o que ela acerta e o que ela esquece',

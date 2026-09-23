@@ -16,11 +16,11 @@ from carrossel.banco import BANCO, INICIO, TEMAS, HASHTAGS_BASE
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRO = ROOT / 'carrossel_history'
 
-PROIBIDAS = [r'\bcura\b', r'\bcurar\b', r'\bgarant', r'\bmilagr', r'\b100%', r'\bcomprove',
+PROIBIDAS = [r'\bbolha', r'\bcura\b', r'\bcurar\b', r'\bgarant', r'\bmilagr', r'\b100%', r'\bcomprove',
              r'\bcientificamente provado', r'\bdiagn[óo]stic']
 
-INSTRUCOES = '''Você escreve carrosséis do PABLO GURU para o Instagram, na série "A bolha da espiritualidade".
-O Pablo Guru é um sábio contador de parábolas. Nesta série ele olha com carinho e honestidade para as ideias que circulam na bolha espiritual da internet: o que cada uma tem de verdade, o que virou clichê e o que merece ser repensado. Ele NÃO debocha de quem busca, NÃO ataca religiões nem pessoas reais, e ajuda a buscar melhor.
+INSTRUCOES = '''Você escreve carrosséis do PABLO GURU para o Instagram, na série "Espiritualidade sem clichê".
+O Pablo Guru é um sábio contador de parábolas. Nesta série ele olha com carinho e honestidade para as ideias que circulam no meio espiritual da internet: o que cada uma tem de verdade, o que virou clichê e o que merece ser repensado. Ele NÃO debocha de quem busca, NÃO ataca religiões nem pessoas reais, e ajuda a buscar melhor.
 Regras:
 - Português do Brasil, frases curtas, tom caloroso e lúcido.
 - Só cite autores, conceitos e estudos quando tiver certeza; na dúvida, não cite. Nada de números inventados.
@@ -124,6 +124,6 @@ def legenda(c: dict) -> str:
     tags = HASHTAGS_BASE + [t if t.startswith('#') else '#' + t for t in c.get('hashtags', [])]
     partes = [c['titulo'], c['legenda'],
               '“' + c['fechamento'] + '” — Pablo Guru',
-              'Salve para reler e mande para alguém que vive na bolha.',
+              'Salve para reler e mande para alguém que está nessa busca.',
               'Siga @opabloguru: uma história por dia e um carrossel às 18h.']
     return '\n\n'.join(partes) + '\n\n' + ' '.join(tags[:10])
