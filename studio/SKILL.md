@@ -101,9 +101,9 @@ Carrossel: `python -m carrossel.publicar preparar --dia AAAA-MM-DD --ensaio` ger
 
 ---
 
-## 5. Carrossel das 18h — "A bolha da espiritualidade"
-- 7 slides 1080x1350: capa, 5 de conteúdo, fechamento com frase do Pablo + "Salve e mande para quem vive na bolha".
-- Olhar carinhoso e lúcido sobre ideias da bolha espiritual (positividade tóxica, bypass espiritual, sombra, gratidão obrigatória…). Sem deboche, sem atacar religiões ou pessoas reais, sem promessa de cura, sem números ou citações inventadas.
+## 5. Carrossel das 18h — "Espiritualidade sem clichê"
+- 7 slides 1080x1350: capa, 5 de conteúdo, fechamento com frase do Pablo + "Salve e mande para quem está nessa busca".
+- Olhar carinhoso e lúcido sobre ideias do meio espiritual (positividade tóxica, bypass espiritual, sombra, gratidão obrigatória…). Sem deboche, sem atacar religiões ou pessoas reais, sem promessa de cura, sem números ou citações inventadas.
 - Banco revisado a partir de 23/09 (7 dias), depois gerador com revisão + moderação.
 - Workflow às 17h07 prepara, sobe as imagens para o `pablo-guru-legal` (GitHub Pages) e publica às 18h; atraso > 4 h não publica. Registro em `carrossel_history/`; nunca reenvia sozinho. Pausa: variável `IG_CARROSSEL_PAUSADO=true`.
 
