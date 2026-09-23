@@ -10,7 +10,7 @@ de INICIO) e a lista de TEMAS que o gerador usa quando o banco acaba.
 """
 from __future__ import annotations
 
-INICIO = '2026-09-24'
+INICIO = '2026-09-23'
 
 HASHTAGS_BASE = ['#pabloguru', '#espiritualidade', '#bolhaespiritual', '#autoconhecimento', '#despertar']
 
