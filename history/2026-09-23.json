@@ -1,0 +1,46 @@
+{
+  "id": "a-pausa",
+  "title": "A xícara na mesa",
+  "prop": "cup",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Você sente culpa quando para para descansar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa carregava uma bandeja havia tanto tempo que suas mãos tremiam. Mesmo diante de uma mesa, recusava colocar a bandeja nela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Achava que descansar significava deixar de se importar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Imagine essa bandeja nas suas mãos. Atravesse comigo esta ponte. Uma pausa apagaria seu cuidado ou ajudaria você a continuar com mais atenção?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso descansar e depois avaliar o que ainda consigo fazer.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Seu valor não precisa ser provado pelo cansaço. Descanso também faz parte da vida.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que pausa possível cabe no seu dia de hoje?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-23",
+  "hook_type": "dor",
+  "hook_text": "Você sente culpa quando para para descansar? Escute isso.",
+  "script_sha256": "814d5d4ab51ea217795c36257a6cb7751f7c98e68816ab31e92aec5859be1b79"
+}
