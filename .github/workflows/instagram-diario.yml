@@ -93,10 +93,13 @@ jobs:
           cd "$RUNNER_TEMP/publico"
           mkdir -p midia
           cp "$PASTA/Pablo_Guru_Diario.mp4" "midia/diario-$DIA.mp4"
+          # Capa 9:16 feita para a grade (título + objeto dentro do recorte 3:4).
+          if [ -f "$PASTA/capa_ig.jpg" ]; then cp "$PASTA/capa_ig.jpg" "midia/capa-$DIA.jpg"; fi
           # Mantém só a última semana de vídeos diários no site (o Instagram já copiou os antigos).
           limite=$(date -u -d "$DIA -7 days" +%F)
-          for arquivo in midia/diario-*.mp4; do
-            dia_arquivo=${arquivo#midia/diario-}; dia_arquivo=${dia_arquivo%.mp4}
+          for arquivo in midia/diario-*.mp4 midia/capa-*.jpg; do
+            [ -e "$arquivo" ] || continue
+            dia_arquivo=${arquivo#midia/*-}; dia_arquivo=${dia_arquivo%.*}
             if [[ "$dia_arquivo" < "$limite" ]]; then git rm -q "$arquivo"; fi
           done
           git config user.name "pablo-guru"
@@ -114,11 +117,18 @@ jobs:
           for tentativa in $(seq 1 40); do
             codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$url")
             echo "tentativa $tentativa: $codigo"
-            if [ "$codigo" = "200" ]; then exit 0; fi
+            if [ "$codigo" = "200" ]; then break; fi
+            if [ "$tentativa" = 40 ]; then echo "::error::O arquivo não ficou público a tempo."; exit 1; fi
             sleep 15
           done
-          echo "::error::O arquivo não ficou público a tempo."
-          exit 1
+          # A capa é opcional: se não ficar pública, o Reel sai com o 1º quadro.
+          if [ -f "${{ steps.escolha.outputs.pasta }}/capa_ig.jpg" ]; then
+            for tentativa in $(seq 1 20); do
+              codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$BASE_PUBLICA/capa-$DIA.jpg")
+              if [ "$codigo" = "200" ]; then echo "CAPA_URL=$BASE_PUBLICA/capa-$DIA.jpg" >> "$GITHUB_ENV"; break; fi
+              sleep 10
+            done
+          fi
 
       - name: Ler o token do Instagram no Render
         if: steps.modo.outputs.enviar == 'sim'
@@ -155,5 +165,6 @@ jobs:
           --dia "$DIA"
           --url "$BASE_PUBLICA/diario-$DIA.mp4"
           --legenda "$PASTA/caption.txt"
+          --capa "${CAPA_URL:-}"
           --execucao "$EXECUCAO"
           --titulo "$TITULO"

@@ -1,0 +1,201 @@
+name: Pablo Guru Carrossel 18h
+
+# Carrossel diário "A bolha da espiritualidade" no @opabloguru, às 18h de Brasília.
+# O cron começa 17h07 (o GitHub costuma atrasar): renderiza, sobe as imagens,
+# deixa o carrossel pronto na API e só publica às 18h. Se o GitHub atrasar
+# mais de 4h, não publica (não acumula post fora de hora).
+# Registro em carrossel_history/<data>.json — nunca reenvia sozinho.
+# Pausa de emergência: variável do repositório IG_CARROSSEL_PAUSADO = true.
+
+on:
+  schedule:
+    - cron: "7 20 * * *"   # 17h07 em Brasília
+  workflow_dispatch:
+    inputs:
+      dia:
+        description: "Data YYYY-MM-DD (vazio = hoje em Brasília)"
+        required: false
+        default: ""
+      confirmacao:
+        description: "Escreva PUBLICAR para enviar ao perfil; qualquer outro valor só gera as imagens"
+        required: true
+        default: nao
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pablo-carrossel
+  cancel-in-progress: false
+
+env:
+  SERVICO_RENDER: srv-daj08u7qj5pc73bpq7lg
+  REPOSITORIO_MIDIA: pabloramoa-dev/pablo-guru-legal
+  BASE_PUBLICA: https://pabloramoa-dev.github.io/pablo-guru-legal/midia
+
+jobs:
+  carrossel:
+    if: vars.IG_CARROSSEL_PAUSADO != 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Decidir o modo
+        id: modo
+        env:
+          EVENTO: ${{ github.event_name }}
+          CONFIRMACAO: ${{ inputs.confirmacao }}
+          DIA_PEDIDO: ${{ inputs.dia }}
+        run: |
+          dia="${DIA_PEDIDO:-$(TZ=America/Sao_Paulo date +%F)}"
+          echo "dia=$dia" >> "$GITHUB_OUTPUT"
+          if [ "$EVENTO" = "workflow_dispatch" ] && [ "$CONFIRMACAO" != "PUBLICAR" ]; then
+            echo "enviar=nao" >> "$GITHUB_OUTPUT"
+            echo "Ensaio: gera as imagens e a legenda no artefato; nada vai ao perfil." >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "enviar=sim" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Dependências
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg libcairo2-dev libpango1.0-dev pkg-config
+          mkdir -p ~/.fonts
+          for f in Poppins-Bold Poppins-Regular; do
+            curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
+          done
+          fc-cache -f >/dev/null
+          pip install manim==0.21.0 numpy pillow
+
+      - name: Credenciais editoriais (só se o banco inicial tiver acabado)
+        env:
+          SECRET_OPENAI: ${{ secrets.OPENAI_API_KEY }}
+          VAR_MODELO: ${{ vars.PABLO_SCRIPT_MODEL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          python3 - <<'FIM'
+          import json, os, urllib.request
+          chave = os.environ.get('SECRET_OPENAI', '')
+          modelo = os.environ.get('VAR_MODELO', '')
+          if not (chave and modelo) and os.environ.get('RENDER_API_KEY'):
+              pedido = urllib.request.Request(
+                  'https://api.render.com/v1/services/' + os.environ['SERVICO_RENDER'] + '/env-vars?limit=100',
+                  headers={'Authorization': 'Bearer ' + os.environ['RENDER_API_KEY'],
+                           'Accept': 'application/json', 'User-Agent': 'pablo-guru-carrossel'})
+              with urllib.request.urlopen(pedido, timeout=30) as resposta:
+                  dados = {e['envVar']['key']: e['envVar']['value'] for e in json.load(resposta)}
+              chave = chave or dados.get('OPENAI_API_KEY', '')
+              modelo = modelo or dados.get('OPENAI_MODEL', '')
+          with open(os.environ['GITHUB_ENV'], 'a') as arq:
+              if chave:
+                  print('::add-mask::' + chave)
+                  arq.write('OPENAI_API_KEY=' + chave + '\n')
+              if modelo:
+                  arq.write('PABLO_SCRIPT_MODEL=' + modelo + '\n')
+          print({'openai_key_present': bool(chave), 'script_model_configured': bool(modelo)})
+          FIM
+
+      - name: Preparar conteúdo e slides
+        id: prep
+        env:
+          DIA: ${{ steps.modo.outputs.dia }}
+          ENVIAR: ${{ steps.modo.outputs.enviar }}
+        run: |
+          args=(--dia "$DIA" --saida output_carrossel)
+          if [ "$ENVIAR" != "sim" ]; then args+=(--ensaio); fi
+          python -m carrossel.publicar preparar "${args[@]}"
+
+      - name: Arquivar slides
+        if: steps.prep.outputs.publicar == 'sim'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pablo-guru-carrossel-${{ github.run_id }}
+          path: output_carrossel/
+          retention-days: 30
+
+      - name: Guardar as imagens no repositório público
+        if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim'
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+          DIA: ${{ steps.modo.outputs.dia }}
+        run: |
+          set -euo pipefail
+          if [ -z "$MIDIA_TOKEN" ]; then echo "::error::Falta o segredo MIDIA_TOKEN."; exit 1; fi
+          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/$REPOSITORIO_MIDIA.git" "$RUNNER_TEMP/publico"
+          mkdir -p "$RUNNER_TEMP/publico/midia"
+          for f in output_carrossel/slide-*.jpg; do
+            n=${f##*slide-}; n=${n%.jpg}
+            cp "$f" "$RUNNER_TEMP/publico/midia/carrossel-$DIA-$n.jpg"
+          done
+          cd "$RUNNER_TEMP/publico"
+          limite=$(date -u -d "$DIA -7 days" +%F)
+          for arquivo in midia/carrossel-*.jpg; do
+            [ -e "$arquivo" ] || continue
+            d=${arquivo#midia/carrossel-}; d=${d:0:10}
+            if [[ "$d" < "$limite" ]]; then git rm -q "$arquivo"; fi
+          done
+          git config user.name "pablo-guru"
+          git config user.email "pablo-guru@users.noreply.github.com"
+          git add midia
+          git commit -q -m "Carrossel $DIA" || echo "imagens já estavam iguais"
+          git push -q
+
+      - name: Esperar as imagens ficarem públicas
+        if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim'
+        env:
+          DIA: ${{ steps.modo.outputs.dia }}
+          SLIDES: ${{ steps.prep.outputs.slides }}
+        run: |
+          for n in $(seq 1 "$SLIDES"); do
+            url="$BASE_PUBLICA/carrossel-$DIA-$n.jpg"
+            for tentativa in $(seq 1 40); do
+              codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$url")
+              if [ "$codigo" = "200" ]; then break; fi
+              if [ "$tentativa" = 40 ]; then echo "::error::$url não ficou pública."; exit 1; fi
+              sleep 15
+            done
+          done
+
+      - name: Ler o token do Instagram no Render
+        if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim'
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          set -euo pipefail
+          python3 - <<'FIM'
+          import json, os, urllib.request
+          pedido = urllib.request.Request(
+              'https://api.render.com/v1/services/' + os.environ['SERVICO_RENDER'] + '/env-vars?limit=100',
+              headers={'Authorization': 'Bearer ' + os.environ['RENDER_API_KEY'],
+                       'Accept': 'application/json', 'User-Agent': 'pablo-guru-carrossel'})
+          with urllib.request.urlopen(pedido, timeout=30) as resposta:
+              dados = {e['envVar']['key']: e['envVar']['value'] for e in json.load(resposta)}
+          token = dados.get('IG_ACCESS_TOKEN', '')
+          if not token:
+              raise SystemExit('::error::Não encontrei IG_ACCESS_TOKEN no serviço do Render.')
+          print('::add-mask::' + token)
+          with open(os.environ['GITHUB_ENV'], 'a') as arq:
+              arq.write('IG_ACCESS_TOKEN=' + token + '\n')
+          FIM
+
+      - name: Publicar às 18h
+        if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim'
+        env:
+          DIA: ${{ steps.modo.outputs.dia }}
+          SLIDES: ${{ steps.prep.outputs.slides }}
+        run: >-
+          python -m carrossel.publicar publicar
+          --dia "$DIA"
+          --base "$BASE_PUBLICA"
+          --legenda output_carrossel/legenda.txt
+          --slides "$SLIDES"

@@ -125,6 +125,7 @@ jobs:
             output/validation.json
             output/preview_*.jpg
             output/capa.png
+            output/capa_ig.jpg
             output/metadados.json
             output/roteiro_studio.json
             output/integration_status.json
