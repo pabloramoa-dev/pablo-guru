@@ -182,7 +182,7 @@ def publicar(args):
     if registro.exists():
         raise SystemExit(f'Registro de {args.dia} já existe; nada foi reenviado')
     legenda = Path(args.legenda).read_text(encoding='utf-8').strip()
-    container = criar_container(args.url, legenda)
+    container = criar_container(args.url, legenda, getattr(args, 'capa', '') or '')
     print('container criado', flush=True)
     esperar(container)
     # Trava antes do único passo que coloca o Reel no ar.
@@ -211,6 +211,7 @@ def main():
     p2.add_argument('--dia', required=True)
     p2.add_argument('--url', required=True)
     p2.add_argument('--legenda', required=True)
+    p2.add_argument('--capa', default='', help='URL pública da capa 9:16 (opcional)')
     p2.add_argument('--execucao', default='')
     p2.add_argument('--titulo', default='')
     args = parser.parse_args()
