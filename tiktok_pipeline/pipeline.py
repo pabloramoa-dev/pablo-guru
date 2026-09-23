@@ -81,7 +81,6 @@ def prepare(key):
     if path.exists():
         return read(key)
     from daily.catalog import episodes
-    from daily.new_script import api
     prior = list(episodes())
     for folder in (ROOT/'history', HISTORY):
         for p in sorted(folder.glob('*.json')):
@@ -97,24 +96,23 @@ def prepare(key):
         model = os.environ.get('PABLO_SCRIPT_MODEL')
         if not model:
             raise RuntimeError('PABLO_SCRIPT_MODEL ausente')
+        # Mesmas instruções e mesma revisão de estilo do Instagram (daily/new_script.py):
+        # parábola com imagem, sem vocabulário de coach, com capa/destaque/frase.
+        from daily.new_script import write_script
+        previous = [{'title': e['title'], 'segments': e['segments'], 'frase': e.get('frase', '')} for e in prior[-50:]]
         for attempt in range(3):
-            prompt = '''Crie roteiro original brasileiro: exatamente 7 segmentos speaker,text,pause=0.35; speakers asker,pablo,pablo,pablo,asker,pablo,pablo. Primeiro: pergunta concreta dirigida ao espectador + exatamente Escute isso., máximo 18 palavras. Segunda fala: história hipotética de terceiros, sem apresentação. Terceira: metáfora. Quarta: coloca o espectador na história e menciona ponte. Quinta: descoberta. Sexta: virada útil. Sétima: pergunta final. 85–105 palavras. Retorne JSON id (slug),title,prop (lamp,seed,map,cup,book,key,bag),segments. Não copie os anteriores; não invente dados. Sem diagnósticos, promessas mágicas, conteúdo sexual, violência, substâncias, apostas ou dietas.'''
-            response = api('responses', {'model': model, 'instructions': prompt, 'input': json.dumps({'slot': key, 'topic': topic_for(key), 'attempt': attempt, 'previous': [{'title': e['title'], 'segments': e['segments']} for e in prior[-50:]]}, ensure_ascii=False), 'store': False, 'max_output_tokens': 1600})
-            if response.get('status') != 'completed':
-                episode = None
-                continue
-            raw = ''.join(c.get('text', '') for o in response.get('output', []) if o.get('type') == 'message' for c in o.get('content', []) if c.get('type') == 'output_text')
             try:
-                episode = json.loads(raw)
+                from daily.publicos import publico_do_dia, formato_do_dia
+                slot = int(key[-2:])
+                episode = write_script(model, topic_for(key), previous,
+                                       {'slot': key, 'attempt': attempt}, tries=2,
+                                       publico=publico_do_dia(key[:10], slot),
+                                       formato=formato_do_dia(key[:10], slot))
                 validate(episode)
-            except (ValueError, AssertionError, KeyError, TypeError):
+            except (RuntimeError, ValueError, AssertionError, KeyError, TypeError):
                 episode = None
                 continue
             if episode['id'] in ids or text_hash(episode) in hashes or episode['title'].casefold() in {e['title'].casefold() for e in prior}:
-                episode = None
-                continue
-            moderation = api('moderations', {'model': 'omni-moderation-latest', 'input': raw})
-            if moderation['results'][0]['flagged']:
                 episode = None
                 continue
             break
@@ -153,7 +151,11 @@ def render(key):
     finally:
         pa.narrar = original
     video = out / 'episodio.mp4'
-    shutil.copy2(result['episodio'], video)
+    # Capa do episódio como 1º quadro (mesma do Instagram): a grade do TikTok
+    # também passa a mostrar o título, não o mesmo rosto em todo vídeo.
+    import pablo_capa_vox as capa
+    capa.gerar_capa_ig(script['capa'], str(out / 'capa.jpg'))
+    capa.prefixar_capa(result['episodio'], str(out / 'capa.jpg'), str(video))
     info = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-show_format', '-of', 'json', str(video)]))
     v = next(s for s in info['streams'] if s['codec_type'] == 'video')
     a = next(s for s in info['streams'] if s['codec_type'] == 'audio')
@@ -161,7 +163,8 @@ def render(key):
         raise RuntimeError('MP4 fora do padrão')
     subprocess.run(['ffmpeg', '-v', 'error', '-i', str(video), '-f', 'null', '-'], check=True)
     item.update(state='validated', video_hash=hashlib.sha256(video.read_bytes()).hexdigest(), duration=float(info['format']['duration']))
-    (out/'legenda.txt').write_text(item['episode']['segments'][0]['text']+'\n\n'+item['episode']['segments'][-1]['text']+'\n\n#PabloGuru #Reflexao #Autoconhecimento')
+    from daily.prepare import legenda
+    (out/'legenda.txt').write_text(legenda(item['episode']).replace('Siga @opabloguru', 'Siga @opabloguru no TikTok'))
     save(key, item)
 
 def main():
