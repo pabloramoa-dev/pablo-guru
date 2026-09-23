@@ -1,0 +1,49 @@
+{
+  "key": "2026-09-22-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-lampada-e-a-mensagem",
+    "title": "A lâmpada e a mensagem",
+    "prop": "lamp",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Você revisa sua mensagem dez vezes antes de enviá-la por medo de parecer inadequado? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma pessoa relia cada mensagem antes de enviá-la, procurando qualquer frase que pudesse soar boba.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A autocrítica virou uma lâmpada apontada para a mancha, apagando o texto inteiro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Coloque-se nessa cena e atravesse comigo a ponte: você corrige a mensagem ou tenta impedir qualquer julgamento?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Descubro que uma frase imperfeita não prova incapacidade; ela apenas pode ser revisada depois.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na virada, limite a revisão a duas perguntas: o fato está claro e o tom respeitoso? Depois, envie.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Qual mensagem você pode enviar hoje sem exigir perfeição?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-22"
+  },
+  "script_hash": "1fed1a9d6663008f4ff38cb74f985717421ccfd60244cc44f45ca06817fc080a"
+}
