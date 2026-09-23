@@ -1,7 +1,7 @@
 {
   "key": "2026-09-22-03",
   "account": "opabloguru",
-  "state": "scripted",
+  "state": "validated",
   "episode": {
     "id": "a-lampada-e-a-mensagem",
     "title": "A lâmpada e a mensagem",
@@ -45,5 +45,7 @@
     ],
     "date": "2026-09-22"
   },
-  "script_hash": "1fed1a9d6663008f4ff38cb74f985717421ccfd60244cc44f45ca06817fc080a"
+  "script_hash": "1fed1a9d6663008f4ff38cb74f985717421ccfd60244cc44f45ca06817fc080a",
+  "video_hash": "de5cd905023858ca8784fd19a535cf4277e9999d20357e93d95de1489e7b0afa",
+  "duration": 51.166667
 }
