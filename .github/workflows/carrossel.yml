@@ -1,6 +1,6 @@
 name: Pablo Guru Carrossel 18h
 
-# Carrossel diário "A bolha da espiritualidade" no @opabloguru, às 18h de Brasília.
+# Carrossel diário "Espiritualidade sem clichê" no @opabloguru, às 18h de Brasília.
 # O cron começa 17h07 (o GitHub costuma atrasar): renderiza, sobe as imagens,
 # deixa o carrossel pronto na API e só publica às 18h. Se o GitHub atrasar
 # mais de 4h, não publica (não acumula post fora de hora).
