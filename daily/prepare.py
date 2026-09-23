@@ -22,14 +22,21 @@ def select(day: str, start: str = '2026-09-13') -> dict:
 def validate(ep):
     assert re.fullmatch(r'[a-z0-9][a-z0-9-]{1,63}',ep['id']), 'Identificador inválido'
     assert isinstance(ep['title'],str) and 3<=len(ep['title'])<=90
-    assert ep['prop'] in {'lamp','seed','map','cup','book','key','bag'}
+    from daily.new_script import PROPS
+    assert ep['prop'] in PROPS, 'Objeto sem desenho em studio/pablo_cenarios.py'
     assert len(ep['segments']) == 7
     assert [s['speaker'] for s in ep['segments']] == ['asker','pablo','pablo','pablo','asker','pablo','pablo']
     first=ep['segments'][0]['text'].strip()
     assert 3 <= len(first.split()) <= 18, 'Hook inicial deve ter entre 3 e 18 palavras'
     assert not first.casefold().startswith(('pablo guru', 'olá', 'oi,', 'bom dia')), 'Abertura lenta/abstrata proibida; comece pelo problema humano'
     assert re.fullmatch(r'[^?!.]+\? Escute isso\.', first), 'Use pergunta direta + Escute isso.'
-    assert 'ponte' in ep['segments'][3]['text'].lower()
+    # (até 22/09 a 4ª fala era obrigada a citar "ponte": todo episódio ficava igual)
+    from daily.publicos import PUBLICOS, FORMATOS
+    if 'publico' in ep:assert ep['publico'] in PUBLICOS, 'publico desconhecido'
+    if 'formato' in ep:assert ep['formato'] in FORMATOS, 'formato desconhecido'
+    for campo,limite in (('capa',6),('destaque',2),('frase',12)):
+        if campo in ep:
+            assert isinstance(ep[campo],str) and 1<=len(ep[campo].split())<=limite, f'{campo} fora do padrão'
     if 'hook_type' in ep:
         assert ep['hook_type'] in HOOK_TYPES, 'Tipo de hook inválido'
         assert ep.get('hook_text') == first, 'hook_text deve repetir exatamente a primeira fala'
@@ -37,6 +44,26 @@ def validate(ep):
         assert isinstance(s['text'], str) and 3 <= len(s['text']) <= 420
         assert isinstance(s['pause'],(int,float)) and .1<=s['pause']<=.8
     assert 65 <= sum(len(s['text'].split()) for s in ep['segments']) <= 140
+
+HASHTAGS_BASE=['#pabloguru','#reflexao','#autoconhecimento','#espiritualidade','#sabedoria']
+
+def pagina(ep):
+    """Página do caderno da Marina = nº do episódio desde a estreia do diário."""
+    return 1+max(0,(date.fromisoformat(ep.get('date','2026-09-13'))-date(2026,9,13)).days)
+
+def legenda(ep):
+    """Texto do post: gancho, a parábola em uma linha, a frase para salvar
+    (página do caderno da Marina), a pergunta final e o convite para seguir.
+    Hashtags: 5 do nicho + 3 do público do episódio."""
+    from daily.publicos import hashtags
+    seg=[s['text'] for s in ep['segments']]
+    partes=[ep.get('hook_text',seg[0]),seg[1]]
+    if ep.get('frase'):partes.append(f"📓 Página {pagina(ep)} do caderno da Marina: “{ep['frase']}”")
+    partes.append(seg[-1])
+    partes.append('Siga @opabloguru para receber uma história assim todo dia.')
+    tags=list(HASHTAGS_BASE)+hashtags(ep.get('publico'))
+    if len(tags)<8:tags+=['#parabola','#vidainterior','#desenvolvimentopessoal'][:8-len(tags)]
+    return '\n\n'.join(partes)+'\n\n'+' '.join(tags)
 
 def main():
     ap=argparse.ArgumentParser()
@@ -55,7 +82,7 @@ def main():
             from daily.new_script import generate
             prior=list(episodes())
             for path in sorted(history.glob('*.json'))[-30:]:prior.append(json.loads(path.read_text(encoding='utf-8')))
-            ep=generate(args.date,[{'title':e['title'],'hook_text':e.get('hook_text',e['segments'][0]['text']),'segments':e['segments']} for e in prior])
+            ep=generate(args.date,[{'title':e['title'],'hook_text':e.get('hook_text',e['segments'][0]['text']),'segments':e['segments'],'frase':e.get('frase','')} for e in prior])
             if ep['id'] in {e['id'] for e in prior} or ep['title'].casefold() in {e['title'].casefold() for e in prior}:
                 raise ValueError('Roteiro repetido; revisão editorial necessária.')
     # Re-render de arquivo antigo usa o hook revisado sem modificar o histórico.
@@ -76,7 +103,7 @@ def main():
     if not args.test and not archive.exists():
         history.mkdir(exist_ok=True)
         archive.write_text(json.dumps(ep,ensure_ascii=False,indent=2),encoding='utf-8')
-    caption=f"{ep['hook_text']}\n\n{ep['segments'][-1]['text']}\n\nComente: o que isso fez você enxergar?\n\n#PabloGuru #Reflexão #Autoconhecimento"
+    caption=legenda(ep)
     (out/'caption.txt').write_text(caption,encoding='utf-8')
     print(json.dumps({'date':args.date,'episode':ep['id'],'hook_type':ep['hook_type'],'remaining':max(0,len(list(episodes()))-1-(date.fromisoformat(args.date)-date.fromisoformat(args.start)).days)}))
 

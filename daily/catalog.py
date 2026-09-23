@@ -92,29 +92,52 @@ SCRIPTS = [
         'Uma escolha ruim faz você duvidar de si? Escute isso.',
         'Uma pessoa escrevia uma história e encontrou uma página que gostaria de mudar. Passou tanto tempo olhando para ela que parou de escrever.',
         'A página existia, mas não era o livro inteiro.',
-        'Imagine esse livro nas suas mãos. Atravesse comigo esta ponte. O que você pode reconhecer nessa página e fazer diferente na próxima?',
+        'Agora pense na página que você não para de reler. Ela é o livro inteiro ou só um capítulo que ainda dói?',
         'Posso assumir minha parte sem resumir minha vida ao erro.',
-        'O passado não desaparece. Mas aprender e reparar o possível também entram na história.',
+        'O passado não se apaga. Mas quem segura a caneta ainda é você, e a próxima página está em branco.',
         'Que atitude você quer registrar na próxima página?']),
-    ('a-porta-aberta', 'A porta entreaberta', 'key', [
+    ('a-porta-aberta', 'A porta entreaberta', 'door', [
         'O medo de pedir ajuda te deixa sobrecarregado? Escute isso.',
         'Uma pessoa tentava mover uma mesa sozinha. Havia alguém na porta, mas ela imaginava que pedir ajuda seria admitir incapacidade.',
         'A mesa não precisava de orgulho. Precisava de mais duas mãos.',
-        'Imagine você nessa sala. Atravesse comigo esta ponte. Qual pedido concreto permitiria que outra pessoa entendesse do que você precisa?',
+        'E se fosse você naquela sala? Quantas mesas você carrega sozinho só para ninguém ver seu esforço?',
         'Posso explicar a dificuldade e perguntar se ela pode ajudar.',
-        'Pedir não garante um sim. Mas oferece uma possibilidade que o silêncio não consegue oferecer.',
+        'Pedir não garante um sim. Mas o silêncio garante o não, todas as vezes.',
         'A quem você pode fazer um pedido simples e claro?']),
     ('a-bagagem', 'A bagagem emprestada', 'bag', [
         'Você tenta resolver tudo para todos e fica sem forças? Escute isso.',
         'Uma viajante oferecia ajuda carregando malas. Logo não conseguia andar, e ninguém sabia quais malas eram realmente dela.',
         'A boa intenção tinha virado um compromisso sem conversa.',
-        'Imagine essas malas ao seu redor. Atravesse comigo esta ponte. O que você pode oferecer sem assumir uma responsabilidade que não consegue sustentar?',
+        'Agora olhe para as malas ao seu redor. Quantas delas você pegou sem que ninguém tivesse pedido?',
         'Posso apoiar alguém e conversar sobre o que cabe a cada um.',
-        'Ajudar também pode ser ouvir, orientar uma busca ou dividir uma tarefa. Não precisa significar fazer tudo.',
+        'Quem carrega a mala de todo mundo não ajuda ninguém a caminhar. Às vezes o amor é devolver a alça.',
         'Qual responsabilidade precisa ser melhor combinada?']),
 ]
 
+# v3.5 (23/09/2026): título da capa da grade, carimbo da virada e a frase que a
+# Marina anota no caderninho. Episódios gerados trazem esses campos no próprio JSON.
+EXTRAS = {
+    'a-lanterna': ('Só três passos de luz', 'UM PASSO', 'A luz não chega antes de você andar.', 'perfeccionistas'),
+    'o-vaso': ('Quem desenterra a semente', 'ESPERE', 'O que cresce no escuro não precisa de plateia.', 'concurseiros'),
+    'o-mapa': ('O mapa de outra pessoa', 'SEU DESTINO', 'O mapa certo leva para o lugar errado.', 'vinte_e_poucos'),
+    'a-xicara': ('A xícara que transbordou', 'LIMITE', 'Um limite é cuidado com o que já existe.', 'maes'),
+    'o-caderno': ('O caderno perfeito e vazio', 'COMECE', 'O rascunho é a porta da segunda página.', 'perfeccionistas'),
+    'a-chave': ('A mesma chave, com mais força', 'A FECHADURA', 'Mudar de caminho não apaga o esforço.', 'empreendedores'),
+    'a-mochila': ('Uma pedra para cada erro', 'SOLTE', 'Carregar a culpa não é o mesmo que aprender.', 'busca_espiritual'),
+    'a-luz-do-outro': ('A janela acesa do vizinho', 'CASA INTEIRA', 'Uma janela acesa não mostra a casa inteira.', 'vinte_e_poucos'),
+    'as-raizes': ('O jardim que não era meu', 'SUAS RAÍZES', 'Cada raiz pede a própria água.', 'empreendedores'),
+    'a-rota': ('A estrada em obras', 'NOVA ROTA', 'O destino continua; só a estrada mudou.', 'cinquenta_mais'),
+    'a-pausa': ('A bandeja que não descansa', 'PAUSA', 'Descansar também é uma forma de cuidar.', 'cuidadores'),
+    'a-pagina-seguinte': ('A página que eu relia', 'PRÓXIMA PÁGINA', 'Uma página ruim não é o livro inteiro.', 'filhos_adultos'),
+    'a-porta-aberta': ('A mesa pesada demais', 'PEÇA', 'O silêncio responde não todas as vezes.', 'introvertidos'),
+    'a-bagagem': ('As malas que não eram minhas', 'DEVOLVA', 'Às vezes amar é devolver a alça.', 'maes'),
+}
+
 def episodes():
     for ident, title, prop, lines in SCRIPTS:
-        yield {'id': ident, 'title': title, 'prop': prop,
-               'segments': [{'speaker': 'asker' if i in (0, 4) else 'pablo', 'text': t, 'pause': .35} for i, t in enumerate(lines)]}
+        ep = {'id': ident, 'title': title, 'prop': prop,
+              'segments': [{'speaker': 'asker' if i in (0, 4) else 'pablo', 'text': t, 'pause': .35} for i, t in enumerate(lines)]}
+        if ident in EXTRAS:
+            ep['capa'], ep['destaque'], ep['frase'], ep['publico'] = EXTRAS[ident]
+            ep['formato'] = 'parabola'
+        yield ep
