@@ -127,6 +127,17 @@ Carrossel: `python -m carrossel.publicar preparar --dia AAAA-MM-DD --ensaio` ger
 13. Master sem `loudnorm` no sinal: mede, aplica ganho fixo + `alimiter` (−16,5 LUFS); `amix` com `normalize=0`.
 14. `pip install manim` com setuptools do sistema quebra em "srt" — use a venv.
 15. Carrossel: o texto do slide começa ABAIXO do título (título longo empurrava o texto); rodapé só nos slides de conteúdo (o Pablo cobria a arroba).
+16. O lip sync entra ANTES de cenário, expressão e gesto na cena (senão a boca atrasa até 1,3 s); cada efeito só roda se couber no orçamento da cena (`cabe()`).
+17. Franja não desce até a sobrancelha (some o rosto); braço tem de sair da silhueta do tronco (senão vira listra na roupa).
+18. `become()` reescreve o z_index — reafirme depois, senão algo passa por cima da legenda.
+19. `pip install` de Kokoro: o modelo baixa pelo ASSET de release do GitHub (a página /releases dá 403 no proxy); o binário de release do Rhubarb é bloqueado no container — compile do git (o `setup_ambiente.sh` já faz).
+
+---
+
+## 8. Histórico curto
+- **v3.5** (23/09/2026): capa 9:16 + capa no 1º quadro; público-alvo e formatos alternados; gerador com prompt-mestre e revisão anti-coach; rosto absoluto com humores animáveis, sorriso e gesto `anotar`; 7 objetos novos e desfecho na virada; coreografia variada; carrossel diário das 18h; código passa a morar só no GitHub.
+- **v3.4** (01/09): padrão fechado (tratamento "Pablo Guru", CTA falado), olho absoluto, master sem loudnorm, entrega 30 fps. Estilo Vox colagem vira padrão em 16/09; abertura hook-first em 15/09.
+- **v3.3** (01/09): motor + vida facial (boca parada corrigida). **v3.2**: ambientes. **v3.1**: karaokê e relógio absoluto. **v3.0**: personagens no mundo do @previsaosulflu, Kokoro e Rhubarb. **v2.2**: motor reconstruído depois que a v2.1 perdeu o código (lição: o código não pode morar só na conversa — hoje mora no repositório).
 
 ---
 
