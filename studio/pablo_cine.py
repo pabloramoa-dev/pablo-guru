@@ -480,6 +480,14 @@ def respirar(mob, amplitude=0.010, periodo=3.4, motor=None):
 # VIDA FACIAL — o rosto acompanha a fala
 # ===========================================================================
 def vida_facial(ator, janelas, motor, fps=60, intensidade=1.0, semente=0):
+    """v3.5: rosto ABSOLUTO (pablo_rosto.instalar). A versão antiga, por delta,
+    fica em vida_facial_legado — ela acumulava resíduo a cada expressão."""
+    import pablo_rosto
+    return pablo_rosto.instalar(ator, janelas, motor, fps=fps,
+                                intensidade=intensidade, semente=semente)
+
+
+def vida_facial_legado(ator, janelas, motor, fps=60, intensidade=1.0, semente=0):
     """Faz o ROSTO se mexer junto com a boca.
 
     Boca abrindo sozinha lê como boneco de ventríloquo. O que vende fala é o

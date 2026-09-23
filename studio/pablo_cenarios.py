@@ -298,7 +298,174 @@ def fundo_corporativo(escala=1.0):
 
 
 # ---------------------------------------------------------------------------
+# Objetos-metáfora v3.5 (23/09/2026) — os roteiros diários citavam lanterna,
+# vaso, mapa, caderno e chave, mas o vídeo mostrava ponte/espelho/estação.
+# Regra do DVH: todo objeto que a narração cita precisa APARECER na tela.
+# ---------------------------------------------------------------------------
+MADEIRA = "#8a6a4a"
+TERRA = "#b0643a"
+FOLHA = "#6f9a5b"
+PAPEL = "#f3ecdc"
+
+
+def _poli(pontos, cor_fill, cor_traco=None, largura=6, opacidade=1.0):
+    """Forma de cantos retos (o _forma do personagem arredonda tudo)."""
+    return Polygon(*[[x, y, 0] for x, y in pontos]).set_fill(cor_fill, opacidade) \
+        .set_stroke(cor_traco or PT_, largura)
+
+
+def lanterna(acesa=True, escala=1.0):
+    """A lanterna que ilumina só os próximos passos."""
+    g = VGroup()
+    if acesa:
+        g.add(Circle(radius=1.55).set_fill(PALETA["dourado_claro"], 0.14).set_stroke(width=0),
+              Circle(radius=1.05).set_fill(PALETA["dourado_claro"], 0.20).set_stroke(width=0))
+    alca = Arc(radius=0.42, start_angle=0, angle=PI).set_stroke(PT_, 6).shift(UP * 1.18)
+    topo = _poli([(-0.62, 0.92), (0.62, 0.92), (0.36, 1.22), (-0.36, 1.22)],
+                  PALETA["roxo_medio"], PT_, 6)
+    vidro = RoundedRectangle(corner_radius=0.10, width=1.06, height=1.46) \
+        .set_fill(PALETA["dourado_claro"] if acesa else "#cfd8e0", 0.85 if acesa else 0.45) \
+        .set_stroke(PT_, 6).shift(UP * 0.18)
+    grade = VGroup(*[Line([x, 0.88, 0], [x, -0.52, 0]).set_stroke(PT_, 3.5) for x in (-0.18, 0.18)])
+    chama = _forma([(0, 0.62), (0.16, 0.18), (0.0, -0.10), (-0.16, 0.18)],
+                   "#f59a3a" if acesa else PALETA["roxo_claro"], None, 0)
+    base = _poli([(-0.66, -0.56), (0.66, -0.56), (0.52, -0.86), (-0.52, -0.86)],
+                  PALETA["roxo_medio"], PT_, 6)
+    g.add(alca, vidro, chama, grade, topo, base)
+    return g.scale(escala)
+
+
+def vaso(broto=True, escala=1.0):
+    """O vaso com a semente — o que cresce no escuro, no tempo dele."""
+    terra = Ellipse(width=1.9, height=0.34).set_fill("#5a3a26", 1).set_stroke(PT_, 4) \
+        .shift(UP * 0.28)
+    corpo = _poli([(-1.0, 0.30), (1.0, 0.30), (0.74, -1.30), (-0.74, -1.30)], TERRA, PT_, 6)
+    borda = RoundedRectangle(corner_radius=0.08, width=2.24, height=0.40) \
+        .set_fill("#c9774a", 1).set_stroke(PT_, 6).shift(UP * 0.30)
+    g = VGroup(corpo, borda, terra)
+    if broto:
+        caule = _curva([(0, 0.34), (0.06, 0.80), (-0.04, 1.30)], FOLHA, 7)
+        f1 = Ellipse(width=0.62, height=0.28).set_fill(FOLHA, 1).set_stroke(PT_, 4) \
+            .rotate(0.5).move_to([0.30, 1.06, 0])
+        f2 = f1.copy().rotate(-1.0).move_to([-0.30, 1.26, 0])
+        g.add(caule, f1, f2)
+    return g.scale(escala)
+
+
+def mapa(escala=1.0):
+    """O mapa dobrado com a trilha pontilhada e o destino marcado."""
+    xs = [-1.5, -0.5, 0.5, 1.5]
+    dobras = VGroup()
+    for i in range(3):
+        sobe = 0.12 if i % 2 else -0.12
+        dobras.add(_poli([(xs[i], 1.05 + sobe), (xs[i + 1], 1.05 - sobe),
+                           (xs[i + 1], -1.05 - sobe), (xs[i], -1.05 + sobe)],
+                          PAPEL if i % 2 == 0 else "#e2d6bb", PT_, 5))
+    trilha = VGroup(*[Dot([x, 0.55 * np.sin(x * 1.7) - 0.15, 0], radius=0.05, color="#c8506a") for x in np.linspace(-1.25, 0.95, 12)])
+    alvo = VGroup(Line([-0.14, -0.14, 0], [0.14, 0.14, 0]), Line([-0.14, 0.14, 0], [0.14, -0.14, 0])) \
+        .set_stroke("#c8506a", 7).move_to([1.18, 0.62, 0])
+    rosa_ventos = VGroup(Circle(radius=0.22).set_stroke(PT_, 3),
+                         _poli([(0, 0.34), (0.07, 0), (0, -0.34), (-0.07, 0)], PALETA["dourado"], PT_, 2)) \
+        .move_to([-1.05, 0.62, 0])
+    return VGroup(dobras, trilha, alvo, rosa_ventos).scale(escala)
+
+
+def caderno(escala=1.0):
+    """O caderno aberto — a página em branco, o rascunho, a próxima página."""
+    capa = RoundedRectangle(corner_radius=0.10, width=3.3, height=2.3) \
+        .set_fill(PALETA["roxo_medio"], 1).set_stroke(PT_, 6)
+    pag_e = _poli([(-1.52, 1.02), (-0.04, 0.92), (-0.04, -1.02), (-1.52, -0.94)], PAPEL, PT_, 4)
+    pag_d = _poli([(0.04, 0.92), (1.52, 1.02), (1.52, -0.94), (0.04, -1.02)], PAPEL, PT_, 4)
+    linhas = VGroup(*[
+        Line([x0, y, 0], [x1, y, 0]).set_stroke(PALETA["roxo_claro"], 2.5, opacity=0.6)
+        for y in np.linspace(0.58, -0.62, 5) for x0, x1 in ((-1.34, -0.24), (0.24, 1.34))
+    ])
+    rabisco = _curva([(-1.30, 0.62), (-1.0, 0.70), (-0.7, 0.56), (-0.42, 0.66)], PT_, 4)
+    lapis = VGroup(
+        Rectangle(width=0.22, height=1.6).set_fill(PALETA["dourado"], 1).set_stroke(PT_, 4),
+        _poli([(-0.11, -0.80), (0.11, -0.80), (0, -1.10)], PALETA["pele_clara"], PT_, 3),
+    ).rotate(-0.55).move_to([1.30, 0.10, 0])
+    return VGroup(capa, pag_e, pag_d, linhas, rabisco, lapis).scale(escala)
+
+
+def chave(escala=1.0):
+    """A chave antiga — insistir com força ou olhar a fechadura."""
+    argola = Circle(radius=0.56).set_fill(PALETA["dourado"], 1).set_stroke(PT_, 6).shift(LEFT * 1.1)
+    furo = Circle(radius=0.24).set_fill(PALETA["roxo_escuro"], 1).set_stroke(PT_, 4).shift(LEFT * 1.1)
+    haste = Rectangle(width=2.0, height=0.26).set_fill(PALETA["dourado"], 1).set_stroke(PT_, 6) \
+        .shift(RIGHT * 0.45)
+    dentes = VGroup(
+        Rectangle(width=0.22, height=0.46).set_fill(PALETA["dourado"], 1).set_stroke(PT_, 5).move_to([1.10, -0.30, 0]),
+        Rectangle(width=0.22, height=0.30).set_fill(PALETA["dourado"], 1).set_stroke(PT_, 5).move_to([0.70, -0.22, 0]),
+    )
+    brilho = Line([-1.36, 0.28, 0], [-1.18, 0.44, 0]).set_stroke(PALETA["dourado_claro"], 5)
+    return VGroup(dentes, haste, argola, furo, brilho).rotate(0.35).scale(escala)
+
+
+def janela(acesa=True, escala=1.0):
+    """A janela acesa — o pedaço da casa do outro que dá para ver da rua."""
+    g = VGroup()
+    if acesa:
+        g.add(RoundedRectangle(corner_radius=0.3, width=3.0, height=3.4)
+              .set_fill(PALETA["dourado_claro"], 0.16).set_stroke(width=0))
+    moldura = Rectangle(width=2.2, height=2.6).set_fill(MADEIRA, 1).set_stroke(PT_, 6)
+    vidro = Rectangle(width=1.86, height=2.26) \
+        .set_fill(PALETA["dourado_claro"] if acesa else PALETA["azul_profundo"], 0.95).set_stroke(PT_, 4)
+    cruz = VGroup(Line([0, 1.13, 0], [0, -1.13, 0]), Line([-0.93, 0, 0], [0.93, 0, 0])).set_stroke(MADEIRA, 9)
+    cortina = _forma([(-0.93, 1.13), (-0.30, 1.13), (-0.62, 0.2), (-0.93, -0.3)], "#c8506a", PT_, 3)
+    peitoril = Rectangle(width=2.6, height=0.22).set_fill(MADEIRA, 1).set_stroke(PT_, 5).shift(DOWN * 1.36)
+    g.add(moldura, vidro, cortina, cruz, peitoril)
+    return g.scale(escala)
+
+
+def lupa(escala=1.0):
+    """A lupa — examinar o fato ou condenar a pessoa inteira."""
+    aro = Circle(radius=0.95).set_fill("#cfe0ea", 0.55).set_stroke(PT_, 8).set_stroke(PALETA["dourado"], 14, background=True)
+    brilho = Arc(radius=0.62, start_angle=PI * 0.6, angle=PI * 0.35).set_stroke(PALETA["branco"], 6)
+    cabo = Rectangle(width=0.34, height=1.6).set_fill(MADEIRA, 1).set_stroke(PT_, 6) \
+        .rotate(PI / 4).move_to([1.12, -1.12, 0])
+    return VGroup(cabo, aro, brilho).scale(escala)
+
+
+# Desfecho visual da metáfora: estado do objeto no PROBLEMA e na VIRADA.
+# Os estados já existiam (porta aberta, corrente rompida...) e nenhum roteiro
+# usava. Objeto sem estado ganha o desfecho "brilho" (halo dourado + faísca).
+ESTADOS = {
+    "porta":    ({"aberta": False}, {"aberta": True}),
+    "xicara":   ({"transbordando": True}, {"transbordando": False}),
+    "espelho":  ({"rachado": True}, {"rachado": False}),
+    "corrente": ({"rompida": False}, {"rompida": True}),
+    "mochila":  ({"peso": 3}, {"peso": 0}),
+    "lanterna": ({"acesa": False}, {"acesa": True}),
+    "vaso":     ({"broto": False}, {"broto": True}),
+    "janela":   ({"acesa": False}, {"acesa": True}),
+}
+
+
+def estado(nome, fase="inicio"):
+    """Kwargs do objeto na fase 'inicio' (problema) ou 'fim' (virada)."""
+    ini, fim = ESTADOS.get(nome, ({}, {}))
+    return dict(fim if fase == "fim" else ini)
+
+
+# Nome do prop no roteiro diário (inglês, curto) -> desenho.
+PROPS = {
+    "lamp": "lanterna", "seed": "vaso", "map": "mapa", "book": "caderno", "key": "chave",
+    "cup": "xicara", "bag": "mochila", "door": "porta", "mirror": "espelho",
+    "hourglass": "ampulheta", "bridge": "ponte", "station": "estacao", "chain": "corrente",
+    "window": "janela", "magnifier": "lupa",
+}
+
+
+# ---------------------------------------------------------------------------
 CENARIOS = {
+    "lanterna": lanterna,
+    "vaso": vaso,
+    "mapa": mapa,
+    "caderno": caderno,
+    "chave": chave,
+    "janela": janela,
+    "lupa": lupa,
     "gradiente": fundo_gradiente,
     "split": split_screen,
     "split_vertical": split_vertical,

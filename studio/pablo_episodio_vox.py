@@ -21,7 +21,7 @@ a direção de arte e a finalização:
 Campos novos (opcionais) do roteiro:
     "cartela": "A XÍCARA CHEIA"          # assunto no 1º quadro
     "estilo_vox": "guru" | "guru_claro"
-    "cta": ["SIGA O CANAL", "para receber mais", "@pabloguru"]
+    "cta": ["SIGA O CANAL", "para receber mais", "@opabloguru"]
     "hook_first": true    # sem cartela escura: fala no quadro 0, etiqueta no topo
     por cena: "destaque": "ESVAZIE"
 
@@ -159,11 +159,20 @@ def _construir_scene():
                           FadeIn(nova_luz, run_time=0.25))
                 luz = nova_luz
 
+                # reação de quem ESCUTA (o rosto absoluto só troca o alvo; sem tempo de cena)
+                ouvinte = marina if ator is pablo else pablo
+                if c.get("reacao"):
+                    ouvinte.expressao(c["reacao"])
+
                 extra = None
                 if c.get("cenario") not in (None, "split", "gradiente") and cabe(0.5):
                     try:
-                        obj = cen.montar(c["cenario"])
-                        obj.scale(1.0 / max(obj.width, obj.height))
+                        fase_ini = "inicio"
+                        obj = cen.montar(c["cenario"], **cen.estado(c["cenario"], fase_ini))
+                        fator_obj = 1.0 / max(obj.width, obj.height)
+                        obj.scale(fator_obj)
+                        obj_largura_base = obj.width
+                        extra_rot = 0.08 if ator is pablo else -0.08
                         extra = vp.cartao_objeto(obj, semente=len(c["cenario"]),
                                                  girar=0.08 if ator is pablo else -0.08)
                         extra.scale(W * 0.30 / extra.width)
@@ -173,6 +182,22 @@ def _construir_scene():
                                       else LEFT * W * 0.28 + DOWN * H * 0.335)
                         extra.set_z_index(8)
                         vp.colar_entrada(self, extra, dur=0.45)
+                        if c.get("desfecho") and cabe(1.2):
+                            # DESFECHO VISUAL: o objeto muda de estado na virada
+                            # (porta abre, xícara esvazia, corrente rompe...).
+                            alvo_obj = extra[1]
+                            fim_kw = cen.estado(c["cenario"], "fim")
+                            if fim_kw:
+                                novo = cen.montar(c["cenario"], **fim_kw)
+                                novo.scale(fator_obj * alvo_obj.width / max(1e-6, obj_largura_base))
+                                novo.move_to(alvo_obj)
+                                novo.rotate(extra_rot)
+                                self.play(Transform(alvo_obj, novo), run_time=0.6)
+                            halo = fx.glow(alvo_obj, camadas=4, raio=0.35, opacidade=0.14)
+                            # só dentro do grupo do cartão: sai junto no FadeOut
+                            # (adicionado solto na cena, o halo ficava até o fim)
+                            extra.add(halo)
+                            fx.faisca(self, alvo_obj.get_center())
                     except Exception as e:
                         print("aviso objeto:", e)
                         extra = None
@@ -187,6 +212,27 @@ def _construir_scene():
                                  else RIGHT * W * 0.24 + DOWN * H * 0.10)
                     selo.set_z_index(25)
                     self.play(FadeIn(selo, scale=1.8), run_time=0.22)
+
+                nota = None
+                if c.get("anotacao") and cabe(0.8):
+                    # A frase da descoberta, anotada no caderninho dourado da Marina:
+                    # é o quadro que a pessoa pausa, printa e manda para alguém.
+                    if cabe(2.2):
+                        self.play(*marina.anotar(run_time=1.2))
+                    rotulo = f"ANOTEI · PÁGINA {PLANO['pagina']}" if PLANO.get("pagina") else "ANOTEI"
+                    nota = vp.pagina_caderno(c["anotacao"], rotulo=rotulo)
+                    nota.scale_to_fit_width(W * 0.72)
+                    nota.move_to(DOWN * H * 0.365).set_z_index(26)  # abaixo do rosto dela
+                    vp.colar_entrada(self, nota, girar=-0.12, dur=0.45)
+
+                if c.get("pingente") and ator is pablo and cabe(0.8):
+                    # o pingente dourado acende quando ele revela a virada
+                    pedra = pablo.partes["pingente"][1]
+                    brilho = fx.glow(pedra, camadas=5, raio=0.5, opacidade=0.22)
+                    self.play(FadeIn(brilho, scale=0.5), run_time=0.3)
+                    extra_brilho = brilho
+                else:
+                    extra_brilho = None
 
                 if c.get("expressao") and cabe(0.4):
                     self.play(ator.expressao(c["expressao"], run_time=0.4))
@@ -210,25 +256,26 @@ def _construir_scene():
                 except Exception as e:
                     print("aviso efeito:", e)
 
-                sai = (0.3 if extra is not None else 0) + (0.25 if selo is not None else 0) \
+                sai = (0.3 if (extra is not None or nota is not None) else 0) \
+                    + (0.25 if selo is not None else 0) \
                     + (0.6 if ef == "push" else 0) + 0.35
                 restante = alvo - self.renderer.time - sai
                 if restante > 0:
                     self.wait(restante)
 
-                fora = [FadeOut(m) for m in (extra, selo) if m is not None]
+                fora = [FadeOut(m) for m in (extra, selo, nota, extra_brilho) if m is not None]
                 if fora:
                     self.play(*fora, run_time=0.28)
                 if ef == "push":
                     vp.camera_para(self, ORIGIN, z=1.0, dur=0.55)
-                volta = ator.repouso(run_time=0.35)
+                volta = ator.repouso(run_time=0.35) + ouvinte.repouso(run_time=0.35)
                 if volta:
                     self.play(*volta)
 
             # ---------------- encerramento: cartão de CTA ------------------
             if luz:
                 self.play(FadeOut(luz, run_time=0.3))
-            cta = PLANO.get("cta", ["SIGA O CANAL", "para receber mais", "@pabloguru"])
+            cta = PLANO.get("cta", ["SIGA O CANAL", "para receber mais", "@opabloguru"])
             cartao = vp.cartao_cta(*cta)
             cartao.scale_to_fit_width(W * 0.78).move_to(ORIGIN)
             vela = Rectangle(width=W * 2, height=H * 2).set_fill("#000000", 0.5).set_stroke(width=0)

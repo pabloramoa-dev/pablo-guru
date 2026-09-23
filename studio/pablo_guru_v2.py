@@ -201,9 +201,11 @@ class PersonagemBase(VGroup):
         def olho(sinal):
             br = Circle(radius=0.19).set_fill(PALETA["branco"], 1).set_stroke(PT, 6)
             br.move_to(c + RIGHT * (0.32 * sinal) + UP * 0.05)
-            pup = Dot(br.get_center() + DOWN * 0.01, radius=0.095, color=PT)
-            luz = Dot(pup.get_center() + UP * 0.05 + RIGHT * 0.045,
-                      radius=0.032, color=PALETA["branco"])
+            # v3.5: pupila maior (0.095 -> 0.115). Com muito branco em volta o
+            # olhar lia como susto na miniatura; assim lê como atenção.
+            pup = Dot(br.get_center() + DOWN * 0.01, radius=0.115, color=PT)
+            luz = Dot(pup.get_center() + UP * 0.055 + RIGHT * 0.05,
+                      radius=0.036, color=PALETA["branco"])
             return VGroup(br, pup, luz)
 
         self.olho_e, self.olho_d = olho(-1), olho(+1)
@@ -246,8 +248,14 @@ class PersonagemBase(VGroup):
         if v == "X":
             # fechada = linha curva, não buraco. Boca aberta no silêncio
             # parece bug, não personagem calado.
+            # A curva vem do humor atual (pablo_rosto): sorriso na virada,
+            # boca séria no "grave". Sem rosto instalado, vale a de repouso.
+            curva = getattr(self, "CURVA_BOCA_VIVA", self.CURVA_BOCA)
+            self._curva_desenhada = curva
+            if abs(curva) < 1e-3:
+                curva = 1e-3
             return ArcBetweenPoints(
-                LEFT * (w / 2) * k, RIGHT * (w / 2) * k, angle=self.CURVA_BOCA,
+                LEFT * (w / 2) * k, RIGHT * (w / 2) * k, angle=curva,
             ).set_stroke(PT, 8 * k)
         return Ellipse(width=w * k, height=h * k) \
             .set_fill(PALETA["boca_interna"], 1).set_stroke(PT, 6 * k)
@@ -312,6 +320,12 @@ class PersonagemBase(VGroup):
         )
 
     def expressao(self, nome: str, run_time=0.5):
+        # v3.5: com o rosto absoluto instalado (pablo_rosto), a expressão só
+        # troca o ALVO — nada de .animate no rosto, então nada se acumula.
+        # Todos os humores (grave, provocando, sereno, sorriso...) animam.
+        if getattr(self, "_rosto", None):
+            import pablo_rosto
+            return pablo_rosto.expressao(self, nome, run_time)
         mapa = {
             "calmo":       (0.0, 0.0, 1.0),
             "duvida":      (0.13, -0.06, 1.0),
@@ -345,6 +359,11 @@ class PersonagemBase(VGroup):
         """Volta os braços ao neutro. Chame ao FIM de cada cena — senão o gesto
         de uma cena fica congelado no personagem pelo episódio inteiro."""
         anims = []
+        ang_ad = getattr(self, "_ang_adereco", 0.0)
+        if abs(ang_ad) > 1e-6:
+            anims.append(Rotate(self.adereco, angle=-ang_ad, about_point=self.ombro_e,
+                                run_time=run_time))
+            self._ang_adereco = 0.0
         for lado, braco, pivo in (("e", self.braco_e, self.ombro_e),
                                   ("d", self.braco_d, self.ombro_d)):
             if abs(self._ang[lado]) > 1e-6:
@@ -400,6 +419,8 @@ class PersonagemBase(VGroup):
         )]
 
     def abrir_olhos(self, run_time=0.5):
+        if getattr(self, "_rosto", None):
+            return self.expressao("surpresa", run_time)
         # Alvo absoluto (olho 1.4x o natural), pelo mesmo motivo de expressao():
         # empilhar escalas fazia o olho esbugalhar e nunca mais voltar.
         return [self._face_absoluta(0.11, 0.11, 1.4, run_time)]
@@ -605,6 +626,22 @@ class Perguntadora(PersonagemBase):
             .set_stroke("#8a5a2f", 6)
         self.partes["caderno"] = VGroup(capa, linhas, lapis)
         return self.partes["caderno"]
+
+
+    def anotar(self, run_time=1.6):
+        """A Marina ANOTA no caderninho: traz o caderno para a frente do corpo,
+        leva a mão com o lápis até ele e rabisca. O caderninho deixa de ser
+        enfeite e vira ação — é assim que ela guarda a frase do episódio."""
+        traz = 40 * DEGREES
+        self._ang_adereco = getattr(self, "_ang_adereco", 0.0) + traz
+        subir = AnimationGroup(
+            self._girar(self.braco_e, traz, self.ombro_e, run_time * 0.3),
+            Rotate(self.adereco, angle=traz, about_point=self.ombro_e, run_time=run_time * 0.3),
+            self._girar(self.braco_d, -72 * DEGREES, self.ombro_d, run_time * 0.3),
+        )
+        rabisco = [self._girar(self.braco_d, (7 if i % 2 == 0 else -7) * DEGREES,
+                               self.ombro_d, run_time * 0.7 / 6) for i in range(6)]
+        return [Succession(subir, *rabisco)]
 
 
 # ---------------------------------------------------------------------------

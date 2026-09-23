@@ -136,7 +136,7 @@ def gerar_metadados(numero: int, titulo: str, titulo_b: str, tema: str,
                     pergunta: str, saida: str, duracao: float = 55.0):
     meta = {
         "episodio": numero,
-        "canal": "Pablo Guru (@pabloguru)",
+        "canal": "Pablo Guru (@opabloguru)",
         "tema": tema,
         "duracao_segundos": round(duracao, 1),
         "titulos_ab": {"A": titulo, "B": titulo_b},

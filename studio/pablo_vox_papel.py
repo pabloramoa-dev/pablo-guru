@@ -291,13 +291,15 @@ def carimbo(txt, cor="dourado", tam=None, girar=0.18, sobre="fundo"):
 def cartao_objeto(obj, lado=None, cor="recorte", semente=9, girar=0.08):
     """O objeto-metáfora vira um recorte colado: papel + objeto + fita."""
     u = U()
-    lado = lado or max(obj.width, obj.height) + 0.5 * u
+    # objeto ocupa ~80% do papel (antes ~40%: sumia no celular)
+    lado = lado or max(obj.width, obj.height) * 1.25
     papel = recorte(lado, lado, cor=cor, semente=semente)
     obj.move_to(papel[-1])
-    return Group(papel, obj, fita(papel.get_top() + DOWN * 0.04 * u, girar=0.1)).rotate(girar)
+    return Group(papel, obj, fita(papel.get_top() + DOWN * 0.04 * u, girar=0.1,
+                                  w=lado * 0.45, h=lado * 0.13)).rotate(girar)
 
 
-def cartao_cta(linha1="SIGA O CANAL", linha2="para receber mais", arroba="@pabloguru"):
+def cartao_cta(linha1="SIGA O CANAL", linha2="para receber mais", arroba="@opabloguru"):
     """Cartão de reforço do CTA, em colagem."""
     W, _ = dims(); u = U()
     m = manchete(linha1, cor_papel="dourado", tam=_fs(7), semente=41, juntar=True)
@@ -305,6 +307,40 @@ def cartao_cta(linha1="SIGA O CANAL", linha2="para receber mais", arroba="@pablo
     arr = manchete(arroba, cor_papel="recorte", tam=_fs(5), semente=43, juntar=True, desalinho=False)
     g = Group(m, sub, arr).arrange(DOWN, buff=0.25 * u)
     return g
+
+
+def pagina_caderno(frase, rotulo="ANOTEI"):
+    """Página do caderninho dourado da Marina com a frase da descoberta.
+    Papel pautado + faixa dourada no topo + frase em até 3 linhas."""
+    W, _ = dims(); u = U()
+    larg = W * 0.80
+    palavras, linhas, atual = frase.split(), [], ""
+    for p in palavras:
+        teste = (atual + " " + p).strip()
+        if len(teste) > 24 and atual:
+            linhas.append(atual); atual = p
+        else:
+            atual = teste
+    linhas.append(atual)
+    txt = VGroup(*[texto(l, _fs(4.3), "#2a1a4e", peso="BOLD") for l in linhas[:4]]) \
+        .arrange(DOWN, buff=0.16 * u, aligned_edge=LEFT)
+    if txt.width > larg * 0.84:
+        txt.scale_to_fit_width(larg * 0.84)
+    alt = txt.height + 1.3 * u
+    papel = recorte(larg, alt, cor="#fbf6ea", semente=31)
+    corpo = papel[-1]
+    pauta = VGroup(*[
+        Line(corpo.get_left() + RIGHT * 0.25 * u + UP * y, corpo.get_right() + LEFT * 0.25 * u + UP * y,
+             stroke_color="#9fb7d9", stroke_width=2, stroke_opacity=0.7)
+        for y in np.arange(-alt / 2 + 0.35 * u, alt / 2 - 0.55 * u, 0.36 * u)])
+    margem = Line(corpo.get_left() + RIGHT * 0.55 * u + UP * alt / 2, corpo.get_left() + RIGHT * 0.55 * u + DOWN * alt / 2,
+                  stroke_color="#c8506a", stroke_width=2.5, stroke_opacity=0.8)
+    faixa = Rectangle(width=larg, height=0.34 * u, fill_color=_cor("dourado"), fill_opacity=1,
+                      stroke_width=0).move_to(corpo.get_top() + DOWN * 0.17 * u)
+    rot = texto(rotulo, _fs(2.6), "#14121f").move_to(faixa).align_to(faixa, LEFT).shift(RIGHT * 0.3 * u)
+    txt.move_to(corpo.get_center() + DOWN * 0.12 * u).align_to(corpo, LEFT).shift(RIGHT * 0.75 * u)
+    return Group(papel, pauta, margem, faixa, rot, txt,
+                 fita(faixa.get_right() + LEFT * 0.4 * u, girar=0.5))
 
 
 # =====================================================================
