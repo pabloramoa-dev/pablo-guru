@@ -65,7 +65,8 @@ class PipelineTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d, patch.object(p,'ROOT',Path(d)), patch.object(p,'HISTORY',Path(d)/'tt'), patch.dict(os.environ,{'PABLO_SCRIPT_MODEL':'test','TIKTOK_PILOT':'false'}):
             with patch('daily.new_script.api',return_value=response) as api:
                 with self.assertRaises(RuntimeError): p.prepare('2026-09-16-01')
-                self.assertEqual(api.call_count,3)
+                # 3 tentativas x 2 rodadas de revisão de estilo (write_script)
+                self.assertEqual(api.call_count,6)
             self.assertFalse((Path(d)/'tt').exists())
 
     def test_pilot_does_not_write_instagram_history(self):
