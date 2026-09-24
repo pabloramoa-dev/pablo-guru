@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-24-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-livro-antes-da-hora",
+    "title": "A Cola Ainda Molhada",
+    "capa": "O livro antes da hora",
+    "prop": "book",
+    "destaque": "Tempo próprio",
+    "frase": "Sua presença também precisa de tempo para ganhar forma",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "introvertidos",
+    "formato": "erro_do_pablo",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "O silêncio dos grupos faz você se apressar para ser notado? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando eu era aprendiz de encadernador, escondi um livro recém-colado, com medo de estragar a capa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Abri-o antes da cola secar. As páginas entortaram, e o livro perdeu sua forma.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse livro nas suas mãos: você quer ser visto ou apenas não consegue esperar o momento certo?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava tentando entrar na conversa antes de encontrar minha própria voz.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A paciência não é ficar calado para sempre; é deixar a presença ganhar forma antes de se oferecer.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que seu silêncio também tem tempo?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-24"
+  },
+  "script_hash": "1b1e3c096d52a61a472fe2f0d443b977a7905580cb0dbde92fd581b4fda7d016"
+}
