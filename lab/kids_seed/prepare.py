@@ -12,7 +12,7 @@ from moviepy import AudioFileClip,AudioClip,CompositeAudioClip
 SCENES=[
 (0,7,'tico','Lila! Plantei uma sementinha. Já posso colher uma flor?'),
 (7,14,'lila','Ainda não, Tico. Primeiro, um pouquinho de água e luz do sol.'),
-(14,21,'tico','Pronto! Água, sol... e uma música! Cresce, cresce, sementinha!'),
+(14,21,'tico','Água, sol... e música! Cresce, cresce, sementinha!'),
 (21,28,'lila','Ela também precisa de tempo. Vamos cuidar dela um pouquinho por dia.'),
 (28,34,'tico','Então eu volto amanhã. Boa noite, sementinha!'),
 (34,42,'lila','Passaram alguns dias... Olha, Tico! Um brotinho verde!'),
