@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-23-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-espelho-do-recomeco",
+    "title": "O Espelho do Recomeço",
+    "capa": "A coragem no espelho",
+    "prop": "mirror",
+    "destaque": "Sem pose",
+    "frase": "Recomeçar não exige parecer pronto",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "cinquenta_mais",
+    "formato": "humor",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Depois dos cinquenta, cada tentativa nova vira motivo para se julgar? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma avó costureira decidiu recomeçar e encarou o espelho, procurando a antiga coragem no próprio rosto.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Fez uma careta tão séria que o espelho parecia pedir desculpas. Ela riu e tentou outra vez.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse espelho diante de você. Quantas vezes seu rosto precisa parecer pronto antes de você começar?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava exigindo de mim a aparência de quem nunca hesitou, em vez de acolher quem está tentando.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O espelho não mede sua coragem; apenas devolve o rosto que ainda pode sorrir no meio do começo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que recomeço não exige pose?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-23"
+  },
+  "script_hash": "c0f51757c5c1c5ae96c5e0e3408f5e1fb93f23c8fae1c5b076d86baffe368101"
+}
