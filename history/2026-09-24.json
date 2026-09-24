@@ -1,0 +1,51 @@
+{
+  "id": "a-pagina-seguinte",
+  "title": "A página seguinte",
+  "prop": "book",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Uma escolha ruim faz você duvidar de si? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa escrevia uma história e encontrou uma página que gostaria de mudar. Passou tanto tempo olhando para ela que parou de escrever.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A página existia, mas não era o livro inteiro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora pense na página que você não para de reler. Ela é o livro inteiro ou só um capítulo que ainda dói?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso assumir minha parte sem resumir minha vida ao erro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O passado não se apaga. Mas quem segura a caneta ainda é você, e a próxima página está em branco.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que atitude você quer registrar na próxima página?",
+      "pause": 0.35
+    }
+  ],
+  "capa": "A página que eu relia",
+  "destaque": "PRÓXIMA PÁGINA",
+  "frase": "Uma página ruim não é o livro inteiro.",
+  "publico": "filhos_adultos",
+  "formato": "parabola",
+  "date": "2026-09-24",
+  "hook_type": "dor",
+  "hook_text": "Uma escolha ruim faz você duvidar de si? Escute isso.",
+  "script_sha256": "24c93aedcca5849d641effb5638e255f8df4d463e713b7f51e649078790fbf22"
+}
