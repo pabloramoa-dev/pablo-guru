@@ -1,0 +1,37 @@
+[
+  {
+    "name": "preview_0.png",
+    "size": 210744,
+    "sha256": "dc6814b98bf1d1cf31577c62b013d93eb8364f44bdacd8ae93b0340a6803f77f"
+  },
+  {
+    "name": "preview_2.png",
+    "size": 209449,
+    "sha256": "18347ba7e4a9ae7bcad5c9379f5231a391608062ed1b1ef89a018558a88d1790"
+  },
+  {
+    "name": "validation.json",
+    "size": 278,
+    "sha256": "3a3df0d8fd0c7b75072a042a79daa65dde3b5a44c72c6985dec0be34a96a81b3"
+  },
+  {
+    "name": "report.json",
+    "size": 32606,
+    "sha256": "1d169cc8c6c1e81dc6e5d20ae0b9286669ff02507bcbd3ade27ca600af0120ad"
+  },
+  {
+    "name": "preview_3.png",
+    "size": 209251,
+    "sha256": "db8b19d80121ae9452808b3cf3ca2fb562b17c7b598aaedc3888e55a4ecf976c"
+  },
+  {
+    "name": "preview_1.png",
+    "size": 210714,
+    "sha256": "bb138bf49ad5b45a02ed53b0f63d00e1cdf0b79ac806f889f54c0dd5c3aa2a3b"
+  },
+  {
+    "name": "Tico_e_Lila_A_Semente_Apressada.mp4",
+    "size": 17021845,
+    "sha256": "a200b16c57e3da87a7fce1df57a3d27f6392b96ca090d3f84557632a946de049"
+  }
+]
