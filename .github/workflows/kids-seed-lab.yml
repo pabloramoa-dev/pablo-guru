@@ -1,0 +1,70 @@
+name: Tico and Lila vertical cartoon
+on:
+  push:
+    branches: ['lab/kids-seed-instagram']
+    paths: ['lab/kids_seed/**', '.github/workflows/kids-seed-lab.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: kids-seed-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  cartoon:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install animation and voice tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg fonts-dejavu-core
+          python -m venv lab/kids_seed/.venv
+          lab/kids_seed/.venv/bin/pip install 'piper-tts>=1.3,<2' 'edge-tts>=7.2,<8' faster-whisper==1.2.1 moviepy==2.2.1 soundfile numpy
+          cd lab/kids_seed
+          npm install
+          curl -fL --retry 2 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/kids-rhubarb
+          echo /tmp/kids-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
+      - name: Generate exact requested voices and soundtrack
+        run: lab/kids_seed/.venv/bin/python lab/kids_seed/prepare.py
+      - name: Render 60-second vertical episode
+        working-directory: lab/kids_seed
+        run: node render.mjs
+      - name: Validate and preserve private result
+        run: |
+          ffmpeg -v error -i lab/kids_seed/output/Tico_e_Lila_A_Semente_Apressada.mp4 -f null -
+          python3 - <<'PY'
+          import json,subprocess,base64,hashlib,shutil
+          from pathlib import Path
+          root=Path('lab/kids_seed');out=root/'output';dst=root/'results';dst.mkdir(exist_ok=True)
+          for p in out.iterdir():
+            if p.is_file():shutil.copyfile(p,dst/p.name)
+          video=dst/'Tico_e_Lila_A_Semente_Apressada.mp4'
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration,size:stream=codec_name,width,height','-of','json',str(video)]))
+          assert abs(float(info['format']['duration'])-60)<.15,info
+          (dst/'validation.json').write_text(json.dumps(info,indent=2))
+          encoded=dst/'encoded';encoded.mkdir(exist_ok=True)
+          for p in [video,dst/'preview_0.png']:
+            data=p.read_bytes()
+            for i,start in enumerate(range(0,len(data),700000)):
+              (encoded/(p.name+'.'+str(i).zfill(3)+'.b64')).write_text(base64.b64encode(data[start:start+700000]).decode())
+          (dst/'manifest.json').write_text(json.dumps([{'name':p.name,'size':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()} for p in dst.iterdir() if p.is_file() and p.name!='manifest.json'],indent=2))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add lab/kids_seed/results/
+          git commit -m 'Preserve original kids cartoon preview [skip ci]'
+          git push origin HEAD:lab/kids-seed-instagram
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tico-lila-instagram
+          path: lab/kids_seed/output/
+          retention-days: 14
