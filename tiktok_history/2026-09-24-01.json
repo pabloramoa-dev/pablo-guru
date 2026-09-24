@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-24-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-instante-presente",
+    "title": "O instante presente",
+    "capa": "A corrente brilhante",
+    "prop": "chain",
+    "destaque": "Presença real",
+    "frase": "Presença é deixar o instante tocar você",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "busca_espiritual",
+    "formato": "sem_pergunta",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Em meio a tantas vozes, você sente que não está vivendo o próprio instante? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa estação quase vazia, um velho bilheteiro cuidava de uma corrente diante da plataforma.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Enquanto a corrente brilhava, os trens chegavam e partiam; ele só notava o metal.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine-se ali: você está vivendo o instante ou apenas mantendo tudo sob controle?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava tão ocupada protegendo meu tempo que não estava realmente dentro dele.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A presença não é segurar o momento; é deixar que ele toque você enquanto acontece.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O instante passa, mas deixa luz em quem realmente o habitou.",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-24"
+  },
+  "script_hash": "e6cd35b98614b869a006c73f4b968de98e9ad302d5db7a63695db5b4192f0c2e"
+}
