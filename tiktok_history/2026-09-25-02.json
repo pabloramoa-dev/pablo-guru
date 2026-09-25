@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-25-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "coragem-torta",
+    "title": "A coragem torta",
+    "capa": "A ampulheta do bolo",
+    "prop": "hourglass",
+    "destaque": "Coragem torta",
+    "frase": "A coragem aparece enquanto a tentativa ainda está torta",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "perfeccionistas",
+    "formato": "humor",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "O medo de errar faz você adiar até o primeiro gesto? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma boleira deixou uma ampulheta ao lado do forno e esperou o bolo perfeito antes de abrir a massa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Virava a ampulheta tantas vezes que o bolo cresceu, murchou e pareceu uma boina torta.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa cozinha: quantas vezes você espera a coragem ficar pronta antes de tentar?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava tratando o primeiro gesto como se já precisasse ter acabamento de vitrine.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Às vezes, a coragem não chega antes da tentativa; ela aparece enquanto a massa ainda está torta.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa rir e tentar com você?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-25"
+  },
+  "script_hash": "a0a83119af438e1873a0e2701bf223328729f8e9ab455e03f495570bfdc4d2e8"
+}
