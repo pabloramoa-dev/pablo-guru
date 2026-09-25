@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-25-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-semente-torta",
+    "title": "A Semente Torta",
+    "capa": "O vaso que rachou",
+    "prop": "seed",
+    "destaque": "Raiz própria",
+    "frase": "Aceitar meu crescimento é parar de pedir permissão para florescer",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "filhos_adultos",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Ainda espera que seus pais aprovem suas escolhas? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Uma ceramista plantou uma semente num vaso e o deixou diante da janela da oficina.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A semente nasceu torta. Ela tentou endireitá-la para agradar ao jardim dos pais, mas suas raízes racharam o vaso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse vaso nas suas mãos: você está crescendo ou tentando parecer a árvore que esperavam?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu posso amar meus pais sem transformar a aprovação deles na medida da minha vida.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A raiz não desrespeita a árvore antiga quando procura seu próprio chão; apenas descobre onde consegue permanecer viva.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que crescer diferente também é pertencer?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-25"
+  },
+  "script_hash": "07485cc3ceb61dea8a19f55130633f146740f9477b28aeef44a4120b9facb59e"
+}
