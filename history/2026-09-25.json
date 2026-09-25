@@ -1,0 +1,51 @@
+{
+  "id": "a-porta-aberta",
+  "title": "A porta entreaberta",
+  "prop": "door",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "O medo de pedir ajuda te deixa sobrecarregado? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma pessoa tentava mover uma mesa sozinha. Havia alguém na porta, mas ela imaginava que pedir ajuda seria admitir incapacidade.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A mesa não precisava de orgulho. Precisava de mais duas mãos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "E se fosse você naquela sala? Quantas mesas você carrega sozinho só para ninguém ver seu esforço?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso explicar a dificuldade e perguntar se ela pode ajudar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Pedir não garante um sim. Mas o silêncio garante o não, todas as vezes.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A quem você pode fazer um pedido simples e claro?",
+      "pause": 0.35
+    }
+  ],
+  "capa": "A mesa pesada demais",
+  "destaque": "PEÇA",
+  "frase": "O silêncio responde não todas as vezes.",
+  "publico": "introvertidos",
+  "formato": "parabola",
+  "date": "2026-09-25",
+  "hook_type": "dor",
+  "hook_text": "O medo de pedir ajuda te deixa sobrecarregado? Escute isso.",
+  "script_sha256": "5ecf06ba562589908adad3faabfdbe64d02b554be3032e2f4cfdbab3ddcdebbd"
+}
