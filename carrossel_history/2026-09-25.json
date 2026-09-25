@@ -1,0 +1,40 @@
+{
+  "data": "2026-09-25",
+  "titulo": "5 frases espirituais para repensar",
+  "conteudo": {
+    "id": "frases-espirituais",
+    "titulo": "5 frases espirituais para repensar",
+    "subtitulo": "Ditas com amor, mas nem sempre ajudam",
+    "slides": [
+      {
+        "titulo": "“Tudo acontece por um motivo”",
+        "texto": "Pode consolar. Mas, dita a quem acabou de perder algo, soa como se a dor fosse merecida. Às vezes, “sinto muito” basta."
+      },
+      {
+        "titulo": "“Você atrai tudo o que vive”",
+        "texto": "Pensamento importa. Mas dizer que alguém atraiu uma doença ou uma perda joga culpa em cima de quem já está sofrendo."
+      },
+      {
+        "titulo": "“Afaste quem tem energia baixa”",
+        "texto": "Às vezes a pessoa “pesada” só está atravessando um inverno. Limite é saudável; descartar gente triste, nem tanto."
+      },
+      {
+        "titulo": "“Gratidão sempre”",
+        "texto": "Gratidão é bonita quando nasce. Quando vira obrigação, só ensina a esconder o que dói."
+      },
+      {
+        "titulo": "“Isso é coisa do ego”",
+        "texto": "Ego não é inimigo. É a parte de você que diz “eu existo”. Sem ele, nem daria para agradecer."
+      }
+    ],
+    "fechamento": "Palavras bonitas também precisam de hora certa.",
+    "legenda": "Qual dessas você já ouviu num momento difícil? Qual delas você já disse?",
+    "hashtags": [
+      "#frasesespirituais",
+      "#empatia",
+      "#reflexao"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-09-25T20:13:48-03:00"
+}
