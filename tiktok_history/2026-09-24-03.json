@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-24-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-porta-do-recomeco",
+    "title": "A Porta do Recomeço",
+    "capa": "A porta que não fechou",
+    "prop": "door",
+    "destaque": "Entrada nova",
+    "frase": "Recomeçar também honra o caminho percorrido",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "empreendedores",
+    "formato": "marina_discorda",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando o negócio muda de rumo, você sente que recomeçar apaga tudo que construiu? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Um padeiro encontrou a porta da padaria emperrada após uma manhã vazia. Guardou a chave no bolso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "No dia seguinte, virou a placa e deixou a luz entrar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa porta diante de você. O que dói mais: recomeçar diferente ou continuar servindo um plano que já terminou?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Mas, Pablo Guru, fechar essa porta parece admitir que meu esforço não bastou.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Pode parecer. Mas a porta fechada não era fracasso: era o desenho de uma entrada nova, feita com o que ele aprendeu.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que recomeçar também honra o caminho?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-24"
+  },
+  "script_hash": "fd02df2c9046dcfd299890384a8226a8ae520c077767eb9fb34f1ea3ca33be43"
+}
