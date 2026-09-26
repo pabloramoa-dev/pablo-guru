@@ -1,0 +1,51 @@
+{
+  "id": "a-bagagem",
+  "title": "A bagagem emprestada",
+  "prop": "bag",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Você tenta resolver tudo para todos e fica sem forças? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma viajante oferecia ajuda carregando malas. Logo não conseguia andar, e ninguém sabia quais malas eram realmente dela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A boa intenção tinha virado um compromisso sem conversa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora olhe para as malas ao seu redor. Quantas delas você pegou sem que ninguém tivesse pedido?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Posso apoiar alguém e conversar sobre o que cabe a cada um.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem carrega a mala de todo mundo não ajuda ninguém a caminhar. Às vezes o amor é devolver a alça.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual responsabilidade precisa ser melhor combinada?",
+      "pause": 0.35
+    }
+  ],
+  "capa": "As malas que não eram minhas",
+  "destaque": "DEVOLVA",
+  "frase": "Às vezes amar é devolver a alça.",
+  "publico": "maes",
+  "formato": "parabola",
+  "date": "2026-09-26",
+  "hook_type": "dor",
+  "hook_text": "Você tenta resolver tudo para todos e fica sem forças? Escute isso.",
+  "script_sha256": "62c3e4fe76bb7127e5847e9582df8dd6497d005b196ae9f6ab8d5808ab5d170d"
+}
