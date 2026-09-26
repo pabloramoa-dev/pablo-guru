@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-25-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "alem-de-indispensavel",
+    "title": "Além de Indispensável",
+    "capa": "Quem cuida de você?",
+    "prop": "chain",
+    "destaque": "Próprio rumo",
+    "frase": "Cuidar de alguém não precisa apagar o rumo da própria vida",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "cuidadores",
+    "formato": "caderno",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando cuidar de alguém ocupa tudo, onde fica o seu próprio propósito? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Num cais, um barqueiro cuidava de uma corrente que prendia o barco à margem.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Soltou-a para seguir o rio. Avançou, mas voltou: ele nunca escolhera um destino.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine a corrente nas suas mãos. Se seu dia mantém alguém seguro, que caminho seu fica sem nome?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, isso lembra o que anotei ontem: “A coragem aparece enquanto a tentativa ainda está torta.” Eu também preciso de um rumo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A corrente sustentava o barco, mas não podia decidir para onde ele navegaria.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem você seria além de indispensável?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-25"
+  },
+  "script_hash": "6dbbf852daa0b44e836948c623504b4c4be28d7510fd42a73cc1d7b1334fbb42"
+}
