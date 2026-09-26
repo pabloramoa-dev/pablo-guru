@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-26-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-luz-que-nao-escuta",
+    "title": "A Luz Que Não Escuta",
+    "capa": "A luz entre vocês",
+    "prop": "lamp",
+    "destaque": "Presença real",
+    "frase": "Estar perto não basta quando o outro não se sente escutado",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "casais",
+    "formato": "erro_do_pablo",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "A rotina calou seu casamento? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando eu era aprendiz de faroleiro, polia uma lâmpada enquanto minha companheira me contava sua tristeza.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Eu ouvia as palavras, mas mantinha os olhos no vidro. Depois, a luz ficou limpa; a distância, não.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa lâmpada entre vocês: você escuta a voz ou só espera o momento de voltar a falar?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava presente na sala, mas ausente do encontro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A lâmpada iluminava o cais; não iluminava o que eu me recusava a enxergar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir você sem ser consertado?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-26"
+  },
+  "script_hash": "d9ace86b2e7a92994e67504bdc1307bc476ae0266c0b16ab2eb5eb316452fa86"
+}
