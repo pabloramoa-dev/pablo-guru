@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-26-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-livro-sem-anotacoes",
+    "title": "O Livro Sem Anotações",
+    "capa": "O livro do seu filho",
+    "prop": "book",
+    "destaque": "Espaço próprio",
+    "frase": "O vínculo cresce quando o outro pode escrever sua própria página",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "pais_de_adolescentes",
+    "formato": "marina_discorda",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Seu filho se afasta, e você tenta controlar cada silêncio? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa biblioteca, uma bibliotecária escrevia no livro tudo que o filho deveria sentir e escolher.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Cada página ficava cheia de ordens. Quando o menino voltou, fechou o livro sem ler.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse livro nas suas mãos. O que você está tentando preservar: o vínculo ou a obediência?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Mas, Pablo Guru, se eu soltar o controle, como vou protegê-lo quando ele se perder?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Seu medo quer cuidar, Marina. Mas o livro não ensina quando só recebe anotações; às vezes, o vínculo cresce no espaço da própria página.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que página seu filho precisa escrever sozinho?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-26"
+  },
+  "script_hash": "f259e63d9d7f207bb1020a55268d8a624aab16771b2cbb0b0f24eabdd4082f23"
+}
