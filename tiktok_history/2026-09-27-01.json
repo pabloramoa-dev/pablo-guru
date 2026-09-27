@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-27-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "xicara-lascada",
+    "title": "A Xícara Lascada",
+    "capa": "Café no avental",
+    "prop": "cup",
+    "destaque": "Encontro torto",
+    "frase": "Encontros imperfeitos também podem aquecer a saudade",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "longe_de_casa",
+    "formato": "humor",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Na casa nova, a solidão chega mesmo quando há gente por perto? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa pensão em Lisboa, uma cozinheira guardava uma xícara lascada trazida da sua cidade.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Certa manhã, ofereceu café a uma vizinha. A xícara caiu, quicou duas vezes e ficou inteira—mas o café foi parar no avental.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine sua saudade nessa cozinha: você procura companhia perfeita ou permite que um encontro desajeitado comece?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava esperando alguém entender minha falta antes de simplesmente sentar comigo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A xícara não precisava ser nova para servir; encontros também podem chegar tortos e ainda aquecer.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem poderia rir do seu café derramado com você?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-27"
+  },
+  "script_hash": "8521f6533371a023130a8d1a5fb0d979e2a96320fd0d85b27f0cb7b3decc710f"
+}
