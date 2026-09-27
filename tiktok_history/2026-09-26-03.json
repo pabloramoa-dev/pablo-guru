@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-26-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-lente-do-atraso",
+    "title": "A Lente do Atraso",
+    "capa": "O brilho da vitrine",
+    "prop": "magnifier",
+    "destaque": "Lente invertida",
+    "frase": "A inveja aumenta o distante e diminui o que já pulsa perto.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "vinte_e_poucos",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Na roda dos amigos, a vida alheia parece disparar na frente da sua? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa oficina estreita, uma relojoeira usava uma lupa para admirar o relógio dourado da vitrine vizinha.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quanto mais aproximava a lente, menor parecia o próprio relógio. Ela só via o brilho do outro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa lupa na sua mão: você está enxergando a vida de alguém ou diminuindo a sua?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava chamando de atraso aquilo que era apenas a parte brilhante do caminho alheio.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A inveja é uma lente que aumenta o brilho distante e encolhe o que já pulsa perto.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem você admira sem apagar a própria história?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-26"
+  },
+  "script_hash": "79bb67ed6b33abd62d96488f7ac1c08b35eefb173e493aefbdfa79ad3afb8675"
+}
