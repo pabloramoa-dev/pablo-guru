@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-27-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-porta-do-cuidado",
+    "title": "A porta do lado de dentro",
+    "capa": "Quem cuida também fecha a porta",
+    "prop": "door",
+    "destaque": "Cuidado próprio",
+    "frase": "Até quem cuida precisa existir do lado de dentro",
+    "em o cao": "INQUIETAÇÃO",
+    "publico": "quem_cuida_na_saude",
+    "formato": "caderno",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Depois de cuidar de todos, a culpa aparece quando você precisa dizer não? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa enfermaria, uma enfermeira fechava uma porta entre atendimentos, enquanto o corredor permanecia barulhento.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A maçaneta tremia. Ela soltou o ar. A culpa dizia que descansar era abandonar o cuidado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa porta diante de você. Se ela fechar por um instante, quem exatamente ficará sem cuidado?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Encontros imperfeitos também podem aquecer a saudade.” Eu ainda confundo limite com abandono.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A porta fechada não negava cuidado; revelava que até quem cuida precisa existir do lado de dentro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem você está tentando salvar, esquecendo de voltar para si?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-27"
+  },
+  "script_hash": "e2dfdfb04bcd7858ff31eda0329dca3d3f38724f06eb1b8a5bdcf4e46d097557"
+}
