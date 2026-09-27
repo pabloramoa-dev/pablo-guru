@@ -1,0 +1,52 @@
+{
+  "id": "o-espelho-riscado",
+  "title": "O espelho riscado",
+  "capa": "Quem riscou seu reflexo",
+  "prop": "mirror",
+  "destaque": "Reflexo alheio",
+  "frase": "A dúvida dos outros não define quem você é",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "vinte_e_poucos",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando ninguém parece confiar nas suas escolhas, você começa a desconfiar de si? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de molduras, uma vidraceira polia um espelho antigo, riscado no centro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada vez que tentava apagar o risco, o reflexo ficava mais turvo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine seu rosto nesse espelho. Você confia menos em si ou apenas no reflexo que alguém riscou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava tratando as dúvidas dos outros como prova contra mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um risco no espelho não muda o rosto; às vezes, só revela quem deixou a marca.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem fez você esquecer do próprio reflexo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-27",
+  "hook_type": "dor",
+  "hook_text": "Quando ninguém parece confiar nas suas escolhas, você começa a desconfiar de si? Escute isso.",
+  "script_sha256": "80e3f4a19fcb650e864399a3ff6394bbc1cda8358e03b615c3e47bb47c9138ad"
+}
