@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-27-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-chave-da-volta",
+    "title": "A chave da volta",
+    "capa": "A porta que mudou",
+    "prop": "key",
+    "destaque": "Entrada nova",
+    "frase": "A esperança muda quando aceitamos que a porta mudou",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "recomeco_amoroso",
+    "formato": "sem_pergunta",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Depois do término, você espera uma volta que nunca chega? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa estação pequena, uma florista guardava a chave do apartamento que dividira.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Polia a chave e imaginava a porta abrindo; a fechadura já havia mudado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine a chave na sua mão: espera a pessoa ou a história voltar?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava chamando de esperança o medo de aceitar que acabou.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A chave não guarda uma porta perdida; revela que a entrada mudou.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O coração também pode descansar diante de uma porta que não se abre.",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-27"
+  },
+  "script_hash": "bb72602904eba121b910b6c66a4d394392e6ef5b28cf43dd3c75f31aa87a3665"
+}
