@@ -1,0 +1,52 @@
+{
+  "id": "ampulheta-sem-tempo",
+  "title": "A ampulheta sem tempo",
+  "capa": "A ampulheta sem areia",
+  "prop": "hourglass",
+  "destaque": "Tempo perdido",
+  "frase": "O fim não precisa ser uma prova de perfeição.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "recomeco_amoroso",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois do término, você tenta acertar cada escolha? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de relojoeiro, consertei uma ampulheta até ela perder areia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Apertei o vidro, troquei a areia. No fim, ela não media mais nada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta nas suas mãos. Você está reconstruindo sua vida ou tentando provar que nunca erra?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava tratando cada escolha depois do fim como um julgamento sobre meu valor.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma ampulheta perfeita também pode ficar vazia: tentar eliminar todo erro pode impedir o tempo de seguir.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que pessoa você está tentando impressionar com sua perfeição?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-28",
+  "hook_type": "dor",
+  "hook_text": "Depois do término, você tenta acertar cada escolha? Escute isso.",
+  "script_sha256": "4fd373c526dd208c1f4d09cc64faae2bae3fe4f3a9560dbc9ae8868d4c6d5d27"
+}
