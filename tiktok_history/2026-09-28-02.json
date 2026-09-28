@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-28-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-lupa-da-autoridade",
+    "title": "A lupa da autoridade",
+    "capa": "O medo por trás da lupa",
+    "prop": "magnifier",
+    "destaque": "Verdade ampliada",
+    "frase": "O orgulho aumenta o medo de parecer pequeno.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "professores",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quantas vezes o orgulho de saber tudo deixa você sozinho diante da turma? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa sala de aula, uma professora de geografia levava uma lupa para corrigir provas.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando uma correção revelou uma falha, ela ampliou a marca até esconder o próprio acerto.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa lupa nas suas mãos: você quer enxergar melhor ou proteger a imagem de quem nunca falha?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava defendendo minha autoridade, não o aprendizado da turma.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A lupa não aumentava a verdade; aumentava o medo de parecer pequeno.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem poderia aprender com você sem precisar vê-lo perfeito?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-28"
+  },
+  "script_hash": "562725f606fbc29ed75cfce313d6de27e97782469991acc567d91536f3ebb132"
+}
