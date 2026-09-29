@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-29-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-chave-da-raiva",
+    "title": "A chave da raiva",
+    "capa": "A porta que a raiva guarda",
+    "prop": "key",
+    "destaque": "Porta escondida",
+    "frase": "A raiva guarda uma porta que a dor quer abrir.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "busca_espiritual",
+    "formato": "sem_pergunta",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando a raiva cresce por dentro e ninguém percebe, o que ela está tentando proteger? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa ferraria, um ferreiro guardava uma pequena chave no bolso do avental.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Cada insulto lembrado apertava seus dedos. A chave marcava a palma, embora não abrisse porta alguma.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa chave na sua mão: sua raiva está defendendo uma verdade ou mantendo você preso ao momento?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava protegendo uma ferida antiga como se ela ainda precisasse lutar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A raiva parecia espada, mas era uma chave: revelava a porta por onde a dor queria sair.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Talvez a porta que sua raiva guarda esteja pedindo luz.",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-29"
+  },
+  "script_hash": "b5f4ea5d731cefa6fabb1805922c19778598549924ec74b57c2a36ba09c4b8a6"
+}
