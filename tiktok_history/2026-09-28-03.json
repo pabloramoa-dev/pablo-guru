@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-28-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-mapa-da-mare",
+    "title": "O mapa da maré",
+    "capa": "A rota que muda",
+    "prop": "map",
+    "destaque": "Maré própria",
+    "frase": "Nem todo atraso é perda; algumas coisas amadurecem no tempo certo.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "maes",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Mãe, você se culpa quando o cuidado de hoje não resolve tudo? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa vila de pescadores, uma faroleira guardava um mapa dobrado do mar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Toda manhã, ela o abria procurando a rota certa. A maré mudava antes de terminar a leitura.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse mapa nas suas mãos: você espera conhecer o caminho inteiro antes de acompanhar quem depende de você?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava chamando de cuidado a tentativa de prever cada mudança.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O mapa não atrasava o barco; só lembrava que nenhuma rota controla o mar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que cada coisa tem seu tempo?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-28"
+  },
+  "script_hash": "516096a96d9b7119f9a6c624adb4384ad83806f54dec0636c78c2fccf044a6ee"
+}
