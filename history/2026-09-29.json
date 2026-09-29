@@ -1,0 +1,52 @@
+{
+  "id": "a-mala-da-saudade",
+  "title": "A mala da saudade",
+  "capa": "A mala que não partia",
+  "prop": "chain",
+  "destaque": "Soltar amor",
+  "frase": "Saudade também aprende a soltar.",
+  "em อocao": "INQUIETAÇÃO",
+  "publico": "maes",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A saudade dos filhos crescidos deixa seu cuidado procurando onde pousar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação, uma mãe prendia a mala do filho com uma corrente. O trem apitou; ela ainda discutia com a mala.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A corrente soltou. A mala rolou. Ela correu atrás, rindo e chorando.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa corrente nas suas mãos. Você sente saudade ou tenta impedir que o amor siga viagem?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu queria manter perto quem amo, mas meu cuidado também precisa aprender a soltar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Saudade não é corrente: é o amor descobrindo que presença também pode morar na distância.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você ama precisa de abraço ou de espaço?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-29",
+  "hook_type": "dor",
+  "hook_text": "A saudade dos filhos crescidos deixa seu cuidado procurando onde pousar? Escute isso.",
+  "script_sha256": "064baaef77e49787c6a07b300eb75cc6d39a5d6804ccabc9b9e3ac4f3683965a"
+}
