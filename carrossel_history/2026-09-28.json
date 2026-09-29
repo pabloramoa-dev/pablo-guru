@@ -1,0 +1,40 @@
+{
+  "data": "2026-09-28",
+  "titulo": "Meditar não é esvaziar a mente",
+  "conteudo": {
+    "id": "meditacao-mente-vazia",
+    "titulo": "Meditar não é esvaziar a mente",
+    "subtitulo": "O mito que faz muita gente desistir no terceiro dia",
+    "slides": [
+      {
+        "titulo": "O mito",
+        "texto": "“Não consigo meditar, minha cabeça não para.” Quase todo mundo diz isso. É justamente aí que a prática começa."
+      },
+      {
+        "titulo": "O que é, na prática",
+        "texto": "Em muitas tradições, meditar é notar para onde a atenção foi e trazê-la de volta. Voltar mil vezes é o exercício, não o erro."
+      },
+      {
+        "titulo": "A imagem",
+        "texto": "A mente não é um copo a esvaziar. É um céu: as nuvens passam. Você aprende a ser o céu, não a nuvem."
+      },
+      {
+        "titulo": "Começo possível",
+        "texto": "Três respirações contadas antes de começar o dia. Parece pouco. É uma porta."
+      },
+      {
+        "titulo": "Sem competição",
+        "texto": "Não existe meditação bonita. Existe a sentada de hoje, do jeito que ela vier."
+      }
+    ],
+    "fechamento": "Quem percebe que se distraiu já está meditando.",
+    "legenda": "Se a sua cabeça não para quando você medita, parabéns: você percebeu. Esse é o começo.",
+    "hashtags": [
+      "#meditacao",
+      "#mindfulness",
+      "#atencaoplena"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-09-28T21:19:21-03:00"
+}
