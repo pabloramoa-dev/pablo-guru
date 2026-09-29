@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-29-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "janela-do-descanso",
+    "title": "A Janela do Descanso",
+    "capa": "A luz pode esperar",
+    "prop": "window",
+    "destaque": "Repouso permitido",
+    "frase": "Descansar não me atrasa; devolve espaço à vida.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "cinquenta_mais",
+    "formato": "caderno",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Depois dos cinquenta, descansar ainda parece desperdício? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa estação serrana, uma vidraceira guardava uma janela pequena encostada à parede.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Ela limpava a janela todos os dias, mas nunca a instalava. Dizia que a luz podia esperar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa janela no seu quarto. O que você chama de prudência, quando talvez seja medo de abrir espaço?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, isso lembra o que anotei ontem: “Nem todo atraso é perda; algumas coisas amadurecem no tempo certo.” Eu também posso repousar sem me considerar atrasada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A janela não atrasava a luz; apenas permanecia fechada enquanto a vida pedia passagem.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O que em você ainda espera autorização para descansar?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-29"
+  },
+  "script_hash": "9f23dc5bef667493b3b0828041aef6cd396f82a3d02a1f35f462bdd323e64897"
+}
