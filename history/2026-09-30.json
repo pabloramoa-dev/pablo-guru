@@ -1,0 +1,52 @@
+{
+  "id": "a-lupa-e-a-voz",
+  "title": "A lupa e a voz",
+  "capa": "Quem apagou sua voz",
+  "prop": "magnifier",
+  "destaque": "Foco próprio",
+  "frase": "A dúvida alheia não diminui a sua voz",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "introvertidos",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Nos grupos, sua voz some antes de você confiar nela? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de relógios, uma relojoeira guardava uma lupa no bolso do avental.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando alguém criticava seu trabalho, ela usava a lupa para procurar defeitos em tudo que fazia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lupa na sua mão. Você está enxergando melhor ou aumentando a opinião de quem duvidou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu falar, posso confirmar que não tenho nada importante a dizer.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A objeção faz sentido. Mas a lupa não revela seu valor; apenas amplia aquilo que você escolheu examinar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você deixaria ouvir sua voz sem pedir licença?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-09-30",
+  "hook_type": "dor",
+  "hook_text": "Nos grupos, sua voz some antes de você confiar nela? Escute isso.",
+  "script_sha256": "1a0127d82fa60caae6cf8d8ef703cbaf3cbdab9f7741f370a0e370c3be6e1c59"
+}
