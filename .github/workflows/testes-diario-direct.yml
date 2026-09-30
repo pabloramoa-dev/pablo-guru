@@ -2,7 +2,7 @@ name: Testes Diario e Direct
 on:
   push:
     branches: [main, implementacao/episodios-diarios-direct]
-    paths: ['daily/**', 'direct_guru/**', 'tests/**', '.github/workflows/testes-diario-direct.yml']
+    paths: ['daily/**', 'direct_guru/**', 'studio/**', 'audio/**', 'episodios/a_estacao/**', 'requirements.txt', 'tests/**', '.github/workflows/testes-diario-direct.yml']
   pull_request:
   workflow_dispatch:
 permissions:
@@ -15,5 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -r direct_guru/requirements.txt
+      - run: pip install -r direct_guru/requirements.txt edge-tts==7.2.8
+      - name: Conferir sintaxe dos motores de áudio
+        run: python -m compileall -q studio/pablo_audio.py audio/tts.py episodios/a_estacao/generate_audio.py daily/generate_audio.py
       - run: python -m unittest discover -s tests -v
