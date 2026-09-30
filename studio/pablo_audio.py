@@ -1,10 +1,17 @@
 """
 pablo_audio.py — Narração, lip sync e trilha do Pablo Guru
 ==========================================================
-Cadeia de narração (tenta na ordem, cai para a próxima se indisponível):
-    1. Kokoro TTS local (PT-BR)      — qualidade alvo
-    2. ElevenLabs (se ELEVENLABS_API_KEY estiver no ambiente)
-    3. espeak-ng PT-BR               — fallback garantido, sempre funciona
+Cadeia de narração:
+    Pablo Guru:
+      1. Kokoro TTS local (PT-BR) — pm_alex
+      2. ElevenLabs (se configurado)
+      3. espeak-ng PT-BR
+
+    Personagem feminina / Marina / perguntadora:
+      1. Microsoft Thalita Neural (pt-BR-ThalitaNeural, rate -6%) — voz oficial
+      2. Kokoro pf_dora — fallback local
+      3. ElevenLabs (se configurado)
+      4. espeak-ng PT-BR
 
 Lip sync:
     - Se o Rhubarb Lip Sync estiver instalado, usa os visemas dele (preciso).
@@ -20,6 +27,7 @@ API principal:
 
 from __future__ import annotations
 
+import asyncio
 import json
 import os
 import shutil
@@ -52,11 +60,17 @@ KOKORO_VOZES = KOKORO_DIR / "voices-v1.0.bin"
 KOKORO_URL = ("https://github.com/thewh1teagle/kokoro-onnx/releases/download/"
               "model-files-v1.0")
 
-# Vozes PT-BR do Kokoro: pm_alex e pm_santa (masculinas), pf_dora (feminina)
+# Voz masculina do Pablo continua Kokoro. A personagem feminina passa a Thalita.
 VOZ_PABLO = {"velocidade_wpm": 150, "kokoro": "pm_alex", "kokoro_speed": 0.92,
              "estilo": "pausado, grave, contemplativo"}
-VOZ_PERGUNTADORA = {"velocidade_wpm": 165, "kokoro": "pf_dora", "kokoro_speed": 1.0,
-                    "estilo": "natural, curiosa"}
+VOZ_PERGUNTADORA = {
+    "velocidade_wpm": 165,
+    "edge": "pt-BR-ThalitaNeural",
+    "edge_rate": "-6%",
+    "kokoro": "pf_dora",
+    "kokoro_speed": 1.0,
+    "estilo": "natural, curiosa, suave",
+}
 
 _KOKORO = {"obj": None}
 
@@ -81,7 +95,7 @@ def baixar_kokoro() -> bool:
 
 
 def _tts_kokoro(texto, saida, voz="pm_alex", speed=0.95) -> bool:
-    """Narração NEURAL local em PT-BR. É o motor padrão — não é fallback."""
+    """Narração neural local em PT-BR."""
     try:
         import soundfile as sf
         from kokoro_onnx import Kokoro
@@ -94,6 +108,29 @@ def _tts_kokoro(texto, saida, voz="pm_alex", speed=0.95) -> bool:
                                             lang="pt-br")
         sf.write(str(saida), amostras, sr)
         return True
+    except Exception:
+        return False
+
+
+async def _edge_salvar(texto: str, mp3: Path, voice: str, rate: str) -> None:
+    import edge_tts
+    await edge_tts.Communicate(texto, voice=voice, rate=rate).save(str(mp3))
+
+
+def _tts_thalita(texto, saida, voice="pt-BR-ThalitaNeural", rate="-6%") -> bool:
+    """Voz feminina oficial do Pablo Guru: Microsoft Thalita Neural PT-BR."""
+    try:
+        mp3 = Path(saida).with_suffix(".thalita.mp3")
+        asyncio.run(_edge_salvar(texto, mp3, voice, rate))
+        subprocess.run([
+            "ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3),
+            "-ar", "44100", "-ac", "1", "-c:a", "pcm_s16le", str(saida),
+        ], check=True)
+        try:
+            mp3.unlink()
+        except OSError:
+            pass
+        return Path(saida).exists() and Path(saida).stat().st_size > 1024
     except Exception:
         return False
 
@@ -136,23 +173,35 @@ def _tts_espeak(texto, saida, wpm=150) -> bool:
 
 
 def narrar(texto: str, saida: str, personagem: str = "pablo") -> Narracao:
-    """Gera a narração usando o melhor motor disponível."""
+    """Gera a narração usando a voz canônica de cada personagem."""
     saida = str(saida)
     Path(saida).parent.mkdir(parents=True, exist_ok=True)
-    perfil = VOZ_PABLO if personagem.startswith("pablo") else VOZ_PERGUNTADORA
+    eh_pablo = personagem.startswith("pablo")
+    perfil = VOZ_PABLO if eh_pablo else VOZ_PERGUNTADORA
 
-    for motor, fn in (
-        ("kokoro", lambda: _tts_kokoro(texto, saida, perfil["kokoro"],
-                                       perfil["kokoro_speed"])),
-        ("elevenlabs", lambda: _tts_elevenlabs(texto, saida)),
-        ("espeak-ng", lambda: _tts_espeak(texto, saida, perfil["velocidade_wpm"])),
-    ):
+    if eh_pablo:
+        motores = (
+            ("kokoro", lambda: _tts_kokoro(texto, saida, perfil["kokoro"],
+                                           perfil["kokoro_speed"])),
+            ("elevenlabs", lambda: _tts_elevenlabs(texto, saida)),
+            ("espeak-ng", lambda: _tts_espeak(texto, saida, perfil["velocidade_wpm"])),
+        )
+    else:
+        motores = (
+            ("thalita", lambda: _tts_thalita(texto, saida, perfil["edge"], perfil["edge_rate"])),
+            ("kokoro-fallback", lambda: _tts_kokoro(texto, saida, perfil["kokoro"],
+                                                    perfil["kokoro_speed"])),
+            ("elevenlabs", lambda: _tts_elevenlabs(texto, saida)),
+            ("espeak-ng", lambda: _tts_espeak(texto, saida, perfil["velocidade_wpm"])),
+        )
+
+    for motor, fn in motores:
         try:
             if fn():
                 return Narracao(saida, _dur_wav(saida), motor, texto)
         except Exception:
             continue
-    raise RuntimeError("Nenhum motor de TTS disponível (kokoro / elevenlabs / espeak-ng).")
+    raise RuntimeError("Nenhum motor de TTS disponível para a personagem solicitada.")
 
 
 # ---------------------------------------------------------------------------
@@ -188,10 +237,9 @@ def lip_sync_amplitude(wav: str, fps: int = 60) -> list[str]:
             visemas.append("X")
             continue
         rms = float(np.sqrt(np.mean(bloco ** 2)))
-        nivel = min(1.0, rms / 0.22)          # 0.22 ~ fala normal
+        nivel = min(1.0, rms / 0.22)
         idx = int(round(nivel * (len(_ORDEM_ABERTURA) - 1)))
         visemas.append(_ORDEM_ABERTURA[idx])
-    # suavização: elimina tremulação de 1 frame
     for i in range(1, len(visemas) - 1):
         if visemas[i - 1] == visemas[i + 1] != visemas[i]:
             visemas[i] = visemas[i - 1]
@@ -213,10 +261,7 @@ def _achar_rhubarb():
 
 
 def lip_sync_rhubarb(wav: str, fps: int = 60) -> list[str] | None:
-    """Visemas A-H reais do Rhubarb, quando o binário existe.
-
-    O release oficial é bloqueado no container; compile do git (veja SKILL.md).
-    """
+    """Visemas A-H reais do Rhubarb, quando o binário existe."""
     exe = _achar_rhubarb()
     if not exe:
         return None
@@ -296,16 +341,7 @@ def mixar(narracao: str, trilha: str, saida: str):
 
 
 def normalizar(entrada: str, saida: str, lufs: float = -16.5):
-    """Loudness de plataforma com GANHO LINEAR + limitador suave.
-
-    ARMADILHA (ep11): `loudnorm` num passe só roda em modo dinâmico e, com
-    entrada silenciosa, muda o ganho a cada bloco — a narração sai estalando.
-    Mesmo com `linear=true` o filtro dobrou a descontinuidade máxima do sinal
-    aqui. Por isso a masterização agora é: MEDE (loudnorm só imprimindo),
-    aplica um ganho FIXO e segura o pico com `alimiter`. Nada de bombeamento.
-    Alvo -16.5 LUFS: as plataformas normalizam para -14, e forçar os últimos
-    2 dB só faz o limitador trabalhar e chiar.
-    """
+    """Loudness de plataforma com GANHO LINEAR + limitador suave."""
     import json as _json
     medida = subprocess.run([
         "ffmpeg", "-i", entrada, "-af",
@@ -316,7 +352,7 @@ def normalizar(entrada: str, saida: str, lufs: float = -16.5):
         bruto = medida.stderr[medida.stderr.rindex("{"):]
         m = _json.loads(bruto[:bruto.index("}") + 1] if "}" in bruto else bruto)
         ganho = float(lufs) - float(m["input_i"])
-        ganho = max(0.0, min(ganho, 12.0))     # acima disso o limitador chia
+        ganho = max(0.0, min(ganho, 12.0))
     except Exception:
         pass
 
