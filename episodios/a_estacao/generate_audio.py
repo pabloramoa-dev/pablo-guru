@@ -18,9 +18,21 @@ PABLO_CUES = OUT / "pablo_cues.json"
 ASKER_CUES = OUT / "asker_cues.json"
 SR = 44100
 
+# Vozes canônicas: Pablo continua pm_alex; personagem feminina passa a Thalita.
 VOICE_PROFILES = {
-    "asker": {"voice": "pf_dora", "speed": 0.84, "pitch": 0.94},
-    "pablo": {"voice": "pm_alex", "speed": 0.82, "pitch": 0.88},
+    "asker": {
+        "backend": "edge",
+        "voice": "pt-BR-ThalitaNeural",
+        "rate": "-6%",
+        "speed": 1.0,
+        "pitch": 1.0,
+    },
+    "pablo": {
+        "backend": "kokoro",
+        "voice": "pm_alex",
+        "speed": 0.82,
+        "pitch": 0.88,
+    },
 }
 
 SEGMENTS = [
@@ -69,13 +81,20 @@ def main() -> None:
         profile = VOICE_PROFILES[speaker]
         raw = OUT / f"{index:02d}_{speaker}_raw.wav"
         wav = OUT / f"{index:02d}_{speaker}.wav"
-        synthesize(text, raw, backend="kokoro", voice=profile["voice"], speed=profile["speed"])
+        synthesize(
+            text,
+            raw,
+            backend=profile["backend"],
+            voice=profile["voice"],
+            speed=profile.get("speed", 1.0),
+            rate=profile.get("rate"),
+        )
         timbre(raw, wav, profile["pitch"])
         samples = mono(wav)
         start, end = cursor, cursor + len(samples) / SR
         timings.append({"index": index, "speaker": speaker, "text": text,
                         "start": round(start, 4), "end": round(end, 4),
-                        "voice": profile["voice"]})
+                        "voice": profile["voice"], "backend": profile["backend"]})
         parts.append(samples)
         target = pablo_cues if speaker == "pablo" else asker_cues
         for cue in audio_driven_cues(wav):
