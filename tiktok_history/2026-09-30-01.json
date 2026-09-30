@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-30-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-bolsa-do-inacabado",
+    "title": "A Bolsa do Inacabado",
+    "capa": "A bolsa que pesa mais",
+    "prop": "bag",
+    "destaque": "Incompleto vivo",
+    "frase": "Perfeição não protege o que ainda precisa seguir.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "empreendedores",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Seu pequeno negócio depende de você para tudo, e nenhum detalhe parece bom o bastante? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa marcenaria de bairro, um marceneiro carregava uma bolsa de couro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando o trabalho saía quase pronto, ele escondia a bolsa e recomeçava. Ela pesava mais a cada tentativa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa bolsa no seu ombro: você cuida do acabamento ou adia aquilo que já tem vida?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava chamando de qualidade o medo de deixar algo seguir sem meu controle.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A bolsa não carregava ferramentas; carregava a tentativa de tornar o incompleto impossível de criticar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem receberia hoje algo seu ainda humano?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-30"
+  },
+  "script_hash": "a6dba2f4897e162b3a42c83f5c32fefe258f60968da60894ac527a2154d3292a"
+}
