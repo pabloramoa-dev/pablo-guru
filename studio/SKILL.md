@@ -3,7 +3,7 @@ name: pablo-guru-studio
 description: Estúdio de produção completo para episódios verticais do Pablo Guru — personagens Manim (Pablo, Marina, etc), cenários, efeitos, roteiros, renderização e exportação (1080p60 + 9:16 short + capa + metadados). Use SEMPRE que o Pablo pedir para criar episódios, renderizar, gerar vídeos, ou produzir em série. Aciona com "gera o episódio", "renderiza", "produz", "novo vídeo", "episódio do pablo", "episódio pablo guru", "faz o vídeo", "cria o short", ou quando colaenredo/roteiro e pedir o vídeo pronto — mesmo sem mencionar "skill".
 ---
 
-# Pablo Guru Studio — v3.5 (23/09/2026)
+# Pablo Guru Studio — v3.6 (30/09/2026)
 
 Motor de produção do canal **Pablo Guru** (Instagram e TikTok **@opabloguru** — NUNCA "@pabloguru"): vídeos verticais 9:16 de espiritualidade e vida interior contada por parábolas, feitos por código em Manim. A Marina pergunta, o Pablo Guru conta uma parábola, a Marina descobre e anota no caderninho.
 
@@ -60,6 +60,14 @@ O Pablo autorizou commitar direto na `main` pelo navegador. O que funciona:
 - 85–110 palavras. Pablo **não é coach**: nada de listas, prazos, notificações, celular, e-mail, produtividade, "na virada", "na prática". Nunca tom de bronca ("Você não…, você está…").
 - A Marina chama ele **sempre de "Pablo Guru"**, nunca só "Pablo".
 - CTA final é FALA dela: *"Obrigada, Pablo Guru. Vou seguir o canal pra receber mais histórias assim."* + cartão "SIGA O CANAL / para receber mais / @opabloguru".
+
+### Voz oficial dos personagens — regra obrigatória
+- **Pablo Guru:** `pm_alex` (Kokoro), mantendo o timbre grave/pausado atual.
+- **Marina / personagem feminina / perguntadora:** **Microsoft `pt-BR-ThalitaNeural`**, velocidade **`-6%`**.
+- `edge-tts` é o motor canônico da Marina em `studio/pablo_audio.py` e `audio/tts.py`.
+- `pf_dora` permanece somente como **fallback local de emergência** caso Thalita esteja indisponível; não usar Dora como voz normal de novos episódios.
+- O pipeline diário/TikTok também deve usar Thalita na chave `asker` de `episodios/a_estacao/generate_audio.py`.
+- Não alterar essas identidades vocais sem pedido explícito do Pablo.
 
 **Campos do JSON do episódio**: `id`, `title`, `capa` (título da grade, ≤6 palavras, intrigante), `prop`, `destaque` (1–2 palavras → carimbo), `frase` (≤12 palavras → caderninho da Marina), `emocao` (ESPANTO | INDIGNAÇÃO | INQUIETAÇÃO), `publico`, `formato`, `segments`.
 
@@ -131,10 +139,12 @@ Carrossel: `python -m carrossel.publicar preparar --dia AAAA-MM-DD --ensaio` ger
 17. Franja não desce até a sobrancelha (some o rosto); braço tem de sair da silhueta do tronco (senão vira listra na roupa).
 18. `become()` reescreve o z_index — reafirme depois, senão algo passa por cima da legenda.
 19. `pip install` de Kokoro: o modelo baixa pelo ASSET de release do GitHub (a página /releases dá 403 no proxy); o binário de release do Rhubarb é bloqueado no container — compile do git (o `setup_ambiente.sh` já faz).
+20. **Voz feminina:** não voltar a `pf_dora` como padrão. Marina/perguntadora usa Thalita `pt-BR-ThalitaNeural` a `-6%`; Dora é só fallback.
 
 ---
 
 ## 8. Histórico curto
+- **v3.6** (30/09/2026): Marina/perguntadora passa a usar Microsoft Thalita Neural (`pt-BR-ThalitaNeural`, `-6%`) em definitivo; Pablo continua `pm_alex`; Dora fica somente como fallback local.
 - **v3.5** (23/09/2026): capa 9:16 + capa no 1º quadro; público-alvo e formatos alternados; gerador com prompt-mestre e revisão anti-coach; rosto absoluto com humores animáveis, sorriso e gesto `anotar`; 7 objetos novos e desfecho na virada; coreografia variada; carrossel diário das 18h; código passa a morar só no GitHub.
 - **v3.4** (01/09): padrão fechado (tratamento "Pablo Guru", CTA falado), olho absoluto, master sem loudnorm, entrega 30 fps. Estilo Vox colagem vira padrão em 16/09; abertura hook-first em 15/09.
 - **v3.3** (01/09): motor + vida facial (boca parada corrigida). **v3.2**: ambientes. **v3.1**: karaokê e relógio absoluto. **v3.0**: personagens no mundo do @previsaosulflu, Kokoro e Rhubarb. **v2.2**: motor reconstruído depois que a v2.1 perdeu o código (lição: o código não pode morar só na conversa — hoje mora no repositório).
@@ -145,5 +155,6 @@ Carrossel: `python -m carrossel.publicar preparar --dia AAAA-MM-DD --ensaio` ger
 - Capa no 1º quadro + `cover_url` (pedido dele em 23/09: a grade não pode ser repetitiva).
 - Cada episódio fala com um público específico; formatos alternados; a Marina tem continuidade pelo caderno.
 - CTA "Siga o canal" falado pela Marina em todo episódio.
+- **Voz da Marina/perguntadora: Thalita Neural `pt-BR-ThalitaNeural` a `-6%`; não voltar para Dora como padrão.**
 - Vídeo diário no Instagram (07h41 render → publica), TikTok 3/dia separado do Instagram.
 - Credenciais: o Pablo mesmo faz login e cola chaves; nunca manuseie token ou senha.
