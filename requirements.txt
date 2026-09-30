@@ -4,4 +4,5 @@ scipy>=1.11
 soundfile>=0.12
 kokoro-onnx>=0.6.1
 misaki-fork>=0.9.6
+edge-tts==7.2.8
 # VoxCPM remains optional and is not installed by the lightweight CI lab.
