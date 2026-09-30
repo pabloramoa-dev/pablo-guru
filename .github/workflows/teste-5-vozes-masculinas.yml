@@ -21,34 +21,26 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Instalar TTS
-        run: |
-          sudo apt-get update -q
-          sudo apt-get install -y ffmpeg curl
-          pip install edge-tts==7.2.8
+      - name: Instalar edge-tts
+        run: pip install -q edge-tts==7.2.8
       - name: Gerar vozes para comparação
-        shell: bash
         run: |
-          set +e
           mkdir -p vozes
-          cat > /tmp/texto.txt <<'TXT'
-          Talvez você esteja esperando a vida dar um sinal.
-
-          Mas existe uma coisa que quase ninguém percebe...
-
-          Nem todo atraso significa que você ficou para trás.
-
-          Às vezes, o caminho apenas está preparando você para enxergar aquilo que antes passaria despercebido.
-
-          Então me responda: você está realmente atrasado... ou apenas vivendo o seu próprio tempo?
-          TXT
-
           python - <<'PY'
-          import asyncio
+          import asyncio, html, os, urllib.request, urllib.error
           from pathlib import Path
           import edge_tts
 
-          texto = Path('/tmp/texto.txt').read_text(encoding='utf-8').strip()
+          texto = '''Talvez você esteja esperando a vida dar um sinal.
+
+Mas existe uma coisa que quase ninguém percebe...
+
+Nem todo atraso significa que você ficou para trás.
+
+Às vezes, o caminho apenas está preparando você para enxergar aquilo que antes passaria despercebido.
+
+Então me responda: você está realmente atrasado... ou apenas vivendo o seu próprio tempo?'''
+
           vozes = {
               'humberto': 'pt-BR-HumbertoNeural',
               'nicolau': 'pt-BR-NicolauNeural',
@@ -56,86 +48,61 @@ jobs:
               'pedro_hd': 'pt-BR-Pedro:MAI-Voice-2',
               'rafael_hd': 'pt-BR-Rafael:MAI-Voice-2',
           }
+          status=[]
 
-          async def gerar(nome, voz):
+          async def edge_one(nome, voz):
+              destino=Path('vozes')/f'{nome}.mp3'
               try:
-                  p = Path('vozes') / f'{nome}.mp3'
-                  await edge_tts.Communicate(texto, voice=voz, rate='-6%').save(str(p))
-                  if p.exists() and p.stat().st_size > 1000:
-                      return f'{nome}|{voz}|edge|OK'
+                  await edge_tts.Communicate(texto, voice=voz, rate='-6%').save(str(destino))
+                  if destino.exists() and destino.stat().st_size > 1000:
+                      status.append(f'{nome}|{voz}|edge|OK')
+                      return True
               except Exception as e:
-                  return f'{nome}|{voz}|edge|FALHOU|{type(e).__name__}'
-              return f'{nome}|{voz}|edge|FALHOU'
+                  status.append(f'{nome}|{voz}|edge|FALHOU|{type(e).__name__}')
+              destino.unlink(missing_ok=True)
+              return False
 
-          async def main():
-              linhas = []
+          async def edge_all():
               for nome, voz in vozes.items():
-                  linhas.append(await gerar(nome, voz))
-              Path('/tmp/edge-status.txt').write_text('\n'.join(linhas), encoding='utf-8')
-          asyncio.run(main())
+                  await edge_one(nome, voz)
+          asyncio.run(edge_all())
+
+          key=os.getenv('AZURE_SPEECH_KEY') or os.getenv('SPEECH_KEY') or ''
+          region=os.getenv('AZURE_SPEECH_REGION') or os.getenv('SPEECH_REGION') or ''
+          if key and region:
+              for nome, voz in vozes.items():
+                  destino=Path('vozes')/f'{nome}.mp3'
+                  if destino.exists():
+                      continue
+                  ssml=(f'<speak version="1.0" xml:lang="pt-BR"><voice name="{html.escape(voz)}">'
+                        f'<prosody rate="-6%">{html.escape(texto)}</prosody></voice></speak>').encode('utf-8')
+                  req=urllib.request.Request(
+                      f'https://{region}.tts.speech.microsoft.com/cognitiveservices/v1',
+                      data=ssml,
+                      headers={
+                          'Ocp-Apim-Subscription-Key': key,
+                          'Content-Type': 'application/ssml+xml',
+                          'X-Microsoft-OutputFormat': 'audio-24khz-48kbitrate-mono-mp3',
+                          'User-Agent': 'pablo-guru-voice-test',
+                      }, method='POST')
+                  try:
+                      with urllib.request.urlopen(req, timeout=60) as r:
+                          data=r.read()
+                      if len(data)>1000:
+                          destino.write_bytes(data)
+                          status.append(f'{nome}|{voz}|azure|OK')
+                      else:
+                          status.append(f'{nome}|{voz}|azure|FALHOU|audio_curto')
+                  except Exception as e:
+                      status.append(f'{nome}|{voz}|azure|FALHOU|{type(e).__name__}')
+          else:
+              status.append('azure|NAO_CONFIGURADO')
+
+          Path('vozes/status.txt').write_text('\n'.join(status), encoding='utf-8')
+          print('\n'.join(status))
+          for p in Path('vozes').glob('*'):
+              print(p.name, p.stat().st_size)
           PY
-
-          cat /tmp/edge-status.txt
-
-          KEY="${AZURE_SPEECH_KEY:-${SPEECH_KEY:-}}"
-          REGION="${AZURE_SPEECH_REGION:-${SPEECH_REGION:-}}"
-          if [ -n "$KEY" ] && [ -n "$REGION" ]; then
-            echo 'Azure Speech configurado: tentando vozes que faltaram.'
-            python - <<'PY'
-          from pathlib import Path
-          import html
-          texto = Path('/tmp/texto.txt').read_text(encoding='utf-8').strip()
-          vozes = {
-              'humberto': 'pt-BR-HumbertoNeural',
-              'nicolau': 'pt-BR-NicolauNeural',
-              'macerio_hd': 'pt-BR-Macerio:DragonHDLatestNeural',
-              'pedro_hd': 'pt-BR-Pedro:MAI-Voice-2',
-              'rafael_hd': 'pt-BR-Rafael:MAI-Voice-2',
-          }
-          for nome, voz in vozes.items():
-              if (Path('vozes') / f'{nome}.mp3').exists():
-                  continue
-              ssml = f'''<speak version="1.0" xml:lang="pt-BR"><voice name="{html.escape(voz)}"><prosody rate="-6%">{html.escape(texto)}</prosody></voice></speak>'''
-              (Path('/tmp') / f'{nome}.xml').write_text(ssml, encoding='utf-8')
-          PY
-            for nome in humberto nicolau macerio_hd pedro_hd rafael_hd; do
-              [ -s "vozes/$nome.mp3" ] && continue
-              case "$nome" in
-                humberto) VOZ='pt-BR-HumbertoNeural' ;;
-                nicolau) VOZ='pt-BR-NicolauNeural' ;;
-                macerio_hd) VOZ='pt-BR-Macerio:DragonHDLatestNeural' ;;
-                pedro_hd) VOZ='pt-BR-Pedro:MAI-Voice-2' ;;
-                rafael_hd) VOZ='pt-BR-Rafael:MAI-Voice-2' ;;
-              esac
-              if [ -s "/tmp/$nome.xml" ]; then
-                code=$(curl -sS -o "vozes/$nome.mp3" -w '%{http_code}' \
-                  -X POST "https://${REGION}.tts.speech.microsoft.com/cognitiveservices/v1" \
-                  -H "Ocp-Apim-Subscription-Key: $KEY" \
-                  -H 'Content-Type: application/ssml+xml' \
-                  -H 'X-Microsoft-OutputFormat: audio-24khz-48kbitrate-mono-mp3' \
-                  -H 'User-Agent: pablo-guru-voice-test' \
-                  --data-binary "@/tmp/$nome.xml")
-                if [ "$code" != 200 ] || [ ! -s "vozes/$nome.mp3" ]; then
-                  rm -f "vozes/$nome.mp3"
-                  echo "$nome|$VOZ|azure|FALHOU|HTTP_$code" >> /tmp/azure-status.txt
-                else
-                  echo "$nome|$VOZ|azure|OK" >> /tmp/azure-status.txt
-                fi
-              fi
-            done
-          else
-            echo 'AZURE_NAO_CONFIGURADO' > /tmp/azure-status.txt
-          fi
-
-          {
-            echo 'Texto idêntico em todas as vozes.'
-            echo '--- edge ---'
-            cat /tmp/edge-status.txt
-            echo '--- azure ---'
-            cat /tmp/azure-status.txt 2>/dev/null || true
-            echo '--- arquivos ---'
-            ls -lh vozes || true
-          } | tee vozes/status.txt
       - uses: actions/upload-artifact@v4
         with:
           name: comparacao-vozes-masculinas-hd
