@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-30-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-estacao-da-saudade",
+    "title": "A Estação da Saudade",
+    "capa": "O trem para a infância",
+    "prop": "station",
+    "destaque": "Volta impossível",
+    "frase": "Saudade não precisa devolver você à pessoa que agradava",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "filhos_adultos",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "A saudade dos seus pais faz cada escolha parecer errada sem a aprovação deles? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa estação de trem, uma bilheteira guardava uma pequena estação de madeira, igual à vila onde crescera.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando sentia saudade, mudava os trilhos da maquete, tentando fazer todo trem voltar à plataforma dos pais.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa estação nas suas mãos: você sente falta deles ou da versão de si que eles aprovavam?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava chamando de saudade o desejo de voltar a ser a filha que nunca contrariava.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A maquete não guardava a vila; guardava uma infância onde aprovação parecia passagem de volta.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que parte sua ainda espera embarcar para agradar alguém?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-30"
+  },
+  "script_hash": "8b8517809318d3fd1735c7f1ce247c2e84043f5aaddbaed084929f0455f95cf3"
+}
