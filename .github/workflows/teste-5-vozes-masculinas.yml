@@ -1,0 +1,58 @@
+name: Teste 5 vozes masculinas
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/teste-5-vozes-masculinas.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Instalar TTS
+        run: pip install edge-tts==7.2.8
+      - name: Gerar cinco vozes com o mesmo texto
+        run: |
+          mkdir -p vozes
+          TEXTO='Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
+          python - <<'PY'
+          import asyncio
+          from pathlib import Path
+          import edge_tts
+
+          texto = 'Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
+          vozes = {
+              'antonio': 'pt-BR-AntonioNeural',
+              'donato': 'pt-BR-DonatoNeural',
+              'fabio': 'pt-BR-FabioNeural',
+              'humberto': 'pt-BR-HumbertoNeural',
+              'nicolau': 'pt-BR-NicolauNeural',
+          }
+
+          async def main():
+              linhas=[]
+              for nome, voz in vozes.items():
+                  destino = Path('vozes') / f'{nome}.mp3'
+                  try:
+                      await edge_tts.Communicate(texto, voice=voz, rate='-6%').save(str(destino))
+                      ok = destino.exists() and destino.stat().st_size > 1000
+                      linhas.append(f'{nome}: {voz}: ' + ('OK' if ok else 'FALHOU'))
+                  except Exception as e:
+                      linhas.append(f'{nome}: {voz}: FALHOU: {type(e).__name__}: {e}')
+              Path('vozes/status.txt').write_text('\n'.join(linhas), encoding='utf-8')
+          asyncio.run(main())
+          PY
+          cat vozes/status.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cinco-vozes-masculinas
+          path: vozes/
+          retention-days: 7
+          if-no-files-found: error
