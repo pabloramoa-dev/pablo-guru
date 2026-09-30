@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
 import os
+import subprocess
 import urllib.request
 from pathlib import Path
 from typing import Literal
@@ -12,6 +14,8 @@ import soundfile as sf
 
 SR = 44100
 KOKORO_RELEASE = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0"
+THALITA_VOICE = "pt-BR-ThalitaNeural"
+THALITA_RATE = "-6%"
 
 
 def _normalize(samples: np.ndarray, peak: float = 0.96) -> np.ndarray:
@@ -21,11 +25,7 @@ def _normalize(samples: np.ndarray, peak: float = 0.96) -> np.ndarray:
 
 
 def ensure_kokoro_models(model_dir: Path | None = None, *, quantized: bool = True) -> tuple[Path, Path]:
-    """Ensure the official Kokoro ONNX v1.0 model files exist locally.
-
-    CI uses the official int8 model by default to keep downloads and inference light.
-    Set PABLO_KOKORO_FULL=1 to use the full f32 model instead.
-    """
+    """Ensure the official Kokoro ONNX v1.0 model files exist locally."""
     if model_dir is None:
         model_dir = Path(os.environ.get("PABLO_KOKORO_DIR", Path.home() / ".cache" / "pablo_kokoro"))
     model_dir.mkdir(parents=True, exist_ok=True)
@@ -47,11 +47,6 @@ def ensure_kokoro_models(model_dir: Path | None = None, *, quantized: bool = Tru
 
 
 def _phonemize_ptbr(text: str) -> str:
-    """Convert Brazilian Portuguese text to phonemes using the current Misaki API.
-
-    misaki-fork 0.9.6 no longer accepts the old ``fallback=`` argument on
-    ``EspeakG2P``.  Keeping this isolated makes future API changes easy to adapt.
-    """
     try:
         from misaki.espeak import EspeakG2P
     except ImportError as exc:
@@ -59,10 +54,7 @@ def _phonemize_ptbr(text: str) -> str:
 
     g2p = EspeakG2P(language="pt-br")
     result = g2p(text)
-    if isinstance(result, tuple):
-        phonemes = result[0]
-    else:
-        phonemes = result
+    phonemes = result[0] if isinstance(result, tuple) else result
     if not isinstance(phonemes, str) or not phonemes.strip():
         raise RuntimeError("O G2P pt-br nao retornou fonemas validos.")
     return phonemes
@@ -70,7 +62,6 @@ def _phonemize_ptbr(text: str) -> str:
 
 def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0.94,
                   model_dir: Path | None = None, *, auto_download: bool = True) -> Path:
-    """Default local Brazilian-Portuguese TTS backend using Kokoro ONNX v1.0."""
     try:
         from kokoro_onnx import Kokoro
     except ImportError as exc:
@@ -95,6 +86,26 @@ def synth_kokoro(text: str, out: Path, voice: str = "pm_santa", speed: float = 0
     return out
 
 
+async def _edge_save(text: str, mp3: Path, voice: str, rate: str) -> None:
+    import edge_tts
+    await edge_tts.Communicate(text, voice=voice, rate=rate).save(str(mp3))
+
+
+def synth_edge(text: str, out: Path, voice: str = THALITA_VOICE, rate: str = THALITA_RATE) -> Path:
+    """Microsoft neural TTS. Used canonically for the female character."""
+    mp3 = out.with_suffix(".edge.mp3")
+    asyncio.run(_edge_save(text, mp3, voice, rate))
+    subprocess.run([
+        "ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3),
+        "-ar", str(SR), "-ac", "1", "-c:a", "pcm_s16le", str(out),
+    ], check=True)
+    try:
+        mp3.unlink()
+    except OSError:
+        pass
+    return out
+
+
 def synth_voxcpm(text: str, out: Path, control: str | None = None,
                   model_name: str = "openbmb/VoxCPM2") -> Path:
     try:
@@ -111,12 +122,16 @@ def synth_voxcpm(text: str, out: Path, control: str | None = None,
     return out
 
 
-def synthesize(text: str, out: str | Path, backend: Literal["kokoro", "voxcpm"] = "kokoro",
-               voice: str = "pm_santa", speed: float = 0.94, control: str | None = None) -> Path:
+def synthesize(text: str, out: str | Path,
+               backend: Literal["kokoro", "voxcpm", "edge"] = "kokoro",
+               voice: str = "pm_santa", speed: float = 0.94,
+               control: str | None = None, rate: str | None = None) -> Path:
     out = Path(out)
     out.parent.mkdir(parents=True, exist_ok=True)
     if backend == "voxcpm":
         return synth_voxcpm(text, out, control=control)
+    if backend == "edge":
+        return synth_edge(text, out, voice=voice or THALITA_VOICE, rate=rate or THALITA_RATE)
     return synth_kokoro(text, out, voice=voice, speed=speed)
 
 
@@ -124,12 +139,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("text")
     ap.add_argument("--out", default="audio/saida.wav")
-    ap.add_argument("--backend", choices=["kokoro", "voxcpm"], default="kokoro")
+    ap.add_argument("--backend", choices=["kokoro", "voxcpm", "edge"], default="kokoro")
     ap.add_argument("--voice", default="pm_santa")
     ap.add_argument("--speed", type=float, default=0.94)
+    ap.add_argument("--rate", default=None)
     ap.add_argument("--control")
     args = ap.parse_args()
-    path = synthesize(args.text, args.out, args.backend, args.voice, args.speed, args.control)
+    path = synthesize(args.text, args.out, args.backend, args.voice, args.speed, args.control, args.rate)
     print(json.dumps({"ok": True, "file": str(path), "backend": args.backend}, ensure_ascii=False))
 
 
