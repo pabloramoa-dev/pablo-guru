@@ -12,6 +12,11 @@ permissions:
 jobs:
   gerar:
     runs-on: ubuntu-latest
+    env:
+      AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+      AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+      SPEECH_KEY: ${{ secrets.SPEECH_KEY }}
+      SPEECH_REGION: ${{ secrets.SPEECH_REGION }}
     steps:
       - uses: actions/setup-python@v5
         with:
@@ -19,48 +24,121 @@ jobs:
       - name: Instalar TTS
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y ffmpeg
-          pip install edge-tts==7.2.8 piper-tts
-      - name: Gerar cinco vozes com o mesmo texto
+          sudo apt-get install -y ffmpeg curl
+          pip install edge-tts==7.2.8
+      - name: Gerar vozes para comparação
+        shell: bash
         run: |
-          set -e
-          mkdir -p vozes modelos
-          TEXTO='Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
+          set +e
+          mkdir -p vozes
+          cat > /tmp/texto.txt <<'TXT'
+          Talvez você esteja esperando a vida dar um sinal.
 
-          # Antonio Neural
+          Mas existe uma coisa que quase ninguém percebe...
+
+          Nem todo atraso significa que você ficou para trás.
+
+          Às vezes, o caminho apenas está preparando você para enxergar aquilo que antes passaria despercebido.
+
+          Então me responda: você está realmente atrasado... ou apenas vivendo o seu próprio tempo?
+          TXT
+
           python - <<'PY'
           import asyncio
+          from pathlib import Path
           import edge_tts
-          texto='Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
-          asyncio.run(edge_tts.Communicate(texto, voice='pt-BR-AntonioNeural', rate='-6%').save('vozes/antonio.mp3'))
-          PY
 
-          # Piper PT-BR: Cadu, Faber, Jeff e Edresson
-          base='https://huggingface.co/rhasspy/piper-voices/resolve/main/pt/pt_BR'
-          gerar_piper () {
-            nome="$1"; qualidade="$2"; slug="pt_BR-${nome}-${qualidade}"
-            curl -fL --retry 3 -o "modelos/${slug}.onnx" "$base/$nome/$qualidade/${slug}.onnx"
-            curl -fL --retry 3 -o "modelos/${slug}.onnx.json" "$base/$nome/$qualidade/${slug}.onnx.json"
-            printf '%s\n' "$TEXTO" | piper --model "modelos/${slug}.onnx" --config "modelos/${slug}.onnx.json" --output_file "vozes/${nome}.wav"
-            ffmpeg -y -loglevel error -i "vozes/${nome}.wav" -codec:a libmp3lame -q:a 3 "vozes/${nome}.mp3"
-            rm "vozes/${nome}.wav"
+          texto = Path('/tmp/texto.txt').read_text(encoding='utf-8').strip()
+          vozes = {
+              'humberto': 'pt-BR-HumbertoNeural',
+              'nicolau': 'pt-BR-NicolauNeural',
+              'macerio_hd': 'pt-BR-Macerio:DragonHDLatestNeural',
+              'pedro_hd': 'pt-BR-Pedro:MAI-Voice-2',
+              'rafael_hd': 'pt-BR-Rafael:MAI-Voice-2',
           }
 
-          gerar_piper cadu medium
-          gerar_piper faber medium
-          gerar_piper jeff medium
-          gerar_piper edresson low
+          async def gerar(nome, voz):
+              try:
+                  p = Path('vozes') / f'{nome}.mp3'
+                  await edge_tts.Communicate(texto, voice=voz, rate='-6%').save(str(p))
+                  if p.exists() and p.stat().st_size > 1000:
+                      return f'{nome}|{voz}|edge|OK'
+              except Exception as e:
+                  return f'{nome}|{voz}|edge|FALHOU|{type(e).__name__}'
+              return f'{nome}|{voz}|edge|FALHOU'
 
-          printf '%s\n' \
-            'Antonio — Microsoft pt-BR-AntonioNeural — -6%' \
-            'Cadu — Piper pt_BR-cadu-medium' \
-            'Faber — Piper pt_BR-faber-medium' \
-            'Jeff — Piper pt_BR-jeff-medium' \
-            'Edresson — Piper pt_BR-edresson-low' > vozes/status.txt
-          ls -lh vozes
+          async def main():
+              linhas = []
+              for nome, voz in vozes.items():
+                  linhas.append(await gerar(nome, voz))
+              Path('/tmp/edge-status.txt').write_text('\n'.join(linhas), encoding='utf-8')
+          asyncio.run(main())
+          PY
+
+          cat /tmp/edge-status.txt
+
+          KEY="${AZURE_SPEECH_KEY:-${SPEECH_KEY:-}}"
+          REGION="${AZURE_SPEECH_REGION:-${SPEECH_REGION:-}}"
+          if [ -n "$KEY" ] && [ -n "$REGION" ]; then
+            echo 'Azure Speech configurado: tentando vozes que faltaram.'
+            python - <<'PY'
+          from pathlib import Path
+          import html
+          texto = Path('/tmp/texto.txt').read_text(encoding='utf-8').strip()
+          vozes = {
+              'humberto': 'pt-BR-HumbertoNeural',
+              'nicolau': 'pt-BR-NicolauNeural',
+              'macerio_hd': 'pt-BR-Macerio:DragonHDLatestNeural',
+              'pedro_hd': 'pt-BR-Pedro:MAI-Voice-2',
+              'rafael_hd': 'pt-BR-Rafael:MAI-Voice-2',
+          }
+          for nome, voz in vozes.items():
+              if (Path('vozes') / f'{nome}.mp3').exists():
+                  continue
+              ssml = f'''<speak version="1.0" xml:lang="pt-BR"><voice name="{html.escape(voz)}"><prosody rate="-6%">{html.escape(texto)}</prosody></voice></speak>'''
+              (Path('/tmp') / f'{nome}.xml').write_text(ssml, encoding='utf-8')
+          PY
+            for nome in humberto nicolau macerio_hd pedro_hd rafael_hd; do
+              [ -s "vozes/$nome.mp3" ] && continue
+              case "$nome" in
+                humberto) VOZ='pt-BR-HumbertoNeural' ;;
+                nicolau) VOZ='pt-BR-NicolauNeural' ;;
+                macerio_hd) VOZ='pt-BR-Macerio:DragonHDLatestNeural' ;;
+                pedro_hd) VOZ='pt-BR-Pedro:MAI-Voice-2' ;;
+                rafael_hd) VOZ='pt-BR-Rafael:MAI-Voice-2' ;;
+              esac
+              if [ -s "/tmp/$nome.xml" ]; then
+                code=$(curl -sS -o "vozes/$nome.mp3" -w '%{http_code}' \
+                  -X POST "https://${REGION}.tts.speech.microsoft.com/cognitiveservices/v1" \
+                  -H "Ocp-Apim-Subscription-Key: $KEY" \
+                  -H 'Content-Type: application/ssml+xml' \
+                  -H 'X-Microsoft-OutputFormat: audio-24khz-48kbitrate-mono-mp3' \
+                  -H 'User-Agent: pablo-guru-voice-test' \
+                  --data-binary "@/tmp/$nome.xml")
+                if [ "$code" != 200 ] || [ ! -s "vozes/$nome.mp3" ]; then
+                  rm -f "vozes/$nome.mp3"
+                  echo "$nome|$VOZ|azure|FALHOU|HTTP_$code" >> /tmp/azure-status.txt
+                else
+                  echo "$nome|$VOZ|azure|OK" >> /tmp/azure-status.txt
+                fi
+              fi
+            done
+          else
+            echo 'AZURE_NAO_CONFIGURADO' > /tmp/azure-status.txt
+          fi
+
+          {
+            echo 'Texto idêntico em todas as vozes.'
+            echo '--- edge ---'
+            cat /tmp/edge-status.txt
+            echo '--- azure ---'
+            cat /tmp/azure-status.txt 2>/dev/null || true
+            echo '--- arquivos ---'
+            ls -lh vozes || true
+          } | tee vozes/status.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: cinco-vozes-masculinas-v2
+          name: comparacao-vozes-masculinas-hd
           path: vozes/
           retention-days: 7
           if-no-files-found: error
