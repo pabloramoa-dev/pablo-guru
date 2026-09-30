@@ -19,7 +19,7 @@ apt-get update -qq >/dev/null 2>&1 || true
 apt-get install -y -qq pkg-config libcairo2-dev libpango1.0-dev build-essential \
                        ffmpeg espeak-ng cmake g++ libboost-dev git curl >/dev/null 2>&1 || true
 
-echo "[2/4] Manim 0.21 numa venv própria..."
+echo "[2/4] Manim 0.21 + motores de voz numa venv própria..."
 # ATENÇÃO: não troque a venv por --break-system-packages. O setuptools velho do
 # sistema faz o pacote 'srt' falhar em "Failed building wheel for srt", e o
 # Manim não instala. A venv com setuptools atualizado é o que resolve.
@@ -27,10 +27,10 @@ if [ ! -x "$VENV/bin/python" ]; then
   python3 -m venv --system-site-packages "$VENV"
 fi
 "$VENV/bin/pip" install -q -U pip setuptools wheel
-"$VENV/bin/pip" install -q manim kokoro-onnx soundfile pillow numpy
-"$VENV/bin/python" -c "import manim; print('  Manim', manim.__version__)"
+"$VENV/bin/pip" install -q manim kokoro-onnx soundfile pillow numpy edge-tts==7.2.8
+"$VENV/bin/python" -c "import manim, edge_tts; print('  Manim', manim.__version__, '| edge-tts OK')"
 
-echo "[3/4] Kokoro (voz neural PT-BR local)..."
+echo "[3/4] Kokoro (voz do Pablo + fallback local da Marina)..."
 # O modelo baixa pelo ASSET de release do GitHub. A PÁGINA /releases costuma dar
 # 403 no proxy do container, mas o download do asset passa — não troque a fonte.
 mkdir -p "$KDIR"
@@ -41,9 +41,9 @@ for f in kokoro-v1.0.onnx voices-v1.0.bin; do
   fi
 done
 if [ -s "$KDIR/kokoro-v1.0.onnx" ] && [ -s "$KDIR/voices-v1.0.bin" ]; then
-  echo "  OK em $KDIR (vozes BR: pm_alex, pm_santa, pf_dora)"
+  echo "  OK em $KDIR (Pablo: pm_alex; Marina usa Thalita Neural, pf_dora é só fallback)"
 else
-  echo "  Kokoro indisponível — o pipeline cai para espeak-ng (voz robótica)."
+  echo "  Kokoro indisponível — o Pablo cai para espeak-ng; a Marina tenta Thalita via edge-tts."
 fi
 
 echo "[4/4] Rhubarb Lip Sync (visemas reais)..."
@@ -73,6 +73,7 @@ else
 fi
 
 echo
-echo "Pronto. Para produzir um episódio:"
+echo "Pronto. Vozes oficiais: Pablo=pm_alex | Marina=pt-BR-ThalitaNeural (-6%)."
+echo "Para produzir um episódio:"
 echo "  PABLO_PYTHON=$VENV/bin/python $VENV/bin/python \\"
 echo "      pablo_episodio.py templates/roteiro_ep02_xicara.json saida h"
