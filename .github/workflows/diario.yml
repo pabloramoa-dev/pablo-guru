@@ -4,7 +4,7 @@ on:
     - cron: "41 10 * * *"  # 07h41 em Brasília; minuto quebrado foge do pico do GitHub
   push:
     branches: [implementacao/episodios-diarios-direct]
-    paths: ['daily/**', 'studio/**', '.github/workflows/diario.yml']
+    paths: ['daily/**', 'studio/**', 'audio/**', 'episodios/a_estacao/**', 'requirements.txt', '.github/workflows/diario.yml']
   workflow_dispatch:
     inputs:
       episode_date:
@@ -41,7 +41,7 @@ jobs:
             curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
           done
           fc-cache -f >/dev/null
-          pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography
+          pip install manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography edge-tts==7.2.8
       - name: Rhubarb oficial
         run: |
           curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
