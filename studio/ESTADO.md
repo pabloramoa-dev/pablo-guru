@@ -4,9 +4,9 @@
 > o `SKILL.md` e o código ficou de fora. Aqui está o estado exato do motor,
 > para que uma sessão nova continue do ponto certo **sem refazer nada**.
 
-**Versão:** 3.4 · **Data:** 2026-09-01 · **Status:** operacional, 11 episódios
-produzidos. O #11 (A Casa Sem Porta) é o que fixou o **padrão de episódio** —
-copie o JSON dele para começar qualquer roteiro novo.
+**Versão:** 3.6 · **Data:** 2026-09-30 · **Status:** operacional.
+A mudança de 30/09 fixa a **Thalita Neural como voz feminina oficial** da Marina/perguntadora.
+O Pablo Guru continua com `pm_alex`.
 
 ---
 
@@ -32,7 +32,7 @@ seguir para roteiro novo. **Não reescreva módulo nenhum antes de rodar isso.**
 | `pablo_cenarios.py` | Objetos-metáfora (porta, xícara, ponte, etc.) | validado |
 | `pablo_cine.py` | **Motor**, legenda karaokê, trilha temporal, câmera, clima, **vida facial** | validado |
 | `pablo_fx.py` | Transições, partículas, glow | validado |
-| `pablo_audio.py` | Kokoro PT-BR, Rhubarb, trilha, mix, -14 LUFS | validado |
+| `pablo_audio.py` | Pablo `pm_alex`; Marina **Thalita Neural**; fallback Kokoro; Rhubarb, trilha e mix | validado |
 | `pablo_episodio.py` | Cena Manim + orquestrador `produzir()` | validado |
 | `pablo_montador.py` | Episódio, short 9:16, capa, metadados | validado |
 
@@ -56,7 +56,7 @@ Lote de 10 leva ~80 min com 2 workers em paralelo.
 
 ---
 
-## 2b. PADRÃO DE EPISÓDIO (v3.4) — obrigatório em todo roteiro novo
+## 2b. PADRÃO DE EPISÓDIO — obrigatório em todo roteiro novo
 
 Fonte: `PROMPT_MESTRE_PABLO_GURU_V2.txt` (raiz da skill) e
 `templates/template_roteiro.md`. Modelo: `templates/roteiro_ep11_casa_sem_porta.json`.
@@ -86,8 +86,8 @@ Fonte: `PROMPT_MESTRE_PABLO_GURU_V2.txt` (raiz da skill) e
    vez — não volte para o split chapado.
 4. **Legenda no terço central, nunca no rodapé** (a interface do Instagram
    cobre o rodapé), palavra por palavra, banda escura sem contorno no texto.
-5. **Voz: Kokoro local.** `pm_alex` para o Pablo, `pf_dora` para a Marina.
-   espeak-ng é só fallback de emergência — soa robótico.
+5. **Vozes canônicas:** `pm_alex` (Kokoro) para o Pablo e **`pt-BR-ThalitaNeural` a `-6%` para a Marina/perguntadora**.
+   `pf_dora` é somente fallback local de emergência para a personagem feminina; não voltar a usá-la como padrão.
 6. **O rosto acompanha a boca.** `cine.vida_facial`: o queixo cai na vogal
    aberta, a sobrancelha sobe com a ênfase, a piscada é automática em intervalo
    irregular e o olhar tem micro-sacadas. Boca abrindo sozinha lê como boneco de
@@ -174,7 +174,7 @@ Fonte: `PROMPT_MESTRE_PABLO_GURU_V2.txt` (raiz da skill) e
 - [ ] **O `short_epNN.mp4` hoje é redundante.** Como o episódio já sai em 9:16
       e dura menos de 45 s, o short é o mesmo vídeo recodificado. Ou vira um
       corte real de 20-30 s (isca), ou sai do pacote.
-- [ ] Puxar os tempos reais por segmento do Kokoro para o karaokê, em vez de
+- [ ] Puxar os tempos reais por segmento do TTS para o karaokê, em vez de
       distribuir por número de letras (aproximação atual).
 - [ ] Trilha sonora com ducking sob a narração (hoje é só piano a −55 dB).
 - [ ] Avaliar se o render de ~8 min/episódio precisa cair — dá para desligar a
