@@ -17,42 +17,50 @@ jobs:
         with:
           python-version: '3.12'
       - name: Instalar TTS
-        run: pip install edge-tts==7.2.8
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg
+          pip install edge-tts==7.2.8 piper-tts
       - name: Gerar cinco vozes com o mesmo texto
         run: |
-          mkdir -p vozes
+          set -e
+          mkdir -p vozes modelos
           TEXTO='Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
+
+          # Antonio Neural
           python - <<'PY'
           import asyncio
-          from pathlib import Path
           import edge_tts
+          texto='Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
+          asyncio.run(edge_tts.Communicate(texto, voice='pt-BR-AntonioNeural', rate='-6%').save('vozes/antonio.mp3'))
+          PY
 
-          texto = 'Talvez ninguém esteja passando na sua frente. Às vezes, cada pessoa só está seguindo um caminho diferente do seu.'
-          vozes = {
-              'antonio': 'pt-BR-AntonioNeural',
-              'donato': 'pt-BR-DonatoNeural',
-              'fabio': 'pt-BR-FabioNeural',
-              'humberto': 'pt-BR-HumbertoNeural',
-              'nicolau': 'pt-BR-NicolauNeural',
+          # Piper PT-BR: Cadu, Faber, Jeff e Edresson
+          base='https://huggingface.co/rhasspy/piper-voices/resolve/main/pt/pt_BR'
+          gerar_piper () {
+            nome="$1"; qualidade="$2"; slug="pt_BR-${nome}-${qualidade}"
+            curl -fL --retry 3 -o "modelos/${slug}.onnx" "$base/$nome/$qualidade/${slug}.onnx"
+            curl -fL --retry 3 -o "modelos/${slug}.onnx.json" "$base/$nome/$qualidade/${slug}.onnx.json"
+            printf '%s\n' "$TEXTO" | piper --model "modelos/${slug}.onnx" --config "modelos/${slug}.onnx.json" --output_file "vozes/${nome}.wav"
+            ffmpeg -y -loglevel error -i "vozes/${nome}.wav" -codec:a libmp3lame -q:a 3 "vozes/${nome}.mp3"
+            rm "vozes/${nome}.wav"
           }
 
-          async def main():
-              linhas=[]
-              for nome, voz in vozes.items():
-                  destino = Path('vozes') / f'{nome}.mp3'
-                  try:
-                      await edge_tts.Communicate(texto, voice=voz, rate='-6%').save(str(destino))
-                      ok = destino.exists() and destino.stat().st_size > 1000
-                      linhas.append(f'{nome}: {voz}: ' + ('OK' if ok else 'FALHOU'))
-                  except Exception as e:
-                      linhas.append(f'{nome}: {voz}: FALHOU: {type(e).__name__}: {e}')
-              Path('vozes/status.txt').write_text('\n'.join(linhas), encoding='utf-8')
-          asyncio.run(main())
-          PY
-          cat vozes/status.txt
+          gerar_piper cadu medium
+          gerar_piper faber medium
+          gerar_piper jeff medium
+          gerar_piper edresson low
+
+          printf '%s\n' \
+            'Antonio — Microsoft pt-BR-AntonioNeural — -6%' \
+            'Cadu — Piper pt_BR-cadu-medium' \
+            'Faber — Piper pt_BR-faber-medium' \
+            'Jeff — Piper pt_BR-jeff-medium' \
+            'Edresson — Piper pt_BR-edresson-low' > vozes/status.txt
+          ls -lh vozes
       - uses: actions/upload-artifact@v4
         with:
-          name: cinco-vozes-masculinas
+          name: cinco-vozes-masculinas-v2
           path: vozes/
           retention-days: 7
           if-no-files-found: error
