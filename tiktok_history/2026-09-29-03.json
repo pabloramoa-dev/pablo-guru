@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-29-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "elo-da-confianca",
+    "title": "O elo da confiança",
+    "capa": "O portão sem cadeado",
+    "prop": "chain",
+    "destaque": "Verdade sustenta",
+    "frase": "Confiança não exige aparência de segurança",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "introvertidos",
+    "formato": "erro_do_pablo",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Nos grupos, você se cala e depois acha que ninguém confia no que pensa? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando eu era aprendiz de ferreiro, apertava uma corrente no portão da oficina para ninguém duvidar de mim.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Um dia, apertei tanto que o elo se rompeu; o portão ficou aberto, e eu escondi o erro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa corrente nas suas mãos. Você quer transmitir confiança ou esconder o medo de falhar?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu confundia confiança com nunca deixar ninguém perceber minha insegurança.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A corrente não segurava a confiança; segurava apenas a aparência. O elo partido mostrou que verdade também pode sustentar um vínculo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem confia em você sem exigir uma armadura?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-29"
+  },
+  "script_hash": "f693bca4ab9ee3ca8065ff70436918bfe222527abfb0016e771cb5ffc178ba64"
+}
