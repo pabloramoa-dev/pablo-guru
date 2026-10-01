@@ -28,6 +28,8 @@ jobs:
       PYTHONPATH: .
     steps:
       - uses: actions/checkout@v4
+      - name: Preparar HyperFrames
+        uses: ./.github/actions/setup-hyperframes
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'

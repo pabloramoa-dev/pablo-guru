@@ -44,6 +44,8 @@ def montar_episodio(video_mudo: str, audio: str, saida: str, fps: int = 30):
         "-profile:v", "main", "-level", "4.0", "-g", "60",
         "-r", fps, "-c:a", "aac", "-b:a", "192k", "-ar", "48000", "-ac", "2",
         "-movflags", "+faststart", "-shortest", saida)
+    from pablo_hyperframes import finish
+    finish(saida)
     return saida
 
 

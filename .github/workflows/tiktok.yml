@@ -125,6 +125,9 @@ jobs:
         with:
           path: ~/.cache/kokoro
           key: kokoro-v1-fp32-studio-v1
+      - name: Preparar HyperFrames
+        uses: ./.github/actions/setup-hyperframes
+        if: steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated'
       - name: Renderizar e validar MP4
         if: steps.config.outputs.state == 'scripted' || steps.config.outputs.state == 'validated'
         run: python -m tiktok_pipeline.pipeline render --key "$TT_KEY"
