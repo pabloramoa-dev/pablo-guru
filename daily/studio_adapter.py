@@ -158,6 +158,8 @@ def main():
     meta.pop('performance_esperada',None)
     meta['canal']='Pablo Guru (@opabloguru)'
     meta['motor_tts']=result['motor_tts']
+    meta['motor_video']='hyperframes'
+    meta['hyperframes_version']='0.8.96'
     meta['checklist_pre_publicacao']={'teste_automatizado':'pendente','revisao_visual':'pendente','teste_em_tres_dispositivos':'não realizado'}
     (out/'metadados.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
 

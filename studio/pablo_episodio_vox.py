@@ -388,6 +388,8 @@ def produzir(roteiro_json: str, pasta: str = "saida_vox", qualidade: str = "h"):
         "-c:v", "libx264", "-profile:v", "main", "-level", "4.0", "-preset", "medium",
         "-crf", "22", "-pix_fmt", "yuv420p", "-r", FPS,
         "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", final)
+    from pablo_hyperframes import finish
+    finish(final, cuts=[c["ini"] for c in cenas[1:]])
     preview = out / f"preview_{slug}_720p.mp4"
     _ff("-i", final, "-vf", "scale=720:1280", "-c:v", "libx264", "-profile:v", "main",
         "-crf", "24", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart", preview)

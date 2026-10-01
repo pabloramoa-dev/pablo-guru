@@ -18,6 +18,8 @@ jobs:
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+      - name: Preparar HyperFrames
+        uses: ./.github/actions/setup-hyperframes
 
       - name: Achar a pasta do pipeline
         id: pasta
