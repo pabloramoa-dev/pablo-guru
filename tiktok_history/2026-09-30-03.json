@@ -1,0 +1,55 @@
+{
+  "key": "2026-09-30-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-lampada-na-manga",
+    "title": "A lâmpada na manga",
+    "capa": "O truque ainda apagado",
+    "prop": "lamp",
+    "destaque": "Tentativa viva",
+    "frase": "A confiança nasce enquanto você ainda está tentando",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "perfeccionistas",
+    "formato": "humor",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando um começo imperfeito parece provar que você não serve? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Um mágico de feira guardava uma lâmpada na manga para iluminar seus truques.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Toda vez que errava, culpava a lâmpada; ela nem estava ligada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa lâmpada na sua manga: quantos começos você chama de fracasso antes de deixá-los nascer?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava tentando parecer pronto antes de descobrir se eu conseguia.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A lâmpada não escondia falta de talento; iluminava o medo de ser visto tentando.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ver sua primeira tentativa?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-09-30"
+  },
+  "script_hash": "ffc137a5c2ed88d810681e54e47fdd2e4ca9fc3dfadd4d92b359c4985a3df44f"
+}
