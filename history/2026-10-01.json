@@ -1,0 +1,52 @@
+{
+  "id": "a-ponte-nunca-pronta",
+  "title": "A ponte nunca pronta",
+  "capa": "A ponte sempre fechada",
+  "prop": "bridge",
+  "destaque": "Soltar controle",
+  "frase": "O controle perfeito mantém caminhos fechados",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "perfeccionistas",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "O medo de soltar o controle faz você adiar tudo? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma restauradora cuidava de uma ponte antiga e mantinha a passagem fechada até corrigir cada detalhe.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Sempre surgia uma nova imperfeição. Enquanto polia, o rio subia e ninguém atravessava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine você diante dessa ponte. Quantos caminhos permanecem fechados enquanto espera uma certeza impossível?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Isso lembra o que eu anotei ontem: “A dúvida alheia não diminui a sua voz.” Eu também posso soltar sem garantir tudo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A ponte não precisava ser perfeita para cumprir seu destino; o controle excessivo era o rio separando margens.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que você ainda mantém fechado?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-01",
+  "hook_type": "dor",
+  "hook_text": "O medo de soltar o controle faz você adiar tudo? Escute isso.",
+  "script_sha256": "a5aeb1a402f3f7fcdcb6904a4fd70664759ae3a1fd3a4f5fbedacf00fd1dd92a"
+}
