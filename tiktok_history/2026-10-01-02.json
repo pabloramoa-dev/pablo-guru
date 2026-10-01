@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-01-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-mapa-dos-outros",
+    "title": "O Mapa dos Outros",
+    "capa": "A rota que não é sua",
+    "prop": "map",
+    "destaque": "Rota própria",
+    "frase": "O amor de vocês não precisa seguir mapas alheios",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "casais",
+    "formato": "erro_do_pablo",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Na rotina do casal, você compara seu amor ao dos outros? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando eu era aprendiz de cartógrafo, desenhei um mapa para levar minha companheira à cidade perfeita.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Apaguei nossas curvas. Copiei a rota de outro casal. O mapa não levava à nossa casa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse mapa no colo: você compara seu amor com vitrines alheias ou escuta o caminho de vocês?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava medindo nosso amor pela aparência dos outros, esquecendo o que só nós conhecemos.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Mapa copiado mostra paisagens, mas só o caminho vivido sabe onde o coração chega.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que comparação está roubando a história de vocês?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-01"
+  },
+  "script_hash": "785bcadc33d5dbefc9e47009dc7b3786c627883d2108c7b9fb4c9c8e62aaeb25"
+}
