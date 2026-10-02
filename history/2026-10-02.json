@@ -1,0 +1,52 @@
+{
+  "id": "o-livro-sem-atraso",
+  "title": "O livro sem atraso",
+  "capa": "Seu filho não está atrasado",
+  "prop": "book",
+  "destaque": "Outro ritmo",
+  "frase": "Comparar transforma diferença em defeito",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "pais_de_adolescentes",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Seu filho parece distante, e você o compara com adolescentes mais próximos? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa biblioteca de bairro, uma bibliotecária colocou um livro sobre a mesa e o chamou de atrasado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Tinha páginas em branco. Nas prateleiras, outros pareciam avançar mais depressa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse livro diante de você. Comparar seu filho com outro revela um caminho ou apaga o que ele ainda escreve?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava medindo meu filho pela história de outra pessoa, sem escutar a dele.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um livro não fica atrasado por ter outro ritmo; a comparação transforma diferença em defeito.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que história seu filho está tentando escrever?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-02",
+  "hook_type": "dor",
+  "hook_text": "Seu filho parece distante, e você o compara com adolescentes mais próximos? Escute isso.",
+  "script_sha256": "444b8a3fed355806b1d8287461fcdb27983ea0464abf38eab638f1994daf5f73"
+}
