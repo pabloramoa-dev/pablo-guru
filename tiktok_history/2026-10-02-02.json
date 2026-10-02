@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-02-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-ampulheta-da-saudade",
+    "title": "A ampulheta barulhenta",
+    "capa": "A saudade faz barulho",
+    "prop": "hourglass",
+    "destaque": "Silêncio acolhedor",
+    "frase": "Paz não é expulsar a saudade, é deixá-la passar.",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "longe_de_casa",
+    "formato": "humor",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Longe de casa, o silêncio pesa mais quando sua cabeça continua cheia? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa vila costeira, um velho pescador guardava uma ampulheta trazida da cidade natal.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando a saudade apertava, ele mandava a areia fazer silêncio. Virava o vidro, e ela corria ainda mais depressa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa ampulheta nas suas mãos: você procura silêncio ou tenta calar tudo que sente?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu achava que paz era não sentir falta de ninguém.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A ampulheta não fazia barulho por mal; lembrava que até a saudade pode passar sem ser expulsa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que seu silêncio pode acolher a saudade?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-02"
+  },
+  "script_hash": "d1f55ae360ba709a5d705de9239142c260566215a90f75d472f94f0fb9d129f3"
+}
