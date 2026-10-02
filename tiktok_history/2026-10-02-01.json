@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-02-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-pagina-que-espera",
+    "title": "A Página Que Espera",
+    "capa": "O livro ainda fechado",
+    "prop": "book",
+    "destaque": "Página viva",
+    "frase": "A primeira página não precisa provar quem você será",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "vinte_e_poucos",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Começar enquanto seus amigos avançam parece tarde demais? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa pequena gráfica, um aprendiz recebeu um livro em branco e esperou saber toda a história antes de escrever.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Os dias passaram. O livro continuou fechado, pesado de histórias que nunca começaram.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse livro no seu colo: você está esperando clareza, ou protegendo-se da primeira página imperfeita?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu chamava de preparo o medo de deixar minha primeira página mostrar que ainda estou aprendendo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O livro não exigia um autor pronto; era a página vazia que podia revelar o caminho.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que começar também é descobrir?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-02"
+  },
+  "script_hash": "a7b566262c74966f5086fae0de304ff0134e6a60c9d1fb77b6e9cddaf5b6b25f"
+}
