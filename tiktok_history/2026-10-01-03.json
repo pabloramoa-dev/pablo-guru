@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-01-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-espelho-do-perdao",
+    "title": "O espelho do perdão",
+    "capa": "A rachadura no olhar",
+    "prop": "mirror",
+    "destaque": "Novo olhar",
+    "frase": "Perdoar muda o olhar, não apaga o fato",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "pais_de_adolescentes",
+    "formato": "marina_discorda",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando seu filho erra com você, o amor vira cobrança? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa oficina de espelhos, um restaurador guardava um espelho rachado numa prateleira.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Toda manhã, polia a borda e deixava a rachadura à vista.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse espelho nas suas mãos: você quer corrigir o reflexo ou continuar olhando a ferida?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Mas, Pablo Guru, eu não consigo perdoar se meu filho nem reconhece o que fez.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Eu entendo: a rachadura não desaparece. Mas o espelho não precisa devolver para sempre o pior instante; perdoar muda o olhar, não apaga o fato.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O que seu filho precisa encontrar no seu olhar hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-01"
+  },
+  "script_hash": "62c2574c026aae2d6888e66c27b56a47dfa6f1f10df235bf442cd88099fb75dd"
+}
