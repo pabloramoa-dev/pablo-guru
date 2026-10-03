@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-03-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-semente-do-resultado",
+    "title": "O Resultado Que Muda",
+    "capa": "Seu resultado não é você",
+    "prop": "seed",
+    "destaque": "Não resume",
+    "frase": "Um resultado passageiro não resume uma vida",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "concurseiros",
+    "formato": "marina_discorda",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando seu resultado muda, parece que todo esforço perdeu valor? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Num viveiro, um jardineiro guardava uma semente que não brotara no inverno.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Na primavera, ela abriu uma fenda. O jardineiro percebeu: a semente não fracassara; estava mudando por dentro.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa semente na sua mão: você chama de fim aquilo que apenas mudou de forma?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Mas, Pablo Guru, e se eu estiver usando a impermanência para desculpar um resultado ruim?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Entendo. A semente não promete colheita; apenas mostra que um estado passageiro não resume a vida.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Que resultado você está confundindo com seu valor?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-03"
+  },
+  "script_hash": "e372d602d6c0e1f817981e530ff2d15f4842b80ddb89c355ee95f0df4c8f6fb6"
+}
