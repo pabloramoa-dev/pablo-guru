@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-02-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-xicara-do-limite",
+    "title": "A Xícara do Limite",
+    "capa": "A xícara que transbordou",
+    "prop": "cup",
+    "destaque": "Cuidado inteiro",
+    "frase": "Até quem cuida precisa deixar espaço para si",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "quem_cuida_na_saude",
+    "formato": "caderno",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quanto do seu descanso você entrega para parecer disponível a qualquer hora? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa casa de repouso, uma cuidadora carregava uma xícara enquanto atendia todos os chamados.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A xícara tremia. Ela continuava despejando café, até o líquido escorrer pela mão e pelo chão.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa xícara nas suas mãos: quem está recebendo seu cuidado, e quem está recolhendo o que transbordou?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Paz não é expulsar a saudade, é deixá-la passar.” Eu também preciso deixar algo passar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A xícara não era menor por parar de servir; só revelou que cuidado sem limite também derrama quem cuida.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que seu limite também protege o cuidado?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-02"
+  },
+  "script_hash": "bef3dacdce7fa4beaf98974da1653526d2dbc0e5e4d453cac77f3eec1b21c19f"
+}
