@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-03-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "chave-sem-divida",
+    "title": "A Chave Sem Dívida",
+    "capa": "A chave que não cobra",
+    "prop": "key",
+    "destaque": "Gratidão livre",
+    "frase": "A gratidão reconhece o cuidado sem exigir que o passado volte",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "recomeco_amoroso",
+    "formato": "erro_do_pablo",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Depois do término, agradecer ainda parece uma dívida com quem ficou? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quando eu era aprendiz de sineiro, guardei uma chave depois de receber um cuidado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Toda vez que lembrava, apertava a chave, procurando uma porta para pagar o gesto.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa chave na sua mão: agradecer exige voltar, ou reconhecer o que foi bom sem reabrir a história?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava confundindo gratidão com uma promessa de retorno.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A chave não devia abrir o passado; apenas lembrava que um cuidado pode ser recebido sem virar corrente.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Para quem você agradeceria sem pedir a história de volta?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-03"
+  },
+  "script_hash": "18b8ad44031444499fd458f955a15f31e6563b3f882464eba422d7f1c476556a"
+}
