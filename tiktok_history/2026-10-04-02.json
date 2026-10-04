@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-04-02",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-calor-da-espera",
+    "title": "O calor da espera",
+    "capa": "A forma que ainda nasce",
+    "prop": "lamp",
+    "destaque": "Tempo vivo",
+    "frase": "A paciência protege formas que a pressa não consegue enxergar",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "cinquenta_mais",
+    "formato": "caderno",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Depois dos cinquenta, esperar um recomeço amadurecer parece estar ficando para trás? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa olaria, um oleiro mantinha um lampião aceso diante do barro recém-moldado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Toda manhã, aproximava o lampião. A luz não acelerava o barro; o calor excessivo abriu uma rachadura.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa chama diante de você: o que sua pressa tenta arrancar de algo que ainda está criando forma?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, isso lembra o que anotei ontem: “Presença começa quando paro de viver o problema antes dele chegar.” Eu também posso esperar sem abandonar meu começo.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A paciência não atrasa o nascimento; protege a forma que a pressa ainda não consegue enxergar.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que seu tempo não acabou?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-04"
+  },
+  "script_hash": "2cf47d6e643aad48f6cc92eba6ded39def385ee3578735523beb7d8c66abe113"
+}
