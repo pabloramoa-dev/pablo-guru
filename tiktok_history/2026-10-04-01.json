@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-04-01",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-espelho-da-presenca",
+    "title": "O espelho da presença",
+    "capa": "O bolo preocupado",
+    "prop": "mirror",
+    "destaque": "Olhos presentes",
+    "frase": "Presença começa quando paro de viver o problema antes dele chegar",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "maes",
+    "formato": "humor",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando seus filhos falam, sua cabeça já corre para resolver tudo? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa cozinha de bairro, uma mãe confeiteira pendurou um espelho perto do forno.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Enquanto o bolo assava, ela olhava o reflexo para conferir o forno. Fez uma careta; o bolo também parecia preocupado.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse espelho diante de você: seus olhos estão no que acontece ou procurando o próximo problema?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Eu estava na conversa, mas minha cabeça já preparava respostas para uma vida que ainda nem tinha acontecido.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O espelho não mostrava presença; mostrava o quanto eu tentava controlar a cena antes de vivê-la.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem merece seus olhos inteiros hoje?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-04"
+  },
+  "script_hash": "db5621cfacbac84ecf9984ca5ba81ed64dd3d099a9cd7002589a7dd37c2d7fb1"
+}
