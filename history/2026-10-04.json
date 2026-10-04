@@ -1,0 +1,52 @@
+{
+  "id": "o-aviso-nunca-colocado",
+  "title": "O aviso nunca colocado",
+  "capa": "O primeiro aviso",
+  "prop": "station",
+  "destaque": "Começo visível",
+  "frase": "Preparar o começo já é deixar o medo menor",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "professores",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois de cuidar de tantos alunos, você adia começar algo seu? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa escola vazia, uma professora montava uma estação de leitura.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda manhã, ajustava a estação. O espaço ficava pronto, silencioso, esperando a primeira turma.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa estação diante de você. O que permanece seguro: o espaço pronto ou o começo que nunca acontece?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo preparar o começo com esperar não sentir medo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A estação não precisava provar que estava pronta; sua existência já era o começo visível.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que começo seu medo ainda mantém sem aviso?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-04",
+  "hook_type": "dor",
+  "hook_text": "Depois de cuidar de tantos alunos, você adia começar algo seu? Escute isso.",
+  "script_sha256": "5c2bd19ec44aa3db696799fe87f8b89331f974b803e7c5f70a911945ac57db05"
+}
