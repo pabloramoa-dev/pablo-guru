@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-03-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "a-estacao-incompleta",
+    "title": "A estação incompleta",
+    "capa": "A aula que não chega",
+    "prop": "station",
+    "destaque": "Sem perfeição",
+    "frase": "Uma aula incompleta ainda pode conduzir alguém para longe",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "professores",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Quando a aula termina, sua voz ainda repete tudo que você fez errado? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa escola antiga, um professor de história guardava uma pequena estação de madeira sobre a mesa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Toda noite, movia os trens e corrigia a rota. Nunca achava a chegada certa.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine essa estação diante de você: quem está julgando a aula, ou tentando impedir qualquer aluno de se perder?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava chamando de cuidado o medo de aceitar que uma aula também pode sair incompleta.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "A estação não media o valor do professor; mostrava apenas que nenhum caminho cabe inteiro numa maquete.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem precisa ouvir que sua aula não precisa ser perfeita?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-03"
+  },
+  "script_hash": "5c3d72151f255e477dce19eac7a3f572be4e85881fb8ebd0857fd124acacb013"
+}
