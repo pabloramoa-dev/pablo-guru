@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-04-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "elos-do-recomeco",
+    "title": "Os Elos do Recomeço",
+    "capa": "O elo que se soltou",
+    "prop": "chain",
+    "destaque": "Outra passagem",
+    "frase": "Recomeçar pode exigir soltar antigas amarras",
+    "emocao": "INQUIETAÇÃO",
+    "publico": "busca_espiritual",
+    "formato": "sem_pergunta",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Recomeçar sem uma crença pronta ainda pode devolver sentido aos seus dias? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa oficina de bicicletas, um ferreiro guardava uma corrente enferrujada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Cada elo lembrava um caminho interrompido. Ao poli-la, a corrente se desfez sobre a bancada.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esses elos diante de você: o que chama de fim talvez esteja apenas soltando uma forma antiga?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava tentando reconstruir minha vida com as mesmas amarras que já não me sustentavam.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Às vezes, o recomeço não conserta a corrente; transforma seus elos em espaço para outro caminho.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "O que se rompe também pode abrir passagem.",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-04"
+  },
+  "script_hash": "6bd1e510371b2a28c0fbbe48394c5b8f89612b60711136b3f04a711a554bdd18"
+}
