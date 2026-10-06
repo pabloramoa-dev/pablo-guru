@@ -1,0 +1,47 @@
+{
+  "versao": 1,
+  "politica_saida": {
+    "publicar_automaticamente": false,
+    "entregar": [
+      "mp4",
+      "descricao",
+      "roteiro",
+      "metadados"
+    ]
+  },
+  "personagens": [
+    {
+      "id": "nina",
+      "nome": "Nina",
+      "repo": "pabloramoa-dev/nina-me-contou",
+      "status": "pronto",
+      "entrada": "avulsos/<id>.json",
+      "workflow": "avulso.yml",
+      "saida": "avulsos_prontos/<id>.mp4",
+      "estilo": "história/fofoca/storytime com HyperFrames"
+    },
+    {
+      "id": "pablo-guru",
+      "nome": "Pablo Guru",
+      "repo": "pabloramoa-dev/pablo-guru",
+      "status": "pronto",
+      "entrada": "studio/templates/<id>.json",
+      "workflow": "render-vox.yml",
+      "estilo": "reflexão, metáfora, história curta e virada"
+    },
+    {
+      "id": "mengao-da-sala",
+      "nome": "Mengão da Sala",
+      "repo": "pabloramoa-dev/mengao-da-sala",
+      "status": "adaptador-a-finalizar",
+      "estilo": "humor e diálogo rubro-negro; somente referências compatíveis com futebol/humor"
+    },
+    {
+      "id": "sabio-e-feliz",
+      "nome": "Seu Ranzinza / Sábio e Feliz",
+      "repo": "pabloramoa-dev/sabio-e-feliz",
+      "status": "adaptador-a-finalizar",
+      "estilo": "provérbios e reflexão; não altera texto bíblico"
+    }
+  ]
+}
