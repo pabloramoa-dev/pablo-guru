@@ -132,7 +132,7 @@ jobs:
             output/roteiro_studio.json
             output/integration_status.json
           if-no-files-found: error
-          retention-days: 90
+          retention-days: 2
       - name: Resumo
         run: |
           python -c 'import json,os; e=json.load(open("output/episode.json")); v=json.load(open("output/validation.json")); open(os.environ["GITHUB_STEP_SUMMARY"],"a").write("Episódio: "+e["title"]+"\n\nDuração: "+str(v["duration_seconds"])+" segundos. MP4 e legenda no artefato desta execução.\n")'
