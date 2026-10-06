@@ -1,0 +1,55 @@
+name: Motor Viral — transcrever referência
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "viral_engine/inbox/*.json"
+      - "viral_engine/transcrever.py"
+      - "viral_engine/requirements.txt"
+  workflow_dispatch:
+
+concurrency:
+  group: viral-transcricao
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  transcrever:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Dependências
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+          python -m pip install -U pip
+          pip install -r viral_engine/requirements.txt
+      - name: Processar referências pendentes
+        env:
+          YTDLP_COOKIES_B64: ${{ secrets.YTDLP_COOKIES_B64 }}
+          WHISPER_MODEL: small
+        run: |
+          mkdir -p viral_engine/transcricoes
+          for f in viral_engine/inbox/*.json; do
+            [ -e "$f" ] || continue
+            id=$(python -c 'import json,sys,pathlib,re; p=pathlib.Path(sys.argv[1]); d=json.load(open(p)); s=str(d.get("id") or p.stem); print(re.sub(r"[^A-Za-z0-9_-]+","-",s).strip("-").lower()[:80] or "referencia")' "$f")
+            [ -f "viral_engine/transcricoes/$id.json" ] && continue
+            python viral_engine/transcrever.py "$f"
+          done
+      - name: Gravar somente transcrições
+        run: |
+          git config user.name "viral-engine-bot"
+          git config user.email "actions@github.com"
+          git add viral_engine/transcricoes/
+          git diff --cached --quiet && exit 0
+          git commit -m "viral engine: adicionar transcrição [skip ci]"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
