@@ -95,8 +95,8 @@ jobs:
           cp "$PASTA/Pablo_Guru_Diario.mp4" "midia/diario-$DIA.mp4"
           # Capa 9:16 feita para a grade (título + objeto dentro do recorte 3:4).
           if [ -f "$PASTA/capa_ig.jpg" ]; then cp "$PASTA/capa_ig.jpg" "midia/capa-$DIA.jpg"; fi
-          # Mantém só a última semana de vídeos diários no site (o Instagram já copiou os antigos).
-          limite=$(date -u -d "$DIA -7 days" +%F)
+          # Mantém só uma margem curta de segurança no site; o Instagram já copia a mídia publicada.
+          limite=$(date -u -d "$DIA -2 days" +%F)
           for arquivo in midia/diario-*.mp4 midia/capa-*.jpg; do
             [ -e "$arquivo" ] || continue
             dia_arquivo=${arquivo#midia/*-}; dia_arquivo=${dia_arquivo%.*}
@@ -168,3 +168,21 @@ jobs:
           --capa "${CAPA_URL:-}"
           --execucao "$EXECUCAO"
           --titulo "$TITULO"
+
+
+      - name: Remover a mídia temporária após publicar
+        if: steps.modo.outputs.enviar == 'sim' && success()
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+          DIA: ${{ steps.escolha.outputs.dia }}
+        run: |
+          set -euo pipefail
+          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/$REPOSITORIO_MIDIA.git" "$RUNNER_TEMP/limpeza"
+          cd "$RUNNER_TEMP/limpeza"
+          git config user.name "pablo-guru"
+          git config user.email "pablo-guru@users.noreply.github.com"
+          git rm -f --ignore-unmatch "midia/diario-$DIA.mp4" "midia/capa-$DIA.jpg"
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Limpeza da midia publicada $DIA"
+          for i in 1 2 3; do git pull --rebase && git push -q && exit 0; sleep 5; done
+          exit 1
