@@ -1,0 +1,52 @@
+{
+  "id": "a-mala-apertada",
+  "title": "A Mala Apertada",
+  "capa": "O zíper da aprovação",
+  "prop": "bag",
+  "destaque": "Próprio tamanho",
+  "frase": "Limite é deixar a própria vida caber em você",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "filhos_adultos",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Ainda espera seus pais aprovarem cada escolha? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de costura, uma costureira enfiava vestidos numa mala, esperando aprovação para fechar o zíper.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A mala engordou tanto que abriu sozinha e espalhou mangas pelo chão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa mala nas suas mãos. Quantas escolhas você deixa apertadas, só para caberem no gosto dos seus pais?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de respeito o medo de desagradar meus pais.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Limite não é rasgar o amor; é fechar a mala certa, sem esmagar quem você é.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual escolha ainda está presa no zíper da aprovação?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-06",
+  "hook_type": "dor",
+  "hook_text": "Ainda espera seus pais aprovarem cada escolha? Escute isso.",
+  "script_sha256": "8be1fd781290f806e14276d6b3b4fddaefd545a50f4e14eca27fb43b9d5b56d7"
+}
