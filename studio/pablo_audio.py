@@ -4,8 +4,9 @@ pablo_audio.py — Narração, lip sync e trilha do Pablo Guru
 Cadeia de narração:
     Pablo Guru:
       1. Kokoro TTS local (PT-BR) — pm_alex
-      2. ElevenLabs (se configurado)
-      3. espeak-ng PT-BR
+      2. Microsoft Antonio Neural (pt-BR-AntonioNeural) — contingência
+      3. ElevenLabs (se configurado)
+      4. espeak-ng PT-BR
 
     Personagem feminina / Marina / perguntadora:
       1. Microsoft Thalita Neural (pt-BR-ThalitaNeural, rate -6%) — voz oficial
@@ -62,6 +63,7 @@ KOKORO_URL = ("https://github.com/thewh1teagle/kokoro-onnx/releases/download/"
 
 # Voz masculina do Pablo continua Kokoro. A personagem feminina passa a Thalita.
 VOZ_PABLO = {"velocidade_wpm": 150, "kokoro": "pm_alex", "kokoro_speed": 0.92,
+             "edge": "pt-BR-AntonioNeural", "edge_rate": "-8%",
              "estilo": "pausado, grave, contemplativo"}
 VOZ_PERGUNTADORA = {
     "velocidade_wpm": 165,
@@ -135,6 +137,24 @@ def _tts_thalita(texto, saida, voice="pt-BR-ThalitaNeural", rate="-6%") -> bool:
         return False
 
 
+def _tts_antonio(texto, saida, voice="pt-BR-AntonioNeural", rate="-8%") -> bool:
+    """Fallback neural masculino: evita perder o Reel se o Kokoro falhar."""
+    try:
+        mp3 = Path(saida).with_suffix(".antonio.mp3")
+        asyncio.run(_edge_salvar(texto, mp3, voice, rate))
+        subprocess.run([
+            "ffmpeg", "-y", "-loglevel", "error", "-i", str(mp3),
+            "-ar", "44100", "-ac", "1", "-c:a", "pcm_s16le", str(saida),
+        ], check=True)
+        try:
+            mp3.unlink()
+        except OSError:
+            pass
+        return Path(saida).exists() and Path(saida).stat().st_size > 1024
+    except Exception:
+        return False
+
+
 def _tts_elevenlabs(texto, saida, voice_id=None) -> bool:
     key = os.environ.get("ELEVENLABS_API_KEY")
     if not key:
@@ -183,6 +203,7 @@ def narrar(texto: str, saida: str, personagem: str = "pablo") -> Narracao:
         motores = (
             ("kokoro", lambda: _tts_kokoro(texto, saida, perfil["kokoro"],
                                            perfil["kokoro_speed"])),
+            ("antonio", lambda: _tts_antonio(texto, saida, perfil["edge"], perfil["edge_rate"])),
             ("elevenlabs", lambda: _tts_elevenlabs(texto, saida)),
             ("espeak-ng", lambda: _tts_espeak(texto, saida, perfil["velocidade_wpm"])),
         )
