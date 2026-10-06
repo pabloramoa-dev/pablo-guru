@@ -1,0 +1,55 @@
+{
+  "key": "2026-10-05-03",
+  "account": "opabloguru",
+  "state": "scripted",
+  "episode": {
+    "id": "o-livro-da-aprovacao",
+    "title": "O Livro da Aprovação",
+    "capa": "O livro que não era seu",
+    "prop": "book",
+    "destaque": "Voz própria",
+    "frase": "Propósito não é aprovação; é a história que consigo viver",
+    "emоcao": "INQUIETAÇÃO",
+    "publico": "filhos_adultos",
+    "formato": "parabola",
+    "segments": [
+      {
+        "speaker": "asker",
+        "text": "Ainda escolhe seu propósito esperando que seus pais chamem isso de certo? Escute isso.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Numa gráfica antiga, uma encadernadora costurou um livro para guardar escolhas que os pais aprovavam.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Cada página recebia um caminho elogiado por eles. O livro ficou bonito, mas vazio de histórias vividas.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Agora imagine esse livro no seu colo: qual propósito ainda parece seu, se precisa passar pelo olhar deles?",
+        "pause": 0.35
+      },
+      {
+        "speaker": "asker",
+        "text": "Pablo Guru, eu estava chamando de propósito aquilo que me garantiria aprovação, não aquilo que me faria inteira.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Um livro pode ter capa herdada e, ainda assim, esperar uma história que só sua vida consegue escrever.",
+        "pause": 0.35
+      },
+      {
+        "speaker": "pablo",
+        "text": "Quem ainda está escrevendo sua vida para ser aprovado?",
+        "pause": 0.35
+      }
+    ],
+    "date": "2026-10-05"
+  },
+  "script_hash": "77cbd48d06a5cbe024557a079d44795137469cb25757b813239a154b4b7cac8c"
+}
