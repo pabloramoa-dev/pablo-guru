@@ -48,8 +48,33 @@ def cookies_file(tmp: Path) -> Path | None:
     return p
 
 
+def _converter_wav(src: Path, tmp: Path) -> Path:
+    wav = tmp / "audio.wav"
+    subprocess.run([
+        "ffmpeg", "-y", "-v", "error", "-i", str(src),
+        "-ac", "1", "-ar", "16000", "-vn", str(wav)
+    ], check=True)
+    return wav
+
+
+def _baixar_tiktok_ttdlp(url: str, tmp: Path) -> tuple[Path, dict]:
+    """Fallback TikTok independente do yt-dlp."""
+    out = tmp / "ttdlp"
+    out.mkdir(parents=True, exist_ok=True)
+    cmd = [sys.executable, "-m", "tt_dlp", "--no-stories", "-o", str(out)]
+    ck = cookies_file(tmp)
+    if ck:
+        cmd += ["--cookies", str(ck)]
+    cmd.append(url)
+    subprocess.run(cmd, check=True)
+    media = [p for p in out.rglob("*.mp4") if p.is_file()]
+    if not media:
+        raise RuntimeError("tt-dlp não produziu MP4")
+    src = max(media, key=lambda p: p.stat().st_size)
+    return _converter_wav(src, tmp), {"title": src.stem, "extractor": "tt-dlp"}
+
+
 def baixar_audio(url: str, tmp: Path) -> tuple[Path, dict]:
-    meta_path = tmp / "meta.json"
     outtmpl = str(tmp / "media.%(ext)s")
     cmd = [
         sys.executable, "-m", "yt_dlp",
@@ -63,23 +88,19 @@ def baixar_audio(url: str, tmp: Path) -> tuple[Path, dict]:
     ck = cookies_file(tmp)
     if ck:
         cmd[3:3] = ["--cookies", str(ck)]
-    subprocess.run(cmd, check=True)
-
-    infos = list(tmp.glob("media.info.json"))
-    if not infos:
-        infos = list(tmp.glob("*.info.json"))
-    info = json.loads(infos[0].read_text(encoding="utf-8")) if infos else {}
-
-    media = [p for p in tmp.glob("media.*") if p.suffix not in {".json", ".part", ".ytdl"} and ".info" not in p.name]
-    if not media:
-        raise RuntimeError("yt-dlp não produziu arquivo de mídia")
-    src = media[0]
-    wav = tmp / "audio.wav"
-    subprocess.run([
-        "ffmpeg", "-y", "-v", "error", "-i", str(src),
-        "-ac", "1", "-ar", "16000", "-vn", str(wav)
-    ], check=True)
-    return wav, info
+    try:
+        subprocess.run(cmd, check=True)
+        infos = list(tmp.glob("media.info.json")) or list(tmp.glob("*.info.json"))
+        info = json.loads(infos[0].read_text(encoding="utf-8")) if infos else {}
+        media = [p for p in tmp.glob("media.*") if p.suffix not in {".json", ".part", ".ytdl"} and ".info" not in p.name]
+        if not media:
+            raise RuntimeError("yt-dlp não produziu arquivo de mídia")
+        return _converter_wav(media[0], tmp), info
+    except (subprocess.CalledProcessError, RuntimeError):
+        if plataforma(url) != "tiktok":
+            raise
+        print("[fallback] yt-dlp falhou; tentando tt-dlp", flush=True)
+        return _baixar_tiktok_ttdlp(url, tmp)
 
 
 def transcrever(wav: Path) -> tuple[str, list[dict], str]:
