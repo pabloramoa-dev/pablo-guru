@@ -121,7 +121,7 @@ jobs:
         with:
           name: pablo-guru-carrossel-${{ github.run_id }}
           path: output_carrossel/
-          retention-days: 30
+          retention-days: 2
 
       - name: Guardar as imagens no repositório público
         if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim'
@@ -138,7 +138,7 @@ jobs:
             cp "$f" "$RUNNER_TEMP/publico/midia/carrossel-$DIA-$n.jpg"
           done
           cd "$RUNNER_TEMP/publico"
-          limite=$(date -u -d "$DIA -7 days" +%F)
+          limite=$(date -u -d "$DIA -2 days" +%F)
           for arquivo in midia/carrossel-*.jpg; do
             [ -e "$arquivo" ] || continue
             d=${arquivo#midia/carrossel-}; d=${d:0:10}
@@ -199,3 +199,21 @@ jobs:
           --base "$BASE_PUBLICA"
           --legenda output_carrossel/legenda.txt
           --slides "$SLIDES"
+
+
+      - name: Remover imagens temporárias após publicar
+        if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim' && success()
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+          DIA: ${{ steps.modo.outputs.dia }}
+        run: |
+          set -euo pipefail
+          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/$REPOSITORIO_MIDIA.git" "$RUNNER_TEMP/limpeza"
+          cd "$RUNNER_TEMP/limpeza"
+          git config user.name "pablo-guru"
+          git config user.email "pablo-guru@users.noreply.github.com"
+          git rm -f --ignore-unmatch midia/carrossel-"$DIA"-*.jpg
+          git diff --cached --quiet && exit 0
+          git commit -q -m "Limpeza do carrossel publicado $DIA"
+          for i in 1 2 3; do git pull --rebase && git push -q && exit 0; sleep 5; done
+          exit 1
