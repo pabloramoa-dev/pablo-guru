@@ -139,11 +139,19 @@ def main():
         import pablo_episodio as pe
     else:
         import pablo_episodio_vox as pe
-    # Não permitir mudança silenciosa para voz robótica em produção.
+    # Não permitir fallback robótico em produção. Pablo usa Kokoro e, se ele
+    # estiver indisponível, Antonio Neural. A perguntadora usa Thalita e pode
+    # cair no Kokoro feminino local. Espeak continua bloqueado neste fluxo.
     original=pa.narrar
     def neural_only(*args,**kwargs):
+        personagem=kwargs.get('personagem','pablo')
         result=original(*args,**kwargs)
-        if result.motor!='kokoro':raise RuntimeError('Voz Kokoro indisponível. Render interrompido para preservar a identidade vocal.')
+        if str(personagem).startswith('pablo'):
+            aceitos={'kokoro','antonio','elevenlabs'}
+        else:
+            aceitos={'thalita','kokoro-fallback','elevenlabs'}
+        if result.motor not in aceitos:
+            raise RuntimeError(f'Voz neural indisponível para {personagem}; motor recebido: {result.motor}')
         return result
     pa.narrar=neural_only
     result=pe.produzir(str(path),str(out/'studio'),'h')
