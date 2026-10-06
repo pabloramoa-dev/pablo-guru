@@ -1,0 +1,40 @@
+{
+  "data": "2026-10-06",
+  "titulo": "Nem todo guru merece sua entrega",
+  "conteudo": {
+    "id": "alertas-gurus",
+    "titulo": "Nem todo guru merece sua entrega",
+    "subtitulo": "Como preservar discernimento sem fechar o coração",
+    "slides": [
+      {
+        "titulo": "Autoridade não é verdade",
+        "texto": "Um guia pode inspirar sem ocupar o lugar da sua consciência. Sabedoria também aceita limites, dúvidas e perguntas honestas."
+      },
+      {
+        "titulo": "Onde os sinais aparecem",
+        "texto": "Respostas para tudo, promessas rápidas, medo de questionar, urgência para comprar e uma imagem tratada como prova."
+      },
+      {
+        "titulo": "O que pode se perder",
+        "texto": "Quando discordar parece deslealdade, você entrega discernimento, dinheiro, tempo e limites. A busca pode virar dependência."
+      },
+      {
+        "titulo": "Caminhe com liberdade",
+        "texto": "Observe transparência, limites e abertura ao diálogo. Compare ideias, vá devagar e mantenha vínculos fora daquele círculo."
+      },
+      {
+        "titulo": "Faça estas perguntas",
+        "texto": "Posso sair sem culpa? Posso discordar? Este conteúdo aumenta minha autonomia ou minha necessidade do guru?"
+      }
+    ],
+    "fechamento": "Um bom guia acende uma lanterna; não pede que você feche os olhos.",
+    "legenda": "Nem toda voz segura oferece um caminho seguro. Antes de entregar sua confiança, observe se a relação amplia ou reduz sua liberdade.",
+    "hashtags": [
+      "#discernimento",
+      "#espiritualidadesemcliche",
+      "#autonomia"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-10-06T20:43:33-03:00"
+}
