@@ -1,0 +1,22 @@
+{
+  "numero": 98,
+  "titulo": "TODOS JUNTOS",
+  "titulo_b": "UM MOTOR, MUITOS PERSONAGENS",
+  "tema": "crossover promocional",
+  "pergunta": "Quantos personagens um mesmo sistema pode criar?",
+  "formato": "vertical",
+  "hook_first": true,
+  "cta_final": "AGORA É A VEZ DOS OUTROS",
+  "cenas": [
+    {
+      "falante": "pablo",
+      "texto": "Eu sou o Pablo Guru. Uma mensagem certa pode prender atenção e fazer a pessoa pensar.",
+      "cenario": "split"
+    },
+    {
+      "falante": "perguntadora",
+      "texto": "E eu sou a Marina. Eu faço a pergunta que o público faria.",
+      "cenario": "split"
+    }
+  ]
+}
