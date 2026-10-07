@@ -29,10 +29,11 @@ jobs:
           fc-cache -f
       - run: pip install -r requirements.txt
       - name: Renderizar somente o promo
+        working-directory: studio
         run: |
           python - <<'PY'
-          from studio.pablo_episodio import produzir
-          print(produzir('promos/crossover_pablo.json', 'saida', 'm'))
+          from pablo_episodio import produzir
+          print(produzir('../promos/crossover_pablo.json', '../saida', 'm'))
           PY
       - name: Entregar MP4
         uses: actions/upload-artifact@v4
