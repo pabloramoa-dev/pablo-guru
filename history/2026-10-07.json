@@ -1,0 +1,52 @@
+{
+  "id": "gratidao-sem-divida",
+  "title": "Gratidão sem dívida",
+  "capa": "A janela sem dívida",
+  "prop": "window",
+  "destaque": "Sem dívida",
+  "frase": "Gratidão não é pagamento; é presença que continua livre",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "casais",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando o carinho virou obrigação, você ainda consegue agradecer de verdade? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa pensão à beira-mar, uma florista abria a janela toda manhã e agradecia ao sol.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um dia, abriu por hábito, embora a manhã estivesse cinzenta. O gesto saiu vazio.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa janela na sua casa. Você agradece o que recebe ou paga uma dívida invisível?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu parar de agradecer, meu companheiro pode achar que não valorizo mais nada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo: valorizar alguém não exige aplauso diário; gratidão viva é janela aberta, não contrato assinado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Seu agradecimento ainda nasce ou só cumpre um papel?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-07",
+  "hook_type": "dor",
+  "hook_text": "Quando o carinho virou obrigação, você ainda consegue agradecer de verdade? Escute isso.",
+  "script_sha256": "659ca463218eb8fed95f7a768392ad7e696174b3923ccf81702b0271d196ce24"
+}
