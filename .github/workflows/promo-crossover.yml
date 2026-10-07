@@ -28,6 +28,15 @@ jobs:
           curl -sSL -o ~/.fonts/Poppins-Regular.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf
           fc-cache -f
       - run: pip install -r requirements.txt
+      - name: Compatibilidade apenas deste job promocional
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('studio/pablo_episodio.py')
+          s = p.read_text(encoding='utf-8')
+          s = s.replace('         "--max-inflight-encoders", "3",\n', '')
+          p.write_text(s, encoding='utf-8')
+          PY
       - name: Renderizar somente o promo
         working-directory: studio
         run: |
