@@ -1,0 +1,45 @@
+name: Promo crossover — Pablo e Marina
+
+on:
+  push:
+    paths:
+      - "promos/crossover_trigger_20261006.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Dependencias de sistema
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng pkg-config libcairo2-dev libpango1.0-dev fonts-dejavu-core
+          mkdir -p ~/.fonts
+          curl -sSL -o ~/.fonts/Poppins-Bold.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Bold.ttf
+          curl -sSL -o ~/.fonts/Poppins-Regular.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf
+          fc-cache -f
+      - run: pip install -r requirements.txt
+      - name: Renderizar somente o promo
+        run: |
+          python - <<'PY'
+          from studio.pablo_episodio import produzir
+          print(produzir('promos/crossover_pablo.json', 'saida', 'm'))
+          PY
+      - name: Entregar MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: promo-crossover-pablo-marina
+          path: |
+            saida/ep98/*.mp4
+            saida/ep98/*.wav
+            saida/ep98/*.json
+          retention-days: 2
