@@ -1,0 +1,40 @@
+{
+  "data": "2026-10-07",
+  "titulo": "Autocuidado ou carrinho de compras?",
+  "conteudo": {
+    "id": "autocuidado-ou-consumo",
+    "titulo": "Autocuidado ou carrinho de compras?",
+    "subtitulo": "Nem todo cuidado precisa ser comprado",
+    "slides": [
+      {
+        "titulo": "Cuidado ou consumo?",
+        "texto": "Autocuidado é atenção às próprias necessidades. Mas pode virar consumo quando comprar a experiência substitui escutar o que realmente pede cuidado."
+      },
+      {
+        "titulo": "A prateleira da paz",
+        "texto": "Retiro, cristal ou curso podem apoiar uma pausa. O problema começa quando cada desconforto ganha um produto, e cada produto promete uma versão melhor de você."
+      },
+      {
+        "titulo": "O que fica escondido",
+        "texto": "A lógica do consumo transforma cuidado em desempenho: mais práticas, mais certificados, mais objetos. E pode esconder limites, relações, descanso e ajuda concreta."
+      },
+      {
+        "titulo": "Cuidar sem comprar",
+        "texto": "Antes da próxima compra, pergunte: preciso de uma ferramenta, de tempo, de conversa ou de um limite? Escolha o que sustenta a vida real."
+      },
+      {
+        "titulo": "Uma prática honesta",
+        "texto": "Faça uma pausa sem adquirir nada. Observe seu corpo, nomeie uma necessidade e escolha um gesto possível, gratuito e cuidadoso."
+      }
+    ],
+    "fechamento": "Nem toda paz cabe numa sacola; às vezes, ela começa quando você para de procurar.",
+    "legenda": "Autocuidado também pode virar mais uma vitrine: compre, melhore, alcance, repita. Talvez cuidar seja escutar antes de adicionar algo ao carrinho.",
+    "hashtags": [
+      "#autocuidado",
+      "#consumoconsciente",
+      "#espiritualidadesemcliche"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-10-07T21:07:53-03:00"
+}
