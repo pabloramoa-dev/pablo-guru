@@ -1,0 +1,52 @@
+{
+  "id": "a-margem-que-muda",
+  "title": "A margem que muda",
+  "capa": "A ponte que não fica",
+  "prop": "bridge",
+  "destaque": "Outra margem",
+  "frase": "A saudade muda de forma sem deixar de ser amor",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "longe_de_casa",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Morando longe de casa, você tenta segurar o que a saudade já está mudando? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa cidade costeira, uma construtora recém-chegada cuidava de uma ponte de madeira, passagem para a margem onde nascera.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Depois da maré, tábuas soltavam-se. Ela trocava uma, e outra desaparecia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine seus pés nessa ponte. Você está atravessando a mudança ou tentando conservar exatamente o caminho que já passou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Isso lembra o que eu anotei ontem: “Gratidão não é pagamento; é presença que continua livre.”",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Até a ponte muda enquanto conduz: permanecer não é ficar igual, é continuar encontrando margem.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que parte da sua saudade já mudou de forma?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-08",
+  "hook_type": "dor",
+  "hook_text": "Morando longe de casa, você tenta segurar o que a saudade já está mudando? Escute isso.",
+  "script_sha256": "8fb2bb4ba75c5b0a4b3b3826366fda086fb9608b0440d3d662ac541972e48525"
+}
