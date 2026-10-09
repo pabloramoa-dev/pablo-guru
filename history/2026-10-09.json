@@ -1,0 +1,52 @@
+{
+  "id": "a-chave-do-erro",
+  "title": "A chave do erro",
+  "capa": "A chave que machuca",
+  "prop": "key",
+  "destaque": "Mão solta",
+  "frase": "Erro não é fechadura para sua identidade",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "concurseiros",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A autocrítica transforma cada erro de prova numa sentença contra você? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de encadernação, uma encadernadora guardava uma chave enferrujada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada falha num caderno fazia ela apertá-la contra a própria palma. A marca ficava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa chave na sua mão. Você está corrigindo o caminho ou se trancando dentro do erro?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava usando cada erro como prova de que não mereço passar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A chave que abre uma porta também pode virar ferida quando a mão esquece de soltá-la.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que erro ainda está trancando você?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-09",
+  "hook_type": "dor",
+  "hook_text": "A autocrítica transforma cada erro de prova numa sentença contra você? Escute isso.",
+  "script_sha256": "6bfccad88df4e3df975f70c3e518003efb78c20249cfa755860d4a81fb3b7676"
+}
