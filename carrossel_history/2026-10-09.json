@@ -1,0 +1,40 @@
+{
+  "data": "2026-10-09",
+  "titulo": "Silêncio não é fugir de si",
+  "conteudo": {
+    "id": "silencio-sem-cliche",
+    "titulo": "Silêncio não é fugir de si",
+    "subtitulo": "A prática gratuita que revela o barulho que carregamos",
+    "slides": [
+      {
+        "titulo": "O que o silêncio é",
+        "texto": "Silêncio não é ausência de som. É uma pausa voluntária para perceber o que costuma ser abafado pela pressa."
+      },
+      {
+        "titulo": "Como o ruído aparece",
+        "texto": "Ele aparece em notificações, opiniões, tarefas e distrações. Nem todo barulho vem de fora: às vezes, somos nós evitando uma pergunta."
+      },
+      {
+        "titulo": "O que se perde",
+        "texto": "Quando preenchemos cada pausa, perdemos contato com incômodos, desejos e limites que não gritam, mas orientam."
+      },
+      {
+        "titulo": "Como praticar sem performance",
+        "texto": "Comece com cinco minutos sem tela, música ou tarefa. Não tente produzir paz. Apenas note sons, pensamentos e impulsos, sem obedecer a todos."
+      },
+      {
+        "titulo": "Uma pergunta para levar",
+        "texto": "O que surge quando você não corre para responder, explicar, consumir ou se distrair? Talvez o silêncio não resolva; talvez mostre por onde começar."
+      }
+    ],
+    "fechamento": "No silêncio, até a poeira assentando pode ensinar o que o barulho escondia.",
+    "legenda": "Silêncio não é uma decoração espiritual. É um encontro sem filtro com aquilo que a pressa costuma esconder.",
+    "hashtags": [
+      "#silencio",
+      "#espiritualidade",
+      "#presenca"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-10-09T20:56:41-03:00"
+}
