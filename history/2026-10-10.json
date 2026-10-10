@@ -1,0 +1,52 @@
+{
+  "id": "a-presenca-na-feira",
+  "title": "A presença na feira",
+  "capa": "A bolsa fechada",
+  "prop": "bag",
+  "destaque": "Estar inteira",
+  "frase": "Presença é encontrar o instante onde você está",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cinquenta_mais",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois dos cinquenta, ainda sente que sua presença ficou para trás? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa feira antiga, uma feirante guardava uma bolsa de pano no colo, mesmo quando ninguém a chamava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A bolsa permanecia fechada. Ela olhava as bancas, mas não via quem estava diante dela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa bolsa nas suas mãos. Você está esperando voltar a ser necessária para permitir que sua presença exista?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava confundindo ser lembrada com estar inteira no lugar onde estou.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A presença não é o aplauso que chama você; é o olhar que finalmente encontra o instante.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O instante ainda tem lugar para você.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-10",
+  "hook_type": "dor",
+  "hook_text": "Depois dos cinquenta, ainda sente que sua presença ficou para trás? Escute isso.",
+  "script_sha256": "b9ca2a62804b85671e9aafa04c9c6d0962a15384f8fa7ed2fdf7a4ad2e633e3f"
+}
