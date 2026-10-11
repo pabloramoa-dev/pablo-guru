@@ -1,0 +1,52 @@
+{
+  "id": "a-raiz-invisivel",
+  "title": "A raiz invisível",
+  "capa": "O que a pressa arranca",
+  "prop": "seed",
+  "destaque": "Crescimento silencioso",
+  "frase": "A pressa pode arrancar o que ainda cria raiz",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "empreendedores",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando o negócio depende de você, esperar parece perder dinheiro? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa pequena padaria, um padeiro plantou uma semente num canteiro e conferia a terra entre uma fornada e outra.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cansado de esperar, puxou o broto para cima. A raiz se rompeu, invisível.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine suas mãos nessa terra. Sua pressa está fazendo o negócio crescer ou arrancando o que ainda cria raiz?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu confundo movimento com avanço; quero ver resultado antes de dar tempo ao que sustenta tudo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A raiz trabalha em silêncio; quem a puxa para conferir o crescimento acaba interrompendo-o.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que você está arrancando por não esperar?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-11",
+  "hook_type": "dor",
+  "hook_text": "Quando o negócio depende de você, esperar parece perder dinheiro? Escute isso.",
+  "script_sha256": "aa90ae36ebc3585b324f4d3ddd040894b67b9ebfd1f094b9f2a6127a86bb883c"
+}
