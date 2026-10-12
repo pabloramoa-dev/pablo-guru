@@ -4,7 +4,7 @@ on:
     - cron: "41 10 * * *"  # 07h41 em Brasília; minuto quebrado foge do pico do GitHub
   push:
     branches: [main, implementacao/episodios-diarios-direct]
-    paths: ['daily/**', 'studio/**', 'audio/**', 'episodios/a_estacao/**', 'requirements.txt', '.github/workflows/diario.yml']
+    paths: ['daily/**', 'studio/**', 'video/**', 'audio/**', 'episodios/a_estacao/**', '.github/actions/setup-hyperframes/**', 'requirements.txt', '.github/workflows/diario.yml']
   workflow_dispatch:
     inputs:
       episode_date:
