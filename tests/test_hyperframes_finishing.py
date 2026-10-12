@@ -20,6 +20,9 @@ class HyperFramesTests(unittest.TestCase):
     def test_cuts_sorted_and_deduplicated(self):
         self.assertEqual(hf.timeline(3, [2, 1, 1, 0]), (3., [1., 2.]))
 
+    def test_relaxed_timeline_drops_cut_after_last_frame(self):
+        self.assertEqual(hf.timeline(2, [0.5, 2.0, 2.03], strict=False), (2., [0.5]))
+
     def test_weather_data_not_cropped_or_scaled(self):
         with tempfile.TemporaryDirectory() as d:
             for style in ['rj', 'vr']:
