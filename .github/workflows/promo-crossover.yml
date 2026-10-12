@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - "promos/crossover_trigger_20261006.txt"
+      - ".github/workflows/promo-crossover.yml"
+      - "studio/pablo_hyperframes.py"
+      - "video/**"
   workflow_dispatch:
 
 permissions:
@@ -28,6 +31,7 @@ jobs:
           curl -sSL -o ~/.fonts/Poppins-Regular.ttf https://raw.githubusercontent.com/google/fonts/main/ofl/poppins/Poppins-Regular.ttf
           fc-cache -f
       - run: pip install -r requirements.txt
+      - uses: ./.github/actions/setup-hyperframes
       - name: Compatibilidade apenas deste job promocional
         run: |
           python - <<'PY'
