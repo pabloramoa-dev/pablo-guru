@@ -1,0 +1,52 @@
+{
+  "id": "a-lampada-escondida",
+  "title": "A Lâmpada Escondida",
+  "capa": "A luz que você esconde",
+  "prop": "lamp",
+  "destaque": "Luz honesta",
+  "frase": "O recomeço começa quando a verdade entra.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cuidadores",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quem cuida de todos adia o próprio recomeço? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de sineiro, cuidei de alguém em casa e escondi uma lâmpada quebrada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Eu a acendia mesmo assim. A luz tremia, mas eu fingia que estava pronta.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lâmpada nas suas mãos: você está recomeçando ou apenas mantendo tudo funcionando para os outros?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu me acostumei a chamar de força o ato de desaparecer dentro do cuidado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A lâmpada não volta a iluminar quando escondemos a rachadura; o recomeço começa onde a verdade deixa entrar luz.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa saber que você também quer recomeçar?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-12",
+  "hook_type": "dor",
+  "hook_text": "Quem cuida de todos adia o próprio recomeço? Escute isso.",
+  "script_sha256": "354c0308ab7f8efcf816bf019785ca43632c1a0e58406cd9f914d7582191f90b"
+}
