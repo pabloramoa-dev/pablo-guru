@@ -30,14 +30,19 @@ def probe(path):
         '-of', 'json', str(path)]))
 
 
-def timeline(duration, cuts):
+def timeline(duration, cuts, *, strict=True):
     duration = float(duration)
     if not math.isfinite(duration) or duration <= 0:
         raise ValueError('Invalid duration')
     values = sorted(set(float(t) for t in cuts))
-    if any(not math.isfinite(t) or t < 0 or t >= duration for t in values):
+    if any(not math.isfinite(t) or t < 0 for t in values):
         raise ValueError('Cut outside source timeline')
-    return duration, [t for t in values if t > 0]
+    if strict and any(t >= duration for t in values):
+        raise ValueError('Cut outside source timeline')
+    # Os cortes do finishing são apenas efeitos visuais. O ffmpeg pode encurtar
+    # alguns centésimos ao usar -shortest; nesse caso, ignoramos cortes que
+    # ficaram no/fora do último frame em vez de derrubar o Reel inteiro.
+    return duration, [t for t in values if 0 < t < duration]
 
 
 def composition(work, duration, width, height, cuts=(), style='guru'):
@@ -104,7 +109,7 @@ def apply(source, destination=None, *, root=None, cuts=(), style='guru', compose
     info = probe(source)
     v = next(s for s in info['streams'] if s['codec_type'] == 'video')
     width, height = int(v['width']), int(v['height'])
-    duration, cuts = timeline(float(v.get('duration') or info['format']['duration']), cuts)
+    duration, cuts = timeline(float(v.get('duration') or info['format']['duration']), cuts, strict=False)
     source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
     work = destination.parent / ('.hyperframes_' + destination.stem)
     assets = work / 'assets'
