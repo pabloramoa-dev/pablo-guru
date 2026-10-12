@@ -2,7 +2,7 @@ name: Testes Diario e Direct
 on:
   push:
     branches: [main, implementacao/episodios-diarios-direct]
-    paths: ['daily/**', 'direct_guru/**', 'studio/**', 'audio/**', 'episodios/a_estacao/**', 'requirements.txt', 'tests/**', '.github/workflows/testes-diario-direct.yml']
+    paths: ['daily/**', 'direct_guru/**', 'studio/**', 'video/**', 'audio/**', 'episodios/a_estacao/**', 'requirements.txt', 'tests/**', '.github/workflows/testes-diario-direct.yml']
   pull_request:
   workflow_dispatch:
 permissions:
