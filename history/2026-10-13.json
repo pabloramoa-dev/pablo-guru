@@ -1,0 +1,52 @@
+{
+  "id": "a-porta-sem-atraso",
+  "title": "A porta sem atraso",
+  "capa": "A porta que esperou",
+  "prop": "door",
+  "destaque": "Seu ritmo",
+  "frase": "Aceitar seu ritmo não é desistir do caminho",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "vinte_e_poucos",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Aos vinte e poucos, aceitar seu ritmo parece ficar para trás? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa marcenaria, um jovem marceneiro pintou uma porta tão depressa que esqueceu de instalar a maçaneta.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Tentou abri-la pelo lado errado. A porta ficou linda, fechada e satisfeita consigo mesma.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa porta diante de você. Você quer aceitá-la como está ou transformá-la numa cópia da vida alheia?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de atraso o fato de ainda não ter a forma que imaginei.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A porta não estava atrasada; só precisava cumprir seu desenho, não imitar a casa ao lado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que parte sua você ainda tenta esconder?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-13",
+  "hook_type": "dor",
+  "hook_text": "Aos vinte e poucos, aceitar seu ritmo parece ficar para trás? Escute isso.",
+  "script_sha256": "179dfee5a1333580d63b3f3a325b0dbac631ff84f9fd40b80e83c5cf99adf6a0"
+}
