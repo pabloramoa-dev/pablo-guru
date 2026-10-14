@@ -1,0 +1,52 @@
+{
+  "id": "a-rachadura-e-a-luz",
+  "title": "A rachadura e a luz",
+  "capa": "A pedra ainda brilha",
+  "prop": "magnifier",
+  "destaque": "Outro ângulo",
+  "frase": "Recomeçar não apaga o amor vivido",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "recomeco_amoroso",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois do término, voltar a viver parece trair o amor? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de lapidação, uma lapidadora examinava uma pedra com uma lupa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A rachadura atravessava o brilho. Ela quase guardou a pedra no escuro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa pedra na sua mão. Voltar a olhar a vida é deslealdade ao amor perdido ou coragem de enxergar além da rachadura?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, voltar a viver parece diminuir tudo o que senti.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Não diminui o que foi vivido. A lupa não apaga a marca; revela que a pedra ainda pode receber luz de outro ângulo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa ouvir que sua vida continua?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-14",
+  "hook_type": "dor",
+  "hook_text": "Depois do término, voltar a viver parece trair o amor? Escute isso.",
+  "script_sha256": "345de3cdce213446d7119963dc62fa731b2aba45781ec7e77a42bae01adf9f18"
+}
