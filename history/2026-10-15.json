@@ -1,0 +1,52 @@
+{
+  "id": "semente-no-bolso",
+  "title": "A semente no bolso",
+  "capa": "O propósito que ficou guardado",
+  "prop": "seed",
+  "destaque": "Vida guardada",
+  "frase": "O propósito cresce quando encontra espaço para nascer",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "maes",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando cuidar de todos apaga o que você queria viver? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa vila, uma costureira guardava uma semente no bolso do avental. Dizia que plantaria quando tudo estivesse resolvido.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Os anos passaram. A semente continuou inteira, escura, sem conhecer a terra.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa semente na sua mão. O que você chama de responsabilidade está protegendo sua vida ou adiando seu nascimento?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Recomeçar não apaga o amor vivido.” Eu também posso existir além do cuidado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A semente não era egoísta por querer terra; até o amor precisa de espaço para criar raízes.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que em você ainda espera ser plantado?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-15",
+  "hook_type": "dor",
+  "hook_text": "Quando cuidar de todos apaga o que você queria viver? Escute isso.",
+  "script_sha256": "0f2416123ff6fac177273565399f791cd6d5e0879f02996aff1ffab35fabca57"
+}
