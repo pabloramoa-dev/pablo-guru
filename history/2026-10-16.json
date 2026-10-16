@@ -1,0 +1,52 @@
+{
+  "id": "a-corrente-do-silencio",
+  "title": "A corrente do silêncio",
+  "capa": "Quem ficou do lado de fora",
+  "prop": "chain",
+  "destaque": "Ocupação",
+  "frase": "Escutar não exige desaparecer.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "introvertidos",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Nos grupos, você ensaia tanto o que dizer que sua voz chega tarde? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação pequena, uma chefe de plataforma segurava uma corrente para fechar a passagem.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A cada opinião alheia, apertava os elos, até a corrente marcar sua mão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa corrente nas suas mãos. Você está escutando ou se escondendo atrás do silêncio?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava chamando de escuta o medo de ocupar espaço.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma corrente protege uma passagem, mas, apertada demais, também impede quem deseja atravessar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que voz você mantém do lado de fora?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-16",
+  "hook_type": "dor",
+  "hook_text": "Nos grupos, você ensaia tanto o que dizer que sua voz chega tarde? Escute isso.",
+  "script_sha256": "6c426560049dfb6f8218ec98f1c2a9a9c2b6d7b424a4f790ca621e42a7bdfbc6"
+}
