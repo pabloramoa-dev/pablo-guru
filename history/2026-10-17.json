@@ -1,0 +1,52 @@
+{
+  "id": "a-janela-e-a-neblina",
+  "title": "A janela e a neblina",
+  "capa": "A janela que não obedecia",
+  "prop": "window",
+  "destaque": "Soltar controle",
+  "frase": "Nem toda neblina precisa ser removida para o caminho continuar",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "perfeccionistas",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quantas vezes você revisa tudo para não deixar nada escapar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa torre costeira, uma faroleira limpava a janela antes de cada amanhecer.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Certa manhã, a neblina voltou. Ela esfregou o vidro até os dedos doerem.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa janela diante de você. O que ainda precisa ser controlado para você permitir que o dia comece?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo clareza com a obrigação de eliminar toda incerteza.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A janela não precisava vencer a neblina; bastava continuar sendo passagem para a luz.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Às vezes, o dia começa mesmo sem pedir licença.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-17",
+  "hook_type": "dor",
+  "hook_text": "Quantas vezes você revisa tudo para não deixar nada escapar? Escute isso.",
+  "script_sha256": "6c4883d2797333b893972fb3828132b93dd3e1d4dbee230c5babf2f3fc144ed8"
+}
