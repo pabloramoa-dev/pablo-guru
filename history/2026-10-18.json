@@ -1,0 +1,52 @@
+{
+  "id": "o-mapa-do-filho",
+  "title": "O mapa do filho",
+  "capa": "A rota que você apagou",
+  "prop": "map",
+  "destaque": "Rota própria",
+  "frase": "Comparar apaga caminhos que ainda estão nascendo",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "pais_de_adolescentes",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "O sucesso dos filhos dos outros faz você duvidar do seu adolescente? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa escola de mapas, uma cartógrafa desenhava o caminho do filho, comparando-o com rotas alheias.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Apagou curvas do mapa e copiou uma linha reta. O papel ficou limpo, mas o caminho desapareceu.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse mapa nas suas mãos. Se o caminho do seu filho não parece igual, você quer guiá-lo ou torná-lo parecido?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de preocupação o medo de meu filho não parecer com os outros.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A rota diferente não é erro; às vezes, é justamente o desenho que revela para onde alguém pode florescer.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual comparação ainda apaga o caminho dele?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-18",
+  "hook_type": "dor",
+  "hook_text": "O sucesso dos filhos dos outros faz você duvidar do seu adolescente? Escute isso.",
+  "script_sha256": "b04bdc0708efd73eff3a054249d5500a5b8f5ea2916f2eb669b6132621ef338e"
+}
