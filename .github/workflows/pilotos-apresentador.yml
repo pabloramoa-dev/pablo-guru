@@ -1,6 +1,9 @@
 name: Pilotos do apresentador
 
 on:
+  push:
+    branches: [demo/renders-originais-20261019]
+    paths: ['.github/workflows/pilotos-apresentador.yml']
   workflow_dispatch:
 
 permissions:
