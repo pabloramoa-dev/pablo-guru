@@ -1,0 +1,27 @@
+{
+  "name": "PABLO GURU",
+  "style": "guru",
+  "footer": "Que escolha voce faria? Comenta aqui!",
+  "scenes": [
+    {
+      "title": "A ponte invisivel",
+      "text": "Uma decisao pequena pode mudar o caminho de uma historia.",
+      "seconds": 4
+    },
+    {
+      "title": "Dois caminhos",
+      "text": "Um personagem escolhe agradar todo mundo. O outro aprende a dizer nao com respeito.",
+      "seconds": 4
+    },
+    {
+      "title": "O que voce faria?",
+      "text": "A: Aceitaria tudo para evitar conflitos. B: Conversaria com sinceridade.",
+      "seconds": 4
+    },
+    {
+      "title": "Qual foi a virada?",
+      "text": "Uma escolha consciente pode valer mais do que a aprovacao dos outros.",
+      "seconds": 4
+    }
+  ]
+}
