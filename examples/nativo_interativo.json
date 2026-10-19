@@ -1,0 +1,12 @@
+{
+  "interatividade": {
+    "modo": "quiz",
+    "pergunta": "Qual escolha mostra mais sabedoria nessa situação?",
+    "opcoes": [
+      "Conversar com respeito",
+      "Ignorar o problema"
+    ],
+    "resposta": "Conversar com respeito",
+    "segundos": 2.8
+  }
+}
