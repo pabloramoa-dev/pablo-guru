@@ -161,6 +161,13 @@ def main():
     import pablo_capa_vox as capa
     capa.gerar_capa_ig(script['capa'],str(out/'capa_ig.jpg'))
     capa.prefixar_capa(result['episodio'],str(out/'capa_ig.jpg'),str(out/'Pablo_Guru_Diario.mp4'))
+    # O episódio segue com o Pablo/Marina e as vozes neurais originais.
+    # A enquete só aparece quando o roteiro editorial a solicita.
+    if ep.get('interatividade'):
+        sys.path.insert(0, str(ROOT))
+        from tools.native_video_finisher import apply_from_metadata
+        print('acabamento nativo:', apply_from_metadata(
+            out/'Pablo_Guru_Diario.mp4', ep, ROOT))
     meta=json.loads(Path(result['metadados']).read_text())
     # Metadados históricos não são evidência de alcance nem de testes realizados.
     meta.pop('performance_esperada',None)
