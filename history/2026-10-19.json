@@ -1,0 +1,52 @@
+{
+  "id": "o-copo-da-presenca",
+  "title": "O copo da presença",
+  "capa": "Quem cuida de você",
+  "prop": "cup",
+  "destaque": "Ser encontrado",
+  "frase": "Até quem cuida precisa ser encontrado",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "quem_cuida_na_saude",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Entre plantões e cuidados, quem escuta todo mundo sem se sentir acompanhado? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de enfermagem, deixei um copo na cabeceira de um quarto vazio e fui embora.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Voltei depois. O copo continuava cheio, mas a solidão tinha transbordado em mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse copo nas suas mãos. Você está oferecendo presença ou apenas deixando algo ao alcance de alguém?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu confundia estar disponível com estar acompanhado; cuidava perto, mas permanecia distante.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O copo não fazia companhia: revelava que até quem cuida precisa ser encontrado por alguém.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem encontra você quando o cuidado termina?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-19",
+  "hook_type": "dor",
+  "hook_text": "Entre plantões e cuidados, quem escuta todo mundo sem se sentir acompanhado? Escute isso.",
+  "script_sha256": "3a86ff7fed9081ee5c1b8f4079b099208aff37cf08ee311a65a0225fe4ae5215"
+}
