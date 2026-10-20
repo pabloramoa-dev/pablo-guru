@@ -1,0 +1,52 @@
+{
+  "id": "ampulheta-do-intervalo",
+  "title": "A ampulheta do intervalo",
+  "capa": "Desculpas ao relógio",
+  "prop": "hourglass",
+  "destaque": "Pausa permitida",
+  "frase": "Pausa não é abandono do cuidado",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "professores",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Corrigir tantos erros alheios faz você se culpar pelos seus? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa escola antiga, um professor de música guardava uma ampulheta sobre o piano. Virava-a para medir cada pausa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Até o intervalo parecia atraso. A areia acabou; ele ainda pedia desculpas ao relógio.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta nas suas mãos. Se até descansar vira culpa, quem decidiu que você deve estar sempre disponível?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava tratando cada pausa como abandono, até do cuidado que ofereço aos alunos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A ampulheta não condenava o tempo: só mostrava que nenhuma sala permanece cheia para sempre.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você seria sem pedir desculpas por respirar?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-20",
+  "hook_type": "dor",
+  "hook_text": "Corrigir tantos erros alheios faz você se culpar pelos seus? Escute isso.",
+  "script_sha256": "cf66a16db09c37a7cbbe0eeac1b2d94142cb7ef0164dbc668b5bc59517bb85a6"
+}
