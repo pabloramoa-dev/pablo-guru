@@ -75,7 +75,7 @@ jobs:
             curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
           done
           fc-cache -f >/dev/null
-          pip install manim==0.21.0 numpy pillow
+          pip install "pillow>=10.4,<12" manim==0.21.0 numpy
 
       - name: Credenciais editoriais (só se o banco inicial tiver acabado)
         env:

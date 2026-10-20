@@ -1,0 +1,58 @@
+name: Reserva editorial do Pablo Guru
+on:
+  schedule:
+    - cron: '13 6 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: guru-editorial-reserve
+  cancel-in-progress: false
+jobs:
+  replenish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Credenciais editoriais (secret/variável do repositório ou serviço do Render)
+        # Depois que o banco inicial de roteiros acabar, o prepare precisa da OpenAI.
+        env:
+          SERVICO_RENDER: srv-daj08u7qj5pc73bpq7lg
+          SECRET_OPENAI: ${{ secrets.OPENAI_API_KEY }}
+          VAR_MODELO: ${{ vars.PABLO_SCRIPT_MODEL }}
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          python3 - <<'FIM'
+          import json, os, urllib.request
+          chave = os.environ.get('SECRET_OPENAI', '')
+          modelo = os.environ.get('VAR_MODELO', '')
+          if not (chave and modelo) and os.environ.get('RENDER_API_KEY'):
+              pedido = urllib.request.Request(
+                  'https://api.render.com/v1/services/' + os.environ['SERVICO_RENDER'] + '/env-vars?limit=100',
+                  headers={'Authorization': 'Bearer ' + os.environ['RENDER_API_KEY'],
+                           'Accept': 'application/json', 'User-Agent': 'pablo-guru-diario'})
+              with urllib.request.urlopen(pedido, timeout=30) as resposta:
+                  dados = {e['envVar']['key']: e['envVar']['value'] for e in json.load(resposta)}
+              chave = chave or dados.get('OPENAI_API_KEY', '')
+              modelo = modelo or dados.get('OPENAI_MODEL', '')
+          with open(os.environ['GITHUB_ENV'], 'a') as arq:
+              if chave:
+                  print('::add-mask::' + chave)
+                  arq.write('OPENAI_API_KEY=' + chave + '\n')
+              if modelo:
+                  arq.write('PABLO_SCRIPT_MODEL=' + modelo + '\n')
+          print({'openai_key_present': bool(chave), 'script_model_configured': bool(modelo)})
+          FIM
+      - name: Preparar até três roteiros para os próximos 14 dias
+        run: python -m daily.reserve
+      - name: Preservar reserva
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add reserve/
+          git diff --cached --quiet && exit 0
+          git commit -m 'Reserva de roteiros inéditos [skip ci]'
+          git pull --rebase && git push

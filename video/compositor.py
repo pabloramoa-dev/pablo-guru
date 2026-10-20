@@ -132,6 +132,7 @@ def apply(source, destination=None, *, root=None, cuts=(), style='guru', compose
                HYPERFRAMES_FFMPEG_PATH=shutil.which('ffmpeg') or 'ffmpeg',
                HYPERFRAMES_FFPROBE_PATH=shutil.which('ffprobe') or 'ffprobe')
     run(['node', cli, 'lint', work], env=env)
+    run(['node', video/'validate-production-layout.mjs', work], env=env)
     temporary = destination.with_name(destination.stem + '.rendering.mp4')
     run(['node', cli, 'render', work, '--output', temporary, '--workers',
          os.environ.get('HYPERFRAMES_WORKERS', '2'), '--no-browser-gpu'], env=env)

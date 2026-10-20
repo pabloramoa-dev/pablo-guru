@@ -99,6 +99,9 @@ def validar(pasta: Path) -> dict:
     video = pasta / VIDEO
     if not video.exists() or video.stat().st_size < 200_000:
         raise SystemExit(f'MP4 ausente ou pequeno demais em {pasta}')
+    from tools.channel_ops import validate_render
+    ep = json.loads((pasta/'episode.json').read_text(encoding='utf-8'))
+    validate_render(video, ep, Path(__file__).resolve().parents[1])
     legenda = (pasta / 'caption.txt').read_text(encoding='utf-8').strip()
     if not legenda or len(legenda) > 2200 or legenda.count('#') > 30:
         raise SystemExit('Legenda vazia ou fora do limite do Instagram')

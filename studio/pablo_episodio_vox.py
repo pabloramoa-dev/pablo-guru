@@ -48,7 +48,7 @@ AQUI = Path(__file__).parent.resolve()
 # CENA MANIM
 # ===========================================================================
 def _construir_scene():
-    from manim import (MovingCameraScene, Group, VGroup, Rectangle, FadeIn, FadeOut, Transform,
+    from manim import (MovingCameraScene, Group, VGroup, Rectangle, ImageMobject, FadeIn, FadeOut, Transform,
                        UP, DOWN, LEFT, RIGHT, ORIGIN, smooth)
     from pablo_guru_v2 import PabloGuru, Perguntadora, PALETA
     import pablo_cenarios as cen
@@ -168,7 +168,8 @@ def _construir_scene():
                 if c.get("cenario") not in (None, "split", "gradiente") and cabe(0.5):
                     try:
                         fase_ini = "inicio"
-                        obj = cen.montar(c["cenario"], **cen.estado(c["cenario"], fase_ini))
+                        obj = (ImageMobject(c["visual_image"]) if c.get("visual_image")
+                               else cen.montar(c["cenario"], **cen.estado(c["cenario"], fase_ini)))
                         fator_obj = 1.0 / max(obj.width, obj.height)
                         obj.scale(fator_obj)
                         obj_largura_base = obj.width
@@ -182,7 +183,7 @@ def _construir_scene():
                                       else LEFT * W * 0.28 + DOWN * H * 0.335)
                         extra.set_z_index(8)
                         vp.colar_entrada(self, extra, dur=0.45)
-                        if c.get("desfecho") and cabe(1.2):
+                        if c.get("desfecho") and not c.get("visual_image") and cabe(1.2):
                             # DESFECHO VISUAL: o objeto muda de estado na virada
                             # (porta abre, xícara esvazia, corrente rompe...).
                             alvo_obj = extra[1]
@@ -368,6 +369,15 @@ def produzir(roteiro_json: str, pasta: str = "saida_vox", qualidade: str = "h"):
     trilha = pa.trilha_ambiente(dur_total + 2, str(tmp / "trilha.wav"), db=-14.0)
     audio = audio_vox(str(narr), trilha, str(tmp / "audio_final.wav"))
 
+    # Narrative images share the real voice timeline. Metaphor resolution keeps
+    # the original animated prop; opening, Marina's notes and CTA stay intact.
+    sys.path.insert(0, str(AQUI.parent))
+    from studio.visual_images import preparar
+    visual_ep = {'titulo': roteiro['titulo'], 'batidas': [{'fala': c['texto']} for c in cenas]}
+    mapping, visual_report = preparar(visual_ep, cenas, tmp/'visual_assets', tmp)
+    for i, c in enumerate(cenas):
+        if i in mapping and c.get('cenario') not in (None, 'split', 'gradiente') and not c.get('desfecho'):
+            c['visual_image'] = str((tmp/'visual_assets'/mapping[i]).resolve())
     # 2. render
     plano = tmp / "plano.json"
     plano.write_text(json.dumps({**roteiro, "cenas": cenas}, ensure_ascii=False), encoding="utf-8")

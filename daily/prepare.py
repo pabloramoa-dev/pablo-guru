@@ -75,6 +75,8 @@ def main():
     archive=history/(date.fromisoformat(args.date).isoformat()+'.json')
     if args.test:ep=next(episodes())
     elif archive.exists():ep=json.loads(archive.read_text(encoding='utf-8'))
+    elif (ROOT/'reserve'/(args.date+'.json')).exists():
+        ep=json.loads((ROOT/'reserve'/(args.date+'.json')).read_text(encoding='utf-8'))
     else:
         try:ep=select(args.date,args.start)
         except ValueError:

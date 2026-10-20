@@ -6,3 +6,6 @@ kokoro-onnx>=0.6.1
 misaki-fork>=0.9.6
 edge-tts==7.2.8
 # VoxCPM remains optional and is not installed by the lightweight CI lab.
+
+# Manim Cairo ImageMobject currently passes a 2D array with mode=RGBA.
+pillow>=10.4,<12
