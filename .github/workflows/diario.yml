@@ -43,7 +43,7 @@ jobs:
             curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
           done
           fc-cache -f >/dev/null
-          pip install "pillow>=10.4,<12" manim==0.21.0 numpy scipy soundfile kokoro-onnx pillow cryptography edge-tts==7.2.8
+          pip install "pillow>=10.4,<12" manim==0.21.0 numpy scipy soundfile kokoro-onnx requests cryptography edge-tts==7.2.8
       - name: Rhubarb oficial
         run: |
           curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
