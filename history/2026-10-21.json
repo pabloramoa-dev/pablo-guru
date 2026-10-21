@@ -1,0 +1,52 @@
+{
+  "id": "o-copo-e-a-expectativa",
+  "title": "O copo e a expectativa",
+  "capa": "O copo que secou",
+  "prop": "cup",
+  "destaque": "Verdade possível",
+  "frase": "Nem toda expectativa merece beber da sua vida",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "busca_espiritual",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando a expectativa dos outros pesa mais que seu próprio desejo? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa olaria, um oleiro moldava um copo para uma mesa importante.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ele alisava a borda sem parar. O barro secou antes de receber água.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse copo nas suas mãos. Você está cuidando do possível ou tentando satisfazer um olhar que nunca repousa?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu aceitar menos, posso decepcionar quem acredita em mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Faz sentido temer decepcionar. Mas o copo não nasceu para ser aplauso; nasceu para conter aquilo que é verdadeiro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que expectativa ainda está bebendo sua vida?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-21",
+  "hook_type": "dor",
+  "hook_text": "Quando a expectativa dos outros pesa mais que seu próprio desejo? Escute isso.",
+  "script_sha256": "c752558d254a3bf0e0c6657d0f26fdef8cdabdb1ca9dc015f9e1fe3eed10e18f"
+}
