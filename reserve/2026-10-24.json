@@ -1,0 +1,49 @@
+{
+  "id": "a-estacao-do-tempo-certo",
+  "title": "A estação do tempo certo",
+  "capa": "O trem que não adiantava",
+  "prop": "hourglass",
+  "destaque": "Tempo próprio",
+  "frase": "O tempo certo permite ao coração encontrar seu lugar",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "longe_de_casa",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A saudade faz você apressar a vida que ainda está encontrando lugar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação de cidade estrangeira, um relojoeiro recém-chegado carregava uma ampulheta pela plataforma.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A areia corria depressa. Ele a virava sem parar, tentando fazer o trem chegar no instante que desejava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta nas suas mãos. Você está vivendo seu tempo ou apressando uma chegada para não sentir saudade?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava chamando de espera o medo de pertencer ao lugar onde ainda estou.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O tempo certo não imita a partida; permite que o coração encontre a nova estação.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Talvez esta estação já seja começo.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-24"
+}
