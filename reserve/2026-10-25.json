@@ -1,0 +1,49 @@
+{
+  "id": "o-espelho-do-descanso",
+  "title": "O espelho do descanso",
+  "capa": "A aprovação no espelho",
+  "prop": "mirror",
+  "destaque": "Atenção inteira",
+  "frase": "Descansar também protege a aprendizagem",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "concurseiros",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois de estudar o dia inteiro, descansar parece perder a chance de passar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa biblioteca silenciosa, uma bibliotecária estudava para um concurso diante de um espelho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ela permanecia até a madrugada. Ao parar, via no espelho apenas olhos cansados.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse espelho diante de você. O que sua aprovação ganha quando seu descanso desaparece?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo tempo de estudo com aprendizagem.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O espelho não mostrava falta de esforço; mostrava que até a atenção precisa de um lugar para repousar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que parte de você pede descanso antes da próxima prova?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-25"
+}

@@ -1,0 +1,49 @@
+{
+  "id": "a-xicara-do-veredito",
+  "title": "A xícara do veredito",
+  "capa": "Quem decide pelo negócio",
+  "prop": "cup",
+  "destaque": "Confiança própria",
+  "frase": "Confiar em si também é decidir sem pedir sinais",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "empreendedores",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Seu pequeno negócio depende de você para cada decisão? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa padaria apertada, um padeiro perguntava à xícara se devia aceitar cada encomenda.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um dia, a xícara rolou da mesa. Ele esperou o veredito; ela parou apontando para o chão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Veja essa xícara perto de você: quem está decidindo, sua confiança ou seu medo de errar sozinho?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de responsabilidade o medo de confiar no meu próprio julgamento.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A xícara não tinha respostas; apenas mostrava como é cansativo pedir coragem a um objeto.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa ouvir que confiar também é decidir?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-27"
+}
