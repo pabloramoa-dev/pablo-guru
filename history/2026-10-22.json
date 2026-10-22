@@ -1,0 +1,52 @@
+{
+  "id": "a-chave-da-ajuda",
+  "title": "A chave que eu não pedia",
+  "capa": "A chave da aprovação",
+  "prop": "key",
+  "destaque": "AUTONOMIA",
+  "frase": "Pedir ajuda não apaga a autonomia.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "filhos_adultos",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Ainda espera seus pais aprovarem até quando precisa de ajuda? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa marcenaria, um marceneiro adulto guardava uma chave que abria a oficina do pai.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando precisava de ajuda, esperava o pai estender a chave. Ela continuava no bolso dele.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa chave na sua mão. Você busca ajuda ou autorização para precisar dela?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Pausa não é abandono do cuidado.” Eu também posso pedir sem abandonar meu caminho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A chave não concedia valor; apenas mostrava que autonomia também pode abrir-se para outras mãos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "De quem você ainda espera autorização para pedir ajuda?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-22",
+  "hook_type": "dor",
+  "hook_text": "Ainda espera seus pais aprovarem até quando precisa de ajuda? Escute isso.",
+  "script_sha256": "39fd6a5b7b73559bf7732e7b4a760ef07959ffd3bad55f90dab740e75e460aaf"
+}
