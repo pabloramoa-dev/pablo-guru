@@ -1,0 +1,61 @@
+name: Validar fila de publicacao do Instagram
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/teste-fila-instagram.yml', 'instagram_diario/**', '.github/workflows/instagram-diario.yml', '.github/workflows/diario.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verificacao:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compilar modulos da publicacao
+        run: python -m compileall -q instagram_diario daily/prepare.py
+      - name: Testar a fila, bloqueio de duplicatas e filtro por execucao (sem publicar)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os, subprocess, tempfile
+          from datetime import datetime
+          from pathlib import Path
+          from zoneinfo import ZoneInfo
+
+          raiz = Path.cwd()
+          dia = datetime.now(ZoneInfo('America/Sao_Paulo')).date().isoformat()
+          pasta_history = raiz / 'history'
+          pasta_fila = raiz / 'instagram_outbox'
+          pasta_ig = raiz / 'instagram_history'
+          pasta_history.mkdir(exist_ok=True)
+          pasta_fila.mkdir(exist_ok=True)
+          teste_ep = pasta_history / (dia + '.json')
+          teste_fila = pasta_fila / (dia + '.json')
+          registro_ig = pasta_ig / (dia + '.json')
+          # Os arquivos de teste existem APENAS neste runner, nunca sao commitados.
+          if registro_ig.exists():
+              raise SystemExit('Teste em data ja publicada: interrompido para nao sobrescrever')
+          teste_ep.write_text(json.dumps({'id':'teste-fila','title':'Teste local'}))
+          teste_fila.write_text(json.dumps({
+              'data':dia,'episode_id':'teste-fila','execucao_diario':'12345678',
+              'titulo':'Teste local','duracao_segundos':35,'bytes':2000000,
+              'nome_video':'diario-'+dia+'.mp4','legenda':'Legenda de teste #pabloguru'}))
+          def testar(identificador, esperado):
+              with tempfile.NamedTemporaryFile(mode='w+', suffix='.txt') as saida:
+                  env = dict(os.environ, EVENTO='workflow_run', GITHUB_OUTPUT=saida.name)
+                  p = subprocess.run(['python','-m','instagram_diario.publicar_diario','escolher',
+                         '--execucao',identificador],env=env,capture_output=True,text=True)
+                  assert p.returncode == 0, p.stderr
+                  out = Path(saida.name).read_text()
+                  assert 'publicar='+esperado in out, out
+          testar('12345678','sim')
+          testar('87654321','nao')
+          registro_ig.write_text(json.dumps({'data':dia,'estado':'enviando'}))
+          testar('12345678','nao')
+          print('PASSOU: selecao definitiva, execucao errada e protecao antirreenvio')
+          PY
