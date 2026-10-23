@@ -1,0 +1,31 @@
+name: Limpeza automática dos artefatos Pablo Guru
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/limpeza-artefatos-pablo.yml'
+      - 'tools/cleanup_pablo_artifacts.py'
+  schedule:
+    - cron: '20 0 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: write
+concurrency:
+  group: limpeza-artifacts-pablo
+  cancel-in-progress: false
+jobs:
+  remover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apagar apenas artefatos de episódios já publicados ou antigos
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python tools/cleanup_pablo_artifacts.py
