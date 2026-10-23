@@ -2,7 +2,7 @@ name: Validar fila de publicacao do Instagram
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/teste-fila-instagram.yml', 'instagram_diario/**', '.github/workflows/instagram-diario.yml', '.github/workflows/diario.yml']
+    paths: ['.github/workflows/teste-fila-instagram.yml', 'instagram_diario/**', '.github/workflows/instagram-diario.yml', '.github/workflows/diario.yml', '.github/workflows/carrossel.yml', 'carrossel/**']
   workflow_dispatch:
 permissions:
   contents: read
@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Compilar modulos da publicacao
-        run: python -m compileall -q instagram_diario daily/prepare.py
+        run: python -m compileall -q instagram_diario daily/prepare.py carrossel
       - name: Testar a fila, bloqueio de duplicatas e filtro por execucao (sem publicar)
         shell: bash
         run: |
