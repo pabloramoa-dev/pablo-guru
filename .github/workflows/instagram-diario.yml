@@ -29,7 +29,7 @@ on:
 
 permissions:
   contents: write
-  actions: read
+  actions: write
 
 concurrency:
   group: pablo-instagram-diario
@@ -169,6 +169,22 @@ jobs:
           --execucao "$EXECUCAO"
           --titulo "$TITULO"
 
+
+
+      - name: Excluir artefato do render após publicação confirmada
+        if: steps.modo.outputs.enviar == 'sim' && success()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_DIARIO: ${{ steps.escolha.outputs.execucao }}
+        run: |
+          set -euo pipefail
+          [[ "$RUN_DIARIO" =~ ^[0-9]+$ ]] || exit 0
+          echo "Publicação confirmada: limpando artefatos da execução $RUN_DIARIO"
+          for id in $(gh api "repos/$GH_REPO/actions/runs/$RUN_DIARIO/artifacts" --jq '.artifacts[].id'); do
+            gh api -X DELETE "repos/$GH_REPO/actions/artifacts/$id"
+            echo "Artefato $id excluído depois de publicado."
+          done
 
       - name: Remover a mídia temporária após publicar
         if: steps.modo.outputs.enviar == 'sim' && success()
