@@ -1,0 +1,25 @@
+name: Exportar MP4 Remotion Pablo
+on:
+  push:
+    branches: [experimento/remotion-pablo-guru-20261023]
+    paths: ['.github/workflows/exportar-mp4-remotion.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exportar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar arquivo de vídeo
+        run: |
+          test -s remotion_pablo/demo-pablo-remotion.mp4
+          file remotion_pablo/demo-pablo-remotion.mp4
+      - name: Disponibilizar MP4 para avaliação na conversa
+        uses: actions/upload-artifact@v4
+        with:
+          name: remotion-pablo-guru-mp4
+          path: remotion_pablo/demo-pablo-remotion.mp4
+          retention-days: 1
+          if-no-files-found: error
