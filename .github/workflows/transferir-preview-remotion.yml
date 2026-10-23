@@ -1,0 +1,33 @@
+name: Transferir preview Remotion para download
+on:
+  push:
+    branches: [experimento/remotion-pablo-guru-20261023]
+    paths:
+      - '.github/workflows/transferir-preview-remotion.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  transferencia:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Transferir MP4 para hospedagem temporária
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -s remotion_pablo/demo-pablo-remotion.mp4
+          if [ -z "$MIDIA_TOKEN" ]; then echo "::error::MIDIA_TOKEN ausente"; exit 1; fi
+          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/pabloramoa-dev/pablo-guru-legal.git" "$RUNNER_TEMP/publico"
+          cd "$RUNNER_TEMP/publico"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp "$GITHUB_WORKSPACE/remotion_pablo/demo-pablo-remotion.mp4" "midia/preview-2026-10-23-pablo-remotion.mp4"
+          git add midia/preview-2026-10-23-pablo-remotion.mp4
+          git commit -m "Prévia temporária Remotion Pablo Guru (expira em 2 dias)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
+      - name: Endereço direto para transferir
+        run: echo "https://pabloramoa-dev.github.io/pablo-guru-legal/midia/preview-2026-10-23-pablo-remotion.mp4" >> "$GITHUB_STEP_SUMMARY"
