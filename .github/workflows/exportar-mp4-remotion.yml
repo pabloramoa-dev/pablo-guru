@@ -23,3 +23,5 @@ jobs:
           path: remotion_pablo/demo-pablo-remotion.mp4
           retention-days: 1
           if-no-files-found: error
+
+# Artefato de avaliacao expira em 1 dia.
