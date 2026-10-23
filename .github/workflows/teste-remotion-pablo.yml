@@ -1,0 +1,62 @@
+name: Teste isolado Remotion Pablo Guru
+on:
+  push:
+    branches: [experimento/remotion-pablo-guru-20261023]
+    paths:
+      - 'remotion_pablo/**'
+      - '.github/workflows/teste-remotion-pablo.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  piloto:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      PYTHONPATH: .
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-hyperframes
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Instalar dependências do estúdio original
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y ffmpeg espeak-ng libcairo2-dev libpango1.0-dev pkg-config
+          python -m pip install "pillow>=10.4,<12" manim==0.21.0 numpy scipy soundfile kokoro-onnx requests cryptography edge-tts==7.2.8
+          curl -fL --retry 3 -o /tmp/rhubarb.zip https://github.com/DanielSWolf/rhubarb-lip-sync/releases/download/v1.14.0/Rhubarb-Lip-Sync-1.14.0-Linux.zip
+          unzip -q /tmp/rhubarb.zip -d /tmp/pablo-rhubarb
+          echo /tmp/pablo-rhubarb/Rhubarb-Lip-Sync-1.14.0-Linux >> "$GITHUB_PATH"
+          mkdir -p ~/.fonts
+          for f in Poppins-Bold Poppins-Regular; do
+            curl -sL -o ~/.fonts/$f.ttf "https://github.com/google/fonts/raw/main/ofl/poppins/$f.ttf"
+          done
+          fc-cache -f >/dev/null
+      - name: Renderizar personagens e vozes originais — SEM PUBLICAR
+        run: |
+          python -m daily.prepare --test
+          python -m daily.studio_adapter
+          python -m daily.validate_video
+      - name: Composição Remotion com legenda e câmera
+        run: |
+          python remotion_pablo/preparar.py
+          cd remotion_pablo
+          npm install --no-audit --no-fund
+          npx --no-install remotion render src/index.jsx PabloGuruRemotion output/piloto-remotion.mp4 --props props.json --concurrency 2 --codec h264 --crf 27
+      - name: Validar codec e compactar prévia
+        run: |
+          ffmpeg -y -loglevel error -i remotion_pablo/output/piloto-remotion.mp4 -c:v libx264 -preset faster -crf 30 -maxrate 1800k -bufsize 3600k -pix_fmt yuv420p -c:a aac -b:a 112k -movflags +faststart remotion_pablo/demo-pablo-remotion.mp4
+          ffprobe -v error -show_entries stream=codec_name,width,height -of compact=p=0 remotion_pablo/demo-pablo-remotion.mp4
+          test $(stat -c%s remotion_pablo/demo-pablo-remotion.mp4) -lt 75000000
+      - name: Salvar vídeo na branch isolada, não em Actions Artifacts
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f remotion_pablo/demo-pablo-remotion.mp4
+          git commit -m "Prévia Pablo Guru Remotion sem publicação [skip ci]"
+          git push origin "HEAD:$GITHUB_REF_NAME"
+          echo "Prévia em remotion_pablo/demo-pablo-remotion.mp4 (branch de teste)" >> "$GITHUB_STEP_SUMMARY"
