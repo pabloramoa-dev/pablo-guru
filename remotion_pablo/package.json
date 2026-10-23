@@ -1,0 +1,14 @@
+{
+  "name": "remotion-pablo-guru-piloto",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "render": "remotion render src/index.jsx PabloGuruRemotion output/piloto-remotion.mp4"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.502",
+    "remotion": "4.0.502",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  }
+}
