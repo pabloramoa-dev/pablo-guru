@@ -1,0 +1,52 @@
+{
+  "id": "a-porta-do-orgulho",
+  "title": "A porta do orgulho",
+  "capa": "A porta que não abria",
+  "prop": "door",
+  "destaque": "Orgulho fechado",
+  "frase": "Às vezes, o orgulho protege o silêncio, não o amor",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "casais",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois de uma discussão, o silêncio cresce entre vocês por orgulho? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa hospedaria antiga, um marceneiro mantinha uma porta fechada depois de uma discussão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ele polia a madeira todos os dias, mas nunca girava a maçaneta.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa porta entre vocês. Ela protege a dignidade ou impede que alguém veja o que ainda importa?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de orgulho o medo de mostrar que ainda me importo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Uma porta pode parecer firme por fora e, ainda assim, esconder apenas uma sala esperando conversa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você gostaria de deixar entrar?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-23",
+  "hook_type": "dor",
+  "hook_text": "Depois de uma discussão, o silêncio cresce entre vocês por orgulho? Escute isso.",
+  "script_sha256": "9f14d1572c43590224f75b66a094d3d0dda80e7ba819ba9db80d2de88d9f5d7c"
+}
