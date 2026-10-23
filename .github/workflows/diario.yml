@@ -116,24 +116,11 @@ jobs:
         run: |
           python -m daily.studio_adapter
           python -m daily.validate_video
-      - name: Arquivar episódio
-        uses: actions/upload-artifact@v4
-        with:
-          name: pablo-guru-diario-${{ github.run_id }}
-          path: |
-            output/Pablo_Guru_Diario.mp4
-            output/episode.json
-            output/caption.txt
-            output/validation.json
-            output/Pablo_Guru_Diario.production.json
-            output/preview_*.jpg
-            output/capa.png
-            output/capa_ig.jpg
-            output/metadados.json
-            output/roteiro_studio.json
-            output/integration_status.json
-          if-no-files-found: error
-          retention-days: 1
+      - name: Entregar MP4 temporario e registrar fila do Instagram
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.test == false)
+        env:
+          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
+        run: python3 -m instagram_diario.fila
       - name: Resumo
         run: |
-          python -c 'import json,os; e=json.load(open("output/episode.json")); v=json.load(open("output/validation.json")); open(os.environ["GITHUB_STEP_SUMMARY"],"a").write("Episódio: "+e["title"]+"\n\nDuração: "+str(v["duration_seconds"])+" segundos. MP4 e legenda no artefato desta execução.\n")'
+          python -c 'import json,os; e=json.load(open("output/episode.json")); v=json.load(open("output/validation.json")); open(os.environ["GITHUB_STEP_SUMMARY"],"a").write("Episódio: "+e["title"]+"\n\nDuração: "+str(v["duration_seconds"])+" segundos. MP4 validado; quando definitivo, fica temporariamente na midia publica e entra na fila do Instagram.\n")'
