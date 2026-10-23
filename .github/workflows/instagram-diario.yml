@@ -80,33 +80,8 @@ jobs:
             echo "enviar=sim" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Guardar o MP4 no repositório público
-        if: steps.modo.outputs.enviar == 'sim'
-        env:
-          MIDIA_TOKEN: ${{ secrets.MIDIA_TOKEN }}
-          DIA: ${{ steps.escolha.outputs.dia }}
-          PASTA: ${{ steps.escolha.outputs.pasta }}
-        run: |
-          set -euo pipefail
-          if [ -z "$MIDIA_TOKEN" ]; then echo "::error::Falta o segredo MIDIA_TOKEN."; exit 1; fi
-          git clone --depth 1 "https://x-access-token:$MIDIA_TOKEN@github.com/$REPOSITORIO_MIDIA.git" "$RUNNER_TEMP/publico"
-          cd "$RUNNER_TEMP/publico"
-          mkdir -p midia
-          cp "$PASTA/Pablo_Guru_Diario.mp4" "midia/diario-$DIA.mp4"
-          # Capa 9:16 feita para a grade (título + objeto dentro do recorte 3:4).
-          if [ -f "$PASTA/capa_ig.jpg" ]; then cp "$PASTA/capa_ig.jpg" "midia/capa-$DIA.jpg"; fi
-          # Mantém só uma margem curta de segurança no site; o Instagram já copia a mídia publicada.
-          limite=$(date -u -d "$DIA -2 days" +%F)
-          for arquivo in midia/diario-*.mp4 midia/capa-*.jpg; do
-            [ -e "$arquivo" ] || continue
-            dia_arquivo=${arquivo#midia/*-}; dia_arquivo=${dia_arquivo%.*}
-            if [[ "$dia_arquivo" < "$limite" ]]; then git rm -q "$arquivo"; fi
-          done
-          git config user.name "pablo-guru"
-          git config user.email "pablo-guru@users.noreply.github.com"
-          git add midia
-          git commit -q -m "Midia do episodio diario $DIA" || echo "arquivo ja estava igual"
-          git push -q
+      # O Diario ja entregou o MP4 temporario ao repositorio de midia.
+      # Nao baixamos Actions Artifacts nem transferimos o video de novo.
 
       - name: Esperar o arquivo ficar público
         if: steps.modo.outputs.enviar == 'sim'
@@ -121,14 +96,15 @@ jobs:
             if [ "$tentativa" = 40 ]; then echo "::error::O arquivo não ficou público a tempo."; exit 1; fi
             sleep 15
           done
-          # A capa é opcional: se não ficar pública, o Reel sai com o 1º quadro.
-          if [ -f "${{ steps.escolha.outputs.pasta }}/capa_ig.jpg" ]; then
-            for tentativa in $(seq 1 20); do
-              codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$BASE_PUBLICA/capa-$DIA.jpg")
-              if [ "$codigo" = "200" ]; then echo "CAPA_URL=$BASE_PUBLICA/capa-$DIA.jpg" >> "$GITHUB_ENV"; break; fi
-              sleep 10
-            done
-          fi
+          # A capa e opcional; confirmar URL remotamente (nao ha mais pasta de artifact).
+          for tentativa in $(seq 1 20); do
+            codigo=$(curl -s -o /dev/null -w '%{http_code}' -L "$BASE_PUBLICA/capa-$DIA.jpg")
+            if [ "$codigo" = "200" ]; then
+              echo "CAPA_URL=$BASE_PUBLICA/capa-$DIA.jpg" >> "$GITHUB_ENV"
+              break
+            fi
+            sleep 5
+          done
 
       - name: Ler o token do Instagram no Render
         if: steps.modo.outputs.enviar == 'sim'
