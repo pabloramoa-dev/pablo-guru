@@ -1,0 +1,49 @@
+{
+  "id": "o-espelho-do-cuidado",
+  "title": "O espelho do cuidado",
+  "capa": "A marca que ficou",
+  "prop": "mirror",
+  "destaque": "Cuidado humano",
+  "frase": "Cuidar não exige esconder todas as marcas",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cuidadores",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Cuidar de alguém faz você adiar tudo até sair perfeito? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa casa de repouso, uma cuidadora polia um espelho antes de cada visita.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada marca nova fazia ela recomeçar. O vidro brilhava, mas ninguém aparecia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse espelho nas suas mãos. Você está cuidando de alguém ou tentando apagar toda prova de que também falha?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu deixar uma imperfeição, posso decepcionar quem depende de mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo esse medo. Mas o espelho não precisava esconder marcas para refletir cuidado; às vezes, a verdade do rosto também pede espaço.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que parte sua você mantém fora do reflexo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-28"
+}

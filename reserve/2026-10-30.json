@@ -1,0 +1,49 @@
+{
+  "id": "a-luz-que-resta",
+  "title": "A luz que resta",
+  "capa": "A chama que sobrou",
+  "prop": "lamp",
+  "destaque": "Luz própria",
+  "frase": "O fim de um amor não apaga a confiança em si",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "recomeco_amoroso",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois do término, cada escolha faz você duvidar de si? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de lanternas, uma restauradora cuidava de uma lâmpada deixada por um antigo amor.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O vidro estava trincado, mas a chama continuava acesa por dentro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lâmpada nas suas mãos. Você perdeu sua luz ou apenas deixou alguém definir onde ela brilhava?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava confundindo o fim da relação com o fim da minha capacidade de escolher.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A chama não pertencia ao amor que terminou; ela apenas ficou escondida atrás da marca.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa lembrar que sua luz ainda existe?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-30"
+}
