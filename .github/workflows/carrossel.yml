@@ -57,7 +57,7 @@ jobs:
           echo "dia=$dia" >> "$GITHUB_OUTPUT"
           if [ "$EVENTO" = "workflow_dispatch" ] && [ "$CONFIRMACAO" != "PUBLICAR" ]; then
             echo "enviar=nao" >> "$GITHUB_OUTPUT"
-            echo "Ensaio: gera as imagens e a legenda no artefato; nada vai ao perfil." >> "$GITHUB_STEP_SUMMARY"
+            echo "Ensaio: gera e valida as imagens e a legenda, sem publicar e sem usar artefatos." >> "$GITHUB_STEP_SUMMARY"
           else
             echo "enviar=sim" >> "$GITHUB_OUTPUT"
           fi
@@ -115,13 +115,15 @@ jobs:
           if [ "$ENVIAR" != "sim" ]; then args+=(--ensaio); fi
           python -m carrossel.publicar preparar "${args[@]}"
 
-      - name: Arquivar slides
+      - name: Conferir slides produzidos sem usar armazenamento do Actions
         if: steps.prep.outputs.publicar == 'sim'
-        uses: actions/upload-artifact@v4
-        with:
-          name: pablo-guru-carrossel-${{ github.run_id }}
-          path: output_carrossel/
-          retention-days: 2
+        env:
+          SLIDES: ${{ steps.prep.outputs.slides }}
+        run: |
+          test "$SLIDES" -ge 2
+          total=$(find output_carrossel -maxdepth 1 -name 'slide-*.jpg' -type f | wc -l)
+          test "$total" -eq "$SLIDES"
+          echo "Slides validados: $total" >> "$GITHUB_STEP_SUMMARY"
 
       - name: Guardar as imagens no repositório público
         if: steps.prep.outputs.publicar == 'sim' && steps.modo.outputs.enviar == 'sim'
