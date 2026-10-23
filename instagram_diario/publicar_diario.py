@@ -112,46 +112,71 @@ def validar(pasta: Path) -> dict:
 
 
 def escolher(args):
+    """Escolhe apenas video definitivo da fila privada, sem Actions Artifacts.
+
+    No evento workflow_run a execucao deve corresponder exatamente ao Diario
+    concluido. Na busca agendada, permite o video de hoje (ou ontem se o
+    GitHub atrasou), sempre impedindo reenvio pelo registro do Instagram.
+    """
     evento = os.environ.get('EVENTO', '')
+    outbox = ROOT / 'instagram_outbox'
     if evento == 'workflow_run':
-        # Gatilho automático: só vale o episódio de hoje (ou de ontem, se o GitHub atrasou
-        # até depois da meia-noite). Ensaio do Diario usa o 1º roteiro do banco e cai fora aqui.
-        ids = [args.execucao]
-        aceitos = {hoje(), hoje() - timedelta(days=1)}
-        alvo = hoje()
+        dias = [hoje(), hoje() - timedelta(days=1)]
+        if not args.execucao:
+            resumo('Instagram: workflow_run sem execucao identificada; nao publicar.')
+            saida(publicar='nao')
+            return
+    elif args.data:
+        dias = [date.fromisoformat(args.data)]
     else:
-        alvo = date.fromisoformat(args.data) if args.data else hoje()
-        ids = [args.execucao] if args.execucao else list(candidatos(alvo))
-        aceitos = {alvo}
-    if not ids:
-        resumo(f'Instagram: ainda não há execução concluída do Diario para {alvo:%d/%m/%Y}. Nada a publicar agora.')
-        saida(publicar='nao')
-        return
-    for run_id in ids:
-        pasta = baixar(run_id)
-        if pasta is None:
+        dias = [hoje(), hoje() - timedelta(days=1)]
+
+    for dia in dias:
+        arquivo = outbox / f'{dia.isoformat()}.json'
+        if not arquivo.exists():
             continue
-        episodio = json.loads((pasta / 'episode.json').read_text(encoding='utf-8'))
-        dia = data_do_episodio(episodio)
-        if dia not in aceitos:
-            print(f'execução {run_id}: episódio "{episodio.get("title")}" não é o definitivo da data pedida (ensaio ou outro dia); ignorada')
+        item = json.loads(arquivo.read_text(encoding='utf-8'))
+        run_id = str(item.get('execucao_diario', ''))
+        if item.get('data') != dia.isoformat() or not run_id.isdigit():
+            raise SystemExit(f'Fila inconsistente na data {dia}')
+        if args.execucao and run_id != str(args.execucao):
             continue
+        historico = HISTORY / f'{dia.isoformat()}.json'
+        if not historico.exists():
+            raise SystemExit(f'Roteiro definitivo nao encontrado para {dia}')
+        ep = json.loads(historico.read_text(encoding='utf-8'))
+        if ep.get('id') != item.get('episode_id'):
+            raise SystemExit(f'Fila nao corresponde ao roteiro definitivo {dia}')
+
         registro = REGISTRO / f'{dia.isoformat()}.json'
         if registro.exists():
             estado = json.loads(registro.read_text(encoding='utf-8')).get('estado')
-            resumo(f'Instagram: o episódio de {dia:%d/%m/%Y} já tem registro ({estado}). Nada foi reenviado.')
+            resumo(f'Instagram: episodio de {dia} ja registrado ({estado}); nao sera reenviado.')
             saida(publicar='nao')
             return
-        info = validar(pasta)
-        resumo(f'Instagram: episódio de {dia:%d/%m/%Y} — "{episodio.get("title")}" '
-               f'({info["duracao"]:.1f}s, {info["bytes"] / 1e6:.1f} MB), execução {run_id} do Diario.\n\n'
-               f'Legenda:\n\n```\n{info["legenda"]}\n```')
-        saida(publicar='sim', dia=dia.isoformat(), execucao=run_id, pasta=str(pasta),
-              titulo=str(episodio.get('title', '')).replace('\n', ' '))
-        return
-    resumo(f'Instagram: nenhuma execução definitiva do Diario encontrada para {alvo:%d/%m/%Y}. Nada a publicar.')
-    saida(publicar='nao')
 
+        legenda = str(item.get('legenda', '')).strip()
+        duracao = float(item.get('duracao_segundos', 0))
+        if not legenda or len(legenda) > 2200 or legenda.count('#') > 30:
+            raise SystemExit('Legenda da fila fora do limite do Instagram')
+        if not (3 <= duracao <= DURACAO_MAX) or int(item.get('bytes', 0)) < 200_000:
+            raise SystemExit('Validacao do MP4 da fila reprovada')
+        nome_esperado = f'diario-{dia.isoformat()}.mp4'
+        if item.get('nome_video') != nome_esperado:
+            raise SystemExit('Nome do video na fila nao corresponde a data')
+        pasta = ARTEFATOS / ('fila-' + dia.isoformat())
+        pasta.mkdir(parents=True, exist_ok=True)
+        (pasta / 'caption.txt').write_text(legenda, encoding='utf-8')
+        titulo = str(item.get('titulo', ep.get('title', ''))).replace('\n', ' ')
+        resumo(f'Instagram: Reel definitivo de {dia} — "{titulo}" '
+               f'({duracao:.1f}s, {int(item["bytes"])/1e6:.1f} MB), '
+               f'execucao {run_id}. Publicacao automatica preparada sem Actions Artifacts.')
+        saida(publicar='sim', dia=dia.isoformat(), execucao=run_id,
+              pasta=str(pasta), titulo=titulo)
+        return
+
+    resumo('Instagram: ainda nao ha video definitivo disponivel na fila; nada a publicar.')
+    saida(publicar='nao')
 
 def gravar(dia: str, estado: str, **extra):
     REGISTRO.mkdir(exist_ok=True)
