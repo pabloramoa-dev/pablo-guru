@@ -1,0 +1,47 @@
+name: Diagnostico seguro do token Instagram
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/diagnostico-token-instagram.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validar_token:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - name: Verificar credencial do Render e conta Instagram (somente GET)
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request, urllib.error, urllib.parse
+          chave = os.environ.get('RENDER_API_KEY','')
+          if not chave:
+              raise SystemExit('FALHA: RENDER_API_KEY ausente')
+          origem = 'https://api.render.com/v1/services/srv-daj08u7qj5pc73bpq7lg/env-vars?limit=100'
+          req = urllib.request.Request(origem, headers={
+            'Authorization':'Bearer '+chave,'Accept':'application/json',
+            'User-Agent':'pablo-guru-ig-diagnostic'})
+          try:
+              with urllib.request.urlopen(req, timeout=20) as r:
+                  d = json.load(r)
+          except urllib.error.HTTPError as e:
+              raise SystemExit('FALHA: API Render respondeu HTTP '+str(e.code))
+          env = {p['envVar']['key']:p['envVar']['value'] for p in d}
+          token = env.get('IG_ACCESS_TOKEN','')
+          if not token:
+              raise SystemExit('FALHA: IG_ACCESS_TOKEN nao encontrado no Render')
+          url = 'https://graph.instagram.com/v23.0/me?'+urllib.parse.urlencode({
+             'fields':'id,username','access_token':token})
+          try:
+              with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'pablo-guru-ig-diagnostic'}),timeout=20) as r:
+                  user = json.load(r)
+          except urllib.error.HTTPError as e:
+              raise SystemExit('FALHA: Instagram Graph respondeu HTTP '+str(e.code))
+          if not user.get('id') or not user.get('username'):
+              raise SystemExit('FALHA: conta Instagram retornou dados incompletos')
+          print('OK: credenciais do Render funcionam, token Instagram aceito e perfil identificado.')
+          print('Perfil de destino: @'+user['username'])
+          PY
