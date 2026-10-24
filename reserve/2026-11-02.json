@@ -1,0 +1,49 @@
+{
+  "id": "a-chave-torta",
+  "title": "A chave torta",
+  "capa": "A chave da sentença",
+  "prop": "key",
+  "destaque": "Mão livre",
+  "frase": "Perdoar é deixar o erro perder o comando",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "perfeccionistas",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quantas vezes você revê seu erro até não conseguir perdoar a si mesmo? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de chaveiro, escondi uma chave torta, envergonhado do erro que cometi.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda vez que a via, eu a polia. Mas a chave não abria porta alguma; só mantinha meu erro brilhando.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa chave na sua mão. Você quer reparar o passado ou continuar usando-o para se ferir?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo lembrar meu erro com pagar por ele para sempre.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A chave torta não era sentença; era a marca de um erro que já não precisava comandar a mão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que erro você pode parar de transformar em sentença?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-02"
+}
