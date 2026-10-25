@@ -1,0 +1,49 @@
+{
+  "id": "a-semente-sem-comeco",
+  "title": "A semente que esperava",
+  "capa": "O buraco sem começo",
+  "prop": "seed",
+  "destaque": "Espaço primeiro",
+  "frase": "Acompanhar não é cavar em volta do começo",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "pais_de_adolescentes",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando seu adolescente hesita diante de qualquer começo, você já não sabe como chegar perto? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa horta escolar, um jardineiro plantou uma semente e ficou esperando coragem brotar junto.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda manhã, cavava ao redor para conferir. A semente continuava quieta; ele sujava as mãos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine seu filho diante da terra. Você está protegendo o começo ou cavando tanto que ele nem consegue plantar?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo acompanhar meu filho com arrancar dele a primeira tentativa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Às vezes, o medo dos pais cava em volta do começo até transformá-lo num buraco sem semente.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que começo do seu filho ainda precisa de espaço?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-03"
+}
