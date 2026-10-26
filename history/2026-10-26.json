@@ -1,0 +1,52 @@
+{
+  "id": "a-porta-da-raiva",
+  "title": "A porta da raiva",
+  "capa": "A porta virada contra mim",
+  "prop": "door",
+  "destaque": "Porta interna",
+  "frase": "Às vezes, a raiva fecha a passagem que desejamos reabrir",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cinquenta_mais",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois dos cinquenta, a raiva ainda fecha portas que você queria reabrir? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de marceneiro, escondi uma porta atrás de tábuas depois de uma discussão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Eu dizia que precisava de distância. Mas preguei a última tábua por dentro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa porta diante de você. Sua raiva está protegendo um limite ou impedindo um recomeço?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de firmeza o medo de voltar a conversar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A raiva parecia muralha, mas era uma porta virada contra mim; o orgulho guardava a passagem.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que conversa ainda espera você abrir?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-26",
+  "hook_type": "dor",
+  "hook_text": "Depois dos cinquenta, a raiva ainda fecha portas que você queria reabrir? Escute isso.",
+  "script_sha256": "032fd334b6874c520acbec1c7aa6e85869c819448d443793a3cfa5cc1b84f648"
+}
