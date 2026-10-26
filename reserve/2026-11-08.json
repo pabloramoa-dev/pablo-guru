@@ -1,0 +1,49 @@
+{
+  "id": "o-espelho-do-veredito",
+  "title": "O espelho do veredito",
+  "capa": "O rosto que você condena",
+  "prop": "mirror",
+  "destaque": "Rosto inteiro",
+  "frase": "A verdade precisa aparecer para existir encontro",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "casais",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando a autocrítica transforma cada conversa do casal em prova contra você? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de vitrais, uma artesã guardava um espelho pequeno sobre a bancada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada risco no vidro fazia-a escondê-lo. Ela só mostrava ao marido o lado sem marcas.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse espelho entre vocês. Quando você se julga antes de falar, quem consegue encontrar seu rosto?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava levando para o casal um veredito que já tinha dado sobre mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O espelho não pedia um rosto sem marcas; mostrava que a verdade também precisa aparecer para haver encontro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você deixa amar o rosto que você condena?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-08"
+}

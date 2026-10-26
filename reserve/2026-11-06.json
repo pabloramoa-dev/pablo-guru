@@ -1,0 +1,49 @@
+{
+  "id": "gratidao-sem-cobranca",
+  "title": "O copo sem dívida",
+  "capa": "O copo que transbordou",
+  "prop": "cup",
+  "destaque": "Gratidão livre",
+  "frase": "Agradecer não transforma carinho em dívida.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "busca_espiritual",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando agradecer parece o preço para pertencer, ainda existe gratidão em você? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa olaria, um oleiro moldou um copo para a mesa de uma benfeitora.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Todos elogiavam o presente. Ele o encheu até a borda, para não parecer ingrato. A água transbordou.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse copo nas suas mãos. Você agradece por sentir ou para ninguém cobrar seu coração?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu posso reconhecer o bem sem transformar minha gratidão numa dívida.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O copo não prova gratidão quando transborda; ele a revela quando recebe sem perder o espaço vazio.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você agradece por medo de dever?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-06"
+}
