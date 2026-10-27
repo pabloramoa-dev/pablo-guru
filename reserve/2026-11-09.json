@@ -1,0 +1,49 @@
+{
+  "id": "o-livro-da-presenca",
+  "title": "O livro da presença",
+  "capa": "A casa dentro do livro",
+  "prop": "book",
+  "destaque": "Presença possível",
+  "frase": "A memória pode viajar sem afastar você do lugar presente",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "longe_de_casa",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Longe da família, você está presente na cidade nova ou só esperando voltar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de encadernador, numa cidade estrangeira, carregava um livro da minha terra.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Eu o abria em cada praça. Lia as páginas, mas não via os rostos ao redor.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse livro no seu colo: você está vivendo onde chegou ou apenas visitando enquanto espera voltar?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu chamava saudade de presença, mas estava ausente do lugar que me acolheu.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O livro não me mantinha em casa; mostrava que minha memória podia viajar sem fechar meus olhos ao presente.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa saber que você já está aqui?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-09"
+}
