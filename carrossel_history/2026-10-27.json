@@ -1,0 +1,40 @@
+{
+  "data": "2026-10-27",
+  "titulo": "O luto também é sagrado",
+  "conteudo": {
+    "id": "luto-sagrado",
+    "titulo": "O luto também é sagrado",
+    "subtitulo": "Nem toda dor precisa virar lição depressa",
+    "slides": [
+      {
+        "titulo": "Luto também é sagrado",
+        "texto": "Perder alguém, uma fase ou um sonho mexe com corpo, memória e sentido. Não é falha espiritual: é uma travessia humana."
+      },
+      {
+        "titulo": "Quando a fé apressa",
+        "texto": "Ele aparece quando frases como “solte”, “agradeça” ou “tudo acontece por uma razão” tentam encerrar uma dor ainda viva."
+      },
+      {
+        "titulo": "O que se perde",
+        "texto": "Ao exigir serenidade imediata, podemos perder a despedida, a raiva, a saudade e a presença de quem ainda está sofrendo."
+      },
+      {
+        "titulo": "Dar espaço ao luto",
+        "texto": "Nomeie o que foi perdido. Procure companhia segura. Mantenha pequenos cuidados. Deixe a espiritualidade acompanhar a dor, sem transformá-la em explicação."
+      },
+      {
+        "titulo": "Uma pergunta honesta",
+        "texto": "O que minha tristeza precisa hoje: silêncio, companhia, palavra, rito ou apenas permissão para existir?"
+      }
+    ],
+    "fechamento": "Até a lágrima pode ser uma prece que não sabe o próprio nome.",
+    "legenda": "Nem todo luto precisa ser explicado para ser atravessado. Às vezes, o sagrado começa quando paramos de apressar a dor.",
+    "hashtags": [
+      "#luto",
+      "#espiritualidade",
+      "#acolhimento"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-10-27T20:40:53-03:00"
+}
