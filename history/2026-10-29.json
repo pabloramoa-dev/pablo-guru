@@ -1,0 +1,52 @@
+{
+  "id": "a-chave-da-saudade",
+  "title": "A chave da saudade",
+  "capa": "A chave que ficou",
+  "prop": "key",
+  "destaque": "Casa nova",
+  "frase": "Saudade não é atraso; é amor procurando outro lugar",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "vinte_e_poucos",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A saudade da vida que você imaginou faz seus vinte e poucos parecerem atrasados? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa rodoviária, uma bilheteira guardava uma chave da casa onde cresceu.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Tentava encaixá-la em cada porta nova. Nenhuma girava; ela chamava isso de atraso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa chave na sua mão. Você sente saudade de casa ou exige que o futuro tenha a mesma fechadura?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Cuidar não exige esconder todas as marcas.” Eu também escondo a saudade atrás da comparação.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A chave não condenava o futuro; a saudade era o jeito antigo de chamar de casa aquilo que ainda estava nascendo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você ama precisa saber que sua saudade não é atraso?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-29",
+  "hook_type": "dor",
+  "hook_text": "A saudade da vida que você imaginou faz seus vinte e poucos parecerem atrasados? Escute isso.",
+  "script_sha256": "c3063c822ac90490f417b4ba421497ab628576d18b88a00bd9aa8de157cef972"
+}
