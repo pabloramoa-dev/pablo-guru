@@ -1,0 +1,49 @@
+{
+  "id": "a-bolsa-do-silencio",
+  "title": "A bolsa do silêncio",
+  "capa": "O peso que você esconde",
+  "prop": "bag",
+  "destaque": "Coragem aberta",
+  "frase": "Coragem também é admitir que você precisa de cuidado",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cuidadores",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando cuidar de um familiar exige uma conversa que você sempre adia? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa casa de família, uma cuidadora de idosos carregava uma bolsa pesada, sem abrir.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A bolsa apertava seu ombro; ela a chamava de proteção.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa bolsa nas suas mãos: você protege seu familiar ou esconde o medo de pedir cuidado?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu chamava de coragem continuar calada, mas era medo de desorganizar tudo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A bolsa parecia proteger a casa, mas carregava, sobretudo, a conversa que ninguém ousava abrir.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa ouvir que você também precisa de cuidado?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-13"
+}
