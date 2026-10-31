@@ -1,0 +1,49 @@
+{
+  "id": "a-ponte-sem-passos",
+  "title": "A ponte sem passos",
+  "capa": "O propósito sem testemunhas",
+  "prop": "bridge",
+  "destaque": "Sentido invisível",
+  "frase": "O propósito pode existir antes de ser reconhecido",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "vinte_e_poucos",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A vida dos seus amigos avança, e seu propósito parece atrasado? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa vila costeira, um construtor de pontes ergueu uma ponte para uma ilha quase vazia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ninguém atravessava. Ele pensou ter desperdiçado madeira e anos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ponte diante de você. Seu propósito precisa ser reconhecido hoje para existir?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de atraso o silêncio que ainda não confirma meu caminho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A ponte não era inútil por estar vazia; às vezes, o sentido aparece antes dos passos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Talvez seu caminho esteja esperando os primeiros pés.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-14"
+}
