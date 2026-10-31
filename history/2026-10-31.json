@@ -1,0 +1,52 @@
+{
+  "id": "a-janela-do-desapego",
+  "title": "A janela do desapego",
+  "capa": "A janela que você fecha",
+  "prop": "window",
+  "destaque": "Soltar cuidado",
+  "frase": "Soltar o cuidado não apaga o amor",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "maes",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando cuidar de todos prende seus desejos, você consegue soltá-los sem culpa? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa casa de flores, uma jardineira mantinha a janela fechada para proteger tudo que cultivara.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O ar ficou parado. Quando abriu a janela, o vento entrou e levou folhas secas para longe.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa janela nas suas mãos. Você protege o que ama ou impede que cresça longe do seu cuidado?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de proteção o medo de deixar meus filhos viverem sem meu controle.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O amor não é estufa: é a janela que deixa a vida encontrar seu próprio vento.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Talvez soltar também seja uma forma de continuar presente.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-10-31",
+  "hook_type": "dor",
+  "hook_text": "Quando cuidar de todos prende seus desejos, você consegue soltá-los sem culpa? Escute isso.",
+  "script_sha256": "da0b366b901a41b69ea743d1e78717114226e507c69094b9622158621d02f05c"
+}
