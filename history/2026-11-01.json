@@ -1,0 +1,52 @@
+{
+  "id": "a-janela-do-ritmo",
+  "title": "A janela do ritmo alheio",
+  "capa": "O vidro da comparação",
+  "prop": "window",
+  "destaque": "Ritmo próprio",
+  "frase": "O ritmo alheio não mede o valor da sua voz.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "introvertidos",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Em grupos, a facilidade dos outros faz sua voz parecer pequena? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa sala de ensaio, uma afinadora de pianos trabalhava diante de uma janela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Pela janela, ouvia pianos de outras salas tocando mais depressa. Fechou o vidro; o ar embaçou, e seu piano continuou desafinado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa janela diante de você. A comparação está mostrando seu caminho ou fechando sua voz antes de ela nascer?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo o ritmo dos outros com medida do meu valor.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A janela não diminuía o som alheio; só revelava quanto espaço você deixou de dar ao próprio som.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você escuta quando se compara?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-01",
+  "hook_type": "dor",
+  "hook_text": "Em grupos, a facilidade dos outros faz sua voz parecer pequena? Escute isso.",
+  "script_sha256": "4f4e36ab46188097ce5342e86c36dfc46f9c2f17e6a9d773a7a8b95c574a0dd1"
+}
