@@ -1,0 +1,49 @@
+{
+  "id": "o-livro-que-nao-respondia",
+  "title": "O livro que não respondia",
+  "capa": "A voz que não voltou",
+  "prop": "book",
+  "destaque": "Voz própria",
+  "frase": "Escutar o passado não devolve quem partiu",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "recomeco_amoroso",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois do término, você ainda escuta a voz de quem foi embora? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa biblioteca de bairro, uma encadernadora guardava um livro deixado pelo antigo companheiro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ela relia as mesmas páginas, tentando ouvir nelas a voz que já não respondia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse livro nas suas mãos. Você está escutando a si ou esperando que o passado fale?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de saudade a espera por uma resposta que não viria.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O livro guardava palavras antigas, mas sua voz começava quando ela parava de pedir ao passado que voltasse.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que voz você ainda espera ouvir?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-15"
+}
