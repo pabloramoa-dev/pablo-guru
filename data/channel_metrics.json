@@ -363,10 +363,66 @@
         "comments": 0,
         "shares_per_1000_reached": 0.0
       }
+    },
+    {
+      "media_id": "18109028354193014",
+      "window": "24h",
+      "age_hours": 27.29,
+      "collected_at": "2026-11-01T19:39:20.827797+00:00",
+      "metrics": {
+        "reach": 138,
+        "shares": 0,
+        "saved": 0,
+        "likes": 1,
+        "comments": 0,
+        "shares_per_1000_reached": 0.0
+      }
+    },
+    {
+      "media_id": "17905124847361944",
+      "window": "24h",
+      "age_hours": 44.01,
+      "collected_at": "2026-11-01T19:39:20.827797+00:00",
+      "metrics": {
+        "reach": 1,
+        "shares": 0,
+        "saved": 0,
+        "likes": 0,
+        "comments": 0,
+        "shares_per_1000_reached": 0.0
+      }
+    },
+    {
+      "media_id": "18134356178494488",
+      "window": "72h",
+      "age_hours": 73.99,
+      "collected_at": "2026-11-01T19:39:20.827797+00:00",
+      "metrics": {
+        "reach": 16,
+        "shares": 0,
+        "saved": 0,
+        "likes": 0,
+        "comments": 0,
+        "shares_per_1000_reached": 0.0
+      }
+    },
+    {
+      "media_id": "17978661882132902",
+      "window": "72h",
+      "age_hours": 91.63,
+      "collected_at": "2026-11-01T19:39:20.827797+00:00",
+      "metrics": {
+        "reach": 1,
+        "shares": 0,
+        "saved": 0,
+        "likes": 0,
+        "comments": 0,
+        "shares_per_1000_reached": 0.0
+      }
     }
   ],
   "status": "ok",
   "errors": [],
-  "updated_at": "2026-10-31T19:17:31.440202+00:00",
+  "updated_at": "2026-11-01T19:39:20.827797+00:00",
   "account": "opabloguru"
 }
