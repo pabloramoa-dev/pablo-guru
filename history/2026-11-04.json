@@ -1,0 +1,52 @@
+{
+  "id": "o-mapa-do-silencio",
+  "title": "O mapa do silêncio",
+  "capa": "O centro que sumiu",
+  "prop": "map",
+  "destaque": "Centro próprio",
+  "frase": "Até quem cuida precisa reencontrar o próprio centro",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "quem_cuida_na_saude",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Entre plantões, quando o silêncio por dentro nunca chega? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa enfermaria ao amanhecer, uma enfermeira guardava um mapa dobrado no bolso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada corredor que atravessava abria o mapa. As linhas se cruzavam até esconder o centro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse mapa em sua mão. Você procura uma saída ou evita encontrar o lugar onde está?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu parar para ouvir meu silêncio, quem cuidará de quem precisa de mim?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo a pergunta. O mapa não mandava correr: mostrava que até quem cuida pode perder o próprio centro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando foi a última vez que você se encontrou?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-04",
+  "hook_type": "dor",
+  "hook_text": "Entre plantões, quando o silêncio por dentro nunca chega? Escute isso.",
+  "script_sha256": "ffe9a3a50bfcd3d9d179e60428f4d7786104a5c022e93e8a096a30d1bb370df8"
+}
