@@ -1,0 +1,49 @@
+{
+  "id": "a-estacao-vazia",
+  "title": "A estação vazia",
+  "capa": "A estação sem passageiros",
+  "prop": "station",
+  "destaque": "Chegada imperfeita",
+  "frase": "A companhia chega quando o encontro não precisa ser perfeito.",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "perfeccionistas",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quantas conversas você adia até encontrar a companhia perfeita? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa sala de espera, um bilheteiro montava uma pequena estação de madeira para esperar o passageiro certo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A estação ficava impecável. Ninguém chegava; ele corrigia sua posição a cada ruído.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa estação ao seu lado. Você espera companhia ou torna impossível alguém se aproximar?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu deixar alguém chegar antes de estar pronto, posso estragar o encontro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo o receio. A estação perfeita não oferecia companhia; guardava apenas o medo de ser encontrada como estava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem poderia chegar sem esperar sua perfeição?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-18"
+}
