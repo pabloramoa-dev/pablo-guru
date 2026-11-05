@@ -1,0 +1,52 @@
+{
+  "id": "o-livro-que-nao-fechava",
+  "title": "O livro que não fechava",
+  "capa": "A escola dentro de você",
+  "prop": "book",
+  "destaque": "Limite vivo",
+  "frase": "Seu limite também protege quem você cuida",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "professores",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Ao chegar vazio em casa, você ainda leva as necessidades dos alunos para dentro de si? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa sala de aula vazia, uma professora carregava um livro como se ainda houvesse aula.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Depois, escrevia pedidos nas páginas. O livro engrossava e não fechava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse livro no colo. Você respeita seu limite ou deixa a escola morar dentro de você?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Até quem cuida precisa reencontrar o próprio centro.”",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um livro cheio de vozes pode esconder a voz de quem o carrega, quando o limite vira silêncio.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa lembrar que você também tem limite?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-05",
+  "hook_type": "dor",
+  "hook_text": "Ao chegar vazio em casa, você ainda leva as necessidades dos alunos para dentro de si? Escute isso.",
+  "script_sha256": "fdd7a6126aa665e7d27de5834eb886375f90b5bf83a86e46bf017fbb6b1ff01f"
+}
