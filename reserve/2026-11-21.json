@@ -1,0 +1,49 @@
+{
+  "id": "a-corrente-do-peso",
+  "title": "A corrente do peso",
+  "capa": "Quem segura seu elo",
+  "prop": "chain",
+  "destaque": "Peso dividido",
+  "frase": "Pedir ajuda não diminui a responsabilidade que você carrega",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "professores",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Na sala de aula, pedir ajuda ainda parece confessar que você não aguenta? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa escola de bairro, uma professora guardava uma corrente enrolada na gaveta.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada pedido da turma prendia um elo. A corrente ficou pesada; ela mal conseguia levantá-la.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa corrente no seu braço. Você está sustentando a turma ou impedindo que alguém segure um elo?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu chamava de responsabilidade o medo de dividir o peso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A corrente não mostrava força; mostrava que um peso dividido deixa de ser prisão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Até uma mão dedicada precisa de outra mão.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-21"
+}
