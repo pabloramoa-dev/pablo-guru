@@ -1,0 +1,52 @@
+{
+  "id": "a-ampulheta-da-aprovacao",
+  "title": "A ampulheta da aprovação",
+  "capa": "A aprovação que muda",
+  "prop": "hourglass",
+  "destaque": "Tudo muda",
+  "frase": "A aprovação também muda quando a vida avança",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "filhos_adultos",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando você ainda espera seus pais aprovarem escolhas que já mudaram? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa relojoaria antiga, um relojoeiro guardava uma ampulheta sobre o balcão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A areia caía. Ele virava o vidro, tentando conservar o mesmo instante.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta nas suas mãos. O que você chama de aprovação, se tudo já está mudando?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Eu estava pedindo aos meus pais uma certeza que o tempo nunca consegue conservar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A ampulheta não perdia o tempo; mostrava que até a aprovação muda de forma quando a vida avança.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que hoje parece permissão pode amanhã ser apenas lembrança.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-07",
+  "hook_type": "dor",
+  "hook_text": "Quando você ainda espera seus pais aprovarem escolhas que já mudaram? Escute isso.",
+  "script_sha256": "3d34bf31e81bb371422ad383f0f1b9e92338d62fc5d17862c908b0ecca93c2f2"
+}
