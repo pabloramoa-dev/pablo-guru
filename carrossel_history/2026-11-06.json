@@ -1,0 +1,40 @@
+{
+  "data": "2026-11-06",
+  "titulo": "Quando cuidar vira comprar",
+  "conteudo": {
+    "id": "autocuidado-consumo",
+    "titulo": "Quando cuidar vira comprar",
+    "subtitulo": "Nem todo autocuidado precisa caber numa sacola",
+    "slides": [
+      {
+        "titulo": "Cuidar não é acumular",
+        "texto": "Autocuidado é atenção às próprias necessidades. Não precisa sempre de um retiro, um cristal ou um curso novo."
+      },
+      {
+        "titulo": "O consumo se disfarça",
+        "texto": "A promessa aparece bonita: compre, participe, eleve sua energia. E o cuidado começa a parecer um produto em falta."
+      },
+      {
+        "titulo": "O que fica de fora",
+        "texto": "Quando tudo vira compra, esquecemos práticas simples: descansar, pedir ajuda, colocar limites e reconhecer o que realmente sentimos."
+      },
+      {
+        "titulo": "Escolha com presença",
+        "texto": "Um retiro pode fazer sentido. Um cristal pode ter significado. Mas pergunte: isso apoia minha vida ou apenas acalma minha ansiedade por alguns dias?"
+      },
+      {
+        "titulo": "Seu cuidado tem preço?",
+        "texto": "Antes de comprar, experimente uma pausa sem vitrine: o que meu corpo, meu tempo e minha vida estão pedindo agora?"
+      }
+    ],
+    "fechamento": "Às vezes, o cuidado floresce quando a vitrine se cala.",
+    "legenda": "Autocuidado pode incluir escolhas bonitas, mas não deveria depender de comprar uma versão melhor de si. O que você tem chamado de cuidado ultimamente?",
+    "hashtags": [
+      "#autocuidado",
+      "#consumoconsciente",
+      "#espiritualidadesemcliche"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-11-06T21:03:20-03:00"
+}
