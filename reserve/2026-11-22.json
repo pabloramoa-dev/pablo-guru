@@ -1,0 +1,49 @@
+{
+  "id": "a-lupa-do-orgulho",
+  "title": "A lupa do orgulho",
+  "capa": "O risco que cresceu",
+  "prop": "magnifier",
+  "destaque": "Risco ampliado",
+  "frase": "O orgulho transforma um erro pequeno em identidade inteira",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "busca_espiritual",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando admitir que errou parece diminuir sua luz diante dos outros? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de instrumentos, um luthier guardava uma lupa sobre a bancada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ao encontrar um risco na madeira, ampliava a marca até esquecer o som do instrumento.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lupa nas suas mãos. O que seu orgulho aumenta: a falha ou a necessidade de parecer certo?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo preservar minha dignidade com esconder que também posso errar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A lupa não revelava um desastre; revelava como o orgulho transforma um risco pequeno em identidade inteira.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você precisa encontrar sem o escudo de estar certo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-22"
+}
