@@ -1,0 +1,52 @@
+{
+  "id": "a-xicara-da-espera",
+  "title": "A xícara da espera",
+  "capa": "A demora não responde",
+  "prop": "cup",
+  "destaque": "Tempo próprio",
+  "frase": "A espera não é veredito sobre sua capacidade",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "concurseiros",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando a aprovação demora, você trata cada dia como prova contra si? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação pequena, uma bilheteira estudava para concurso e consultava uma xícara sobre quando a aprovação chegaria.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A xícara ficou imóvel. Ela esperou tanto que a bilheteira consultou de novo; a xícara continuou muda.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa xícara na sua mão. Você espera seu tempo ou exige que a demora prove seu valor?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava tratando a demora como um veredito sobre minha capacidade.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A xícara não conhecia o futuro; apenas mostrava como a pressa transforma espera em julgamento.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que parte da sua espera virou acusação?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-10",
+  "hook_type": "dor",
+  "hook_text": "Quando a aprovação demora, você trata cada dia como prova contra si? Escute isso.",
+  "script_sha256": "55e3b8ce6cc7f6770221b56775d1fb18720e1ea96d1b598402618d5223d3c3d5"
+}
