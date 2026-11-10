@@ -1,0 +1,49 @@
+{
+  "id": "a-lampada-de-folga",
+  "title": "A lâmpada de folga",
+  "capa": "O descanso virou tarefa",
+  "prop": "lamp",
+  "destaque": "Ficar junto",
+  "frase": "Descansar juntos não precisa virar mais uma obrigação",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "casais",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando o casal vira rotina, até descansar juntos parece mais uma tarefa? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa pousada, uma camareira levou uma lâmpada ao quarto de um casal que nunca parava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O casal pediu luz e breu ao mesmo tempo. A lâmpada piscou três vezes e se declarou de folga.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lâmpada entre vocês. O descanso precisa ser combinado até virar mais uma cobrança?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava tentando descansar do jeito certo e transformando até o silêncio em obrigação.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Às vezes, a luz não apaga o amor; revela que o casal esqueceu como simplesmente ficar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você convidaria para não fazer nada hoje?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-24"
+}
