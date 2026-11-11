@@ -1,0 +1,52 @@
+{
+  "id": "o-mapa-que-recomeca",
+  "title": "O mapa que recomeça",
+  "capa": "A estrada não acabou",
+  "prop": "map",
+  "destaque": "Outra direção",
+  "frase": "Recomeçar não transforma sua história em erro",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cinquenta_mais",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Aos cinquenta, mudar de caminho ainda parece confessar que você chegou tarde? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação rural, uma relojoeira guardava um mapa dobrado da primeira estrada que percorreu.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda manhã, alisava a rota antiga. O papel rasgou nas dobras, mas ela continuou seguindo suas linhas.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse mapa nas suas mãos. Você quer recomeçar ou provar que os anos anteriores não foram desperdício?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu mudar agora, parece que admito ter vivido do jeito errado até aqui.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo a objeção: um mapa gasto não acusa a viagem; revela que seus passos já abriram espaço para outra direção.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que caminho ainda pode começar sem apagar sua história?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-11",
+  "hook_type": "dor",
+  "hook_text": "Aos cinquenta, mudar de caminho ainda parece confessar que você chegou tarde? Escute isso.",
+  "script_sha256": "5a0183d577f2f6b796faada98fcd0216b3a8dfe75370e12fa2cf83ed5c4fe903"
+}
