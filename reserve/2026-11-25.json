@@ -1,0 +1,49 @@
+{
+  "id": "o-mapa-da-raiva",
+  "title": "O mapa da raiva",
+  "capa": "A cidade que não é casa",
+  "prop": "map",
+  "destaque": "Lugar presente",
+  "frase": "A raiva pode apagar o lugar onde você está",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "longe_de_casa",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando a saudade vira raiva na cidade nova, você desconta em quem tenta se aproximar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação estrangeira, um cartógrafo desenhava um mapa da cidade onde ninguém o conhecia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A raiva escurecia as linhas. Ele rasgava o mapa sempre que errava uma rua.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse mapa nas suas mãos. Você quer encontrar um caminho ou punir a cidade por não ser casa?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu baixar a raiva, parece que estou aceitando viver longe de quem amo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo. Mas o mapa não guardava sua casa; mostrava que a raiva também podia apagar o lugar onde você está.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem está pagando pela sua saudade?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-25"
+}
