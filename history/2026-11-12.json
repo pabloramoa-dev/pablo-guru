@@ -1,0 +1,52 @@
+{
+  "id": "a-corrente-do-encaixe",
+  "title": "A corrente do encaixe",
+  "capa": "O elo que não endireita",
+  "prop": "chain",
+  "destaque": "Aceitar limites",
+  "frase": "Aceitar a forma real também pode revelar força",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "empreendedores",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando seu pequeno negócio não cresce como sonhou, aceitar isso parece desistir? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa pequena oficina, um chaveiro tentava endireitar uma corrente que nunca ficava como ele queria.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada elo puxado com força se deformava mais; a corrente perdia o encaixe.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa corrente nas suas mãos. Você está aceitando o limite real ou brigando com a forma que inventou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que anotei ontem: “Recomeçar não transforma sua história em erro.” Eu também posso aceitar sem abandonar o que construí.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A corrente não falhava por não ser reta; sua força aparecia quando cada elo encontrava seu encaixe.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que você insiste em endireitar?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-12",
+  "hook_type": "dor",
+  "hook_text": "Quando seu pequeno negócio não cresce como sonhou, aceitar isso parece desistir? Escute isso.",
+  "script_sha256": "75d8d00dae604c14a23511a519aab895f18d0d20060e4249a0bbb5b7ad87fde0"
+}
