@@ -1,0 +1,49 @@
+{
+  "id": "a-semente-da-confianca",
+  "title": "A semente da confiança",
+  "capa": "O que cresce escondido",
+  "prop": "seed",
+  "destaque": "Confiança silenciosa",
+  "frase": "A confiança cresce antes de aparecer",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "concurseiros",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando a confiança some antes da prova, cada questão parece confirmar que você vai falhar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa biblioteca pública, uma jardineira que estudava para concurso guardava uma semente no bolso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Antes da prova, ela apertava a semente e imaginava que nada cresceria sem sua vigilância.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa semente na sua mão. Se você precisa controlar cada dúvida, como confiar no que aprendeu?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “A raiva pode apagar o lugar onde você está.” Eu estava estudando como quem precisa vigiar cada resultado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A semente não pedia certeza; sob a terra, a confiança crescia sem testemunhas.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa lembrar que você já plantou?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-26"
+}
