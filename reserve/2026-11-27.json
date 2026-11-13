@@ -1,0 +1,49 @@
+{
+  "id": "a-estacao-inacabada",
+  "title": "A estação inacabada",
+  "capa": "O recomeço sem acabamento",
+  "prop": "station",
+  "destaque": "Começo possível",
+  "frase": "Recomeçar não exige que o passado fique perfeito",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cinquenta_mais",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Aos cinquenta, você chama de teimosia o medo de recomeçar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa vila do interior, um fotógrafo aposentado construía uma pequena estação para começar outra vida.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ele corrigia cada banco e cada placa. A estação ficou linda, mas nunca recebeu passageiros.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa estação diante de você. Está preparando um recomeço ou esperando que ele não tenha nenhuma marca?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de cuidado o medo de começar sem garantir que tudo daria certo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A estação perfeita não anunciava uma nova viagem; escondia o homem que ainda queria partir.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que viagem sua espera está mantendo parada?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-27"
+}
