@@ -1,0 +1,49 @@
+{
+  "id": "a-janela-da-saudade",
+  "title": "A janela da saudade",
+  "capa": "A loja que ficou",
+  "prop": "window",
+  "destaque": "Lugar novo",
+  "frase": "A saudade ilumina o lugar que nasceu depois",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "empreendedores",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando seu pequeno negócio sente falta do começo, saudade pesa mais que as contas? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa pequena mercearia, uma quitandeira guardava uma janela antiga da primeira loja.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda tarde, limpava o vidro. Do outro lado, via a banca cheia e ouvia a rua que já não existia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa janela no seu negócio. Você sente saudade do começo ou tenta morar numa época que acabou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de saudade o medo de admitir que meu negócio mudou e eu também.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A janela não devolvia a antiga loja; mostrava que a saudade também pode iluminar o lugar que nasceu depois.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O passado pode continuar brilhando sem voltar.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-28"
+}
