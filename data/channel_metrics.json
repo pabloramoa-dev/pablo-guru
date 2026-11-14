@@ -979,10 +979,38 @@
         "comments": 0,
         "shares_per_1000_reached": 0.0
       }
+    },
+    {
+      "media_id": "18202160341380858",
+      "window": "24h",
+      "age_hours": 25.31,
+      "collected_at": "2026-11-14T19:55:53.702739+00:00",
+      "metrics": {
+        "reach": 49,
+        "shares": 0,
+        "saved": 0,
+        "likes": 1,
+        "comments": 0,
+        "shares_per_1000_reached": 0.0
+      }
+    },
+    {
+      "media_id": "18120985250002690",
+      "window": "72h",
+      "age_hours": 73.44,
+      "collected_at": "2026-11-14T19:55:53.702739+00:00",
+      "metrics": {
+        "reach": 2,
+        "shares": 0,
+        "saved": 0,
+        "likes": 0,
+        "comments": 0,
+        "shares_per_1000_reached": 0.0
+      }
     }
   ],
   "status": "ok",
   "errors": [],
-  "updated_at": "2026-11-13T21:25:55.339479+00:00",
+  "updated_at": "2026-11-14T19:55:53.702739+00:00",
   "account": "opabloguru"
 }
