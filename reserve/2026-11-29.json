@@ -1,0 +1,49 @@
+{
+  "id": "a-semente-sem-aplausos",
+  "title": "A semente sem aplauso",
+  "capa": "A confiança enterrada",
+  "prop": "seed",
+  "destaque": "Raiz interna",
+  "frase": "Sua confiança pode existir antes de ser confirmada",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "cuidadores",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando cuidar de alguém faz sua própria decisão parecer sempre errada? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa horta junto à casa, uma cuidadora de sua mãe guardava uma semente num pires.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda vez que precisava escolher, apertava a semente. Nada brotava; ela chamava o silêncio de prova contra si.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa semente nas suas mãos: você espera certeza para agir ou já enterrou sua confiança?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de prudência o medo de acreditar que também sei escolher.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A semente não provava nada em silêncio; ainda assim, escondia uma força que não precisava de aplauso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem ainda precisa ver você confiar em si?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-29"
+}
