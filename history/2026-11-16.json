@@ -1,0 +1,52 @@
+{
+  "id": "o-controle-na-lupa",
+  "title": "A lupa do controle",
+  "capa": "O relógio que parou",
+  "prop": "magnifier",
+  "destaque": "Mão aberta",
+  "frase": "Controlar tudo pode impedir a vida de nascer",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "maes",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Cuidar de todos faz você controlar até o que não pode? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de relojoeiro, carregava uma lupa para examinar cada engrenagem.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um dia, procurei tanto o menor desvio que arranhei o vidro e parei o relógio.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lupa na sua mão: o que você chama de cuidado, mas está tentando impedir que aconteça?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de proteção o medo de não conseguir controlar o caminho dos meus filhos.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A lupa não me dava segurança; aumentava o medo até ele ocupar todo o mostrador.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que seu controle está impedindo de nascer?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-16",
+  "hook_type": "dor",
+  "hook_text": "Cuidar de todos faz você controlar até o que não pode? Escute isso.",
+  "script_sha256": "3734b5474bfc40db0db73d964057f8d06f4407bda1c1b5e30381c5cf6374028a"
+}
