@@ -1,0 +1,49 @@
+{
+  "id": "a-ampulheta-da-idade-certa",
+  "title": "A ampulheta da idade certa",
+  "capa": "A idade que venceu",
+  "prop": "hourglass",
+  "destaque": "Tempo solto",
+  "frase": "Desapegar do tempo imaginado devolve espaço para a vida real",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "vinte_e_poucos",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "A vida dos seus amigos avança, e você ainda segura um prazo vencido? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de relojoeiro, carregava uma ampulheta pela praça, tentando prender nela a idade certa.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Eu virava o vidro. A areia caía, mas nunca voltava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta nas suas mãos. Você solta um tempo antigo ou força a vida a caber nele?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu chamava de prudência o medo de abandonar uma versão de mim que já acabou.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A ampulheta não guardava o tempo certo; guardava meu apego ao homem que eu deveria ser.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que versão sua ainda pede para ser carregada?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-30"
+}
