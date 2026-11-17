@@ -1,0 +1,52 @@
+{
+  "id": "a-sacola-do-brilho",
+  "title": "A sacola do brilho",
+  "capa": "O gato recebeu aplausos",
+  "prop": "bag",
+  "destaque": "Lugar próprio",
+  "frase": "O brilho dos outros não esvazia meu lugar",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "introvertidos",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "No grupo, o elogio aos outros faz seu silêncio parecer menor? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa feira, uma padeira tímida carregava uma sacola de pães atrás do balcão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Um gato pulou dentro dela e saiu com um pão na cabeça; todos riram, menos ela, que achou que até o gato recebia mais atenção.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa sacola nas suas mãos. Você quer ser vista ou só quer que ninguém brilhe mais?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo meu silêncio com falta de valor quando os outros apareciam.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A sacola não tinha menos pão porque o gato roubou a cena; seu conteúdo continuava ali, inteiro.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa lembrar que seu brilho também cabe na feira?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-17",
+  "hook_type": "dor",
+  "hook_text": "No grupo, o elogio aos outros faz seu silêncio parecer menor? Escute isso.",
+  "script_sha256": "878ec0511ab42cc7e7956999f15303d69d51ffc1933c26c1e65c49121b6efa5d"
+}
