@@ -1,0 +1,49 @@
+{
+  "id": "o-espelho-da-comparacao",
+  "title": "O espelho da comparação",
+  "capa": "O rosto depois do fim",
+  "prop": "mirror",
+  "destaque": "Régua antiga",
+  "frase": "A saudade não precisa medir tudo que nasceu depois",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "recomeco_amoroso",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois do término, comparar seu novo começo com o antigo faz tudo parecer menor? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa barbearia, uma cabeleireira recém-solteira guardava um espelho redondo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando uma cliente elogiava o corte novo, ela inclinava o espelho, procurando nele o rosto do ex. O espelho, teimoso, devolvia o dela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse espelho nas suas mãos. Você compara o presente com o passado ou ainda procura nele quem foi embora?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava usando o passado como régua e chamando de falta de brilho tudo que nasceu depois.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O espelho não diminuía o novo rosto; só revelava como a saudade pode virar régua e esconder a beleza presente.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que novidade você ainda mede com o rosto de quem partiu?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-01"
+}
