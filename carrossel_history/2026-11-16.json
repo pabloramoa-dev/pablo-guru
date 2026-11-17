@@ -1,0 +1,40 @@
+{
+  "data": "2026-11-16",
+  "titulo": "Você não precisa escolher seu jeito de buscar",
+  "conteudo": {
+    "id": "oracao-meditacao-ajuda",
+    "titulo": "Você não precisa escolher seu jeito de buscar",
+    "subtitulo": "O sagrado também pode caber na conversa e no silêncio",
+    "slides": [
+      {
+        "titulo": "Três portas, um caminho",
+        "texto": "Orar pode ser diálogo. Meditar, presença. Pedir ajuda, humildade. Nenhum desses gestos precisa excluir os outros."
+      },
+      {
+        "titulo": "Como isso aparece",
+        "texto": "Você reza quando precisa de sentido, medita para escutar o que sente e procura alguém quando não consegue caminhar sozinho."
+      },
+      {
+        "titulo": "O que se perde",
+        "texto": "Quando uma prática vira regra, a busca encolhe: oração vira cobrança, meditação vira desempenho e pedir ajuda parece fracasso."
+      },
+      {
+        "titulo": "Um caminho mais inteiro",
+        "texto": "Experimente combinar: fale o que pesa, fique alguns minutos em silêncio e nomeie quem pode caminhar com você."
+      },
+      {
+        "titulo": "Uma pergunta honesta",
+        "texto": "O que você precisa agora: expressar, escutar ou receber apoio? Talvez a resposta não seja escolher, mas alternar."
+      }
+    ],
+    "fechamento": "Há quem encontre a ponte falando, quem a atravesse em silêncio e quem peça companhia.",
+    "legenda": "Nem toda busca precisa caber em uma única prática. Às vezes, a oração abre a conversa, a meditação escuta e a ajuda sustenta o passo.",
+    "hashtags": [
+      "#oracao",
+      "#meditacao",
+      "#pedirdeajuda"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-11-16T23:52:19-03:00"
+}
