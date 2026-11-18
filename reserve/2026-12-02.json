@@ -1,0 +1,49 @@
+{
+  "id": "o-copo-do-perdao",
+  "title": "O copo do perdão",
+  "capa": "A culpa servida todos os dias",
+  "prop": "cup",
+  "destaque": "Culpa interrompida",
+  "frase": "Perdoar-se devolve espaço ao amor que você oferece",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "maes",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando pensar em si parece abandonar todos que dependem de você? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa cozinha de vila, uma doceira guardava um copo lascado depois de esquecer o aniversário da filha.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ela o lavava, escondia a lasca e servia todos; quando bebia, seus lábios encontravam o corte.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse copo em suas mãos. Até quando seu cuidado precisa se ferir para provar que merece perdão?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se eu me perdoar por pensar em mim, quem vai cuidar de todos?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo sua objeção: o copo não precisava negar a lasca; precisava deixar de transformar a culpa em bebida diária.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que culpa você ainda serve para quem ama?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-02"
+}
