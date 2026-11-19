@@ -1,0 +1,52 @@
+{
+  "id": "o-espelho-da-culpa",
+  "title": "O espelho da culpa",
+  "capa": "O rosto atrás da culpa",
+  "prop": "mirror",
+  "destaque": "Encontro possível",
+  "frase": "A culpa não aproxima quando esconde o rosto verdadeiro",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "pais_de_adolescentes",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando seu adolescente se fecha, a culpa faz você pensar que falhou em casa? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa escola vazia, um pai carpinteiro guardava um espelho rachado na oficina.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada silêncio do filho fazia ele polir a rachadura. Quanto mais brilhava, menos reconhecia o próprio rosto.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse espelho entre vocês. A culpa está reparando o encontro ou escondendo o medo de vê-lo distante?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “A companhia chega quando o encontro não precisa ser perfeito.” Eu estava usando a culpa para exigir uma aproximação perfeita.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A culpa polia o espelho, mas apagava o rosto do pai que ainda podia ser encontrado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Seu filho encontra você ou apenas sua culpa?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-19",
+  "hook_type": "dor",
+  "hook_text": "Quando seu adolescente se fecha, a culpa faz você pensar que falhou em casa? Escute isso.",
+  "script_sha256": "f3c1383a6d722f2e5e0bf67c08eb34282727438862248ee1b1de62f749b0496b"
+}
