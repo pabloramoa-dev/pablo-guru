@@ -1,0 +1,49 @@
+{
+  "id": "a-tesoura-do-comeco",
+  "title": "A tesoura do começo",
+  "capa": "O fio que não corta",
+  "prop": "key",
+  "destaque": "Marca inicial",
+  "frase": "Começar exige espaço para uma marca imperfeita",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "introvertidos",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Em grupos, até começar uma conversa parece arriscar desaparecer? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa feira de artesanato, uma bordadeira tímida guardava uma tesoura fechada no avental.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Ela esperava o momento perfeito para cortar o primeiro fio; o tecido continuava inteiro, sem desenho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa tesoura na sua mão. O que você protege quando mantém seu começo intacto?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que eu anotei ontem: “Perdoar-se devolve espaço ao amor que você oferece.” Eu também preciso me perdoar por começar sem garantia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A tesoura não esperava coragem pronta; abria caminho quando a mão aceitava deixar uma marca.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você chamaria para começar sem se esconder?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-03"
+}
