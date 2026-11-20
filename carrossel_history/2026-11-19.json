@@ -1,0 +1,40 @@
+{
+  "data": "2026-11-19",
+  "titulo": "Sua rotina já tem altar",
+  "conteudo": {
+    "id": "rotina-ja-tem-altar",
+    "titulo": "Sua rotina já tem altar",
+    "subtitulo": "Espiritualidade também aparece no que você repete sem anunciar.",
+    "slides": [
+      {
+        "titulo": "O sagrado no comum",
+        "texto": "Espiritualidade não começa apenas em grandes experiências. Às vezes, nasce da atenção com que você vive o que se repete."
+      },
+      {
+        "titulo": "Onde ela aparece",
+        "texto": "Preparar café, cuidar de alguém, caminhar, arrumar a casa ou respirar antes de responder: pequenos gestos podem carregar presença e sentido."
+      },
+      {
+        "titulo": "O que se perde",
+        "texto": "Quando esperamos algo extraordinário, desprezamos a vida concreta. E transformamos espiritualidade em desempenho, cenário bonito ou mais uma tarefa."
+      },
+      {
+        "titulo": "Um jeito de praticar",
+        "texto": "Escolha um gesto cotidiano. Faça mais devagar, note seu corpo e reconheça quem ou o que esse gesto sustenta."
+      },
+      {
+        "titulo": "Pergunte antes de correr",
+        "texto": "O que, na sua rotina, merece presença hoje? Não para parecer profundo, mas para estar inteiro no que já está diante de você."
+      }
+    ],
+    "fechamento": "Talvez o altar seja a pia; a oração, a atenção com que você lava um copo.",
+    "legenda": "Nem todo ritual precisa de incenso, silêncio perfeito ou nome especial. Às vezes, o sagrado começa quando você presta atenção ao que já faz.",
+    "hashtags": [
+      "#espiritualidadecotidiana",
+      "#presenca",
+      "#rituais"
+    ]
+  },
+  "estado": "preparado",
+  "atualizado": "2026-11-19T22:44:56-03:00"
+}
