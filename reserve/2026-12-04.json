@@ -1,0 +1,49 @@
+{
+  "id": "a-porta-impecavel",
+  "title": "A porta impecável",
+  "capa": "A porta que ninguém atravessa",
+  "prop": "door",
+  "destaque": "Voz descoberta",
+  "frase": "O silêncio também pode esconder o medo de começar",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "perfeccionistas",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando fazer tudo perfeito abafa sua voz por dentro? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de cenários, uma cenógrafa mantinha uma porta pintada encostada à parede.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada noite, corrigia a cor. A porta ficou impecável, mas ninguém atravessou o vão.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa porta diante de você. O que seu silêncio protege: sua verdade ou o medo de deixá-la imperfeita?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava chamando de silêncio interior o medo de ouvir uma voz que ainda não sei fazer perfeita.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A porta não precisava de pintura perfeita; o vão vazio revelava que a passagem começa antes da certeza.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que começo você mantém fechado por querer entrar sem falhar?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-04"
+}
