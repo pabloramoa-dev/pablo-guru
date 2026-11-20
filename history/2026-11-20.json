@@ -1,0 +1,52 @@
+{
+  "id": "a-lupa-da-expectativa",
+  "title": "A lupa da expectativa",
+  "capa": "O rosto que nunca basta",
+  "prop": "magnifier",
+  "destaque": "Presença inteira",
+  "frase": "A presença não precisa prever tudo para cuidar",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "quem_cuida_na_saude",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Entre plantões, a expectativa de dar conta de tudo não deixa você respirar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa sala de triagem, uma enfermeira carregava uma lupa, procurando no rosto de cada paciente a resposta perfeita.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quanto mais aproximava o vidro, mais detalhes surgiam. Nenhum rosto cabia inteiro na lente.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lupa sobre sua mão. A expectativa de acertar tudo está revelando cuidado ou escondendo o medo de não bastar?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo presença com a obrigação de prever cada necessidade.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A lupa não aumentava a responsabilidade; diminuía o mundo até nenhum encontro parecer suficiente.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem precisa ouvir que você não precisa prever tudo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-20",
+  "hook_type": "dor",
+  "hook_text": "Entre plantões, a expectativa de dar conta de tudo não deixa você respirar? Escute isso.",
+  "script_sha256": "791a77ce512ec6c3f4d6b19249208481087cc3cb8b25ec024023542b603f7d33"
+}
