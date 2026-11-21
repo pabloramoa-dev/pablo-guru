@@ -1,0 +1,49 @@
+{
+  "id": "a-chave-do-espaco",
+  "title": "A chave do espaço",
+  "capa": "Quando cuidar aperta",
+  "prop": "key",
+  "destaque": "Espaço respeitado",
+  "frase": "O vínculo permanece quando o espaço do outro também é respeitado",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "pais_de_adolescentes",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando seu adolescente pede espaço, você sente que está perdendo lugar? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa oficina de barcos, uma construtora guardava a chave do quarto do filho.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Toda noite, tentava girá-la. Um dia, a chave quebrou; do outro lado, o filho dormia.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa chave na sua mão. Você protege o vínculo ou entra onde já não cabe?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu chamava de cuidado o medo de respeitar o espaço dele.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A chave não abria o filho; revelava que vínculo também precisa de uma passagem não forçada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Às vezes, o amor permanece do lado de fora, sem deixar de ser casa.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-05"
+}
