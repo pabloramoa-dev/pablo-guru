@@ -1,0 +1,52 @@
+{
+  "id": "a-semente-do-tempo",
+  "title": "A semente do tempo",
+  "capa": "Quem autoriza seu tempo",
+  "prop": "seed",
+  "destaque": "Tempo próprio",
+  "frase": "Seu tempo não precisa da aprovação de ninguém",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "filhos_adultos",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Ainda espera seus pais dizerem que chegou a hora certa? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de jardineiro, plantei uma semente e exigi que brotasse na manhã seguinte.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cavei a terra várias vezes. A semente sumiu sob meus dedos, e o canteiro ficou vazio.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa terra nas suas mãos. Você está esperando o tempo certo ou tentando arrancá-lo dos outros?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava pedindo aos meus pais uma confirmação para um momento que só eu podia viver.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A semente não atrasou a primavera; meu medo transformou espera em fracasso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem ainda precisa autorizar seu tempo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-11-23",
+  "hook_type": "dor",
+  "hook_text": "Ainda espera seus pais dizerem que chegou a hora certa? Escute isso.",
+  "script_sha256": "fd3be469906c557650f30434c712dd867c0da1fc84d77b9425994d736fed1f6d"
+}
