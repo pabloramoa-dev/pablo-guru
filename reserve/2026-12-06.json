@@ -1,0 +1,49 @@
+{
+  "id": "a-bolsa-da-gratidao-livre",
+  "title": "A gratidão sem dívida",
+  "capa": "O peso do agradecimento",
+  "prop": "bag",
+  "destaque": "Gratidão livre",
+  "frase": "Receber carinho não transforma cuidado em dívida",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "quem_cuida_na_saude",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Entre plantões, agradecer virou obrigação para não parecer ingrata? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Num pronto atendimento, uma cuidadora carregava uma bolsa de bilhetes de agradecimento.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Cada elogio recebido virava peso. No fim do turno, a bolsa rasgou no corredor.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa bolsa no seu ombro: você acolhe o agradecimento ou tenta pagar por todo cuidado recebido?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu posso receber carinho sem transformar cada gesto em uma dívida.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A bolsa não guardava gratidão; guardava a tentativa de merecer, sem descanso, aquilo que já era humano.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem você agradece como se ainda precisasse merecer cuidado?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-06"
+}

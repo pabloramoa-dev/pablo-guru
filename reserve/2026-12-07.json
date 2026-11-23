@@ -1,0 +1,49 @@
+{
+  "id": "a-ampulheta-da-aula",
+  "title": "A ampulheta da aula",
+  "capa": "A areia que sumiu",
+  "prop": "hourglass",
+  "destaque": "Tempo presente",
+  "frase": "O tempo não se guarda; ele se revela enquanto estamos presentes",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "professores",
+  "formato": "erro_do_pablo",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois da aula, sua cabeça continua cheia de vozes até em casa? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quando eu era aprendiz de relojoeiro, deixei uma ampulheta sobre a mesa de uma sala de aula.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A areia caiu enquanto eu corrigia cadernos. Quando olhei, o recreio já tinha passado.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta no seu colo. Você está vivendo a aula ou tentando impedir que o tempo mude?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava tratando cada minuto com meus alunos como se pudesse guardá-lo, e chegava em casa sem nenhum para mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O tempo não era um recipiente a conservar; era a sala se esvaziando enquanto a vida pedia presença.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que momento seu já passou enquanto você tentava segurá-lo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-07"
+}
