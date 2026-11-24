@@ -1,0 +1,49 @@
+{
+  "id": "a-porta-do-sentido",
+  "title": "A porta do sentido",
+  "capa": "O defeito na porta",
+  "prop": "door",
+  "destaque": "Acolhimento interno",
+  "frase": "A autocrítica fecha até o sentido que já queria acolher",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "busca_espiritual",
+  "formato": "humor",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando sua busca por sentido vira cobrança por entender tudo? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa feira de artesãos, uma entalhadora de portas expunha uma porta pequena, orgulhosa e desconfiada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A cada elogio, ela apontava um risco. A porta rangeu, abriu sozinha e derrubou seu chapéu.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa porta diante de você. Você procura um sentido ou um defeito para provar que ainda não merece encontrá-lo?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu transformava minha busca interior numa prova que nunca terminava.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A porta não exigia merecimento; seu rangido revelava que a autocrítica também pode fechar aquilo que já queria acolher.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Qual defeito você usa para manter o sentido do lado de fora?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-08"
+}
