@@ -1,0 +1,49 @@
+{
+  "id": "o-espelho-da-presenca",
+  "title": "O espelho da presença",
+  "capa": "O rosto sem aprovação",
+  "prop": "mirror",
+  "destaque": "Presença própria",
+  "frase": "Sua presença começa antes da aprovação dos seus pais",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "filhos_adultos",
+  "formato": "marina_discorda",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Ainda espera seus pais reconhecerem sua presença antes de confiar no próprio caminho? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa estação ferroviária, uma bilheteira adulta guardava um espelho pequeno no bolso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Sempre que recebia uma notícia, procurava no vidro o rosto aprovador do pai. O espelho devolvia o dela.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine esse espelho na sua mão. Você está vivendo sua escolha ou esperando alguém confirmar que ela existe?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Mas, Pablo Guru, se meus pais não reconhecerem meu caminho, como vou saber que estou presente nele?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Entendo a dúvida. O espelho não trazia a aprovação ausente; mostrava que a vida dela já tinha um rosto.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Quem ainda precisa enxergar você vivendo?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-09"
+}
