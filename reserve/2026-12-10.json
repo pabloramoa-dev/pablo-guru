@@ -1,0 +1,49 @@
+{
+  "id": "a-ampulheta-do-casal",
+  "title": "A ampulheta do casal",
+  "capa": "O amor depois da espera",
+  "prop": "hourglass",
+  "destaque": "Amor renovado",
+  "frase": "Paciência também acolhe o amor que mudou",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "casais",
+  "formato": "caderno",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando o casal vive no mesmo teto, mas espera o outro voltar a ser como antes? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa relojoaria, uma relojoeira deixava uma ampulheta entre ela e o marido.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Viravam o vidro; a areia caía, mas a conversa ficava parada.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa ampulheta entre vocês: esperam o outro mudar ou o tempo esconder o que mudou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, isso lembra o que anotei ontem: “Sua presença começa antes da aprovação dos seus pais.” Eu espero o passado voltar.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A ampulheta não devolvia o começo; mostrava que paciência é acolher a forma nova do amor.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "O que vocês ainda esperam que volte?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-10"
+}
