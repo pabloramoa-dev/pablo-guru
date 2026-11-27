@@ -1,0 +1,49 @@
+{
+  "id": "a-lampada-do-lugar-novo",
+  "title": "A lâmpada do lugar novo",
+  "capa": "A luz que ficou",
+  "prop": "lamp",
+  "destaque": "Luz presente",
+  "frase": "A memória aquece sem apagar o lugar novo",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "longe_de_casa",
+  "formato": "parabola",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Depois de mudar de cidade, recomeçar parece trair a casa que ficou? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa vila costeira, uma faroleira recém-chegada guardava uma lâmpada da casa que deixou.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Acendeu-a na janela todas as noites. A luz iluminava o quarto, mas deixava a rua nova escura.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa lâmpada em suas mãos. Ela ilumina sua saudade ou impede você de enxergar onde chegou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava usando a lembrança da minha casa para não reconhecer a vida que começou aqui.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A lâmpada não trazia a casa antiga; mostrava que uma memória pode aquecer sem apagar o lugar novo.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Que lugar novo ainda espera sua luz?",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-11"
+}
