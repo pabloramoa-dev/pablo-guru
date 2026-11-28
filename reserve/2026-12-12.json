@@ -1,0 +1,49 @@
+{
+  "id": "a-porta-do-resultado",
+  "title": "A porta do resultado",
+  "capa": "A porta que mudou",
+  "prop": "door",
+  "destaque": "Passagem aceita",
+  "frase": "Aceitar o resultado não é desistir de si",
+  "emocao": "INQUIETAÇÃO",
+  "publico": "concurseiros",
+  "formato": "sem_pergunta",
+  "segments": [
+    {
+      "speaker": "asker",
+      "text": "Quando a prova não sai como queria, você transforma o resultado numa sentença? Escute isso.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Numa escola pública, um porteiro encontrou uma porta empenada depois do exame.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Empurrou com força. A porta não abriu; a madeira rangeu e ficou imóvel.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Agora imagine essa porta diante de você. Você aceita o resultado ou continua forçando uma passagem que mudou?",
+      "pause": 0.35
+    },
+    {
+      "speaker": "asker",
+      "text": "Pablo Guru, eu estava confundindo aceitar o resultado com desistir de mim.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "A porta não dizia quem ele era; apenas mostrava que aquela passagem já não se abria do mesmo jeito.",
+      "pause": 0.35
+    },
+    {
+      "speaker": "pablo",
+      "text": "Nem toda porta fechada encerra a travessia; algumas apenas devolvem você ao próprio caminho.",
+      "pause": 0.35
+    }
+  ],
+  "date": "2026-12-12"
+}
